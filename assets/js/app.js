@@ -28,10 +28,7 @@ const DEMOS=[
 {id:"tour",category:"Travel",name:"Tour & Travel",title:"GO",em:"SOMEWHERE.",desc:"Contoh paket, itinerary, inquiry, dan trust section."}
 ];
 
-const CLIENTS=[
-{id:"client-01",name:"Client Website — Hospitality",category:"Hospitality",status:"Published with permission",url:"#",desc:"Contoh slot publikasi website klien. Ganti data ini setelah izin dan URL resmi tersedia."},
-{id:"client-02",name:"Client Website — Business",category:"Business",status:"Published with permission",url:"#",desc:"Contoh slot publikasi website klien. Logo, screenshot, dan URL hanya ditampilkan setelah persetujuan."}
-];
+const CLIENTS=[];
 
 const fmt=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
@@ -118,8 +115,7 @@ function renderDemoDetail(){
 }
 
 function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
-);
-window.addCart=addCart;window.removeCart=removeCart;window.changeQty=changeQty;
+
 
 
 /* ============================================================
@@ -262,7 +258,7 @@ function renderDetail(){
     </div>
     <h2>Review pelanggan</h2>
     <div class="review-summary"><strong>${avg}</strong><span>★</span><small>${reviews.length} customer review${reviews.length===1?"":"s"}</small></div>
-    ${reviews.length?reviews.map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong><span class="verified-badge">Customer review</span></div><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${esc(r.text)}</p><small>${new Date(r.createdAt).toLocaleDateString("id-ID")}</small></article>`).join(""):'<div class="notice">Belum ada review terverifikasi untuk produk ini. Review pelanggan akan tersedia setelah sistem order produksi terhubung.</div>'}
+    ${reviews.length?reviews.map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong><span class="verified-badge">Customer review</span></div><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${esc(r.text)}</p><small>${new Date(r.createdAt).toLocaleDateString("id-ID")}</small></article>`).join(""):'<div class="notice">Belum ada review pelanggan untuk produk ini. Review akan tersedia setelah sistem order produksi terhubung.</div>'}
     ${eligible?`<form id="reviewForm" class="review-form"><h3>Bagikan pengalaman Anda</h3><label>Rating<select name="rating" required><option value="5">5 — Sangat baik</option><option value="4">4 — Baik</option><option value="3">3 — Cukup</option></select></label><label>Review<textarea name="text" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><button class="button button-dark" type="submit">Kirim review</button></form>`:'<div class="review-login"><p>Sudah membeli produk ini? Login untuk menulis review setelah pesanan selesai.</p><a class="button" href="account.html?next=${encodeURIComponent(location.href)}">Login / Daftar</a></div>'}
    </div>
   </div>
@@ -324,7 +320,7 @@ function setupAccount(){
    box.innerHTML=`<div class="account-welcome"><span class="eyebrow">ACCOUNT / ACTIVE</span><h2>Halo, ${esc(a.name)}.</h2><p>${esc(a.email)}</p><div class="account-grid"><div><b>Pesanan</b><small>${store.get("orders",[]).length} demo order</small></div><div><b>Review</b><small>Review pelanggan tersedia setelah pembelian</small></div><div><b>Wishlist</b><small>Siap diaktifkan</small></div><div><b>Alamat</b><small>Disimpan di checkout/backend</small></div></div><button id="logoutButton" class="button">Keluar</button></div>`;
    $("#logoutButton")?.addEventListener("click",()=>{store.set("account",null);location.reload()});
  }else{
-   box.innerHTML=`<form id="loginForm" class="form-card account-form"><div class="eyebrow">ACCOUNT / LOGIN</div><h2>Masuk untuk melanjutkan.</h2><p class="tiny">Akun menjadi pusat pesanan, alamat, wishlist, download, dan review terverifikasi.</p><label>Nama lengkap<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><button class="button button-dark full" type="submit">Masuk / Buat akun</button></form>`;
+   box.innerHTML=`<form id="loginForm" class="form-card account-form"><div class="eyebrow">ACCOUNT / LOGIN</div><h2>Masuk untuk melanjutkan.</h2><p class="tiny">Akun menjadi pusat pesanan, alamat, wishlist, download, dan review setelah sistem produksi terhubung.</p><label>Nama lengkap<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><button class="button button-dark full" type="submit">Masuk / Buat akun</button></form>`;
    $("#loginForm")?.addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget));store.set("account",{name:d.name,email:d.email,loggedIn:true,createdAt:new Date().toISOString()});const next=new URLSearchParams(location.search).get("next")||"account.html";location.href=next});
  }
 }
@@ -339,7 +335,7 @@ function setupWebsiteOrder(){
    if(!form.reportValidity())return;
    const data=Object.fromEntries(new FormData(form));
    const message=`Halo Bali Bagus Dev, saya ingin memesan website.\n\nPaket: ${p.name} — ${fmt(p.price)} mulai\nTemplate: ${t?t.name:"Belum memilih template"}\nKategori: ${t?t.category:"-"}\nNama: ${data.name||"-"}\nEmail: ${data.email||"-"}\nWhatsApp: ${data.phone||"-"}\nNama bisnis: ${data.business||"-"}\nKebutuhan/catatan: ${data.details||"-"}\n\nSaya ingin melanjutkan pembahasan pemesanan.`;
-   const url=whatsappUrl(message); if(url.includes("628218187917")) showToast("Nomor WhatsApp demo masih perlu diganti di konfigurasi."); window.open(url,"_blank","noopener");
+   const url=whatsappUrl(message); window.open(url,"_blank","noopener");
   });
  }
  form.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(form));store.set("websiteOrder",{...data,packageId:p.id,templateId:t?.id||"",createdAt:new Date().toISOString()});requireLogin(`checkout.html?orderType=website&package=${encodeURIComponent(p.id)}&template=${encodeURIComponent(t?.id||"")}`)});
@@ -372,8 +368,28 @@ function setupSearch(){
  $("#catalogSearch")?.addEventListener("input",filter);$("#productFilter")?.addEventListener("change",filter);$("#sortProducts")?.addEventListener("change",filter);if($("#allProducts"))filter();
 }
 document.addEventListener("DOMContentLoaded",()=>{
- setupCollection();setupAccount();setupWebsiteOrder();
- const p=$("#productFilter");if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option>${esc(x)}</option>`).join("")}`;
+ header();
+ footer();
+ initA11y();
+ updateCount();
+ renderPackages();
+ renderPackageExperience();
+ renderPackageDetail();
+ renderDemos();
+ renderClients();
+ renderDemoDetail();
+ renderDetail();
+ renderCart();
+ renderSummary("#checkoutSummary");
+ setupCollection();
+ setupAccount();
+ setupWebsiteOrder();
+ setupCheckoutGuard();
+ setupForms();
+ setupSearch();
+ const p=$("#productFilter");
+ if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
+ if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
 });
 window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;
 
