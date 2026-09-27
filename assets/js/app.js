@@ -412,7 +412,7 @@ function setupCollection(){
 }
 function header(){
  const h=$(".site-header");if(!h)return;
- const base=location.pathname.includes("/landing/")?"../":"";
+ const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
  h.innerHTML=`<a class="brand" href="${base}index.html" aria-label="Bali Bagus Dev home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
  <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
  <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="${base}index.html">Beranda</a><a href="${base}website-collection.html">Websites</a><a href="${base}products.html">Store</a><a href="${base}services.html">Services</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}articles.html">Blog</a><a href="${base}contact.html">Kontak</a><a href="${base}about.html">Tentang</a></nav>
