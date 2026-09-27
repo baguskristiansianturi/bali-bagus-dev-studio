@@ -57,15 +57,33 @@ function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement(
 
 
 function footer(){
- const f=$("#siteFooter");if(!f)return;const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";f.className="site-footer";
- f.innerHTML=`<div class="wrap"><div class="footer-top">
- <div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Solusi digital yang dibangun<br>berdasarkan kebutuhan bisnis nyata.</p><div class="socials"><a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a><a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a><a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a><a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a></div></div>
- <div class="footer-col"><b>SOLUSI</b><a href="${base}services.html#website">Website</a><a href="${base}services.html#website">E-commerce</a><a href="${base}services.html#app">Applications</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#automation">Automation</a><a href="${base}services.html#care">Maintenance</a></div>
- <div class="footer-col"><b>PRODUK</b><a href="${base}products.html?q=website">Templates</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html">Digital Tools</a><a href="${base}products.html">Resources</a></div>
- <div class="footer-col"><b>INDUSTRI</b><a href="${base}website-category/villa.html">Hospitality</a><a href="${base}website-category/car-rental.html">Travel</a><a href="${base}website-category/restaurant.html">F&B</a><a href="${base}website-collection.html">Retail</a><a href="${base}website-category/villa.html">Property</a><a href="${base}website-collection.html">Professional Services</a></div>
- <div class="footer-col"><b>STUDIO</b><a href="${base}about.html">Tentang Studio</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}services.html">Proses Kerja</a><a href="${base}articles.html">Insight</a><a href="${base}contact.html">Kontak</a><a href="${base}faq.html">FAQ</a></div>
- <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Syarat & Ketentuan</a><a href="${base}privacy.html">Privasi</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">Lisensi</a></div>
- </div><div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div></div>`;
+ const f=$("#siteFooter");if(!f)return;
+ const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
+ f.className="site-footer";
+ f.innerHTML=`<div class="wrap">
+  <div class="footer-top">
+   <div class="footer-brand">
+    <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
+    <p>Solusi digital yang dibangun berdasarkan kebutuhan bisnis nyata.</p>
+    <div class="socials" aria-label="Media sosial">
+     <a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a>
+     <a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+     <a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a>
+     <a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a>
+    </div>
+   </div>
+   <div class="footer-col"><b>SOLUSI</b><a href="${base}services.html#website">Website</a><a href="${base}services.html#website">E-commerce</a><a href="${base}services.html#app">Applications</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#automation">Automation</a><a href="${base}services.html#care">Maintenance</a></div>
+   <div class="footer-col"><b>PRODUK</b><a href="${base}products.html?q=website">Templates</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html">Digital Tools</a><a href="${base}products.html">Resources</a></div>
+   <div class="footer-col"><b>INDUSTRI</b><a href="${base}website-category/villa.html">Hospitality</a><a href="${base}website-category/car-rental.html">Travel</a><a href="${base}website-category/restaurant.html">F&B</a><a href="${base}website-collection.html">Retail</a><a href="${base}website-category/villa.html">Property</a><a href="${base}website-collection.html">Professional Services</a></div>
+   <div class="footer-col"><b>STUDIO</b><a href="${base}about.html">Tentang Studio</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}services.html">Proses Kerja</a><a href="${base}articles.html">Insight</a><a href="${base}contact.html">Kontak</a><a href="${base}faq.html">FAQ</a></div>
+   <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Syarat & Ketentuan</a><a href="${base}privacy.html">Privasi</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">Lisensi</a></div>
+  </div>
+  <div class="footer-pay">
+   <span>METODE PEMBAYARAN</span>
+   <div class="pay-icons" aria-label="Metode pembayaran"><b>QRIS</b><b>VISA</b><b>MASTERCARD</b><b>BANK TRANSFER</b><b>PAYPAL</b></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div>
+ </div>`;
 }
 
 const FAQ_DATA=[
