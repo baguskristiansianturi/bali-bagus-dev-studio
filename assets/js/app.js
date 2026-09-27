@@ -286,7 +286,7 @@ const WEBSITE_CATEGORIES=[
  "Photography","Startup","SaaS","Community"
 ];
 
-function allProducts(){return PRODUCTS}
+function allProducts(){return PRODUCTS.filter(p=>p.category!=="Hardware"&&p.category!=="Software")}
 function findProduct(id){return allProducts().find(p=>p.id===id)}
 function normalizeCart(raw){
  if(!Array.isArray(raw))return [];
