@@ -58,14 +58,14 @@ function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement(
 
 function footer(){
  const f=$("#siteFooter");if(!f)return;const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";f.className="site-footer";
- f.innerHTML=`<div class="bali-footer-note"><div class="wrap"><span>BALI / DIGITAL STUDIO</span><span>Design · Technology · Growth</span><span>Built in Bali, for modern businesses</span></div></div><div class="wrap"><div class="footer-top">
+ f.innerHTML=`<div class="wrap"><div class="footer-top">
  <div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Digital solutions built around<br>real business needs.</p><div class="socials"><a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a><a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a><a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a><a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a></div></div>
  <div class="footer-col"><b>SOLUTIONS</b><a href="${base}services.html#website">Website</a><a href="${base}services.html#website">E-commerce</a><a href="${base}services.html#app">Applications</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#automation">Automation</a><a href="${base}services.html#care">Maintenance</a></div>
  <div class="footer-col"><b>PRODUCTS</b><a href="${base}products.html?q=website">Templates</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html">Digital Tools</a><a href="${base}products.html">Resources</a></div>
  <div class="footer-col"><b>INDUSTRIES</b><a href="${base}website-category/villa.html">Hospitality</a><a href="${base}website-category/car-rental.html">Travel</a><a href="${base}website-category/restaurant.html">F&B</a><a href="${base}website-collection.html">Retail</a><a href="${base}website-category/villa.html">Property</a><a href="${base}website-collection.html">Professional Services</a></div>
  <div class="footer-col"><b>COMPANY</b><a href="${base}about.html">About</a><a href="${base}portfolio.html">Work</a><a href="${base}services.html">Process</a><a href="${base}articles.html">Insights</a><a href="${base}contact.html">Contact</a><a href="${base}faq.html">FAQ</a></div>
  <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">License</a></div>
- </div><div class="footer-bottom"><span>© 2026 Bali Bagus Dev</span><span>Bali, Indonesia</span></div></div>`;
+ </div><div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div></div>`;
 }
 
 const FAQ_DATA=[
@@ -388,9 +388,7 @@ function card(p){
     <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
     <div class="product-card-foot"><span class="product-price">${planned?"BELUM TERSEDIA":fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a></div>
     <div class="product-card-actions">
-      <a class="mini-link" href="product-detail.html?id=${encodeURIComponent(p.id)}">Preview</a>
-      <button class="mini-link button-reset wishlist-button ${wished?"active":""}" type="button" aria-label="${wished?"Hapus dari wishlist":"Simpan ke wishlist"}" aria-pressed="${wished}" data-wishlist="${esc(p.id)}">♡ <span>Wishlist</span></button>
-      <button type="button" class="mini-link button-reset" ${planned?"disabled":""} onclick="addCart('${esc(p.id)}')">${planned?"Segera":"Tambah"}</button>
+      <a class="product-detail-cta" href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a>
     </div>
    </div>
  </article>`;
