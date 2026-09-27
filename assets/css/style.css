@@ -295,3 +295,48 @@ body{background:#fff}
 @media(prefers-reduced-motion:reduce){
  .hero-visual,.package-experience-hero>div,.live-experience-hero>div,.product-card,.package-card,.demo-card,.collection-card,.category-card{transform:none!important;transition:none!important}
 }
+
+
+/* ============================================================
+   V4 LIVE EXPERIENCE — responsive previews + tactile browser UI
+============================================================ */
+.experience-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px;padding:15px 18px;border:1px solid var(--line);background:#fafaf8}
+.experience-toolbar b{display:block;margin-top:5px;font-size:13px}
+.experience-toolbar .experience-switch{margin:0}
+.experience-switch{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.experience-switch button{border:1px solid #d9d9d5;background:#fff;padding:9px 12px;font:9px "DM Mono";letter-spacing:.08em;cursor:pointer;transition:.2s}
+.experience-switch button:hover{border-color:#999}
+.experience-switch button.active{background:#171717;color:#fff;border-color:#171717}
+.preview-browser-responsive{margin:auto;max-width:100%;transition:max-width .45s cubic-bezier(.2,.8,.2,1)}
+.preview-browser-responsive[data-mode="desktop"]{max-width:100%}
+.preview-browser-responsive[data-mode="mobile"]{max-width:390px}
+.preview-browser-responsive[data-mode="tablet"]{max-width:760px}
+.preview-browser-responsive .preview-screen{transition:min-height .35s ease}
+.preview-browser-responsive[data-mode="mobile"] .preview-screen{min-height:560px}
+.preview-browser-responsive[data-mode="tablet"] .preview-screen{min-height:430px}
+.experience-preview{width:100%;margin:auto;transition:max-width .45s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.experience-preview[data-mode="desktop"]{max-width:1180px}
+.experience-preview[data-mode="tablet"]{max-width:760px}
+.experience-preview[data-mode="mobile"]{max-width:390px}
+.experience-preview[data-mode="mobile"] .preview-nav{gap:0}
+.experience-preview[data-mode="mobile"] .preview-nav span{display:none}
+.experience-preview[data-mode="mobile"] .preview-hero{padding:32px 25px;min-height:380px}
+.experience-preview[data-mode="mobile"] .preview-hero h2{font-size:42px}
+.experience-preview[data-mode="mobile"] .preview-blocks{grid-template-columns:1fr}
+.experience-preview[data-mode="mobile"] .preview-blocks div{border-right:0;border-bottom:1px solid #ddd}
+.experience-preview[data-mode="mobile"] .preview-footer{flex-direction:column;align-items:flex-start}
+.preview-blocks div span{font-size:10px;color:#888;line-height:1.5}
+.preview-footer{display:flex;justify-content:space-between;gap:15px;padding:18px 22px;border-top:1px solid #ddd;background:#fafaf8;font:9px "DM Mono";color:#777}
+.preview-footer span{color:#171717}
+.product-live-preview{overflow:hidden}
+.product-live-preview .preview-screen{padding:24px}
+.product-live-preview .preview-screen .product-art{width:100%;height:300px}
+.product-live-preview .preview-browser-responsive[data-mode="mobile"] .preview-screen .product-art{height:390px}
+@media(max-width:700px){
+ .experience-toolbar{align-items:flex-start;flex-direction:column}
+ .experience-toolbar .experience-switch{width:100%;overflow:auto;flex-wrap:nowrap}
+ .experience-toolbar .experience-switch button{flex:0 0 auto}
+ .preview-browser-responsive[data-mode="mobile"]{max-width:100%}
+ .product-live-preview .preview-screen .product-art{height:240px}
+ .product-live-preview .preview-browser-responsive[data-mode="mobile"] .preview-screen .product-art{height:360px}
+}
