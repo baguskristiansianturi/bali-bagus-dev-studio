@@ -386,8 +386,8 @@ function card(p){
    <div class="product-card-body">
     <div class="product-meta">${esc(p.type.toUpperCase())} · ${esc(p.category.toUpperCase())}</div>
     <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
-    <div class="product-card-foot"><span class="product-price">${planned?"BELUM TERSEDIA":fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a></div>
-    <div class="product-card-actions">
+    <div class="product-card-foot">
+      <span class="product-price">${planned?"BELUM TERSEDIA":fmt(p.price)}</span>
       <a class="product-detail-cta" href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a>
     </div>
    </div>
