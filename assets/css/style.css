@@ -947,3 +947,15 @@ button,.button,.header-login,.mobile-toggle,.mega-trigger,input,select,textarea,
 .bali-kain-label:before{content:"";width:7px;height:7px;background:#d7ad45;transform:rotate(45deg)}
 @media(max-width:800px){.bali-footer-note{font-size:8px;line-height:1.6}.bali-section:after{width:180px;height:180px;right:-55px;bottom:-50px}.bali-kain:before{background-size:14px 14px}}
 @media(prefers-reduced-motion:reduce){.bali-section:after{transform:none}}
+
+/* V8.0 — Need Finder / goal-based homepage discovery. Existing global header and footer remain unchanged. */
+.need-finder-section{padding-top:48px;padding-bottom:72px}
+.need-finder-panel{display:grid;grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);gap:42px;align-items:start;padding:clamp(24px,4vw,48px);background:#f5f5f3;border:1px solid #e6e6e4;position:relative;overflow:hidden}
+.need-finder-copy{position:relative;z-index:1}.need-finder-copy h2{font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.055em;margin:14px 0}.need-finder-copy h2 em{font-style:normal;color:#9b7625}.need-finder-copy p{max-width:430px;color:#707070;font-size:13px;line-height:1.8;margin:0}
+.need-finder-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.need-option{display:grid;grid-template-columns:40px minmax(0,1fr) 18px;gap:12px;align-items:center;min-width:0;padding:18px;background:#fff;border:1px solid #e5e5e2;color:#171717;text-decoration:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.need-option:hover,.need-option:focus-visible{transform:translateY(-3px);border-color:#b99a50;box-shadow:0 10px 26px #1717170c;outline:none}
+.need-option-icon{display:grid;place-items:center;width:40px;height:40px;background:#f4f0e5;color:#8b6b20;font-size:20px}.need-option b{display:block;font-size:12px;line-height:1.5}.need-option small{display:block;color:#777;font-size:10px;line-height:1.65;margin-top:5px}.need-option>i{font-style:normal;font-size:17px;color:#9b7625}.need-option-wide{grid-column:1/-1;background:#171717;color:#fff;border-color:#171717}.need-option-wide .need-option-icon{background:#d6ae45;color:#171717}.need-option-wide small{color:#c4c4c4}.need-option-wide>i{color:#d6ae45}
+@media(max-width:900px){.need-finder-panel{grid-template-columns:1fr;gap:24px}.need-finder-copy p{max-width:650px}}
+@media(max-width:600px){.need-finder-section{padding-top:28px;padding-bottom:52px}.need-finder-panel{padding:22px 16px;gap:20px}.need-finder-options{grid-template-columns:1fr;gap:8px}.need-option{padding:14px;grid-template-columns:36px minmax(0,1fr) 16px;gap:10px}.need-option-icon{width:36px;height:36px}.need-option b{font-size:12px}.need-option small{font-size:10px}.need-option-wide{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.need-option{transition:none}.need-option:hover,.need-option:focus-visible{transform:none}}
