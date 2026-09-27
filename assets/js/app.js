@@ -73,12 +73,7 @@ let english=false;
 function toggleLang(){english=!english;document.documentElement.lang=english?"en":"id";const dict=english?{"Beranda":"Home","Website":"Website","Produk":"Products","Portfolio":"Portfolio","Artikel":"Articles","Kontak":"Contact","Konsultasi":"Book a call","Cari solusi":"Find solutions"}:{"Home":"Beranda","Website":"Website","Products":"Produk","Portfolio":"Portfolio","Articles":"Artikel","Contact":"Kontak","Book a call":"Konsultasi","Find solutions":"Cari solusi"};document.querySelectorAll(".nav a,.header-actions .button").forEach(e=>{let t=e.textContent.replace(/\s+/g," ").trim();Object.keys(dict).forEach(k=>{if(t.startsWith(k))e.childNodes[0].textContent=dict[k]})});const b=$("#langToggle");if(b)b.innerHTML=english?"EN <span>⌄</span>":"ID <span>⌄</span>";const search=$("#globalSearch");if(search)search.placeholder=english?"What would you like to build today?":"Apa yang ingin Anda bangun hari ini?"}
 
 
-function setupCheckoutGuard(){
- const link=$("#checkoutLink");if(!link)return;
- link.addEventListener("click",e=>{
-  if(link.dataset.disabled==="true"){e.preventDefault();showToast("Tambahkan produk terlebih dahulu.");}
- });
-}
+
 function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-package.html?id=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
 function renderPackageExperience(){
  const el=$("#packageExperience");if(!el)return;
