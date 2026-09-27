@@ -346,52 +346,41 @@ function renderProducts(target,list){
  const el=$(target);if(!el)return;
  el.innerHTML=list.length?list.map(card).join(""):`<div class="empty-state">Tidak ada hasil yang sesuai. <a class="text-link" href="contact.html">Minta produk khusus ↗</a></div>`;
 }
-function getWishlist(){const w=store.get("wishlist",[]);return Array.isArray(w)?w.filter(id=>findProduct(id)):[]}
-function saveWishlist(w){store.set("wishlist",[...new Set(w)].slice(0,50));}
-function getCompare(){const w=store.get("compare",[]);return Array.isArray(w)?w.filter(id=>findProduct(id)).slice(0,4):[]}
-function saveCompare(w){store.set("compare",[...new Set(w)].slice(0,4));}
-function renderCompareBar(){
- const bar=$("#compareBar"),items=getCompare();if(!bar)return;
- bar.innerHTML=items.length?`<div><b>${items.length} produk dipilih</b><span>${items.map(id=>esc(findProduct(id).name)).join(" · ")}</span></div><div><a class="button button-dark small" href="compare.html">Bandingkan ${items.length}</a><button class="button small" type="button" id="clearCompare">Hapus pilihan</button></div>`:"";
- bar.hidden=!items.length;
- $("#clearCompare")?.addEventListener("click",()=>{saveCompare([]);renderCompareBar();$("[data-compare]").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false")})});
+function normalizeWishlist(){
+ const raw=store.get("wishlist",[]);
+ if(!Array.isArray(raw))return [];
+ return raw.map(x=>typeof x==="string"?{kind:findProduct(x)?"product":"website",id:x,addedAt:Date.now()}:x).filter(x=>(x.kind==="product"&&findProduct(x.id))||(x.kind==="website"&&WEBSITE_COLLECTION.some(w=>w.id===x.id))).slice(-80);
 }
-function toggleWishlist(id){
- const w=getWishlist(),next=w.includes(id)?w.filter(x=>x!==id):[...w,id];saveWishlist(next);
- $('[data-wishlist="'+CSS.escape(id)+'"]').forEach(b=>{const on=next.includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari wishlist":"Simpan ke wishlist")});
- showToast(next.includes(id)?"Disimpan ke wishlist.":"Dihapus dari wishlist.");
+function getWishlist(){return normalizeWishlist()}
+function saveWishlist(w){store.set("wishlist",w.slice(-80))}
+function wishlistHas(kind,id){return getWishlist().some(x=>x.kind===kind&&x.id===id)}
+function toggleWishlist(id,kind="product"){
+ const w=getWishlist(),exists=w.some(x=>x.kind===kind&&x.id===id);
+ saveWishlist(exists?w.filter(x=>!(x.kind===kind&&x.id===id)):[...w,{kind,id,addedAt:Date.now()}]);
+ $$("[data-wishlist=\""+CSS.escape(id)+"\"][data-wishlist-kind=\""+kind+"\"]").forEach(el=>{const on=!exists;el.classList.toggle("active",on);el.setAttribute("aria-pressed",String(on))});
+ renderWishlistPage();showToast(!exists?"Disimpan ke wishlist.":"Dihapus dari wishlist.");
 }
-function toggleCompare(id){
- const w=getCompare();
- if(w.includes(id))saveCompare(w.filter(x=>x!==id));
- else if(w.length>=4){showToast("Maksimal 4 produk untuk perbandingan.");return;}
- else saveCompare([...w,id]);
- renderCompareBar();
- $('[data-compare="'+CSS.escape(id)+'"]').forEach(b=>{const on=getCompare().includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari perbandingan":"Bandingkan produk")});
-}
-function setupProductChoices(){
- document.addEventListener("click",e=>{
-   const w=e.target.closest("[data-wishlist]"),cmp=e.target.closest("[data-compare]");
-   if(w){e.preventDefault();toggleWishlist(w.dataset.wishlist)}
-   if(cmp){e.preventDefault();toggleCompare(cmp.dataset.compare)}
- });
- renderCompareBar();
- const grid=$("#compareGrid");if(grid){
-   const ids=getCompare(),items=ids.map(findProduct).filter(Boolean);
-   grid.innerHTML=items.length?`<div class="compare-table-wrap"><table class="compare-table"><thead><tr><th>Fitur</th>${items.map(p=>`<th>${esc(p.name)}<button class="compare-remove" type="button" data-compare="${esc(p.id)}">×</button></th>`).join("")}</tr></thead><tbody>
-   <tr><th>Status</th>${items.map(p=>`<td>${p.status==="planned"?"BELUM TERSEDIA":"TERSEDIA"}</td>`).join("")}</tr>
-   <tr><th>Kategori</th>${items.map(p=>`<td>${esc(p.category)}</td>`).join("")}</tr>
-   <tr><th>Tipe</th>${items.map(p=>`<td>${esc(p.type)}</td>`).join("")}</tr>
-   <tr><th>Harga</th>${items.map(p=>`<td>${p.status==="planned"?"Akan diumumkan":fmt(p.price)}</td>`).join("")}</tr>
-   <tr><th>Fitur</th>${items.map(p=>`<td><ul>${p.features.slice(0,5).map(f=>`<li>${esc(f)}</li>`).join("")}</ul></td>`).join("")}</tr>
-   </tbody></table></div>`:`<div class="empty-state"><h2>Belum ada produk untuk dibandingkan.</h2><p>Pilih Wishlist atau Bandingkan dari Store agar pilihan Anda mudah dilihat berdampingan.</p><a class="button button-dark" href="products.html">Jelajahi produk ↗</a></div>`;
+function renderWishlistPage(){
+ const grid=$("#wishlistGrid"),compare=$("#wishlistCompareGrid"),count=$("#wishlistCount");if(!grid)return;
+ const items=getWishlist();if(count)count.textContent=String(items.length);
+ grid.innerHTML=items.length?items.map(x=>{
+  const p=x.kind==="product"?findProduct(x.id):WEBSITE_COLLECTION.find(w=>w.id===x.id);if(!p)return "";
+  const category=p.category||"Website",type=p.type||p.style||"Website",price=x.kind==="product"?(p.status==="planned"?"Belum tersedia":fmt(p.price)):"Konsep siap dikembangkan";
+  const href=x.kind==="product"?"product-detail.html?id="+encodeURIComponent(p.id):p.demo+"&package="+encodeURIComponent((p.availablePackages&&p.availablePackages[0])||"business");
+  return "<article class=\"wishlist-item\"><div class=\"wishlist-item-art\"><span>"+esc(category.toUpperCase())+"</span><b>"+esc(p.name)+"</b><small>"+esc(type)+"</small></div><div class=\"wishlist-item-body\"><div><b>"+esc(p.name)+"</b><span>"+esc(price)+"</span></div><p>"+esc(p.desc||"")+"</p><div class=\"wishlist-item-actions\"><a class=\"button button-dark small\" href=\""+href+"\">Buka detail "+icon("arrow")+"</a><button class=\"button-reset mini-link active\" type=\"button\" data-wishlist=\""+esc(p.id)+"\" data-wishlist-kind=\""+x.kind+"\" aria-pressed=\"true\">♥ Hapus</button><label class=\"wishlist-pick\"><input type=\"checkbox\" data-wishlist-pick=\""+x.kind+":"+esc(p.id)+"\"> Bandingkan</label></div></div></article>";
+ }).join(""):"<div class=\"empty-state\"><h2>Wishlist Anda masih kosong.</h2><p>Simpan produk atau konsep website saat menjelajah. Semua pilihan tersimpan di satu tempat.</p><a class=\"button button-dark\" href=\"products.html\">Jelajahi Store ↗</a> <a class=\"button\" href=\"website-collection.html\">Jelajahi Websites ↗</a></div>";
+ if(compare){
+  const selected=[...document.querySelectorAll("[data-wishlist-pick]:checked")].map(el=>{const parts=el.dataset.wishlistPick.split(":");return {kind:parts.shift(),id:parts.join(":")}}).slice(0,4);
+  if(!selected.length)compare.innerHTML="<div class=\"wishlist-compare-empty\">Pilih item di atas jika Anda ingin membandingkan beberapa pilihan. Tidak ada perbandingan otomatis.</div>";
+  else {const getItem=x=>x.kind==="product"?findProduct(x.id):WEBSITE_COLLECTION.find(w=>w.id===x.id);compare.innerHTML="<div class=\"wishlist-compare-note\"><b>"+selected.length+" pilihan dipilih</b><span>Perbandingan hanya dibuat dari item yang Anda pilih di Wishlist.</span></div><div class=\"compare-table-wrap\"><table class=\"compare-table\"><thead><tr><th>Aspek</th>"+selected.map(x=>"<th>"+esc(getItem(x).name)+"</th>").join("")+"</tr></thead><tbody><tr><th>Kategori</th>"+selected.map(x=>"<td>"+esc(getItem(x).category||"")+"</td>").join("")+"</tr><tr><th>Tipe / gaya</th>"+selected.map(x=>"<td>"+esc(getItem(x).type||getItem(x).style||"Website")+"</td>").join("")+"</tr><tr><th>Status / harga</th>"+selected.map(x=>"<td>"+(x.kind==="product"?(getItem(x).status==="planned"?"BELUM TERSEDIA":fmt(getItem(x).price)):"KONSEP SIAP DIKEMBANGKAN")+"</td>").join("")+"</tr></tbody></table></div>"}
  }
+ document.querySelectorAll("[data-wishlist-pick]").forEach(el=>el.addEventListener("change",renderWishlistPage));
 }
+function setupProductChoices(){document.addEventListener("click",e=>{const w=e.target.closest("[data-wishlist]");if(w){e.preventDefault();toggleWishlist(w.dataset.wishlist,w.dataset.wishlistKind||"product")}});renderWishlistPage()}
 
 function card(p){
  const planned=p.status==="planned";
  const wished=getWishlist().includes(p.id);
- const compared=getCompare().includes(p.id);
  return `<article class="product-card commerce-card ${planned?"is-planned":""}">
    ${art(p)}
    <div class="product-card-body">
@@ -401,7 +390,6 @@ function card(p){
     <div class="product-card-actions">
       <a class="mini-link" href="product-detail.html?id=${encodeURIComponent(p.id)}">Preview</a>
       <button class="mini-link button-reset wishlist-button ${wished?"active":""}" type="button" aria-label="${wished?"Hapus dari wishlist":"Simpan ke wishlist"}" aria-pressed="${wished}" data-wishlist="${esc(p.id)}">♡ <span>Wishlist</span></button>
-      <button class="mini-link button-reset compare-button ${compared?"active":""}" type="button" aria-label="${compared?"Hapus dari perbandingan":"Bandingkan produk"}" aria-pressed="${compared}" data-compare="${esc(p.id)}">⇄ <span>Bandingkan</span></button>
       <button type="button" class="mini-link button-reset" ${planned?"disabled":""} onclick="addCart('${esc(p.id)}')">${planned?"Segera":"Tambah"}</button>
     </div>
    </div>
@@ -491,51 +479,6 @@ function renderDetail(){
    store.set("reviews_"+p.id,arr);renderDetail();showToast("Review tersimpan di demo lokal.");
  });
 }function buyNow(id){addCart(id);location.href="checkout.html";}
-function getWebsiteWishlist(){const w=store.get("websiteWishlist",[]);return Array.isArray(w)?w.filter(id=>WEBSITE_COLLECTION.some(x=>x.id===id)):[]}
-function saveWebsiteWishlist(w){store.set("websiteWishlist",[...new Set(w)].slice(0,50))}
-function getWebsiteCompare(){const w=store.get("websiteCompare",[]);return Array.isArray(w)?w.filter(id=>WEBSITE_COLLECTION.some(x=>x.id===id)).slice(0,4):[]}
-function saveWebsiteCompare(w){store.set("websiteCompare",[...new Set(w)].slice(0,4))}
-function toggleWebsiteWishlist(id){
- const w=getWebsiteWishlist(),next=w.includes(id)?w.filter(x=>x!==id):[...w,id];saveWebsiteWishlist(next);
- $$('[data-web-wishlist="'+CSS.escape(id)+'"]').forEach(b=>{const on=next.includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari wishlist":"Simpan ke wishlist")});
- showToast(next.includes(id)?"Website disimpan ke wishlist.":"Website dihapus dari wishlist.");
-}
-function toggleWebsiteCompare(id){
- const w=getWebsiteCompare();
- if(w.includes(id))saveWebsiteCompare(w.filter(x=>x!==id));
- else if(w.length>=4){showToast("Maksimal 4 website untuk perbandingan.");return;}
- else saveWebsiteCompare([...w,id]);
- renderWebsiteCompareBar();
- $$('[data-web-compare="'+CSS.escape(id)+'"]').forEach(b=>{const on=getWebsiteCompare().includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari perbandingan":"Bandingkan website")});
-}
-function renderWebsiteCompareBar(){
- const bar=$("#compareBar"),items=getWebsiteCompare();if(!bar)return;
- bar.innerHTML=items.length?`<div><b>${items.length} website dipilih</b><span>${items.map(id=>esc(WEBSITE_COLLECTION.find(x=>x.id===id)?.name||"")).join(" · ")}</span></div><div><a class="button button-dark small" href="website-compare.html">Bandingkan ${items.length}</a><button class="button small" type="button" id="clearWebsiteCompare">Hapus pilihan</button></div>`:"";
- bar.hidden=!items.length;
- $("#clearWebsiteCompare")?.addEventListener("click",()=>{saveWebsiteCompare([]);renderWebsiteCompareBar()});
-}
-function renderCollection(){
- const grid=$("#websiteCollectionGrid");if(!grid)return;
- const q=($("#collectionSearch")?.value||"").toLowerCase(),cat=$("#collectionCategory")?.value||"All",packageId=new URLSearchParams(location.search).get("package");
- const list=WEBSITE_COLLECTION.filter(x=>(cat==="All"||x.category===cat)&&(x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&(x.status==="active")&&(!packageId||!x.availablePackages||x.availablePackages.includes(packageId)));
- grid.innerHTML=list.map(x=>{
-   const wished=getWebsiteWishlist().includes(x.id),compared=getWebsiteCompare().includes(x.id),pkg=packageId||((x.availablePackages&&x.availablePackages[0])||"business");
-   return `<article class="collection-card"><div class="collection-visual"><span>${esc(x.category.toUpperCase())}</span><b>${esc(x.name)}</b><small>${esc(x.style)}</small></div><div class="collection-info"><div><span>${esc(x.category)}</span><b>${esc(x.name)}</b></div><p>${esc(x.desc)}</p><div class="collection-actions"><a class="button button-dark small" href="${esc(x.demo)}${x.demo.includes("?")?"&":"?"}package=${encodeURIComponent(pkg)}">Experience website ${icon("arrow")}</a><a class="mini-link" href="website-order.html?package=${encodeURIComponent(pkg)}&template=${encodeURIComponent(x.id)}">Pesan</a></div><div class="collection-actions"><button class="mini-link button-reset ${wished?"active":""}" type="button" data-web-wishlist="${esc(x.id)}" aria-pressed="${wished}" aria-label="${wished?"Hapus dari wishlist":"Simpan ke wishlist"}">♡ Wishlist</button><button class="mini-link button-reset ${compared?"active":""}" type="button" data-web-compare="${esc(x.id)}" aria-pressed="${compared}" aria-label="${compared?"Hapus dari perbandingan":"Bandingkan website"}">⇄ Bandingkan</button></div></div></article>`
- }).join("")||`<div class="empty-state">Koleksi untuk kategori ini sedang kami kembangkan. <a class="text-link" href="booking.html?service=${encodeURIComponent("Request website "+cat)}">Request website kategori ini ↗</a></div>`;
- renderWebsiteCompareBar();
-}
-
-function renderWebsiteComparePage(){
- const grid=$("#websiteCompareGrid");if(!grid)return;
- const items=getWebsiteCompare().map(id=>WEBSITE_COLLECTION.find(x=>x.id===id)).filter(Boolean);
- grid.innerHTML=items.length?`<div class="compare-table-wrap"><table class="compare-table website-compare-table"><thead><tr><th>Aspek</th>${items.map(x=>`<th>${esc(x.name)}<button class="compare-remove" type="button" data-web-compare="${esc(x.id)}">×</button></th>`).join("")}</tr></thead><tbody>
- <tr><th>Kategori</th>${items.map(x=>`<td>${esc(x.category)}</td>`).join("")}</tr>
- <tr><th>Gaya</th>${items.map(x=>`<td>${esc(x.style)}</td>`).join("")}</tr>
- <tr><th>Paket</th>${items.map(x=>`<td>${esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name||id).join(" · ")||"Custom")}</td>`).join("")}</tr>
- <tr><th>Status</th>${items.map(x=>`<td>Konsep siap dikembangkan</td>`).join("")}</tr>
- <tr><th>Arah</th>${items.map(x=>`<td>${esc(x.desc)}</td>`).join("")}</tr>
- </tbody></table></div>`:`<div class="empty-state"><h2>Belum ada website untuk dibandingkan.</h2><p>Pilih Bandingkan dari Website Collection.</p><a class="button button-dark" href="website-collection.html">Jelajahi Website Collection ↗</a></div>`;
-}
 function setupCollection(){
  const s=$("#collectionSearch"),c=$("#collectionCategory");
  if((s||c)?.dataset?.bound)return;
