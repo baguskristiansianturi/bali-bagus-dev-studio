@@ -340,3 +340,23 @@ body{background:#fff}
  .product-live-preview .preview-screen .product-art{height:240px}
  .product-live-preview .preview-browser-responsive[data-mode="mobile"] .preview-screen .product-art{height:360px}
 }
+
+/* V5 LAUNCH POLISH — navigation, footer, service discovery, touch-safe interaction */
+.site-header{backdrop-filter:saturate(120%) blur(10px);background:rgba(255,255,255,.96)}
+.nav{flex:1;justify-content:center}
+.footer-top{grid-template-columns:1.35fr repeat(4,1fr)}
+.site-footer .brand{color:#fff}
+.site-footer .brand small{color:#888}
+.footer-col a{line-height:1.35}
+.service-detail-grid article{background:linear-gradient(145deg,#fff 0%,#fafaf8 100%);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.service-detail-grid article:hover{border-color:#cfcfcb;box-shadow:0 18px 55px #0000000a}
+.service-detail-grid article:nth-child(2n){background:linear-gradient(145deg,#f7f7f5 0%,#fff 100%)}
+.package-category-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.package-category-chip{display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e2df;padding:18px 20px;background:#fff;transition:.2s}
+.package-category-chip:hover{transform:translateY(-2px);border-color:#aaa;box-shadow:0 12px 35px #00000008}
+.package-category-chip span{font-weight:700;font-size:12px}
+.package-category-chip small{font-size:9px;color:#888;font-family:'DM Mono',monospace}
+@media(max-width:1180px){.site-header{padding-inline:20px}.nav{gap:11px}.nav a{font-size:10px}.header-actions{gap:9px}.footer-top{grid-template-columns:1.4fr repeat(2,1fr)}}
+@media(max-width:800px){.nav{justify-content:flex-start}.package-category-list{grid-template-columns:1fr}.footer-top{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.package-category-chip{align-items:flex-start;flex-direction:column;gap:6px}}
+@media(prefers-reduced-motion:reduce){.service-detail-grid article,.package-category-chip{transition:none}}
