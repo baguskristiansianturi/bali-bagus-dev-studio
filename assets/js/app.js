@@ -334,6 +334,7 @@ function renderHomeMerchandising(){
  const data={
   featured:allProducts().filter(p=>p.status!=="planned").slice(0,6),
   new:allProducts().filter(p=>/NEW|HOSPITALITY/.test(p.tag)&&p.status!=="planned").slice(0,6),
+  launch:allProducts().filter(p=>/NEW|BESTSELLER|QUICK START/.test(p.tag)&&p.status!=="planned").slice(0,6),
   promo:allProducts().filter(p=>p.old&&p.price&&p.old>p.price).sort((a,b)=>(b.old-b.price)-(a.old-a.price)).slice(0,6),
   soon:allProducts().filter(p=>p.status==="planned").slice(0,6)
  };
