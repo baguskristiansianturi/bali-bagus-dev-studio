@@ -132,7 +132,6 @@ button,a,input,select,textarea{transition:color .2s ease,background-color .2s ea
 .product-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.09)}
 .product-card:hover .product-art{transform:scale(1.015)}
 .product-art{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.product-card-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #eee}
 .button-reset{border:0;background:none;cursor:pointer;padding:0}
 .commerce-detail .detail-info{border:1px solid #e5e5e2;padding:26px;border-radius:var(--radius-md)}
 .sticky-detail{position:sticky;top:110px;height:max-content}
