@@ -396,18 +396,23 @@ function card(p){
  </article>`;
 }
 function renderCart(){
- const el=$("#cartItems");if(!el)return;const cart=getCart(),checkout=$("#checkoutLink");
+ const el=$("#cartItems");if(!el)return;
+ const raw=getCart();
+ const cart=raw.filter(x=>{const p=findProduct(x.id);return p&&p.price>0&&p.status!=="planned";});
+ if(cart.length!==raw.length) saveCart(cart);
+ const checkout=$("#checkoutLink");
  if(!cart.length){
-  el.innerHTML='<div class="empty-state">Keranjang Anda masih kosong. <a class="text-link" href="products.html">Jelajahi Store ↗</a></div>';
+  el.innerHTML='<div class="empty-state"><b>Keranjang Anda masih kosong.</b><p>Tambahkan produk yang tersedia dari Store untuk melanjutkan.</p><a class="text-link" href="products.html">Jelajahi Store ↗</a></div>';
   $("#cartSummary").innerHTML='<div class="summary-total"><span>Total</span><span>Rp0</span></div>';
   if(checkout){checkout.setAttribute("aria-disabled","true");checkout.dataset.disabled="true";}
   return;
  }
  el.innerHTML=cart.map(x=>{
-  const p=findProduct(x.id);return `<div class="cart-row"><div class="cart-thumb">${icon("arrow")}</div><div class="cart-row-info"><b>${esc(p.name)}</b><small>${esc(p.type)} · ${fmt(p.price)}</small><small>${fmt(p.price*x.qty)}</small></div><div class="cart-qty"><button type="button" aria-label="Kurangi" onclick="changeQty('${esc(p.id)}',-1)">−</button><span>${x.qty}</span><button type="button" aria-label="Tambah" onclick="changeQty('${esc(p.id)}',1)">+</button></div><button type="button" onclick="removeCart('${esc(p.id)}')">Hapus</button></div>`;
+  const p=findProduct(x.id);
+  return '<div class="cart-row"><div class="cart-thumb">'+icon("arrow")+'</div><div class="cart-row-info"><b>'+esc(p.name)+'</b><small>'+esc(p.type)+' · '+fmt(p.price)+'</small><small>Subtotal · '+fmt(p.price*x.qty)+'</small></div><div class="cart-qty"><button type="button" aria-label="Kurangi jumlah '+esc(p.name)+'" onclick="changeQty(\''+esc(p.id)+'\',-1)">−</button><span aria-live="polite">'+x.qty+'</span><button type="button" aria-label="Tambah jumlah '+esc(p.name)+'" onclick="changeQty(\''+esc(p.id)+'\',1)">+</button></div><button type="button" onclick="removeCart(\''+esc(p.id)+'\')">Hapus</button></div>';
  }).join("");
- const total=cart.reduce((s,x)=>s+findProduct(x.id).price*x.qty,0);
- $("#cartSummary").innerHTML=`${cart.map(x=>{const p=findProduct(x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")}<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`;
+ const total=cart.reduce((sum,x)=>{const p=findProduct(x.id);return sum+p.price*x.qty;},0);
+ $("#cartSummary").innerHTML=cart.map(x=>{const p=findProduct(x.id);return '<div class="summary-line"><span>'+esc(p.name)+' × '+x.qty+'</span><b>'+fmt(p.price*x.qty)+'</b></div>';}).join("")+'<div class="summary-total"><span>Total</span><span>'+fmt(total)+'</span></div>';
  if(checkout){checkout.removeAttribute("aria-disabled");checkout.dataset.disabled="false";}
 }
 function renderSummary(target){
