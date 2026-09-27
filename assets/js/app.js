@@ -65,7 +65,7 @@ function footer(){
  <div class="footer-col"><b>Services</b><a href="${base}services.html#website">Website & E-commerce</a><a href="${base}services.html#copy">Copywriting</a><a href="${base}services.html#content">Blog & Content</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#ads">Google Ads</a><a href="${base}services.html#care">Maintenance</a></div>
  <div class="footer-col"><b>Bali Bagus Dev</b><a href="${base}services.html">Semua layanan</a><a href="${base}portfolio.html">Portfolio & demo</a><a href="${base}articles.html">Blog & insight</a><a href="${base}about.html">Tentang kami</a><a href="${base}faq.html">FAQ</a><a href="${base}help.html">Bantuan</a><a href="${base}contact.html">Kontak</a><a href="https://wa.me/628218187917" target="_blank" rel="noopener">WhatsApp support ↗</a><a href="${base}terms.html">Syarat & ketentuan</a><a href="${base}privacy.html">Kebijakan privasi</a><a href="${base}refund.html">Kebijakan refund</a></div></div>
  <div class="footer-pay"><span>METODE PEMBAYARAN<br><small>Metode akan aktif setelah integrasi gateway produksi</small></span><div class="pay-icons"><b>QRIS*</b><b>VISA*</b><b>Mastercard*</b><b>PayPal*</b><b>Bank Transfer*</b></div></div>
- <div class="footer-bottom"><span>© ${new Date().getFullYear()} Bali Bagus Dev. All rights reserved.</span><span>Credit by Bagus Dev · Indonesia / English</span></div></div>`;
+ <div class="footer-bottom"><span>© ${new Date().getFullYear()} Bali Bagus Dev. All rights reserved.</span><span>Credit by Bagus Dev · Indonesia</span></div></div>`;
 }
 
 const FAQ_DATA=[
@@ -315,6 +315,7 @@ function renderSummary(target){
 function renderDetail(){
  const el=$("#productDetail");if(!el)return;
  const p=findProduct(new URLSearchParams(location.search).get("id"));
+ if(!p){el.innerHTML=`<div class="empty-state"><h2>Produk tidak ditemukan.</h2><p>Produk yang Anda cari tidak tersedia atau link sudah berubah.</p><a class="button button-dark" href="products.html">Kembali ke Store ↗</a></div>`;return;}
  const reviews=store.get("reviews_"+p.id,[]);
  const account=store.get("account",null);
  const eligible=account && store.get("orders",[]).some(o=>["paid","processing","shipped","delivered","completed"].includes(o.status)&&Array.isArray(o.items)&&o.items.some(i=>i.id===p.id));
@@ -401,6 +402,7 @@ function header(){
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
+ link.setAttribute("aria-describedby","checkoutNotice");
  link.addEventListener("click",e=>{if(link.dataset.disabled==="true"){e.preventDefault();showToast("Tambahkan produk terlebih dahulu.");return}if(!requireLogin("checkout.html"))e.preventDefault()});
 }
 function setupAccount(){
@@ -443,13 +445,13 @@ function setupForms(){
    if(!cart.length&&!isWebsite){$("#checkoutResult").innerHTML='<span class="form-status">Keranjang kosong.</span>';return}
    const data=Object.fromEntries(new FormData(co));
    const websiteOrder=isWebsite?store.get("websiteOrder",null):null;
-   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending-demo",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
+   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending-demo",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"demo",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
    const orders=store.get("orders",[]);orders.push(order);store.set("orders",orders);if(!isWebsite)saveCart([]);
    $("#checkoutResult").innerHTML=`<span class="form-status">Pesanan <b>${esc(order.id)}</b> tercatat sebagai demo. Pada production, pembayaran, email dan WhatsApp follow-up akan diproses backend.</span>`;
    renderSummary("#checkoutSummary");
  });
- const bf=$("#bookingForm");if(bf)bf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(bf));const arr=store.get("bookings",[]);arr.push({...data,id:"BB-"+Date.now(),status:"inquiry-demo",createdAt:new Date().toISOString()});store.set("bookings",arr);$("#bookingResult").innerHTML='<span class="form-status">Permintaan tersimpan sebagai demo lokal.</span>';});
- const cf=$("#contactForm");if(cf)cf.addEventListener("submit",e=>{e.preventDefault();const arr=store.get("messages",[]);arr.push({...Object.fromEntries(new FormData(cf)),id:"MSG-"+Date.now(),status:"demo-local"});store.set("messages",arr);$("#contactResult").innerHTML='<span class="form-status">Pesan tersimpan sebagai demo lokal.</span>';});
+ const bf=$("#bookingForm");if(bf)bf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(bf));const arr=store.get("bookings",[]);arr.push({...data,id:"BB-"+Date.now(),status:"inquiry-demo",createdAt:new Date().toISOString()});store.set("bookings",arr);const result=$("#bookingResult");if(result)result.innerHTML=`<span class="form-status">Brief tersimpan sebagai demo lokal. Untuk follow-up langsung, <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya baru mengirim project brief. Nama: ${data.name||"-"}. Kebutuhan: ${data.service||"-"}.`)}" target="_blank" rel="noopener">lanjut ke WhatsApp ↗</a></span>`;});
+ const cf=$("#contactForm");if(cf)cf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(cf));const arr=store.get("messages",[]);arr.push({...data,id:"MSG-"+Date.now(),status:"demo-local"});store.set("messages",arr);const result=$("#contactResult");if(result)result.innerHTML=`<span class="form-status">Pesan tersimpan sebagai demo lokal. <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya mengirim pertanyaan melalui website. Nama: ${data.name||"-"}. Topik: ${data.topic||"-"}.`)}" target="_blank" rel="noopener">Lanjutkan via WhatsApp ↗</a></span>`;});
 }
 function setupSearch(){
  const b=$("#searchButton");b?.addEventListener("click",()=>{const q=$("#globalSearch").value.trim(),cat=$("#searchCategory").value;location.href=(cat==="service"?"services.html":cat==="article"?"articles.html":cat==="product"?"products.html":"products.html")+(q?"?q="+encodeURIComponent(q):"")});
