@@ -500,6 +500,13 @@ function setupCollection(){
 function header(){
  const h=$(".site-header");if(!h)return;
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
+ const params=new URLSearchParams(location.search),pageName=location.pathname.split("/").pop()||"index.html";
+ const recentItems=store.get("recentViews",[]);
+ if(pageName==="product-detail.html"){
+   const p=findProduct(params.get("id")||""); if(p){const arr=recentItems.filter(x=>x.id!==p.id);arr.push({id:p.id,name:p.name,type:"Produk digital",url:"product-detail.html?id="+encodeURIComponent(p.id)});store.set("recentViews",arr.slice(-8));}
+ }else if(pageName==="demo.html"){
+   const t=WEBSITE_COLLECTION.find(x=>x.id===params.get("template")); if(t){const arr=recentItems.filter(x=>x.id!==t.id);arr.push({id:t.id,name:t.name,type:"Website demo",url:"demo.html?template="+encodeURIComponent(t.id)});store.set("recentViews",arr.slice(-8));}
+ }
  const recent=store.get("recentViews",[]);
  const wishlistCount=getWishlist().length;
  h.innerHTML=`
