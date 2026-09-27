@@ -1814,3 +1814,35 @@ table{
 .catalog-results-count{font:10px 'DM Mono',monospace;color:#777;letter-spacing:.06em}
 @media(min-width:801px){.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:800px){.catalog-layout{grid-template-columns:1fr;gap:18px;margin-top:24px}.catalog-sidebar{position:static;padding:16px}.catalog-filter-group{display:none}.catalog-filter-group:first-of-type{display:block;border:0;padding:0}.catalog-filter-group:first-of-type label{display:none}.catalog-sidebar:after{content:"Gunakan pencarian atau filter kategori untuk menemukan produk.";font-size:11px;color:#777}.catalog-results-head{align-items:center}}
+
+
+/* PREMIUM STUDIO CATALOG — monochrome editorial refinement */
+.catalog-layout{grid-template-columns:218px minmax(0,1fr);gap:42px;margin-top:42px}
+.catalog-sidebar{top:104px;border:0;border-top:1px solid #171717;border-bottom:1px solid #ddd;padding:0;background:transparent;border-radius:0}
+.catalog-sidebar h2{font-size:10px;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:18px 0;margin:0}
+.catalog-filter-group{padding:15px 0;border-top:1px solid #e5e5e2}
+.catalog-filter-title{font-size:8px;letter-spacing:.14em;color:#999;margin-bottom:7px}
+.catalog-filter-group label{font-size:11px;padding:5px 0;color:#555;line-height:1.35}
+.catalog-filter-group label:hover{color:#171717}
+.catalog-filter-group input{width:13px;height:13px;margin:0}
+.catalog-results-head{margin-bottom:16px;border-bottom:1px solid #ddd;padding-bottom:15px}
+.catalog-results-count{font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.catalog-results-head select{border:0;border-bottom:1px solid #bbb;background:transparent;padding:7px 22px 7px 4px;font-size:10px;color:#444;outline:0}
+.catalog-toolbar{margin:0 0 22px;display:flex;border-bottom:1px solid #ddd;padding-bottom:18px;gap:12px}
+.catalog-toolbar input{border:0;border-bottom:1px solid #bbb;padding:10px 2px;background:transparent;font-size:11px;outline:0}
+.catalog-toolbar input:focus{border-color:#171717}
+.catalog-toolbar select{display:none}
+.catalog-grid{gap:20px}
+.catalog-grid .product-card{border:1px solid #dededb;border-radius:0;box-shadow:none;background:#fff}
+.catalog-grid .product-card:hover{border-color:#171717;box-shadow:0 16px 42px rgba(0,0,0,.07);transform:translateY(-3px)}
+.catalog-grid .product-card .product-art{border-bottom:1px solid #e5e5e2}
+.catalog-grid .product-card .product-card-body{padding:18px}
+.catalog-grid .product-card h3{font-size:18px;letter-spacing:-.045em}
+.catalog-grid .product-card p{color:#777;font-size:11px}
+.catalog-grid .product-detail-cta{border:0!important;border-top:1px solid #171717!important;border-radius:0!important;background:transparent!important;padding:12px 0!important;justify-content:space-between!important;font-size:10px!important;text-transform:uppercase;letter-spacing:.06em}
+.catalog-grid .product-detail-cta:hover{background:transparent!important}
+@media(max-width:800px){
+ .catalog-layout{grid-template-columns:1fr;gap:18px}
+ .catalog-sidebar{border:1px solid #ddd;padding:0 15px}
+ .catalog-sidebar h2{padding:14px 0}
+}
