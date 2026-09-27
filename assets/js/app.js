@@ -637,6 +637,7 @@ function setupSearch(){
  $("#catalogSearch")?.addEventListener("input",filter);$("#productFilter")?.addEventListener("change",filter);$("#sortProducts")?.addEventListener("change",filter);if($("#allProducts"))filter();
 }
 
+function setupReadyUseMap(){document.querySelectorAll("[data-ready-filter]").forEach(card=>card.addEventListener("click",e=>{e.preventDefault();const term=card.dataset.readyFilter||"";const input=document.querySelector("#catalogSearch");if(input){input.value=term;input.dispatchEvent(new Event("input",{bubbles:true}));}document.querySelector("#allProducts")?.scrollIntoView({behavior:"smooth",block:"start"});}));}
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}}
 
@@ -662,6 +663,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  setupCheckoutGuard();
  setupForms();
  setupSearch();
+ setupReadyUseMap();
  setupFAQ();
  setupHelp();
  setupReviewSlider();
