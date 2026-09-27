@@ -463,7 +463,7 @@ function renderDetail(){
    <div class="delivery-box"><strong>Status</strong><span>✓ ${p.status==="planned"?"Konsep sudah disiapkan · produksi belum tersedia":"Produk dapat dibahas sekarang"}</span><span>✓ Simpan ke wishlist atau bandingkan untuk keputusan berikutnya</span></div>
    ${p.status==="planned"?`<button class="button button-dark full" type="button" onclick="toggleWishlist('${esc(p.id)}')">♡ Simpan ke wishlist</button>`:`<button class="button button-dark full" type="button" onclick="addCart('${esc(p.id)}')">Tambah ke keranjang ${icon("cart")}</button>
    <button class="button full" type="button" onclick="buyNow('${esc(p.id)}')">Beli sekarang ${icon("arrow")}</button>`}
-   <button class="button full" type="button" onclick="toggleCompare('${esc(p.id)}')">⇄ Bandingkan</button>
+
    <a class="button whatsapp-button full" href="${productWhatsApp(p)}" target="_blank" rel="noopener">Tanya via WhatsApp ↗</a>
    <a class="mini-link" href="booking.html?service=${encodeURIComponent("Kustomisasi "+p.name)}">Butuh kustomisasi?</a>
   </aside>
