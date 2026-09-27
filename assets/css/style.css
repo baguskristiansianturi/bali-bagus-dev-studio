@@ -453,3 +453,24 @@ body{background:#fff}
  .collection-actions .mini-link{padding:8px 0}
  .website-compare-table{min-width:720px}
 }
+
+/* Unified wishlist — product + website discovery */
+.wishlist-count{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:10px;color:var(--muted)}
+.wishlist-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wishlist-item{display:grid;grid-template-columns:.72fr 1.28fr;border:1px solid var(--line);background:var(--paper);min-height:230px}
+.wishlist-item-art{padding:22px;background:var(--soft);display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.wishlist-item-art span{font:9px 'DM Mono';letter-spacing:.08em;color:var(--muted)}
+.wishlist-item-art b{font-size:24px;line-height:1.05;letter-spacing:-.05em}
+.wishlist-item-art small{font-size:10px;color:var(--muted)}
+.wishlist-item-body{padding:22px;display:flex;flex-direction:column}
+.wishlist-item-body>div:first-child{display:flex;justify-content:space-between;gap:12px}
+.wishlist-item-body>div:first-child span{font:10px 'DM Mono';white-space:nowrap}
+.wishlist-item-body>p{font-size:11px;line-height:1.7;color:var(--muted);margin:13px 0 20px}
+.wishlist-item-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:auto}
+.wishlist-pick{display:inline-flex;align-items:center;gap:7px;font-size:10px;cursor:pointer}
+.wishlist-pick input{width:16px;height:16px}
+.wishlist-compare-empty,.wishlist-compare-note{padding:20px;border:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.wishlist-compare-note{display:flex;gap:12px;align-items:baseline;border-style:solid;border-bottom:0}
+.wishlist-compare-note b{color:var(--ink)}
+.wishlist-comparison-section{padding-top:30px}
+@media(max-width:800px){.wishlist-grid{grid-template-columns:1fr}.wishlist-count{margin-left:0;width:100%;padding-top:8px}.wishlist-item{grid-template-columns:1fr}.wishlist-item-art{min-height:160px}.wishlist-item-actions .button{width:100%}}
