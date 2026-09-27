@@ -85,6 +85,23 @@ const FAQ_DATA=[
  {cat:"Blog & Content",q:"Apakah tersedia jasa penulisan Blog?",a:"Ya. Blog & Content mencakup perencanaan topik, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking."},
  {cat:"Launch",q:"Kapan Bali Bagus Dev Studio mulai launching?",a:"Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Status fitur ditampilkan transparan karena sebagian sistem production masih dikembangkan."},
  {cat:"Perusahaan",q:"Siapa founder Bali Bagus Dev Studio?",a:"Founder dan owner Bali Bagus Dev Studio adalah Bagus Kristian Sianturi."}
+ {cat:"Produk Digital",q:"Apa yang saya dapat setelah membeli produk digital?",a:"Detail file, lisensi, panduan, dan metode delivery mengikuti produk yang dipilih. Halaman produk menjadi sumber informasi utama sebelum pembelian."},
+ {cat:"Produk Digital",q:"Apakah semua produk langsung bisa di-download?",a:"Belum tentu. Metode delivery mengikuti tipe produk. Secure digital delivery production akan dihubungkan setelah backend tersedia."},
+ {cat:"Website",q:"Apakah domain dan hosting termasuk?",a:"Tergantung paket dan scope. Halaman paket menjelaskan batasannya; kebutuhan domain, hosting, lisensi, dan layanan pihak ketiga dapat dihitung terpisah."},
+ {cat:"Website",q:"Berapa lama pengerjaan website?",a:"Estimasi bergantung pada scope, kesiapan materi, revisi, integrasi, dan kompleksitas. Paket menampilkan estimasi awal untuk membantu perencanaan."},
+ {cat:"Website",q:"Apakah saya bisa memilih template lalu mengubahnya?",a:"Ya, untuk template yang mendukung customization. Fondasi visual dapat dipilih lebih dahulu lalu kebutuhan bisnis dan scope dibahas."},
+ {cat:"Layanan",q:"Apakah Bali Bagus Dev hanya membuat website?",a:"Tidak. Ekosistemnya mencakup website, aplikasi, copywriting, Blog & Content, SEO, campaign, maintenance, dan discovery."},
+ {cat:"Layanan",q:"Apakah bisa menggabungkan beberapa layanan?",a:"Bisa. Scope dapat menggabungkan website dengan copywriting, content, SEO, tracking, maintenance, atau kebutuhan lain sesuai prioritas."},
+ {cat:"Konsultasi",q:"Berapa biaya konsultasi?",a:"Sesi konsultasi berdurasi 60 menit dengan biaya Rp350.000. Biaya tersebut net; biaya tempat atau venue pertemuan tidak termasuk."},
+ {cat:"Konsultasi",q:"Apakah konsultasi bisa online?",a:"Ya. Booking menyediakan pilihan online maupun tatap muka dengan lokasi yang disepakati."},
+ {cat:"Konsultasi",q:"Apakah lokasi fisik Bali Bagus Dev sudah tersedia?",a:"Belum. Studio fisik belum tersedia. Pertemuan tatap muka dilakukan di lokasi yang disepakati."},
+ {cat:"Support",q:"Bagaimana menghubungi support?",a:"Anda dapat menggunakan halaman Bantuan, FAQ, contact form, atau WhatsApp support untuk follow-up."},
+ {cat:"Support",q:"Apakah sudah ada live chat agent?",a:"Belum. UI Support Assistant sudah disiapkan sebagai demo frontend; live agent production membutuhkan backend atau integrasi layanan chat."},
+ {cat:"SEO",q:"Apakah SEO menjamin ranking Google?",a:"Tidak ada jaminan ranking tertentu. SEO berfokus pada technical foundation, relevansi konten, struktur, measurement, dan perbaikan berkelanjutan."},
+ {cat:"Blog & Content",q:"Apakah bisa dibuatkan content calendar?",a:"Ya. Content calendar dapat disusun berdasarkan tujuan bisnis, topik, keyword, funnel, dan kapasitas produksi."},
+ {cat:"Launch",q:"Apa yang masih belum tersedia saat launch?",a:"Backend production, payment gateway, authentication production, order processing, admin dashboard, secure delivery, email automation, dan real-time live chat masih berada pada tahap berikutnya."},
+ {cat:"Perusahaan",q:"Di mana Bali Bagus Dev berbasis?",a:"Bali, Indonesia. Studio fisik belum tersedia dan detail lokasi dapat diperbarui saat sudah ditetapkan."},
+ {cat:"Perusahaan",q:"Siapa yang membangun Bali Bagus Dev Studio?",a:"Founder dan owner adalah Bagus Kristian Sianturi. Tim tambahan akan dibentuk sesuai kebutuhan pengembangan studio."},
 ];
 function renderFAQ(){
  const list=$("#faqList"),cats=$("#faqCategories");if(!list)return;
