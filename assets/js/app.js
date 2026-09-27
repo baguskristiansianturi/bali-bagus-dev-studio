@@ -619,5 +619,5 @@ document.addEventListener("DOMContentLoaded",()=>{setupProductChoices();renderHo
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
 });
-window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;window.toggleCompare=toggleCompare;
+window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;
 
