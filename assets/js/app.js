@@ -45,90 +45,20 @@ function art(p){
    <div class="product-mock"><span>BALI BAGUS / DIGITAL STUDIO</span><b>${p.visual==="villa"?"THE ART OF<br>SLOW LIVING.":p.visual==="barber"?"GOOD CUTS.<br>GOOD ENERGY.":esc(p.name.split(" ").slice(0,2).join("<br>"))}</b><i></i></div>
  </div>`;
 }
-function card(p){
- return `<article class="product-card">${art(p)}<div class="product-card-body"><div class="product-meta">${esc(p.type.toUpperCase())} · ${esc(p.category.toUpperCase())}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="product-card-foot"><span class="product-price">${fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Detail ${icon("arrow")}</a></div></div></article>`;
-}
-function renderProducts(target,list){const el=$(target);if(el)el.innerHTML=list.length?list.map(card).join(""):'<div class="empty-state">Tidak ada hasil yang sesuai. Coba kata kunci lain.</div>'}
-function normalizeCart(raw){
- if(!Array.isArray(raw))return [];
- const merged=new Map();
- raw.forEach(item=>{
-  if(!item||typeof item.id!=="string")return;
-  if(!PRODUCTS.some(p=>p.id===item.id))return;
-  const qty=Math.max(1,Math.min(99,Number.isFinite(Number(item.qty))?Math.floor(Number(item.qty)):1));
-  merged.set(item.id,Math.min(99,(merged.get(item.id)||0)+qty));
- });
- return [...merged].map(([id,qty])=>({id,qty}));
-}
-function getCart(){return normalizeCart(store.get("cart",[]))}
-function saveCart(c){store.set("cart",normalizeCart(c));updateCount()}
-function updateCount(){const count=getCart().reduce((a,x)=>a+x.qty,0);$$('#cartCount').forEach(e=>e.textContent=count)}
-function addCart(id){
- const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
- const c=getCart(),item=c.find(x=>x.id===id);
- item?item.qty=Math.min(99,item.qty+1):c.push({id,qty:1});
- saveCart(c);showToast(`${p.name} ditambahkan ke keranjang.`);
-}
-function changeQty(id,delta){
- const c=getCart(),item=c.find(x=>x.id===id);if(!item)return;
- item.qty=Math.max(1,Math.min(99,item.qty+Number(delta||0)));
- saveCart(c);renderCart();renderSummary("#checkoutSummary");
-}
+
+
+
+
+
+
+
+
 function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement("div");t.id="bbToast";t.className="bb-toast";document.body.appendChild(t)}t.textContent=message;t.classList.add("show");clearTimeout(window.__bbToast);window.__bbToast=setTimeout(()=>t.classList.remove("show"),2600)}
-function renderDetail(){
- const el=$("#productDetail");if(!el)return;
- const p=PRODUCTS.find(x=>x.id===new URLSearchParams(location.search).get("id"))||PRODUCTS[0];
- el.innerHTML=`<div class="breadcrumb"><a href="products.html">Produk digital</a> / ${esc(p.name)}</div><div class="product-detail-layout"><div><div class="detail-art">${art(p)}</div><div class="detail-tabs"><h2>Deskripsi produk</h2><p>${esc(p.desc)}</p><h2>Fitur dan spesifikasi</h2><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><h2>Lisensi & dukungan</h2><p>Detail lisensi, format file, update, dukungan, dan opsi instalasi ditampilkan sebelum produk produksi diterbitkan.</p></div></div><aside class="detail-info"><div class="product-meta">${esc(p.type.toUpperCase())} · ${esc(p.category.toUpperCase())}</div><h2>${esc(p.name)}</h2><p>${esc(p.desc)}</p><div class="price">${fmt(p.price)}</div><p class="tiny">Harga contoh katalog. Ketentuan produk final mengikuti lisensi yang tercantum saat diterbitkan.</p><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><button class="button button-dark" type="button" onclick="addCart('${esc(p.id)}')">Tambah ke keranjang ${icon("cart")}</button><a class="button" style="border-color:#ddd;width:100%" href="booking.html?service=${encodeURIComponent("Kustomisasi "+p.name)}">Tanyakan kustomisasi ${icon("arrow")}</a></aside></div>`;
-}
-function renderCart(){
- const el=$("#cartItems");if(!el)return;const cart=getCart();
- const checkout=$("#checkoutLink");
- if(!cart.length){
-  el.innerHTML='<div class="empty-state">Keranjang Anda masih kosong. <a class="text-link" href="products.html">Jelajahi produk ↗</a></div>';
-  $("#cartSummary").innerHTML='<div class="summary-total"><span>Total</span><span>Rp0</span></div>';
-  if(checkout){checkout.setAttribute("aria-disabled","true");checkout.setAttribute("tabindex","-1");checkout.dataset.disabled="true";}
-  return;
- }
- el.innerHTML=cart.map(x=>{
-  const p=PRODUCTS.find(p=>p.id===x.id);if(!p)return "";
-  return `<div class="cart-row"><div class="cart-thumb">${icon("arrow")}</div><div class="cart-row-info"><b>${esc(p.name)}</b><small>${fmt(p.price)} · Qty ${x.qty}</small><small>${fmt(p.price*x.qty)}</small></div><div class="cart-qty" aria-label="Jumlah ${esc(p.name)}"><button type="button" aria-label="Kurangi ${esc(p.name)}" onclick="changeQty('${esc(p.id)}',-1)" ${x.qty<=1?"disabled":""}>−</button><span>${x.qty}</span><button type="button" aria-label="Tambah ${esc(p.name)}" onclick="changeQty('${esc(p.id)}',1)" ${x.qty>=99?"disabled":""}>+</button></div><button type="button" onclick="removeCart('${esc(p.id)}')">Hapus</button></div>`;
- }).join("");
- const total=cart.reduce((s,x)=>s+(PRODUCTS.find(p=>p.id===x.id)?.price||0)*x.qty,0);
- $("#cartSummary").innerHTML=`${cart.map(x=>{const p=PRODUCTS.find(p=>p.id===x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")}<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`;
- if(checkout){checkout.removeAttribute("aria-disabled");checkout.removeAttribute("tabindex");checkout.dataset.disabled="false";}
-}
-function removeCart(id){saveCart(getCart().filter(x=>x.id!==id));renderCart();renderSummary("#checkoutSummary");showToast("Produk dihapus dari keranjang.")}
-function renderSummary(target){
- const el=$(target);if(!el)return;
- const params=new URLSearchParams(location.search);
- const websiteOrder=params.get("orderType")==="website"?store.get("websiteOrder",null):null;
- if(websiteOrder){
-  const p=PACKAGES.find(x=>x.id===websiteOrder.packageId),t=WEBSITE_COLLECTION.find(x=>x.id===websiteOrder.templateId);
-  el.innerHTML=`<div class="summary-line"><span>Website</span><b>${esc(p?.name||"Custom")}</b></div><div class="summary-line"><span>Template</span><b>${esc(t?.name||"Fondasi pilihan")}</b></div><div class="summary-line"><span>Scope</span><b>${esc(p?.scope||"Custom")}</b></div><div class="summary-total"><span>Harga mulai</span><span>${fmt(p?.price||0)}</span></div><p class="tiny">Harga final mengikuti scope, materi, integrasi dan kebutuhan produksi yang disepakati.</p>`;
-  return;
- }
- const cart=getCart(),total=cart.reduce((s,x)=>s+(PRODUCTS.find(p=>p.id===x.id)?.price||0)*x.qty,0);
- el.innerHTML=cart.length?cart.map(x=>{const p=PRODUCTS.find(p=>p.id===x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")+`<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`:'<p class="tiny">Keranjang kosong.</p>';
-}
-function header(){
- const h=$(".site-header");if(!h||h.children.length)return;
- h.innerHTML=`<a class="brand" href="index.html" aria-label="Bali Bagus Dev home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
- <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
- <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="index.html">Beranda</a><a href="website-packages.html">Website</a><a href="products.html">Produk</a><a href="portfolio.html">Portfolio</a><a href="articles.html">Artikel</a><a href="contact.html">Kontak</a></nav>
- <div class="header-actions"><button class="lang" id="langToggle" type="button">ID <span>⌄</span></button><a class="icon-btn" href="cart.html" aria-label="Keranjang">${icon("cart")}<b id="cartCount">0</b></a><a class="button button-dark small" href="booking.html">Konsultasi ${icon("arrow")}</a></div>`;
- const page=location.pathname.split("/").pop()||"index.html";
- h.querySelectorAll(".nav a").forEach(a=>{
- const href=a.getAttribute("href").split("?")[0];if(href===page)a.classList.add("active");
- a.addEventListener("click",()=>{if(window.innerWidth<=800){$("#mainNav").classList.remove("open");$("#menuToggle")?.setAttribute("aria-expanded","false");$("#menuToggle")?.setAttribute("aria-label","Buka menu");$("#menuToggle").innerHTML=icon("menu")}});
-});
- $("#menuToggle")?.addEventListener("click",()=>{
- const open=$("#mainNav").classList.toggle("open");
- $("#menuToggle").setAttribute("aria-expanded",String(open));
- $("#menuToggle").setAttribute("aria-label",open?"Tutup menu":"Buka menu");
- $("#menuToggle").innerHTML=icon(open?"close":"menu");
-});
- $("#langToggle")?.addEventListener("click",toggleLang);
-}
+
+
+
+
+
 function footer(){
  const f=$("#siteFooter");if(!f)return;const base=location.pathname.includes("/landing/")?"../":"";f.className="site-footer";
  f.innerHTML=`<div class="wrap"><div class="footer-top">
@@ -141,17 +71,8 @@ function footer(){
 }
 let english=false;
 function toggleLang(){english=!english;document.documentElement.lang=english?"en":"id";const dict=english?{"Beranda":"Home","Website":"Website","Produk":"Products","Portfolio":"Portfolio","Artikel":"Articles","Kontak":"Contact","Konsultasi":"Book a call","Cari solusi":"Find solutions"}:{"Home":"Beranda","Website":"Website","Products":"Produk","Portfolio":"Portfolio","Articles":"Artikel","Contact":"Kontak","Book a call":"Konsultasi","Find solutions":"Cari solusi"};document.querySelectorAll(".nav a,.header-actions .button").forEach(e=>{let t=e.textContent.replace(/\s+/g," ").trim();Object.keys(dict).forEach(k=>{if(t.startsWith(k))e.childNodes[0].textContent=dict[k]})});const b=$("#langToggle");if(b)b.innerHTML=english?"EN <span>⌄</span>":"ID <span>⌄</span>";const search=$("#globalSearch");if(search)search.placeholder=english?"What would you like to build today?":"Apa yang ingin Anda bangun hari ini?"}
-function setupForms(){
- const bf=$("#bookingForm");if(bf){const s=new URLSearchParams(location.search).get("service");if(s&&$("#bookingService"))$("#bookingService").value=s;
- bf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(bf));data.id="BB-"+Date.now();data.status="inquiry-demo";data.createdAt=new Date().toISOString();const arr=store.get("bookings",[]);arr.push(data);store.set("bookings",arr);$("#bookingResult").innerHTML='<span class="form-status">Permintaan tersimpan sebagai demo lokal. Untuk produksi, hubungkan form ini ke email/CRM/backend dan tambahkan anti-spam.</span>';bf.reset()})}
- const cf=$("#contactForm");if(cf)cf.addEventListener("submit",e=>{e.preventDefault();const arr=store.get("messages",[]);arr.push({...Object.fromEntries(new FormData(cf)),id:"MSG-"+Date.now(),status:"demo-local"});store.set("messages",arr);$("#contactResult").innerHTML='<span class="form-status">Pesan tersimpan sebagai demo lokal. Pada produksi, pesan akan diteruskan ke inbox/CRM.</span>';cf.reset()});
- const co=$("#checkoutForm");if(co)co.addEventListener("submit",e=>{e.preventDefault();const cart=getCart();const data=Object.fromEntries(new FormData(co));if(!cart.length&&data.orderType!=="website"){co.insertAdjacentHTML("afterend",'<div class="form-status">Tidak ada item digital di keranjang.</div>');return}const order={id:"ORDER-"+Date.now(),type:data.orderType||"digital",customer:data,items:cart,status:"inquiry-demo",createdAt:new Date().toISOString()};const orders=store.get("orders",[]);orders.push(order);store.set("orders",orders);saveCart([]);$("#checkoutResult").innerHTML=`<span class="form-status">Permintaan <b>${esc(order.id)}</b> tersimpan sebagai demo. Belum ada pembayaran nyata. Untuk produksi, hubungkan payment gateway dan verifikasi webhook di server.</span>`;co.reset();renderSummary("#checkoutSummary")})}
-function setupSearch(){
- const b=$("#searchButton");if(b)b.addEventListener("click",()=>{const q=$("#globalSearch").value.trim(),cat=$("#searchCategory").value;const url=cat==="service"?"website-packages.html":cat==="article"?"articles.html":"products.html";location.href=url+(q?"?q="+encodeURIComponent(q):"")});
- const q=new URLSearchParams(location.search).get("q");if(q&&$("#catalogSearch"))$("#catalogSearch").value=q;
- function filter(){const q=($("#catalogSearch")?.value||"").toLowerCase(),cat=$("#productFilter")?.value||"all",sort=$("#sortProducts")?.value||"featured";let list=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&(p.name+" "+p.desc+" "+p.category).toLowerCase().includes(q));if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);renderProducts("#allProducts",list)}
- $("#catalogSearch")?.addEventListener("input",filter);$("#productFilter")?.addEventListener("change",filter);$("#sortProducts")?.addEventListener("change",filter);if($("#allProducts"))filter();
-}
+
+
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
  link.addEventListener("click",e=>{
@@ -202,13 +123,7 @@ function renderDemoDetail(){
 }
 
 function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
-document.addEventListener("DOMContentLoaded",()=>{
- initA11y();header();footer();updateCount();renderProducts("#featuredProducts",PRODUCTS.slice(0,3));
- setupSearch();renderDetail();renderPackageDetail();renderPackageExperience();renderPackages();renderDemos();renderClients();renderDemoDetail();
- renderCart();renderSummary("#checkoutSummary");setupCheckoutGuard();setupForms();
- const pkg=new URLSearchParams(location.search).get("package");if(pkg&&$("#bookingPackage"))$("#bookingPackage").value=pkg;
- const dateInput=document.querySelector('input[name="date"]');if(dateInput)dateInput.min=new Date().toISOString().slice(0,10);
-});
+);
 window.addCart=addCart;window.removeCart=removeCart;window.changeQty=changeQty;
 
 
@@ -351,9 +266,9 @@ function renderDetail(){
       <details><summary>Apakah saya bisa checkout langsung?</summary><p>Bisa. Tambahkan produk ke keranjang lalu lanjutkan ke checkout.</p></details>
     </div>
     <h2>Review pelanggan</h2>
-    <div class="review-summary"><strong>${avg}</strong><span>★</span><small>${reviews.length} verified review${reviews.length===1?"":"s"}</small></div>
-    ${reviews.length?reviews.map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong><span class="verified-badge">✓ Verified purchase</span></div><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${esc(r.text)}</p><small>${new Date(r.createdAt).toLocaleDateString("id-ID")}</small></article>`).join(""):'<div class="notice">Belum ada review terverifikasi untuk produk ini. Review hanya dapat dibuat oleh pelanggan yang login dan memiliki pesanan yang memenuhi syarat.</div>'}
-    ${eligible?`<form id="reviewForm" class="review-form"><h3>Bagikan pengalaman Anda</h3><label>Rating<select name="rating" required><option value="5">5 — Sangat baik</option><option value="4">4 — Baik</option><option value="3">3 — Cukup</option></select></label><label>Review<textarea name="text" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><button class="button button-dark" type="submit">Kirim review</button></form>`:'<div class="review-login"><p>Sudah membeli produk ini? Login untuk menulis review terverifikasi setelah pesanan selesai.</p><a class="button" href="account.html?next=${encodeURIComponent(location.href)}">Login / Daftar</a></div>'}
+    <div class="review-summary"><strong>${avg}</strong><span>★</span><small>${reviews.length} customer review${reviews.length===1?"":"s"}</small></div>
+    ${reviews.length?reviews.map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong><span class="verified-badge">Customer review</span></div><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${esc(r.text)}</p><small>${new Date(r.createdAt).toLocaleDateString("id-ID")}</small></article>`).join(""):'<div class="notice">Belum ada review terverifikasi untuk produk ini. Review pelanggan akan tersedia setelah sistem order produksi terhubung.</div>'}
+    ${eligible?`<form id="reviewForm" class="review-form"><h3>Bagikan pengalaman Anda</h3><label>Rating<select name="rating" required><option value="5">5 — Sangat baik</option><option value="4">4 — Baik</option><option value="3">3 — Cukup</option></select></label><label>Review<textarea name="text" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><button class="button button-dark" type="submit">Kirim review</button></form>`:'<div class="review-login"><p>Sudah membeli produk ini? Login untuk menulis review setelah pesanan selesai.</p><a class="button" href="account.html?next=${encodeURIComponent(location.href)}">Login / Daftar</a></div>'}
    </div>
   </div>
   <aside class="detail-info sticky-detail">
@@ -411,7 +326,7 @@ function setupAccount(){
  const box=$("#accountState");if(!box||box.dataset.bound)return;if(box)box.dataset.bound="true";
  const a=store.get("account",null);
  if(a){
-   box.innerHTML=`<div class="account-welcome"><span class="eyebrow">ACCOUNT / ACTIVE</span><h2>Halo, ${esc(a.name)}.</h2><p>${esc(a.email)}</p><div class="account-grid"><div><b>Pesanan</b><small>${store.get("orders",[]).length} demo order</small></div><div><b>Review</b><small>Verified review tersedia setelah pembelian</small></div><div><b>Wishlist</b><small>Siap diaktifkan</small></div><div><b>Alamat</b><small>Disimpan di checkout/backend</small></div></div><button id="logoutButton" class="button">Keluar</button></div>`;
+   box.innerHTML=`<div class="account-welcome"><span class="eyebrow">ACCOUNT / ACTIVE</span><h2>Halo, ${esc(a.name)}.</h2><p>${esc(a.email)}</p><div class="account-grid"><div><b>Pesanan</b><small>${store.get("orders",[]).length} demo order</small></div><div><b>Review</b><small>Review pelanggan tersedia setelah pembelian</small></div><div><b>Wishlist</b><small>Siap diaktifkan</small></div><div><b>Alamat</b><small>Disimpan di checkout/backend</small></div></div><button id="logoutButton" class="button">Keluar</button></div>`;
    $("#logoutButton")?.addEventListener("click",()=>{store.set("account",null);location.reload()});
  }else{
    box.innerHTML=`<form id="loginForm" class="form-card account-form"><div class="eyebrow">ACCOUNT / LOGIN</div><h2>Masuk untuk melanjutkan.</h2><p class="tiny">Akun menjadi pusat pesanan, alamat, wishlist, download, dan review terverifikasi.</p><label>Nama lengkap<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><button class="button button-dark full" type="submit">Masuk / Buat akun</button></form>`;
@@ -466,5 +381,4 @@ document.addEventListener("DOMContentLoaded",()=>{
  const p=$("#productFilter");if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option>${esc(x)}</option>`).join("")}`;
 });
 window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;
-
 
