@@ -1175,3 +1175,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){
   .site-header .main-nav.open{scroll-behavior:auto}
 }
+
+
+/* V10.1 — enforce single mobile navbar */
+@media(max-width:800px){
+  .site-header .category-nav-row{display:contents!important}
+  .site-header .member-entry{display:none!important}
+  .site-header #mainNav{display:none!important}
+  .site-header #mainNav.open{
+    display:block!important;
+    position:absolute;
+    left:0;right:0;top:64px;
+    max-height:calc(100vh - 64px);
+    overflow:auto;
+    background:#fff;
+    border-top:1px solid #e7e7e3;
+    box-shadow:0 18px 40px #17171712;
+  }
+}
+@media(max-width:420px){
+  .site-header #mainNav.open{top:60px}
+}
