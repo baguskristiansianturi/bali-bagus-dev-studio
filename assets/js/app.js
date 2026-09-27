@@ -98,23 +98,30 @@ function renderDemos(){const el=$("#demoGrid");if(!el)return;el.innerHTML=DEMOS.
 function renderClients(){const el=$("#clientGrid");if(!el)return;el.innerHTML=CLIENTS.map(c=>`<article class="client-card"><div class="client-preview"><div class="demo-browser"><div class="demo-bar"><i></i><i></i><i></i><span>client-preview</span></div><div class="demo-screen"><small>${esc(c.category.toUpperCase())}</small><b>${esc(c.name.replace("Client Website — ",""))}</b><small>${esc(c.status.toUpperCase())}</small></div></div></div><div class="port-info"><b>${esc(c.name)}</b><span>${esc(c.status)}</span><p>${esc(c.desc)}</p>${c.url!="#"?`<a class="mini-link" href="${esc(c.url)}" rel="noopener">Visit website ↗</a>`:""}</div></article>`).join("")}
 function renderDemoDetail(){
  const el=$("#demoDetail");if(!el)return;
- const params=new URLSearchParams(location.search);
- const templateId=params.get("template");
- const d=templateId?WEBSITE_COLLECTION.find(x=>x.id===templateId):null;
+ const params=new URLSearchParams(location.search),templateId=params.get("template"),d=templateId?WEBSITE_COLLECTION.find(x=>x.id===templateId):null;
  const legacy=DEMOS.find(x=>x.id===(params.get("id")||"villa"))||DEMOS[0];
  const item=d||{id:legacy.id,category:legacy.category,name:legacy.name,style:"Responsive / Customizable",desc:legacy.desc};
- const packageId=params.get("package")||((item.availablePackages&&item.availablePackages[0])||"business");
- const p=PACKAGES.find(x=>x.id===packageId)||PACKAGES[1];
+ const packageId=params.get("package")||((item.availablePackages&&item.availablePackages[0])||"business"),p=PACKAGES.find(x=>x.id===packageId)||PACKAGES[1];
  const orderUrl=`website-order.html?package=${encodeURIComponent(p.id)}&template=${encodeURIComponent(item.id)}`;
  const pages=p.id==="starter"?["Home","Services / Offer","Contact"]:p.id==="business"?["Home","About","Services","Gallery","Contact"]:["Home","About","Services","Gallery","Content","Contact"];
+ const themes={Villa:["THE ART OF SLOW LIVING.","A quieter hospitality experience.",["Rooms","Facilities","Experience"]],Restaurant:["GOOD FOOD. GOOD PLACE.","A visual menu and reservation journey.",["Menu","Story","Location"]],"Barbershop":["GOOD CUTS. GOOD ENERGY.","A sharper service-led website.",["Services","Barbers","Booking"]],"Car Rental":["MOVE FREELY AROUND THE ISLAND.","Fleet, pricing and inquiry in one flow.",["Fleet","Rates","Inquiry"]]};
+ const theme=themes[item.category]||["GOOD BUSINESS. CLEAR DIGITAL PRESENCE.","A focused digital foundation for your business.",["Services","Proof","Contact"]];
  el.innerHTML=`<div class="breadcrumb"><a href="website-package.html?id=${encodeURIComponent(p.id)}">${esc(p.name)}</a> / ${esc(item.category)} / ${esc(item.name)}</div>
- <section class="live-experience-hero"><div><div class="eyebrow">STEP 04 / EXPERIENCE</div><h1>${esc(item.name)}<br><em>${esc(item.style)}</em></h1><p class="lead">Bayangkan struktur ini menggunakan logo, nama bisnis, foto, layanan, harga, warna, dan informasi bisnis Anda sendiri.</p><div class="experience-badges"><span>${esc(p.name)} package</span><span>${esc(p.scope)}</span><span>Responsive</span></div></div><aside class="experience-price"><small>PAKET DIPILIH</small><strong>${fmt(p.price)}</strong><span>mulai · ${esc(p.name)}</span></aside></section>
- <section class="section"><div class="live-preview"><div class="preview-toolbar"><span>LIVE WEBSITE EXPERIENCE / CONCEPT</span><span>Desktop · Tablet · Mobile</span></div><div class="preview-window"><div class="preview-nav"><b>${esc(item.name.toUpperCase())}</b><span>HOME</span><span>SERVICES</span><span>ABOUT</span><span>CONTACT</span></div><div class="preview-hero"><small>${esc(item.category.toUpperCase())}</small><h2>${item.category==="Villa"?"THE ART OF SLOW LIVING.":item.category==="Restaurant"?"GOOD FOOD. GOOD PLACE.":item.category==="Car Rental"?"MOVE FREELY AROUND THE ISLAND.":"GOOD BUSINESS. CLEAR DIGITAL PRESENCE."}</h2><p>${esc(item.desc)}</p><a class="button button-dark small" href="#order">Explore / Contact</a></div><div class="preview-blocks"><div><small>01</small><b>${esc(p.features[0]||"Responsive experience")}</b></div><div><small>02</small><b>${esc(p.features[1]||"Clear CTA")}</b></div><div><small>03</small><b>${esc(p.features[2]||"Business content")}</b></div></div></div></div></section>
- <section class="section experience-detail-grid"><div><div class="eyebrow">WHAT YOU CAN IMAGINE</div><h2>Ini bukan hasil akhir.<br><em>Ini fondasi bisnis Anda.</em></h2><p>Logo, nama usaha, foto, teks, layanan, harga, warna dan detail bisnis dapat disesuaikan sesuai scope paket. Tujuannya agar Anda dapat melihat bentuk pengalaman pelanggan sebelum memutuskan untuk memesan.</p></div><div class="experience-checks"><b>Halaman dalam fondasi ini</b>${pages.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}<b>Yang dapat disesuaikan</b><span>✓ Logo & nama bisnis</span><span>✓ Foto & konten</span><span>✓ Warna & detail visual</span><span>✓ CTA & informasi kontak</span></div></section>
- <section id="order" class="section order-cta-section"><div class="inline-cta"><div class="cta-inline-grid"><div><div class="eyebrow">READY WHEN YOU ARE</div><h2>Pesan website ini sekarang.</h2><p>Form akan otomatis membawa paket <b>${esc(p.name)}</b> dan template <b>${esc(item.name)}</b>. Setelah itu Anda dapat memilih checkout dengan akun atau mengirim brief rapi melalui WhatsApp.</p></div><a class="button button-white" href="${orderUrl}">Pesan website ini ${icon("arrow")}</a></div></div></section>`;
-}
-
-function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
+ <section class="live-experience-hero"><div><div class="eyebrow">STEP 04 / EXPERIENCE</div><h1>${esc(item.name)}<br><em>${esc(item.style)}</em></h1><p class="lead">Rasakan arah visual, struktur halaman, dan alur CTA sebelum memilih untuk memesan. Konten dan identitas final akan mengikuti bisnis Anda.</p><div class="experience-badges"><span>${esc(p.name)} package</span><span>${esc(p.scope)}</span><span>Responsive</span></div></div><aside class="experience-price"><small>PAKET DIPILIH</small><strong>${fmt(p.price)}</strong><span>mulai · ${esc(p.name)}</span></aside></section>
+ <section class="section"><div class="experience-toolbar"><div><div class="eyebrow">LIVE WEBSITE EXPERIENCE</div><b>Ubah ukuran preview</b></div><div class="experience-switch" role="group" aria-label="Preview size"><button class="active" type="button" data-exp-mode="desktop">DESKTOP</button><button type="button" data-exp-mode="tablet">TABLET</button><button type="button" data-exp-mode="mobile">MOBILE</button></div></div>
+ <div class="live-preview"><div class="preview-window experience-preview" data-mode="desktop">
+  <div class="preview-nav"><b>${esc(item.name.toUpperCase())}</b><span>HOME</span><span>${esc(theme[2][0].toUpperCase())}</span><span>${esc(theme[2][1].toUpperCase())}</span><span>CONTACT</span></div>
+  <div class="preview-hero"><small>${esc(item.category.toUpperCase())} / CONCEPT</small><h2>${esc(theme[0])}</h2><p>${esc(theme[1])} ${esc(item.desc)}</p><a class="button button-dark small" href="#order">Explore / Contact</a></div>
+  <div class="preview-blocks">${theme[2].map((x,i)=>`<div><small>0${i+1}</small><b>${esc(x)}</b><span>Content structure ready to customize.</span></div>`).join("")}</div>
+  <div class="preview-footer"><span>${esc(item.name)}</span><small>Responsive concept · ${esc(p.name)} package</small></div>
+ </div></div></section>
+ <section class="section experience-detail-grid"><div><div class="eyebrow">WHAT YOU CAN IMAGINE</div><h2>Ini bukan hasil akhir.<br><em>Ini fondasi bisnis Anda.</em></h2><p>Logo, nama usaha, foto, teks, layanan, harga, warna dan detail bisnis dapat disesuaikan sesuai scope paket. Anda melihat pengalaman pelanggan terlebih dahulu, lalu memutuskan apakah fondasi ini cocok.</p></div><div class="experience-checks"><b>Halaman dalam fondasi ini</b>${pages.map(x=>`<span>✓ ${esc(x)}</span>`).join("")}<b>Yang dapat disesuaikan</b><span>✓ Logo & nama bisnis</span><span>✓ Foto & konten</span><span>✓ Warna & detail visual</span><span>✓ CTA & informasi kontak</span></div></section>
+ <section id="order" class="section order-cta-section"><div class="inline-cta"><div class="cta-inline-grid"><div><div class="eyebrow">READY WHEN YOU ARE</div><h2>Pesan website ini sekarang.</h2><p>Form akan otomatis membawa paket <b>${esc(p.name)}</b> dan template <b>${esc(item.name)}</b>. Anda dapat melanjutkan dengan brief atau WhatsApp.</p></div><a class="button button-white" href="${orderUrl}">Pesan website ini ${icon("arrow")}</a></div></div></section>`;
+ $$("#demoDetail [data-exp-mode]").forEach(btn=>btn.addEventListener("click",()=>{
+   $$("#demoDetail [data-exp-mode]").forEach(x=>x.classList.toggle("active",x===btn));
+   const preview=$("#demoDetail .experience-preview");if(preview)preview.dataset.mode=btn.dataset.expMode;
+ }));
+}function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
 
 function initPremiumInteractions(){
  if(document.documentElement.classList.contains("reduced-motion"))return;
@@ -261,14 +268,24 @@ function renderDetail(){
  const el=$("#productDetail");if(!el)return;
  const p=findProduct(new URLSearchParams(location.search).get("id"));
  const reviews=store.get("reviews_"+p.id,[]);
- const account=store.get("account",null); const eligible=account && store.get("orders",[]).some(o=>["paid","processing","shipped","delivered","completed"].includes(o.status) && Array.isArray(o.items) && o.items.some(i=>i.id===p.id));
+ const account=store.get("account",null);
+ const eligible=account && store.get("orders",[]).some(o=>["paid","processing","shipped","delivered","completed"].includes(o.status)&&Array.isArray(o.items)&&o.items.some(i=>i.id===p.id));
  const avg=reviews.length?(reviews.reduce((a,r)=>a+r.rating,0)/reviews.length).toFixed(1):"—";
  el.innerHTML=`<div class="breadcrumb"><a href="products.html">Store</a> / ${esc(p.name)}</div>
  <div class="product-detail-layout commerce-detail">
   <div>
    <div class="detail-art">${art(p)}</div>
-   <div class="experience-switch"><button class="active" type="button">DESKTOP</button><button type="button">MOBILE</button><a class="mini-link" href="demo.html?id=${encodeURIComponent(p.id)}">Open live demo ↗</a></div>
-   <div class="live-preview"><div class="preview-browser"><div class="demo-bar"><i></i><i></i><i></i><span>${esc(p.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"))}.demo</span></div><div class="preview-screen">${art(p)}</div></div></div>
+   <div class="experience-switch" role="group" aria-label="Preview size">
+    <button class="active" type="button" data-preview="desktop">DESKTOP</button>
+    <button type="button" data-preview="mobile">MOBILE</button>
+    <a class="mini-link" href="demo.html?id=${encodeURIComponent(p.id)}">Open live demo ↗</a>
+   </div>
+   <div class="live-preview product-live-preview" id="productLivePreview">
+    <div class="preview-browser preview-browser-responsive" data-mode="desktop">
+     <div class="demo-bar"><i></i><i></i><i></i><span>${esc(p.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"))}.demo</span></div>
+     <div class="preview-screen">${art(p)}</div>
+    </div>
+   </div>
    <div class="detail-tabs">
     <h2>Tentang produk</h2><p>${esc(p.desc)}</p>
     <h2>Fitur & spesifikasi</h2><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
@@ -282,7 +299,7 @@ function renderDetail(){
     <h2>Review pelanggan</h2>
     <div class="review-summary"><strong>${avg}</strong><span>★</span><small>${reviews.length} customer review${reviews.length===1?"":"s"}</small></div>
     ${reviews.length?reviews.map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong><span class="verified-badge">Customer review</span></div><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${esc(r.text)}</p><small>${new Date(r.createdAt).toLocaleDateString("id-ID")}</small></article>`).join(""):'<div class="notice">Belum ada review pelanggan untuk produk ini. Review akan tersedia setelah sistem order produksi terhubung.</div>'}
-    ${eligible?`<form id="reviewForm" class="review-form"><h3>Bagikan pengalaman Anda</h3><label>Rating<select name="rating" required><option value="5">5 — Sangat baik</option><option value="4">4 — Baik</option><option value="3">3 — Cukup</option></select></label><label>Review<textarea name="text" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><button class="button button-dark" type="submit">Kirim review</button></form>`:'<div class="review-login"><p>Sudah membeli produk ini? Login untuk menulis review setelah pesanan selesai.</p><a class="button" href="account.html?next=${encodeURIComponent(location.href)}">Login / Daftar</a></div>'}
+    ${eligible?`<form id="reviewForm" class="review-form"><h3>Bagikan pengalaman Anda</h3><label>Rating<select name="rating" required><option value="5">5 — Sangat baik</option><option value="4">4 — Baik</option><option value="3">3 — Cukup</option></select></label><label>Review<textarea name="text" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label><button class="button button-dark" type="submit">Kirim review</button></form>`:'<div class="review-login"><p>Sudah membeli produk ini? Login untuk menulis review setelah pesanan selesai.</p><a class="button" href="account.html?next='+encodeURIComponent(location.href)+'">Login / Daftar</a></div>'}
    </div>
   </div>
   <aside class="detail-info sticky-detail">
@@ -295,15 +312,17 @@ function renderDetail(){
    <a class="mini-link" href="booking.html?service=${encodeURIComponent("Kustomisasi "+p.name)}">Butuh kustomisasi?</a>
   </aside>
  </div>`;
+ $$("#productDetail [data-preview]").forEach(btn=>btn.addEventListener("click",()=>{
+   $$("#productDetail [data-preview]").forEach(x=>x.classList.toggle("active",x===btn));
+   const preview=$("#productLivePreview .preview-browser-responsive");
+   if(preview)preview.dataset.mode=btn.dataset.preview;
+ }));
  $("#reviewForm")?.addEventListener("submit",e=>{
-   e.preventDefault();
-   const data=Object.fromEntries(new FormData(e.currentTarget));
-   const arr=store.get("reviews_"+p.id,[]);
+   e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget)),arr=store.get("reviews_"+p.id,[]);
    arr.push({name:account.name,rating:Number(data.rating),text:data.text,createdAt:new Date().toISOString(),verified:true});
    store.set("reviews_"+p.id,arr);renderDetail();showToast("Review tersimpan di demo lokal.");
  });
-}
-function buyNow(id){addCart(id);location.href="checkout.html";}
+}function buyNow(id){addCart(id);location.href="checkout.html";}
 function renderCollection(){
  const grid=$("#websiteCollectionGrid");if(!grid)return;
  const q=($("#collectionSearch")?.value||"").toLowerCase(),cat=$("#collectionCategory")?.value||"All",packageId=new URLSearchParams(location.search).get("package");
