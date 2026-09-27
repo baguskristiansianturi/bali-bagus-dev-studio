@@ -198,3 +198,7 @@ button,a,input,select,textarea{transition:color .2s ease,background-color .2s ea
 @media(max-width:800px){.order-flow-grid,.live-experience-hero,.experience-detail-grid{grid-template-columns:1fr}.order-side{position:static}.preview-nav span{display:none}.preview-hero{padding:30px;min-height:270px}.preview-blocks{grid-template-columns:1fr}.preview-blocks div{border-right:0;border-bottom:1px solid #ddd}.preview-blocks div:last-child{border-bottom:0}.experience-checks{grid-template-columns:1fr}}
 
 .category-landing-intro{margin-top:35px;border:1px solid #e3e3df;background:#f4f4f1;padding:24px;display:flex;justify-content:space-between;gap:25px;align-items:center}.category-landing-intro>div{display:flex;flex-direction:column;gap:7px}.category-landing-intro b{font-size:13px}.category-landing-intro span{font-size:10px;color:#777}.category-landing-intro span:before{content:"✓";margin-right:7px}@media(max-width:520px){.category-landing-intro{align-items:flex-start;flex-direction:column}}
+
+
+/* Accessibility utility */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
