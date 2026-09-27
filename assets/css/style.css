@@ -1906,3 +1906,5 @@ table{
 .collection-card .collection-actions{margin-top:13px}
 .collection-card .collection-actions .button{width:100%;justify-content:space-between}
 @media(max-width:800px){.collection-intro-note{margin-top:4px}.collection-status-line{font-size:8.5px}}
+
+.collection-bridge{display:flex;align-items:center;justify-content:space-between;gap:25px;margin:0 0 22px;padding:18px 20px;border:1px solid #dfdfdb;border-left:2px solid #171717;background:#fbfbf9}.collection-bridge>div{display:flex;flex-direction:column;gap:5px}.collection-bridge b{font-size:13px;letter-spacing:-.02em}.collection-bridge small{font-size:10px;color:#888;line-height:1.5}.collection-bridge .eyebrow{margin:0;font-size:8px}@media(max-width:700px){.collection-bridge{align-items:flex-start;flex-direction:column}.collection-bridge .button{width:100%}}
