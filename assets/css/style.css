@@ -786,3 +786,19 @@ button,.button,.header-login,.mobile-toggle,.mega-trigger,input,select,textarea,
  .mobile-quick-links a,.mobile-quick-action{font-size:11.5px}
  .mega-trigger{font-size:11.5px}
 }
+
+/* V7.5 — tablet density audit: avoid cramped 3-column content */
+@media(max-width:1050px) and (min-width:801px){
+ .category-grid,.product-grid,.catalog-grid,.service-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .product-art{height:215px}
+ .service-detail-grid article{padding:22px}
+ .service-detail-grid h2{font-size:21px}
+ .service-detail-grid p,.service-detail-grid li{font-size:11.5px}
+ .section{padding-block:82px}
+ .section-head{margin-bottom:30px}
+}
+@media(max-width:900px) and (min-width:801px){
+ .category-grid,.product-grid,.catalog-grid{gap:12px}
+ .catalog-toolbar{gap:8px}
+ .catalog-toolbar select{min-width:140px}
+}
