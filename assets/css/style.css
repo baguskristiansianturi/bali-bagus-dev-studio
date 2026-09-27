@@ -642,3 +642,55 @@ button,a,input,select,textarea{min-height:0}
 button,.button,.header-login,.mobile-toggle,.mega-trigger,input,select,textarea,.article-share button,.article-share a{min-height:44px}
 .header-login,.mobile-toggle{min-height:36px}.mega-trigger{min-height:46px}
 @media(max-width:800px){.mega-trigger{min-height:50px}.mobile-toggle{min-height:42px}}
+
+/* ============================================================
+   V7.1 FINAL UI POLISH — compact hierarchy, touch-safe controls
+============================================================ */
+.top-header-row{min-height:60px;height:60px;gap:18px}
+.header-top-actions{gap:18px}
+.header-utility{font-size:10px;padding:6px 0}
+.header-signup{font-size:10px;padding:6px 0}
+.header-login{min-height:34px;padding:0 13px;font-size:10px}
+.category-nav-row{min-height:46px}
+.category-nav{height:46px;gap:2px}
+.mega-trigger{min-height:46px;padding-inline:14px;font-size:10px}
+.mega-menu{top:46px}
+.mega-intro{padding:22px}
+.mega-intro>b{font-size:20px;margin:18px 0 10px}
+.mega-intro>small{font-size:9px;line-height:1.55}
+.mega-links{padding:12px}
+.mega-links a{min-height:76px;padding:13px;gap:5px}
+.mega-links b{font-size:11px}
+.mega-links small{font-size:8.5px;line-height:1.5}
+.member-entry{min-height:34px;padding-left:12px;font-size:10px}
+.member-mark{width:24px;height:24px;font-size:7px}
+.header-popover{top:59px;padding:15px}
+.recent-popover{width:300px}
+.recent-list a{padding:9px 0}
+.mobile-quick-action{appearance:none;border:0;background:transparent;color:inherit;font:inherit;text-align:left;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px}
+.mobile-quick-action .header-badge{margin-left:8px}
+@media(max-width:980px) and (min-width:801px){
+ .top-header-row{min-height:58px;height:58px}
+ .category-nav-row,.category-nav{min-height:44px;height:44px}
+ .mega-trigger{min-height:44px;padding-inline:11px}
+ .mega-menu{top:44px}
+}
+@media(max-width:800px){
+ .top-header-row{height:62px;min-height:62px;padding:0 16px;gap:12px}
+ .mobile-toggle{width:42px;height:42px}
+ .category-nav{max-height:calc(100vh - 62px)}
+ .category-nav-row{min-height:0}
+ .mega-trigger{min-height:50px}
+ .header-popover{position:fixed;top:62px;left:12px;right:12px;width:auto;max-width:none}
+ .recent-popover{width:auto}
+}
+@media(min-width:801px){
+ button,a,input,select,textarea{min-height:0}
+ button,.button,.header-login,.mobile-toggle,.mega-trigger,input,select,textarea,.article-share button,.article-share a{min-height:44px}
+ .header-login,.mobile-toggle{min-height:34px}
+ .mega-trigger{min-height:46px}
+}
+@media(max-width:800px){
+ .mega-trigger{min-height:50px}
+ .mobile-toggle{min-height:42px}
+}
