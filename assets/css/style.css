@@ -1995,3 +1995,9 @@ body{background:var(--bb-paper);color:var(--bb-ink)}
  .eyebrow{font-size:8px}
  .button{min-height:44px}
 }
+
+
+.searchbox{position:relative}
+.searchbox .search-hint{position:absolute;left:18px;bottom:-20px;font:8px "DM Mono",monospace;letter-spacing:.04em;color:#9a9a96;pointer-events:none}
+.product-card:hover,.collection-card:hover{transform:translateY(-3px) rotate(var(--ux-rx,0deg)) rotateY(var(--ux-ry,0deg));}
+@media(max-width:800px){.searchbox .search-hint{position:static;display:block;padding:7px 0 0;font-size:7.5px}.product-card:hover,.collection-card:hover{transform:none}}
