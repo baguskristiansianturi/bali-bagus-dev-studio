@@ -114,11 +114,16 @@ function renderFAQ(){
 function helpAnswer(q){
  const s=q.toLowerCase();
  if(/payment|bayar|pembayaran|gateway|checkout|qris|transfer|kartu/.test(s))return "Payment gateway produksi belum aktif. Cart dan checkout saat ini adalah prototype frontend. Untuk proyek atau pertanyaan pembayaran, Anda dapat lanjut ke halaman FAQ atau WhatsApp.";
- if(/domain|hosting/.test(s))return "Domain dan hosting bergantung pada paket serta scope. Kebutuhan pihak ketiga dapat dihitung terpisah sesuai proyek.";\n if(/custom|website|web/.test(s))return "Bisa. Untuk custom website, mulai dari discovery agar kebutuhan, struktur, fitur, dan scope dapat ditentukan sebelum development.";
- if(/review|ulasan|testimoni/.test(s))return "Slider ulasan sudah disiapkan, tetapi belum ada ulasan terverifikasi yang ditampilkan. Review production akan muncul setelah sistem order dan verifikasi tersedia.";\n if(/live chat|chat agent|agen/.test(s))return "Support Assistant saat ini adalah demo frontend berbasis keyword. Live agent production akan membutuhkan backend atau integrasi layanan chat.";\n if(/support|maintenance|setelah|launch/.test(s))return "Maintenance & Support tersedia sebagai layanan. Scope dapat mencakup update konten, bug fixes, technical checks, performance/SEO maintenance, dan improvement.";
+ if(/domain|hosting/.test(s))return "Domain dan hosting bergantung pada paket serta scope. Kebutuhan pihak ketiga dapat dihitung terpisah sesuai proyek.";
+ if(/custom|website|web/.test(s))return "Bisa. Untuk custom website, mulai dari discovery agar kebutuhan, struktur, fitur, dan scope dapat ditentukan sebelum development.";
+ if(/review|ulasan|testimoni/.test(s))return "Slider ulasan sudah disiapkan, tetapi belum ada ulasan terverifikasi yang ditampilkan. Review production akan muncul setelah sistem order dan verifikasi tersedia.";
+ if(/live chat|chat agent|agen/.test(s))return "Support Assistant saat ini adalah demo frontend berbasis keyword. Live agent production akan membutuhkan backend atau integrasi layanan chat.";
+ if(/support|maintenance|setelah|launch/.test(s))return "Maintenance & Support tersedia sebagai layanan. Scope dapat mencakup update konten, bug fixes, technical checks, performance/SEO maintenance, dan improvement.";
  if(/seo|google|search/.test(s))return "Layanan SEO mencakup technical audit, on-page/local SEO, keyword/content mapping, measurement, dan improvement plan.";
  if(/blog|content|artikel|tulis/.test(s))return "Blog & Content mencakup topic planning, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking.";
- if(/harga konsultasi|biaya konsultasi|350|60 menit|sesi/.test(s))return "Konsultasi tersedia 60 menit dengan biaya Rp350.000, net. Biaya venue/tempat pertemuan tidak termasuk.";\n if(/lokasi|studio|kantor|alamat/.test(s))return "Bali, Indonesia. Studio fisik belum tersedia; pertemuan tatap muka dilakukan di lokasi yang disepakati.";\n if(/mulai|proyek|project|konsultasi|booking/.test(s))return "Mulai dari booking konsultasi, contact form, atau WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas.";
+ if(/harga konsultasi|biaya konsultasi|350|60 menit|sesi/.test(s))return "Konsultasi tersedia 60 menit dengan biaya Rp350.000, net. Biaya venue/tempat pertemuan tidak termasuk.";
+ if(/lokasi|studio|kantor|alamat/.test(s))return "Bali, Indonesia. Studio fisik belum tersedia; pertemuan tatap muka dilakukan di lokasi yang disepakati.";
+ if(/mulai|proyek|project|konsultasi|booking/.test(s))return "Mulai dari booking konsultasi, contact form, atau WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas.";
  if(/launch|lounch|tanggal|kapan/.test(s))return "Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Fitur production yang belum tersedia tetap ditandai secara transparan.";
  return "Saya belum menemukan jawaban yang cukup spesifik. Coba gunakan kata kunci seperti website, pembayaran, SEO, Blog, support, atau konsultasi. Jika perlu, lanjutkan ke FAQ atau WhatsApp.";
 }
@@ -442,7 +447,18 @@ function setupWebsiteOrder(){
   $("#orderWhatsApp").addEventListener("click",()=>{
    if(!form.reportValidity())return;
    const data=Object.fromEntries(new FormData(form));
-   const message=`Halo Bali Bagus Dev, saya ingin memesan website.\n\nPaket: ${p.name} — ${fmt(p.price)} mulai\nTemplate: ${t?t.name:"Belum memilih template"}\nKategori: ${t?t.category:"-"}\nNama: ${data.name||"-"}\nEmail: ${data.email||"-"}\nWhatsApp: ${data.phone||"-"}\nNama bisnis: ${data.business||"-"}\nKebutuhan/catatan: ${data.details||"-"}\n\nSaya ingin melanjutkan pembahasan pemesanan.`;
+   const message=`Halo Bali Bagus Dev, saya ingin memesan website.
+
+Paket: ${p.name} — ${fmt(p.price)} mulai
+Template: ${t?t.name:"Belum memilih template"}
+Kategori: ${t?t.category:"-"}
+Nama: ${data.name||"-"}
+Email: ${data.email||"-"}
+WhatsApp: ${data.phone||"-"}
+Nama bisnis: ${data.business||"-"}
+Kebutuhan/catatan: ${data.details||"-"}
+
+Saya ingin melanjutkan pembahasan pemesanan.`;
    const url=whatsappUrl(message); window.open(url,"_blank","noopener");
   });
  }
