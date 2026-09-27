@@ -360,3 +360,17 @@ body{background:#fff}
 @media(max-width:800px){.nav{justify-content:flex-start}.package-category-list{grid-template-columns:1fr}.footer-top{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.package-category-chip{align-items:flex-start;flex-direction:column;gap:6px}}
 @media(prefers-reduced-motion:reduce){.service-detail-grid article,.package-category-chip{transition:none}}
+
+/* Launch status */
+.launch-status{padding-top:30px;padding-bottom:30px}
+.launch-status .section-head{margin-bottom:25px}
+.status-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #dededb;border-bottom:1px solid #dededb}
+.status-card{display:flex;gap:12px;align-items:flex-start;padding:20px 16px;border-right:1px solid #dededb}
+.status-card:last-child{border-right:0}
+.status-card b{display:block;font-size:11px;line-height:1.4}
+.status-card small{display:block;margin-top:6px;font:8px 'DM Mono';letter-spacing:.04em;color:#888;line-height:1.5}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#777;margin-top:4px;flex:none}
+.status-dot.available{background:#222}
+.status-dot.planned{background:#b7b7b3}
+@media(max-width:800px){.status-grid{grid-template-columns:1fr 1fr}.status-card:nth-child(2){border-right:0}.status-card:nth-child(-n+2){border-bottom:1px solid #dededb}}
+@media(max-width:520px){.status-grid{grid-template-columns:1fr}.status-card{border-right:0!important;border-bottom:1px solid #dededb}.status-card:last-child{border-bottom:0}}
