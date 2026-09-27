@@ -297,11 +297,14 @@ const WEBSITE_COLLECTION=[
  {id:"crm-system-001",category:"CRM",name:"Lead Desk",style:"CRM / Pipeline",desc:"Lead inbox, pipeline, follow-up, customer history and reporting concept.",demo:"demo.html?template=crm-system-001",status:"active",availablePackages:["custom","system"]}
 ];
 const WEBSITE_CATEGORIES=[
- "All","Barbershop","Villa","Hotel","Homestay","Restaurant","Cafe","UMKM","Property","Travel","Tour Operator","Activities",
- "Car Rental","Motorbike Rental","Airport Transfer","Trolley Rental","Company Profile","Villa Management","Employee Management",
- "Inventory","Accounting","POS & F&B","Booking System","CRM","Salon","Spa","Fitness","Workshop","Contractor","Architecture",
- "Interior Design","Clinic","Dental Clinic","Education","Consultant","Law Firm","Real Estate","Event Organizer","Wedding",
- "Photography","Startup","SaaS","Community"
+ "All","Barbershop","Salon","Spa","Beauty & Personal Care","Fitness","Villa","Hotel","Homestay","Resort","Guesthouse",
+ "Restaurant","Cafe","Bakery","Food & Beverage","UMKM","Retail","E-commerce","Property","Real Estate","Apartment","Real Estate Agency",
+ "Travel","Tour Operator","Activities","Car Rental","Motorbike Rental","Airport Transfer","Private Driver","Trolley Rental","Boat Rental",
+ "Company Profile","Corporate","Agency","Consultant","Law Firm","Accounting & Finance","Construction","Contractor","Architecture","Interior Design",
+ "Workshop","Automotive","Clinic","Dental Clinic","Medical","Pharmacy","Education","School","Course & Training","University",
+ "Event Organizer","Wedding","Photography","Videography","Creative Studio","Startup","SaaS","Technology","Software","Community","Nonprofit",
+ "Professional Services","Logistics","Cleaning Service","Laundry","Pet Care","Agriculture","Real Estate Development","Villa Management",
+ "Employee Management","Inventory","Accounting","POS & F&B","Booking System","CRM","Dashboard","Marketplace","Membership"
 ];
 
 function allProducts(){return PRODUCTS.filter(p=>p.category!=="Hardware"&&p.category!=="Software")}
