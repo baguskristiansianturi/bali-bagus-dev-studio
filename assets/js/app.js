@@ -404,7 +404,7 @@ function renderCart(){
  if(!cart.length){
   el.innerHTML='<div class="empty-state"><b>Keranjang Anda masih kosong.</b><p>Tambahkan produk yang tersedia dari Store untuk melanjutkan.</p><a class="text-link" href="products.html">Jelajahi Store ↗</a></div>';
   $("#cartSummary").innerHTML='<div class="summary-total"><span>Total</span><span>Rp0</span></div>';
-  if(checkout){checkout.setAttribute("aria-disabled","true");checkout.dataset.disabled="true";}
+  if(checkout){checkout.setAttribute("aria-disabled","true");checkout.dataset.disabled="true";checkout.removeAttribute("href");checkout.setAttribute("tabindex","-1");}
   return;
  }
  el.innerHTML=cart.map(x=>{
@@ -413,7 +413,7 @@ function renderCart(){
  }).join("");
  const total=cart.reduce((sum,x)=>{const p=findProduct(x.id);return sum+p.price*x.qty;},0);
  $("#cartSummary").innerHTML=cart.map(x=>{const p=findProduct(x.id);return '<div class="summary-line"><span>'+esc(p.name)+' × '+x.qty+'</span><b>'+fmt(p.price*x.qty)+'</b></div>';}).join("")+'<div class="summary-total"><span>Total</span><span>'+fmt(total)+'</span></div>';
- if(checkout){checkout.removeAttribute("aria-disabled");checkout.dataset.disabled="false";}
+ if(checkout){checkout.removeAttribute("aria-disabled");checkout.dataset.disabled="false";checkout.setAttribute("href","checkout.html");checkout.removeAttribute("tabindex");}
 }
 function renderSummary(target){
  const el=$(target);if(!el)return;
