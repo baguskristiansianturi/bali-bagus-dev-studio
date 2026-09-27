@@ -479,3 +479,21 @@ body{background:#fff}
 .wishlist-toolbar input,.wishlist-toolbar select{min-height:46px;border:1px solid var(--line);background:var(--paper);padding:0 14px;font:inherit;outline:0}
 .wishlist-toolbar input:focus,.wishlist-toolbar select:focus{border-color:var(--ink);box-shadow:0 0 0 3px #17171712}
 @media(max-width:600px){.wishlist-toolbar{grid-template-columns:1fr}.wishlist-toolbar select{width:100%}}
+
+/* Final interaction/accessibility polish */
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.skip-link{position:fixed;left:12px;top:12px;z-index:1000;padding:10px 14px;background:var(--dark);color:#fff;transform:translateY(-180%);transition:transform .2s}
+.skip-link:focus{transform:translateY(0)}
+button,a,input,select,textarea{min-height:44px}
+button.button-reset{min-height:44px}
+img{max-width:100%;height:auto}
+@media(max-width:800px){
+ .wrap{width:min(var(--max),calc(100% - 32px))}
+ .site-header{padding:0 16px;height:72px}
+ .header-actions .button{display:none}
+ .nav{gap:0}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
