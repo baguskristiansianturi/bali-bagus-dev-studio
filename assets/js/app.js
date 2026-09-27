@@ -32,7 +32,7 @@ const CLIENTS=[];
 
 const fmt=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const store={get(k,d=[]){try{return JSON.parse(localStorage.getItem("bb_"+k))??d}catch{return d}},set(k,v){localStorage.setItem("bb_"+k,JSON.stringify(v))}};
+const store={get(k,d=[]){try{return JSON.parse(localStorage.getItem("bb_"+k))??d}catch{return d}},set(k,v){try{localStorage.setItem("bb_"+k,JSON.stringify(v));return true}catch(e){showToast("Penyimpanan browser tidak tersedia.");return false}}};
 const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const icon=(name,cls="icon-svg")=>{const p={arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',check:'<path d="m5 12 4 4L19 6"/>',cart:'<circle cx="9" cy="19" r="1"/><circle cx="17" cy="19" r="1"/><path d="M3 4h2l2.5 10h9.7l2-7H6"/>',external:'<path d="M14 5h5v5M19 5l-8 8"/><path d="M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',close:'<path d="m6 6 12 12M18 6 6 18"/>'};return `<svg class="${cls}" aria-hidden="true" viewBox="0 0 24 24">${p[name]||p.arrow}</svg>`};
 
@@ -418,9 +418,16 @@ function header(){
  <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="${base}index.html">Beranda</a><a href="${base}website-collection.html">Websites</a><a href="${base}products.html">Store</a><a href="${base}services.html">Services</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}articles.html">Blog</a><a href="${base}contact.html">Kontak</a><a href="${base}about.html">Tentang</a></nav>
  <div class="header-actions"><a class="icon-btn account-link" href="${base}account.html" aria-label="Akun">${isLogged()?"●":"○"} Akun</a><a class="icon-btn" href="${base}cart.html" aria-label="Keranjang">${icon("cart")}<b id="cartCount">0</b></a><a class="button button-dark small" href="${base}booking.html">Konsultasi ${icon("arrow")}</a></div>`;
  const page=location.pathname.split("/").pop()||"index.html";
- h.querySelectorAll(".nav a").forEach(a=>{if(a.getAttribute("href").split("?")[0]===page)a.classList.add("active");a.addEventListener("click",()=>{if(innerWidth<=800){mainNav.classList.remove("open");menuToggle.setAttribute("aria-expanded","false")}})});
  const menuToggle=$("#menuToggle"),mainNav=$("#mainNav");
+ const nestedWebsite=location.pathname.includes("/website-category/")||location.pathname.includes("/landing/");
+ h.querySelectorAll(".nav a").forEach(a=>{
+   const href=(a.getAttribute("href")||"").split("?")[0];
+   if(href===page||(nestedWebsite&&href.endsWith("website-collection.html")))a.classList.add("active");
+   a.addEventListener("click",()=>{if(innerWidth<=800){mainNav?.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");menuToggle&&(menuToggle.innerHTML=icon("menu"))}});
+ });
  menuToggle?.addEventListener("click",()=>{const open=mainNav.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(open));menuToggle.innerHTML=icon(open?"close":"menu")});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&mainNav?.classList.contains("open")){mainNav.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.innerHTML=icon("menu")}});
+ document.addEventListener("click",e=>{if(innerWidth<=800&&mainNav?.classList.contains("open")&&!mainNav.contains(e.target)&&!menuToggle?.contains(e.target)){mainNav.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.innerHTML=icon("menu")}});
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
