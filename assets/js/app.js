@@ -57,7 +57,7 @@ function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement(
 
 
 function footer(){
- const f=$("#siteFooter");if(!f)return;const base=location.pathname.includes("/landing/")?"../":"";f.className="site-footer";
+ const f=$("#siteFooter");if(!f)return;const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";f.className="site-footer";
  f.innerHTML=`<div class="wrap"><div class="footer-top">
  <div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Website, aplikasi, produk digital, dan solusi digital yang dirancang untuk membantu bisnis bergerak dengan tujuan.</p><div class="socials"><a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a><a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a><a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a><a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a><a href="https://x.com/bbstudio" aria-label="X" target="_blank" rel="noopener">𝕏</a></div></div>
  <div class="footer-col"><b>Website</b><a href="${base}website-packages.html">Paket website</a><a href="${base}website-collection.html">Website Collection</a><a href="${base}client-websites.html">Website klien</a><a href="${base}booking.html">Custom website</a></div>
