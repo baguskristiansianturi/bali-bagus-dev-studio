@@ -63,11 +63,62 @@ function footer(){
  <div class="footer-col"><b>Website</b><a href="${base}website-packages.html">Paket website</a><a href="${base}website-collection.html">Website Collection</a><a href="${base}client-websites.html">Website klien</a><a href="${base}booking.html">Custom website</a></div>
  <div class="footer-col"><b>Produk digital</b><a href="${base}products.html">Website templates</a><a href="${base}products.html">Blogger templates</a><a href="${base}products.html">UI kits & components</a><a href="${base}products.html">Digital products</a></div>
  <div class="footer-col"><b>Services</b><a href="${base}services.html#website">Website & E-commerce</a><a href="${base}services.html#copy">Copywriting</a><a href="${base}services.html#content">Blog & Content</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#ads">Google Ads</a><a href="${base}services.html#care">Maintenance</a></div>
- <div class="footer-col"><b>Bali Bagus Dev</b><a href="${base}services.html">Semua layanan</a><a href="${base}portfolio.html">Portfolio & demo</a><a href="${base}articles.html">Blog & insight</a><a href="${base}contact.html">Kontak & bantuan</a><a href="https://wa.me/628218187917" target="_blank" rel="noopener">WhatsApp support ↗</a><a href="${base}terms.html">Syarat & ketentuan</a><a href="${base}privacy.html">Kebijakan privasi</a><a href="${base}refund.html">Kebijakan refund</a></div></div>
+ <div class="footer-col"><b>Bali Bagus Dev</b><a href="${base}services.html">Semua layanan</a><a href="${base}portfolio.html">Portfolio & demo</a><a href="${base}articles.html">Blog & insight</a><a href="${base}about.html">Tentang kami</a><a href="${base}faq.html">FAQ</a><a href="${base}help.html">Bantuan</a><a href="${base}contact.html">Kontak</a><a href="https://wa.me/628218187917" target="_blank" rel="noopener">WhatsApp support ↗</a><a href="${base}terms.html">Syarat & ketentuan</a><a href="${base}privacy.html">Kebijakan privasi</a><a href="${base}refund.html">Kebijakan refund</a></div></div>
  <div class="footer-pay"><span>METODE PEMBAYARAN<br><small>Metode akan aktif setelah integrasi gateway produksi</small></span><div class="pay-icons"><b>QRIS*</b><b>VISA*</b><b>Mastercard*</b><b>PayPal*</b><b>Bank Transfer*</b></div></div>
  <div class="footer-bottom"><span>© ${new Date().getFullYear()} Bali Bagus Dev. All rights reserved.</span><span>Credit by Bagus Dev · Indonesia / English</span></div></div>`;
 }
-function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-package.html?id=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
+
+const FAQ_DATA=[
+ {cat:"Produk Digital",q:"Apa saja produk yang tersedia?",a:"Store berisi template website, UI kit, content kit, dan produk digital lain yang ditampilkan dengan harga, fitur, serta preview. Status produk ditampilkan secara terbuka."},
+ {cat:"Produk Digital",q:"Apakah template bisa dikustomisasi?",a:"Ya. Produk tertentu dapat dikembangkan melalui layanan customization atau custom website. Scope disepakati sebelum pengerjaan."},
+ {cat:"Website",q:"Apakah Bali Bagus Dev menerima custom website?",a:"Ya. Custom website dimulai dari discovery untuk memahami bisnis, target pengguna, struktur halaman, fitur, dan prioritas."},
+ {cat:"Website",q:"Apakah website responsive?",a:"Frontend studio dirancang untuk desktop, tablet, dan mobile. Setiap proyek tetap melalui penyesuaian sesuai kebutuhan konten dan perangkat."},
+ {cat:"Layanan",q:"Layanan apa saja yang tersedia?",a:"Website & E-commerce, Web Apps & Business Systems, Copywriting & Conversion, Blog & Content, SEO & Local Search, Google Ads & Campaign Setup, Maintenance & Support, serta Discovery & Digital Strategy."},
+ {cat:"Layanan",q:"Bagaimana menentukan layanan yang saya butuhkan?",a:"Mulai dari kebutuhan atau masalah bisnisnya. Discovery membantu memetakan apakah solusinya website, content, SEO, campaign, aplikasi, atau kombinasi beberapa layanan."},
+ {cat:"Konsultasi",q:"Bagaimana cara memulai proyek?",a:"Anda dapat booking konsultasi, mengirim brief melalui contact form, atau menghubungi WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas."},
+ {cat:"Konsultasi",q:"Apakah tersedia konsultasi berbayar?",a:"Tersedia sesi konsultasi 60 menit dengan biaya Rp350.000. Detail format pertemuan dan kebutuhan proyek dibahas saat booking."},
+ {cat:"Pembayaran",q:"Apakah payment gateway sudah tersedia?",a:"Belum. Frontend checkout saat ini merupakan prototype. Payment gateway produksi akan diaktifkan setelah backend dan integrasi pembayaran selesai."},
+ {cat:"Pembayaran",q:"Apakah checkout saat ini sudah transaksi nyata?",a:"Belum. Checkout dan cart saat ini digunakan untuk demonstrasi alur frontend. Jangan menganggap status demo sebagai pembayaran produksi."},
+ {cat:"Support",q:"Bagaimana support setelah website launch?",a:"Maintenance & Support dapat mencakup update konten, perbaikan bug, pengecekan teknis, performance/SEO maintenance, dan pengembangan lanjutan sesuai scope."},
+ {cat:"Support",q:"Apakah ada bantuan melalui WhatsApp?",a:"Ya. WhatsApp dapat digunakan untuk percakapan dan follow-up kebutuhan. Live agent production akan berkembang bersama sistem backend."},
+ {cat:"SEO",q:"Apakah Bali Bagus Dev menyediakan SEO?",a:"Ya. Layanannya mencakup technical SEO audit, on-page/local SEO structure, keyword/content mapping, measurement, dan improvement plan."},
+ {cat:"Blog & Content",q:"Apakah tersedia jasa penulisan Blog?",a:"Ya. Blog & Content mencakup perencanaan topik, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking."},
+ {cat:"Launch",q:"Kapan Bali Bagus Dev Studio mulai launching?",a:"Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Status fitur ditampilkan transparan karena sebagian sistem production masih dikembangkan."},
+ {cat:"Perusahaan",q:"Siapa founder Bali Bagus Dev Studio?",a:"Founder dan owner Bali Bagus Dev Studio adalah Bagus Kristian Sianturi."}
+];
+function renderFAQ(){
+ const list=$("#faqList"),cats=$("#faqCategories");if(!list)return;
+ const search=$("#faqSearch");
+ const categories=["Semua",...new Set(FAQ_DATA.map(x=>x.cat))];let active="Semua";
+ const drawCats=()=>{if(cats)cats.innerHTML=categories.map(x=>'<button class="'+(x===active?"active":"")+'" data-faq-cat="'+esc(x)+'">'+esc(x)+"</button>").join("")};
+ const draw=()=>{const q=(search?.value||"").toLowerCase().trim();const items=FAQ_DATA.filter(x=>(active==="Semua"||x.cat===active)&&(!q||(x.q+" "+x.a+" "+x.cat).toLowerCase().includes(q)));list.innerHTML=items.map((x,i)=>'<details class="faq-item"><summary><span>'+String(i+1).padStart(2,"0")+' / '+esc(x.cat)+'</span><b>'+esc(x.q)+'</b><i>+</i></summary><div><p>'+esc(x.a)+'</p><a href="help.html" class="text-link">Butuh bantuan lebih lanjut ↗</a></div></details>').join("");$("#faqEmpty")?.toggleAttribute("hidden",items.length>0)};
+ drawCats();draw();search?.addEventListener("input",draw);cats?.addEventListener("click",e=>{const b=e.target.closest("[data-faq-cat]");if(!b)return;active=b.dataset.faqCat;drawCats();draw()});
+}
+function helpAnswer(q){
+ const s=q.toLowerCase();
+ if(/payment|bayar|pembayaran|gateway|checkout/.test(s))return "Payment gateway produksi belum aktif. Cart dan checkout saat ini adalah prototype frontend. Untuk proyek atau pertanyaan pembayaran, Anda dapat lanjut ke halaman FAQ atau WhatsApp.";
+ if(/custom|website|web/.test(s))return "Bisa. Untuk custom website, mulai dari discovery agar kebutuhan, struktur, fitur, dan scope dapat ditentukan sebelum development.";
+ if(/support|maintenance|setelah|launch/.test(s))return "Maintenance & Support tersedia sebagai layanan. Scope dapat mencakup update konten, bug fixes, technical checks, performance/SEO maintenance, dan improvement.";
+ if(/seo|google|search/.test(s))return "Layanan SEO mencakup technical audit, on-page/local SEO, keyword/content mapping, measurement, dan improvement plan.";
+ if(/blog|content|artikel|tulis/.test(s))return "Blog & Content mencakup topic planning, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking.";
+ if(/mulai|proyek|project|konsultasi|booking/.test(s))return "Mulai dari booking konsultasi, contact form, atau WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas.";
+ if(/launch|lounch|tanggal|kapan/.test(s))return "Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Fitur production yang belum tersedia tetap ditandai secara transparan.";
+ return "Saya belum menemukan jawaban yang cukup spesifik. Coba gunakan kata kunci seperti website, pembayaran, SEO, Blog, support, atau konsultasi. Jika perlu, lanjutkan ke FAQ atau WhatsApp.";
+}
+function setupFAQ(){renderFAQ()}
+function setupHelp(){
+ const box=$("#helpMessages"),form=$("#helpChatForm"),input=$("#helpInput");if(!box||!form)return;
+ const send=q=>{q=q.trim();if(!q)return;box.insertAdjacentHTML("beforeend",'<div class="chat-message user"><small>Anda</small><p>'+esc(q)+'</p></div><div class="chat-message bot"><small>BB Support</small><p>'+esc(helpAnswer(q))+'</p></div>');box.scrollTop=box.scrollHeight};
+ form.addEventListener("submit",e=>{e.preventDefault();send(input.value);input.value=""});
+ document.querySelectorAll("[data-help-q]").forEach(b=>b.addEventListener("click",()=>send(b.dataset.helpQ)));
+}
+const REVIEWS=[];
+function setupReviewSlider(){
+ const track=$("#reviewTrack"),count=$("#reviewCount"),prev=$("#reviewPrev"),next=$("#reviewNext");if(!track)return;
+ if(!REVIEWS.length){track.innerHTML='<article class="review-card review-empty"><span>REVIEWS / READY</span><h3>Ruang ulasan pelanggan sudah disiapkan.</h3><p>Belum ada ulasan terverifikasi yang ditampilkan. Saat review production tersedia, kartu ini akan berubah menjadi slider ulasan tanpa mengubah layout homepage.</p><a href="contact.html" class="button button-dark">Jadi pelanggan pertama ↗</a></article>';if(count)count.textContent="READY";prev?.setAttribute("disabled","true");next?.setAttribute("disabled","true");return}
+ let i=0;const draw=()=>{const r=REVIEWS[i];track.innerHTML='<article class="review-card"><span>'+esc(r.meta)+'</span><blockquote>“'+esc(r.text)+'”</blockquote><b>'+esc(r.name)+'</b><small>'+esc(r.role)+'</small></article>';if(count)count.textContent=(i+1)+" / "+REVIEWS.length};prev?.addEventListener("click",()=>{i=(i-1+REVIEWS.length)%REVIEWS.length;draw()});next?.addEventListener("click",()=>{i=(i+1)%REVIEWS.length;draw()});draw();
+}
+\nfunction renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-package.html?id=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
 function renderPackageExperience(){
  const el=$("#packageExperience");if(!el)return;
  const id=new URLSearchParams(location.search).get("id")||"starter";
@@ -340,7 +391,7 @@ function header(){
  const base=location.pathname.includes("/landing/")?"../":"";
  h.innerHTML=`<a class="brand" href="${base}index.html" aria-label="Bali Bagus Dev home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
  <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
- <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="${base}index.html">Beranda</a><a href="${base}website-collection.html">Websites</a><a href="${base}products.html">Store</a><a href="${base}services.html">Services</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}articles.html">Blog</a><a href="${base}contact.html">Kontak</a></nav>
+ <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="${base}index.html">Beranda</a><a href="${base}website-collection.html">Websites</a><a href="${base}products.html">Store</a><a href="${base}services.html">Services</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}articles.html">Blog</a><a href="${base}contact.html">Kontak</a><a href="${base}about.html">Tentang</a></nav>
  <div class="header-actions"><a class="icon-btn account-link" href="${base}account.html" aria-label="Akun">${isLogged()?"●":"○"} Akun</a><a class="icon-btn" href="${base}cart.html" aria-label="Keranjang">${icon("cart")}<b id="cartCount">0</b></a><a class="button button-dark small" href="${base}booking.html">Konsultasi ${icon("arrow")}</a></div>`;
  const page=location.pathname.split("/").pop()||"index.html";
  h.querySelectorAll(".nav a").forEach(a=>{if(a.getAttribute("href").split("?")[0]===page)a.classList.add("active");a.addEventListener("click",()=>{if(innerWidth<=800){mainNav.classList.remove("open");menuToggle.setAttribute("aria-expanded","false")}})});
@@ -425,6 +476,9 @@ document.addEventListener("DOMContentLoaded",()=>{
  setupCheckoutGuard();
  setupForms();
  setupSearch();
+ setupFAQ();
+ setupHelp();
+ setupReviewSlider();
  initPremiumInteractions();
  const p=$("#productFilter");
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
