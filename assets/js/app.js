@@ -255,7 +255,7 @@ const WEBSITE_CATEGORIES=[
 ];
 
 function allProducts(){return PRODUCTS}
-function findProduct(id){return allProducts().find(p=>p.id===id)||allProducts()[0]}
+function findProduct(id){return allProducts().find(p=>p.id===id)}
 function normalizeCart(raw){
  if(!Array.isArray(raw))return [];
  const merged=new Map();
@@ -332,7 +332,7 @@ function renderSummary(target){
  const websiteOrder=params.get("orderType")==="website"?store.get("websiteOrder",null):null;
  if(websiteOrder){const p=PACKAGES.find(x=>x.id===websiteOrder.packageId),t=WEBSITE_COLLECTION.find(x=>x.id===websiteOrder.templateId);el.innerHTML=`<div class="summary-line"><span>Website</span><b>${esc(p?.name||"Custom")}</b></div><div class="summary-line"><span>Template</span><b>${esc(t?.name||"Fondasi pilihan")}</b></div><div class="summary-line"><span>Scope</span><b>${esc(p?.scope||"Custom")}</b></div><div class="summary-total"><span>Harga mulai</span><span>${fmt(p?.price||0)}</span></div><p class="tiny">Harga final mengikuti scope, materi, integrasi dan kebutuhan produksi yang disepakati.</p>`;return;}
  const cart=getCart(),total=cart.reduce((s,x)=>s+(findProduct(x.id)?.price||0)*x.qty,0);
- el.innerHTML=cart.length?cart.map(x=>{const p=findProduct(x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")+`<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`:'<p class="tiny">Keranjang kosong.</p>';
+ el.innerHTML=cart.length?cart.map(x=>{const p=findProduct(x.id);if(!p)return "";return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")+`<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`:'<p class="tiny">Keranjang kosong.</p>';
 }
 function renderDetail(){
  const el=$("#productDetail");if(!el)return;
@@ -441,7 +441,7 @@ function setupAccount(){
    $("#logoutButton")?.addEventListener("click",()=>{store.set("account",null);location.reload()});
  }else{
    box.innerHTML=`<form id="loginForm" class="form-card account-form"><div class="eyebrow">ACCOUNT / LOGIN</div><h2>Masuk untuk melanjutkan.</h2><p class="tiny">Akun menjadi pusat pesanan, alamat, wishlist, download, dan review setelah sistem produksi terhubung.</p><label>Nama lengkap<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><button class="button button-dark full" type="submit">Masuk / Buat akun</button></form>`;
-   $("#loginForm")?.addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget));store.set("account",{name:d.name,email:d.email,loggedIn:true,createdAt:new Date().toISOString()});const next=new URLSearchParams(location.search).get("next")||"account.html";location.href=next});
+   $("#loginForm")?.addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget));const saved=store.set("account",{name:d.name,email:d.email,loggedIn:true,createdAt:new Date().toISOString()});if(!saved)return;const next=new URLSearchParams(location.search).get("next")||"account.html";location.href=next});
  }
 }
 function setupWebsiteOrder(){
