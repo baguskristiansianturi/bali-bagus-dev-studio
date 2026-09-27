@@ -383,3 +383,10 @@ body{background:#fff}
 @media(max-width:1050px){.launch-cards{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:1fr 1fr}.about-founder{grid-template-columns:1fr 1fr}.help-layout{grid-template-columns:1fr}.about-facts{grid-template-columns:1fr}}
 @media(max-width:700px){.launch-cards,.about-grid,.timeline-row,.team-grid{grid-template-columns:1fr}.launch-card{min-height:210px}.about-founder{grid-template-columns:1fr;gap:30px}.about-portrait{min-height:300px}.timeline-row div{border-right:0;border-bottom:1px solid #ddd}.timeline-row div:last-child{border-bottom:0}.faq-item summary{grid-template-columns:1fr 25px;gap:10px}.faq-item summary span{grid-column:1}.faq-item summary b{grid-column:1}.faq-item summary i{grid-column:2;grid-row:1/3}.faq-item>div{padding:0 25px 25px}.review-controls{align-self:flex-start}.review-empty .button{width:100%}.about-facts div{border-right:0;border-bottom:1px solid #ddd}.about-facts div:last-child{border-bottom:0}.chat-messages{height:360px}.chat-message{max-width:92%}}
 @media(prefers-reduced-motion:reduce){.launch-card{transition:none}}
+
+/* Launch polish: consultation pricing + safer service status */
+.booking-pricing{display:flex;align-items:center;gap:16px;margin:18px 0 28px;padding:16px 18px;border:1px solid var(--line);background:var(--soft);max-width:620px}
+.booking-pricing strong{font-size:1.25rem;letter-spacing:-.02em;white-space:nowrap}
+.booking-pricing span{font-size:.82rem;color:var(--muted);line-height:1.55}
+.service-detail-grid article>span{display:inline-flex;align-items:center;min-height:24px}
+@media(max-width:640px){.booking-pricing{align-items:flex-start;flex-direction:column;gap:5px}.booking-pricing strong{font-size:1.1rem}}
