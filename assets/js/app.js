@@ -498,7 +498,10 @@ function setupSearch(){
  function filter(){const q=($("#catalogSearch")?.value||"").toLowerCase(),cat=$("#productFilter")?.value||"all",sort=$("#sortProducts")?.value||"featured";let list=allProducts().filter(p=>(cat==="all"||p.category===cat)&&(p.name+" "+p.desc+" "+p.category+" "+p.type).toLowerCase().includes(q));if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);renderProducts("#allProducts",list)}
  $("#catalogSearch")?.addEventListener("input",filter);$("#productFilter")?.addEventListener("change",filter);$("#sortProducts")?.addEventListener("change",filter);if($("#allProducts"))filter();
 }
-document.addEventListener("DOMContentLoaded",()=>{
+
+function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
+function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;bar.style.transform="scaleX("+Math.max(0,Math.min(1,scrollY/max))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}}
+\ndocument.addEventListener("DOMContentLoaded",()=>{
  header();
  footer();
  initA11y();
@@ -521,7 +524,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  setupFAQ();
  setupHelp();
  setupReviewSlider();
- initPremiumInteractions();
+ initPremiumInteractions();\n setupBlog();\n setupArticleUX();
  const p=$("#productFilter");
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
