@@ -1,7 +1,7 @@
 /* Bali Bagus Dev Studio — V2 frontend core
    Visual system intentionally preserved. Replace demo storage/API seams with backend before transactions.
 */
-const PRODUCTS=[
+const CORE_PRODUCTS=[
 {id:"barber",name:"Barbershop Website Kit",category:"Business",type:"Website Template",price:790000,old:1190000,tag:"BESTSELLER",desc:"Template barbershop modern dengan halaman layanan, galeri, booking CTA, dan struktur responsif.",features:["Responsive desktop & mobile","Homepage, layanan, galeri, kontak","Struktur SEO dasar","Panduan instalasi","Opsi kustomisasi"],visual:"barber"},
 {id:"villa",name:"Hospitality & Villa Template",category:"Hospitality",type:"Website Template",price:1250000,old:1590000,tag:"NEW",desc:"Konsep website villa dan hospitality dengan galeri, fasilitas, pengalaman menginap, dan CTA reservasi.",features:["Responsive desktop & mobile","Halaman kamar dan fasilitas","Galeri & CTA reservasi","Struktur SEO dasar","Demo konsep"],visual:"villa"},
 {id:"commerce",name:"Commerce Launch Kit",category:"Commerce",type:"E-commerce UI Kit",price:990000,old:0,tag:"DIGITAL KIT",desc:"Fondasi storefront untuk brand retail yang ingin menampilkan katalog secara profesional.",features:["Product listing UI","Product detail UI","Cart & checkout UI concept","Responsive components","UI customization"],visual:"shop"},
@@ -136,7 +136,7 @@ const EXTRA_PRODUCTS=[
  {id:"restaurant-pro",name:"Restaurant Atelier",category:"Website",type:"Website Template",price:1390000,old:0,tag:"NEW",desc:"Template restoran dengan menu, story, gallery, location dan reservation CTA.",features:["Menu layout","Gallery","Location","Reservation CTA","Mobile responsive"],visual:"villa"},
  {id:"villa-pro",name:"Villa Retreat",category:"Website",type:"Website Template",price:1590000,old:0,tag:"HOSPITALITY",desc:"Template hospitality dengan room showcase, facilities, gallery dan booking CTA.",features:["Room showcase","Facilities","Gallery","Booking CTA","Responsive layout"],visual:"villa"}
 ];
-const STORE_PRODUCTS=[...PRODUCTS,...EXTRA_PRODUCTS];
+const PRODUCTS=[...CORE_PRODUCTS,...EXTRA_PRODUCTS];
 const WEBSITE_COLLECTION=[
  {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
  {id:"barber-002",category:"Barbershop",name:"Barber House",style:"Premium / Appointment",desc:"Editorial presentation for a premium barber brand.",demo:"demo.html?template=barber-002",status:"active",availablePackages:["starter","business"]},
@@ -158,7 +158,7 @@ const WEBSITE_CATEGORIES=[
  "Company Profile","Startup","SaaS","Community"
 ];
 
-function allProducts(){return STORE_PRODUCTS}
+function allProducts(){return PRODUCTS}
 function findProduct(id){return allProducts().find(p=>p.id===id)||allProducts()[0]}
 function normalizeCart(raw){
  if(!Array.isArray(raw))return [];
