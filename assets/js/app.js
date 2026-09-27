@@ -315,6 +315,18 @@ function productWhatsApp(p){
  const msg=`Halo Bali Bagus Dev, saya tertarik dengan produk "${p.name}". Saya ingin bertanya lebih detail sebelum membeli. Link produk: ${location.origin+location.pathname.replace(/[^/]+$/,"")}product-detail.html?id=${encodeURIComponent(p.id)}`;
  return whatsappUrl(msg);
 }
+function renderHomeMerchandising(){
+ const grid=$("#homeMerchandising"),tabs=$("[data-home-merch]");if(!grid)return;
+ const data={
+  featured:allProducts().filter(p=>p.status!=="planned").slice(0,6),
+  new:allProducts().filter(p=>/NEW|HOSPITALITY/.test(p.tag)&&p.status!=="planned").slice(0,6),
+  promo:allProducts().filter(p=>p.old&&p.price&&p.old>p.price).sort((a,b)=>(b.old-b.price)-(a.old-a.price)).slice(0,6),
+  soon:allProducts().filter(p=>p.status==="planned").slice(0,6)
+ };
+ const draw=key=>{grid.innerHTML=(data[key]||[]).map(card).join("")||'<div class="empty-state">Koleksi ini sedang kami siapkan.</div>';renderCompareBar()};
+ tabs.forEach(t=>t.addEventListener("click",()=>{tabs.forEach(x=>x.classList.toggle("active",x===t));draw(t.dataset.homeMerch)}));
+ draw("featured");
+}
 function renderProducts(target,list){
  const el=$(target);if(!el)return;
  el.innerHTML=list.length?list.map(card).join(""):`<div class="empty-state">Tidak ada hasil yang sesuai. <a class="text-link" href="contact.html">Minta produk khusus ↗</a></div>`;
@@ -571,7 +583,7 @@ function setupSearch(){
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}}
 
-document.addEventListener("DOMContentLoaded",()=>{setupProductChoices();
+document.addEventListener("DOMContentLoaded",()=>{setupProductChoices();renderHomeMerchandising();
  header();
  footer();
  initA11y();
