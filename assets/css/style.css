@@ -1353,7 +1353,7 @@ a{text-underline-offset:3px}
     font-size:13px;
   }
   .mobile-quick-links a:last-child{grid-column:1/-1;background:#171717;color:#fff;border-color:#171717}
-  .mobile-quick-action{font:13px/1.2 inherit;cursor:pointer}
+  .mobile-quick-action{font:inherit;font-size:13px;line-height:1.2;cursor:pointer}
   .site-header #mainNav .mega-item{border-bottom:1px solid var(--line)}
   .site-header #mainNav .mega-trigger{
     min-height:52px;
