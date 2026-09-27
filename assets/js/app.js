@@ -116,6 +116,29 @@ function renderDemoDetail(){
 
 function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
 
+function initPremiumInteractions(){
+ if(document.documentElement.classList.contains("reduced-motion"))return;
+ const fine=window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+ if(!fine)return;
+ document.querySelectorAll(".product-card,.package-card,.demo-card,.collection-card,.category-card,.service-detail-grid article").forEach(card=>{
+   card.addEventListener("pointermove",e=>{
+     const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+     card.style.setProperty("--mx",(x*100).toFixed(1)+"%");
+     card.style.setProperty("--my",(y*100).toFixed(1)+"%");
+     card.style.transform=`perspective(900px) rotateX(${(-y*1.8).toFixed(2)}deg) rotateY(${(x*1.8).toFixed(2)}deg) translateY(-4px)`;
+   });
+   card.addEventListener("pointerleave",()=>{card.style.transform=""});
+ });
+ document.querySelectorAll(".hero-visual,.campaign-hero,.live-experience-hero>div,.package-experience-hero>div").forEach(el=>{
+   el.addEventListener("pointermove",e=>{
+     const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+     el.style.setProperty("--px",(x*18).toFixed(1)+"px");
+     el.style.setProperty("--py",(y*18).toFixed(1)+"px");
+   });
+   el.addEventListener("pointerleave",()=>{el.style.setProperty("--px","0px");el.style.setProperty("--py","0px")});
+ });
+}
+
 
 
 /* ============================================================
@@ -387,6 +410,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  setupCheckoutGuard();
  setupForms();
  setupSearch();
+ initPremiumInteractions();
  const p=$("#productFilter");
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
