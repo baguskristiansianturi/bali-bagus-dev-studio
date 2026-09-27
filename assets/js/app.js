@@ -362,7 +362,7 @@ function toggleWishlist(id,kind="product"){
 }
 function renderWishlistPage(){
  const grid=$("#wishlistGrid"),compare=$("#wishlistCompareGrid"),count=$("#wishlistCount");if(!grid)return;
- const items=getWishlist();if(count)count.textContent=String(items.length);
+ const allItems=getWishlist(),term=($("#wishlistSearch")?.value||"").trim().toLowerCase(),kind=($("#wishlistType")?.value||"all"),items=allItems.filter(x=>{const p=x.kind==="product"?findProduct(x.id):WEBSITE_COLLECTION.find(w=>w.id===x.id);return p&&(!term||(p.name+" "+(p.category||"")+" "+(p.type||p.style||"")).toLowerCase().includes(term))&&(kind==="all"||x.kind===kind)});if(count)count.textContent=term||kind!=="all"?items.length+" / "+allItems.length:String(items.length);
  grid.innerHTML=items.length?items.map(x=>{
   const p=x.kind==="product"?findProduct(x.id):WEBSITE_COLLECTION.find(w=>w.id===x.id);if(!p)return "";
   const category=p.category||"Website",type=p.type||p.style||"Website",price=x.kind==="product"?(p.status==="planned"?"Belum tersedia":fmt(p.price)):"Konsep siap dikembangkan";
@@ -376,7 +376,7 @@ function renderWishlistPage(){
  }
  document.querySelectorAll("[data-wishlist-pick]").forEach(el=>el.addEventListener("change",renderWishlistPage));
 }
-function setupProductChoices(){document.addEventListener("click",e=>{const w=e.target.closest("[data-wishlist]");if(w){e.preventDefault();toggleWishlist(w.dataset.wishlist,w.dataset.wishlistKind||"product")}});renderWishlistPage()}
+function setupProductChoices(){document.addEventListener("click",e=>{const w=e.target.closest("[data-wishlist]");if(w){e.preventDefault();toggleWishlist(w.dataset.wishlist,w.dataset.wishlistKind||"product")}});$("#wishlistSearch")?.addEventListener("input",renderWishlistPage);$("#wishlistType")?.addEventListener("change",renderWishlistPage);renderWishlistPage()}
 
 function card(p){
  const planned=p.status==="planned";
