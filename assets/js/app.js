@@ -500,21 +500,61 @@ function setupCollection(){
 function header(){
  const h=$(".site-header");if(!h)return;
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
- h.innerHTML=`<a class="brand" href="${base}index.html" aria-label="Bali Bagus Dev home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
- <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
- <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="${base}index.html">Beranda</a><a href="${base}website-collection.html">Websites</a><a href="${base}products.html">Store</a><a href="${base}services.html">Services</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}articles.html">Blog</a><a href="${base}contact.html">Kontak</a><a href="${base}about.html">Tentang</a></nav>
- <div class="header-actions"><a class="icon-btn account-link" href="${base}account.html" aria-label="Akun">${isLogged()?"●":"○"} Akun</a><a class="icon-btn" href="${base}cart.html" aria-label="Keranjang">${icon("cart")}<b id="cartCount">0</b></a><a class="button button-dark small" href="${base}booking.html">Konsultasi ${icon("arrow")}</a></div>`;
+ const recent=store.get("recentViews",[]);
+ const wishlistCount=getWishlist().length;
+ h.innerHTML=`
+ <div class="top-header-row">
+   <a class="brand" href="${base}index.html" aria-label="Bali Bagus Dev home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
+   <div class="header-top-actions">
+     <button class="header-utility" type="button" data-header-popover="locale" aria-expanded="false">ID · IDR <span>⌄</span></button>
+     <a class="header-utility" href="${base}articles.html">Blog</a>
+     <a class="header-utility" href="${base}help.html">Bantuan</a>
+     <button class="header-utility" type="button" data-header-popover="recent" aria-expanded="false">Baru dilihat <b class="header-badge">${recent.length}</b></button>
+     <a class="header-signup" href="${base}account.html">Mendaftar</a>
+     <a class="header-login" href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a>
+   </div>
+   <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
+ </div>
+ <div class="category-nav-row">
+   <nav class="category-nav" id="mainNav" aria-label="Kategori utama">
+     <div class="mega-item"><button type="button" class="mega-trigger" aria-expanded="false">Aplikasi <span>⌄</span></button><div class="mega-menu"><div class="mega-intro"><span>APLIKASI</span><b>Solusi yang bekerja<br>di balik bisnis.</b><small>Dashboard, sistem internal, dan aplikasi custom.</small><a href="${base}services.html#app">Lihat layanan ↗</a></div><div class="mega-links"><a href="${base}website-category/villa-management.html"><b>Business Systems</b><small>Operasional, inventory, POS, accounting</small></a><a href="${base}website-category/employee-management.html"><b>Employee Management</b><small>People, attendance, roles & reporting</small></a><a href="${base}website-category/booking-system.html"><b>Booking System</b><small>Availability, calendar & reservation</small></a><a href="${base}website-category/crm.html"><b>CRM & Leads</b><small>Pipeline, follow-up & customer history</small></a><a href="${base}services.html#app"><b>Custom Web App</b><small>Bangun alur khusus sesuai kebutuhan</small></a></div></div></div>
+     <div class="mega-item"><button type="button" class="mega-trigger" aria-expanded="false">Template <span>⌄</span></button><div class="mega-menu"><div class="mega-intro"><span>TEMPLATE</span><b>Mulai lebih cepat<br>dengan fondasi siap pakai.</b><small>Preview, pilih, simpan, lalu kembangkan.</small><a href="${base}products.html">Semua template ↗</a></div><div class="mega-links"><a href="${base}website-collection.html"><b>Website Collection</b><small>Barbershop, villa, hotel, F&B, travel & more</small></a><a href="${base}products.html?q=website"><b>Website Templates</b><small>Template bisnis dan hospitality</small></a><a href="${base}products.html?q=landing"><b>Landing Pages</b><small>Conversion-focused quick start</small></a><a href="${base}products.html?q=blogger"><b>Blogger Templates</b><small>Editorial & content publishing</small></a><a href="${base}products.html?q=ui"><b>UI Kits</b><small>Components & dashboard foundations</small></a></div></div></div>
+     <div class="mega-item"><button type="button" class="mega-trigger" aria-expanded="false">Jelajahi <span>⌄</span></button><div class="mega-menu"><div class="mega-intro"><span>EXPLORE</span><b>Lihat apa yang<br>bisa Anda bangun.</b><small>Temukan inspirasi berdasarkan kebutuhan bisnis.</small><a href="${base}website-collection.html">Jelajahi semua ↗</a></div><div class="mega-links"><a href="${base}website-category/barbershop.html"><b>Local Business</b><small>Barbershop, cafe, restaurant, UMKM</small></a><a href="${base}website-category/villa.html"><b>Hospitality</b><small>Villa, hotel, homestay & property</small></a><a href="${base}website-category/car-rental.html"><b>Travel & Mobility</b><small>Car, motorbike, transfer & activities</small></a><a href="${base}portfolio.html"><b>Portfolio & Demo</b><small>Lihat konsep dan live experience</small></a><a href="${base}articles.html"><b>Blog & Insight</b><small>Strategi, SEO, conversion & content</small></a></div></div></div>
+     <div class="mega-item"><button type="button" class="mega-trigger" aria-expanded="false">BB Studio <span>⌄</span></button><div class="mega-menu"><div class="mega-intro"><span>BALI BAGUS DEV</span><b>Dibangun untuk<br>tujuan bisnis.</b><small>Website, aplikasi, content, SEO, growth & support.</small><a href="${base}about.html">Tentang studio ↗</a></div><div class="mega-links"><a href="${base}services.html#website"><b>Website & E-commerce</b><small>Design, development & conversion</small></a><a href="${base}services.html#copy"><b>Copywriting & Content</b><small>Pesan yang lebih jelas dan berguna</small></a><a href="${base}services.html#seo"><b>SEO & Local Search</b><small>Fondasi visibility dan measurement</small></a><a href="${base}services.html#care"><b>Maintenance & Support</b><small>Perawatan dan pengembangan berkelanjutan</small></a><a href="${base}booking.html"><b>Discovery & Consultation</b><small>Mulai dari kebutuhan bisnis</small></a></div></div></div>
+   </nav>
+   <a class="member-entry" href="${base}account.html"><span class="member-mark">BB</span><span>Member</span><b>${wishlistCount}</b></a>
+ </div>
+ <div class="header-popover" id="headerLocale" hidden><b>Bahasa & mata uang</b><span>Indonesia · IDR</span><span class="popover-note">Pilihan bahasa dan mata uang produksi akan tersedia saat localization diaktifkan.</span></div>
+ <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}products.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>`<a href="${base}${esc(x.url||"products.html")}"><span>${esc(x.name||"Produk")}</span><small>${esc(x.type||"Discovery")}</small></a>`).join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>
+ `;
  const page=location.pathname.split("/").pop()||"index.html";
  const menuToggle=$("#menuToggle"),mainNav=$("#mainNav");
  const nestedWebsite=location.pathname.includes("/website-category/")||location.pathname.includes("/landing/");
- h.querySelectorAll(".nav a").forEach(a=>{
+ h.querySelectorAll(".mega-trigger").forEach(trigger=>{
+   trigger.addEventListener("click",e=>{
+     if(innerWidth>800)return;
+     const item=trigger.closest(".mega-item"),open=item.classList.toggle("open");
+     trigger.setAttribute("aria-expanded",String(open));
+   });
+ });
+ h.querySelectorAll(".mega-item").forEach(item=>{
+   item.addEventListener("mouseenter",()=>{if(innerWidth>800)item.classList.add("hover")});
+   item.addEventListener("mouseleave",()=>{if(innerWidth>800)item.classList.remove("hover")});
+ });
+ h.querySelectorAll(".category-nav a").forEach(a=>{
    const href=(a.getAttribute("href")||"").split("?")[0];
    if(href===page||(nestedWebsite&&href.endsWith("website-collection.html")))a.classList.add("active");
    a.addEventListener("click",()=>{if(innerWidth<=800){mainNav?.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");menuToggle&&(menuToggle.innerHTML=icon("menu"))}});
  });
+ const closeNav=()=>{mainNav?.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.innerHTML=icon("menu");h.querySelectorAll(".mega-item.open").forEach(x=>x.classList.remove("open"));h.querySelectorAll(".mega-trigger[aria-expanded=true]").forEach(x=>x.setAttribute("aria-expanded","false"))};
  menuToggle?.addEventListener("click",()=>{const open=mainNav.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(open));menuToggle.innerHTML=icon(open?"close":"menu")});
- document.addEventListener("keydown",e=>{if(e.key==="Escape"&&mainNav?.classList.contains("open")){mainNav.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.innerHTML=icon("menu")}});
- document.addEventListener("click",e=>{if(innerWidth<=800&&mainNav?.classList.contains("open")&&!mainNav.contains(e.target)&&!menuToggle?.contains(e.target)){mainNav.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.innerHTML=icon("menu")}});
+ h.querySelectorAll("[data-header-popover]").forEach(btn=>btn.addEventListener("click",e=>{
+   e.stopPropagation();const type=btn.dataset.headerPopover,el=type==="locale"?$("#headerLocale"):$("#headerRecent");const willOpen=el?.hidden;
+   h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true);h.querySelectorAll("[data-header-popover]").forEach(b=>b.setAttribute("aria-expanded","false"));
+   if(el){el.hidden=!willOpen;btn.setAttribute("aria-expanded",String(willOpen))}
+ }));
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeNav();h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true)}});
+ document.addEventListener("click",e=>{if(innerWidth<=800&&mainNav?.classList.contains("open")&&!mainNav.contains(e.target)&&!menuToggle?.contains(e.target))closeNav();if(!h.contains(e.target)){h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true)}});
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
