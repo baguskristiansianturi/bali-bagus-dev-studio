@@ -502,21 +502,32 @@ function renderDetail(){
 }function buyNow(id){addCart(id);location.href="checkout.html";}
 function renderCollection(){
  const grid=$("#websiteCollectionGrid");if(!grid)return;
- const q=($("#collectionSearch")?.value||"").toLowerCase(),cat=$("#collectionCategory")?.value||"All",packageId=new URLSearchParams(location.search).get("package");
- const list=WEBSITE_COLLECTION.filter(x=>(cat==="All"||x.category===cat)&&(x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&(x.status==="active")&&(!packageId||!x.availablePackages||x.availablePackages.includes(packageId)));
+ const q=($("#collectionSearch")?.value||"").toLowerCase();
+ const cat=document.querySelector('input[name="collection-category"]:checked')?.value||"All";
+ const packageId=document.querySelector('input[name="collection-package"]:checked')?.value||"all";
+ const list=WEBSITE_COLLECTION.filter(x=>
+   (cat==="All"||x.category===cat)&&
+   (packageId==="all"||x.availablePackages?.includes(packageId))&&
+   (x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&
+   x.status==="active"
+ );
+ const count=$("#collectionCount");if(count)count.textContent=list.length+" template tersedia";
  grid.innerHTML=list.map(x=>{
-  const wished=wishlistHas("website",x.id),pkg=packageId||((x.availablePackages&&x.availablePackages[0])||"business");
+  const wished=wishlistHas("website",x.id),pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"business");
   return "<article class=\"collection-card\"><div class=\"collection-visual\"><span>"+esc(x.category.toUpperCase())+"</span><b>"+esc(x.name)+"</b><small>"+esc(x.style)+"</small></div><div class=\"collection-info\"><div><span>"+esc(x.category)+"</span><b>"+esc(x.name)+"</b></div><p>"+esc(x.desc)+"</p><div class=\"collection-actions\"><a class=\"button button-dark small\" href=\""+esc(x.demo)+(x.demo.includes("?")?"&":"?")+"package="+encodeURIComponent(pkg)+"\">Experience website "+icon("arrow")+"</a><a class=\"mini-link\" href=\"website-order.html?package="+encodeURIComponent(pkg)+"&template="+encodeURIComponent(x.id)+"\">Pesan</a></div><div class=\"collection-actions\"><button class=\"mini-link button-reset "+(wished?"active":"")+"\" type=\"button\" data-wishlist=\""+esc(x.id)+"\" data-wishlist-kind=\"website\" aria-pressed=\""+wished+"\">♡ Wishlist</button></div></div></article>";
- }).join("")||"<div class=\"empty-state\">Koleksi untuk kategori ini sedang kami kembangkan. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website "+cat)+"\">Request website kategori ini ↗</a></div>";
+ }).join("")||"<div class=\"empty-state\">Belum ada template untuk kombinasi filter ini. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website")+"\">Request website ↗</a></div>";
 }
 function setupCollection(){
- const s=$("#collectionSearch"),c=$("#collectionCategory");
- if((s||c)?.dataset?.bound)return;
- if(s||c){(s||c).dataset.bound="true";}
- if(window.BB_CATEGORY_PAGE && c){c.innerHTML=WEBSITE_CATEGORIES.map(x=>`<option>${x}</option>`).join("");c.value=window.BB_CATEGORY_PAGE.category;renderCollection();return;}
- if(!s&&!c)return;
- if(c){c.innerHTML=WEBSITE_CATEGORIES.map(x=>`<option>${x}</option>`).join("");const requested=new URLSearchParams(location.search).get("category");if(requested&&WEBSITE_CATEGORIES.includes(requested))c.value=requested;}
- s?.addEventListener("input",renderCollection);c?.addEventListener("change",renderCollection);renderCollection();
+ const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList");
+ if(!s||!categoryList||!packageList)return;
+ if(s.dataset.bound)return;s.dataset.bound="true";
+ const params=new URLSearchParams(location.search),requested=params.get("category"),requestedPackage=params.get("package");
+ categoryList.innerHTML=WEBSITE_CATEGORIES.map(x=>`<label><input type="radio" name="collection-category" value="${esc(x)}" ${(requested&&requested===x)||(!requested&&x==="All")?"checked":""}> ${esc(x==="All"?"Semua website":x)}</label>`).join("");
+ packageList.innerHTML=[{id:"all",name:"Semua paket"},...PACKAGES.map(x=>({id:x.id,name:x.name}))].map(x=>`<label><input type="radio" name="collection-package" value="${esc(x.id)}" ${(requestedPackage===x.id)||(!requestedPackage&&x.id==="all")?"checked":""}> ${esc(x.name)}</label>`).join("");
+ s.addEventListener("input",renderCollection);
+ categoryList.addEventListener("change",renderCollection);
+ packageList.addEventListener("change",renderCollection);
+ renderCollection();
 }
 function header(){
  const h=$(".site-header");if(!h)return;
