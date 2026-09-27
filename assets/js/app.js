@@ -62,7 +62,7 @@ function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement(
 function footer(){
  const f=$("#siteFooter");if(!f)return;const base=location.pathname.includes("/landing/")?"../":"";f.className="site-footer";
  f.innerHTML=`<div class="wrap"><div class="footer-top">
- <div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Website, aplikasi, produk digital, dan solusi digital yang dirancang untuk membantu bisnis bergerak dengan tujuan.</p><div class="socials"><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="X">𝕏</a></div></div>
+ <div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Website, aplikasi, produk digital, dan solusi digital yang dirancang untuk membantu bisnis bergerak dengan tujuan.</p><div class="socials"><a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a><a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a><a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a><a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a><a href="https://x.com/bbstudio" aria-label="X" target="_blank" rel="noopener">𝕏</a></div></div>
  <div class="footer-col"><b>Website</b><a href="${base}website-packages.html">Paket website</a><a href="${base}website-collection.html">Website Collection</a><a href="${base}client-websites.html">Website klien</a><a href="${base}booking.html">Custom website</a></div>
  <div class="footer-col"><b>Produk digital</b><a href="${base}products.html">Website templates</a><a href="${base}products.html">Blogger templates</a><a href="${base}products.html">UI kits & components</a><a href="${base}products.html">Digital products</a></div>
  <div class="footer-col"><b>Bali Bagus Dev</b><a href="${base}services.html">Layanan</a><a href="${base}portfolio.html">Portfolio & demo</a><a href="${base}articles.html">Artikel & insight</a><a href="${base}contact.html">Kontak & bantuan</a><a href="${base}terms.html">Syarat & ketentuan</a><a href="${base}privacy.html">Kebijakan privasi</a><a href="${base}refund.html">Kebijakan refund</a></div></div>
@@ -193,7 +193,7 @@ function requireLogin(next){
  return false;
 }
 function whatsappUrl(message){
- const phone=window.BB_WHATSAPP_NUMBER||"6281234567890";
+ const phone=window.BB_WHATSAPP_NUMBER||"628218187917";
  return "https://wa.me/"+phone+"?text="+encodeURIComponent(message);
 }
 function productWhatsApp(p){
@@ -339,7 +339,7 @@ function setupWebsiteOrder(){
    if(!form.reportValidity())return;
    const data=Object.fromEntries(new FormData(form));
    const message=`Halo Bali Bagus Dev, saya ingin memesan website.\n\nPaket: ${p.name} — ${fmt(p.price)} mulai\nTemplate: ${t?t.name:"Belum memilih template"}\nKategori: ${t?t.category:"-"}\nNama: ${data.name||"-"}\nEmail: ${data.email||"-"}\nWhatsApp: ${data.phone||"-"}\nNama bisnis: ${data.business||"-"}\nKebutuhan/catatan: ${data.details||"-"}\n\nSaya ingin melanjutkan pembahasan pemesanan.`;
-   const url=whatsappUrl(message); if(url.includes("6281234567890")) showToast("Nomor WhatsApp demo masih perlu diganti di konfigurasi."); window.open(url,"_blank","noopener");
+   const url=whatsappUrl(message); if(url.includes("628218187917")) showToast("Nomor WhatsApp demo masih perlu diganti di konfigurasi."); window.open(url,"_blank","noopener");
   });
  }
  form.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(form));store.set("websiteOrder",{...data,packageId:p.id,templateId:t?.id||"",createdAt:new Date().toISOString()});requireLogin(`checkout.html?orderType=website&package=${encodeURIComponent(p.id)}&template=${encodeURIComponent(t?.id||"")}`)});
