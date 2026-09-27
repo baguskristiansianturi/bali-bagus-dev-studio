@@ -491,13 +491,51 @@ function renderDetail(){
    store.set("reviews_"+p.id,arr);renderDetail();showToast("Review tersimpan di demo lokal.");
  });
 }function buyNow(id){addCart(id);location.href="checkout.html";}
+function getWebsiteWishlist(){const w=store.get("websiteWishlist",[]);return Array.isArray(w)?w.filter(id=>WEBSITE_COLLECTION.some(x=>x.id===id)):[]}
+function saveWebsiteWishlist(w){store.set("websiteWishlist",[...new Set(w)].slice(0,50))}
+function getWebsiteCompare(){const w=store.get("websiteCompare",[]);return Array.isArray(w)?w.filter(id=>WEBSITE_COLLECTION.some(x=>x.id===id)).slice(0,4):[]}
+function saveWebsiteCompare(w){store.set("websiteCompare",[...new Set(w)].slice(0,4))}
+function toggleWebsiteWishlist(id){
+ const w=getWebsiteWishlist(),next=w.includes(id)?w.filter(x=>x!==id):[...w,id];saveWebsiteWishlist(next);
+ $$('[data-web-wishlist="'+CSS.escape(id)+'"]').forEach(b=>{const on=next.includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari wishlist":"Simpan ke wishlist")});
+ showToast(next.includes(id)?"Website disimpan ke wishlist.":"Website dihapus dari wishlist.");
+}
+function toggleWebsiteCompare(id){
+ const w=getWebsiteCompare();
+ if(w.includes(id))saveWebsiteCompare(w.filter(x=>x!==id));
+ else if(w.length>=4){showToast("Maksimal 4 website untuk perbandingan.");return;}
+ else saveWebsiteCompare([...w,id]);
+ renderWebsiteCompareBar();
+ $$('[data-web-compare="'+CSS.escape(id)+'"]').forEach(b=>{const on=getWebsiteCompare().includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari perbandingan":"Bandingkan website")});
+}
+function renderWebsiteCompareBar(){
+ const bar=$("#compareBar"),items=getWebsiteCompare();if(!bar)return;
+ bar.innerHTML=items.length?`<div><b>${items.length} website dipilih</b><span>${items.map(id=>esc(WEBSITE_COLLECTION.find(x=>x.id===id)?.name||"")).join(" · ")}</span></div><div><a class="button button-dark small" href="website-compare.html">Bandingkan ${items.length}</a><button class="button small" type="button" id="clearWebsiteCompare">Hapus pilihan</button></div>`:"";
+ bar.hidden=!items.length;
+ $("#clearWebsiteCompare")?.addEventListener("click",()=>{saveWebsiteCompare([]);renderWebsiteCompareBar()});
+}
 function renderCollection(){
  const grid=$("#websiteCollectionGrid");if(!grid)return;
  const q=($("#collectionSearch")?.value||"").toLowerCase(),cat=$("#collectionCategory")?.value||"All",packageId=new URLSearchParams(location.search).get("package");
- const list=WEBSITE_COLLECTION.filter(x=>(cat==="All"||x.category===cat)&&(x.name+" "+x.category+" "+x.style).toLowerCase().includes(q)&&(x.status==="active")&&(!packageId||!x.availablePackages||x.availablePackages.includes(packageId)));
- grid.innerHTML=list.map(x=>`<article class="collection-card"><div class="collection-visual"><span>${esc(x.category.toUpperCase())}</span><b>${esc(x.name)}</b><small>${esc(x.style)}</small></div><div class="collection-info"><div><span>${esc(x.category)}</span><b>${esc(x.name)}</b></div><p>${esc(x.desc)}</p><div><a class="button button-dark small" href="${esc(x.demo)}${x.demo.includes("?")?"&":"?"}package=${encodeURIComponent(packageId||((x.availablePackages&&x.availablePackages[0])||"business"))}">Experience website ${icon("arrow")}</a><a class="mini-link" href="website-order.html?package=${encodeURIComponent(packageId||((x.availablePackages&&x.availablePackages[0])||"business"))}&template=${encodeURIComponent(x.id)}">Pesan</a></div></div></article>`).join("")||`<div class="empty-state">Koleksi untuk kategori ini sedang kami kembangkan. <a class="text-link" href="booking.html?service=${encodeURIComponent("Request website "+cat)}">Request website kategori ini ↗</a></div>`;
+ const list=WEBSITE_COLLECTION.filter(x=>(cat==="All"||x.category===cat)&&(x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&(x.status==="active")&&(!packageId||!x.availablePackages||x.availablePackages.includes(packageId)));
+ grid.innerHTML=list.map(x=>{
+   const wished=getWebsiteWishlist().includes(x.id),compared=getWebsiteCompare().includes(x.id),pkg=packageId||((x.availablePackages&&x.availablePackages[0])||"business");
+   return `<article class="collection-card"><div class="collection-visual"><span>${esc(x.category.toUpperCase())}</span><b>${esc(x.name)}</b><small>${esc(x.style)}</small></div><div class="collection-info"><div><span>${esc(x.category)}</span><b>${esc(x.name)}</b></div><p>${esc(x.desc)}</p><div class="collection-actions"><a class="button button-dark small" href="${esc(x.demo)}${x.demo.includes("?")?"&":"?"}package=${encodeURIComponent(pkg)}">Experience website ${icon("arrow")}</a><a class="mini-link" href="website-order.html?package=${encodeURIComponent(pkg)}&template=${encodeURIComponent(x.id)}">Pesan</a></div><div class="collection-actions"><button class="mini-link button-reset ${wished?"active":""}" type="button" data-web-wishlist="${esc(x.id)}" aria-pressed="${wished}" aria-label="${wished?"Hapus dari wishlist":"Simpan ke wishlist"}">♡ Wishlist</button><button class="mini-link button-reset ${compared?"active":""}" type="button" data-web-compare="${esc(x.id)}" aria-pressed="${compared}" aria-label="${compared?"Hapus dari perbandingan":"Bandingkan website"}">⇄ Bandingkan</button></div></div></article>`
+ }).join("")||`<div class="empty-state">Koleksi untuk kategori ini sedang kami kembangkan. <a class="text-link" href="booking.html?service=${encodeURIComponent("Request website "+cat)}">Request website kategori ini ↗</a></div>`;
+ renderWebsiteCompareBar();
 }
 
+function renderWebsiteComparePage(){
+ const grid=$("#websiteCompareGrid");if(!grid)return;
+ const items=getWebsiteCompare().map(id=>WEBSITE_COLLECTION.find(x=>x.id===id)).filter(Boolean);
+ grid.innerHTML=items.length?`<div class="compare-table-wrap"><table class="compare-table website-compare-table"><thead><tr><th>Aspek</th>${items.map(x=>`<th>${esc(x.name)}<button class="compare-remove" type="button" data-web-compare="${esc(x.id)}">×</button></th>`).join("")}</tr></thead><tbody>
+ <tr><th>Kategori</th>${items.map(x=>`<td>${esc(x.category)}</td>`).join("")}</tr>
+ <tr><th>Gaya</th>${items.map(x=>`<td>${esc(x.style)}</td>`).join("")}</tr>
+ <tr><th>Paket</th>${items.map(x=>`<td>${esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name||id).join(" · ")||"Custom")}</td>`).join("")}</tr>
+ <tr><th>Status</th>${items.map(x=>`<td>Konsep siap dikembangkan</td>`).join("")}</tr>
+ <tr><th>Arah</th>${items.map(x=>`<td>${esc(x.desc)}</td>`).join("")}</tr>
+ </tbody></table></div>`:`<div class="empty-state"><h2>Belum ada website untuk dibandingkan.</h2><p>Pilih Bandingkan dari Website Collection.</p><a class="button button-dark" href="website-collection.html">Jelajahi Website Collection ↗</a></div>`;
+}
 function setupCollection(){
  const s=$("#collectionSearch"),c=$("#collectionCategory");
  if((s||c)?.dataset?.bound)return;
