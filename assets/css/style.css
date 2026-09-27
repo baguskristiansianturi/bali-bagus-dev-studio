@@ -1442,3 +1442,177 @@ a{text-underline-offset:3px}
   html{scroll-behavior:auto}
   .product-card,.package-card,.demo-card,.collection-card,.portfolio-card,.client-card,.category-card,.launch-card{transition:none}
 }
+
+
+/* V12.0 — refined commerce cards, softer data surfaces, editorial homepage */
+.product-card-actions{
+  margin-top:18px;
+  padding-top:15px;
+  border-top:1px solid var(--line);
+}
+.product-detail-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  width:100%;
+  min-height:44px;
+  justify-content:space-between;
+  color:#171717;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+.product-detail-cta .icon-svg{
+  width:16px;
+  height:16px;
+  transition:transform .2s ease;
+}
+.product-detail-cta:hover .icon-svg{transform:translateX(3px)}
+.product-card:hover .product-detail-cta{color:#111}
+.product-card .product-card-foot{margin-top:14px}
+
+/* Softer tables: useful information, not rigid spreadsheet boxes. */
+table{
+  border-collapse:separate!important;
+  border-spacing:0;
+}
+.compare-table-wrap,
+.table-wrap,
+.table-responsive{
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:auto;
+  background:#fff;
+}
+.compare-table-wrap table,
+.table-wrap table,
+.table-responsive table{
+  border:0!important;
+  width:100%;
+}
+.compare-table thead th,
+.table-wrap thead th,
+.table-responsive thead th{
+  background:#f7f7f4;
+  border-bottom:1px solid var(--line);
+}
+.compare-table th,
+.compare-table td,
+.table-wrap th,
+.table-wrap td,
+.table-responsive th,
+.table-responsive td{
+  border-right:0;
+  border-left:0;
+  padding:15px 16px;
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td,
+.table-wrap tbody tr:last-child th,
+.table-wrap tbody tr:last-child td,
+.table-responsive tbody tr:last-child th,
+.table-responsive tbody tr:last-child td{
+  border-bottom:0;
+}
+.compare-table tbody tr:hover td,
+.compare-table tbody tr:hover th,
+.table-wrap tbody tr:hover td,
+.table-wrap tbody tr:hover th{
+  background:#fbfbf9;
+}
+.pricing-table,.package-table,.feature-table{
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+}
+.pricing-table tr:first-child th:first-child,
+.package-table tr:first-child th:first-child{border-top-left-radius:12px}
+.pricing-table tr:first-child th:last-child,
+.package-table tr:first-child th:last-child{border-top-right-radius:12px}
+
+/* Remove the old Bali-specific footer treatment if any cached markup remains. */
+.site-footer .bali-footer-note{display:none!important}
+.site-footer .footer-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 24px;
+}
+.site-footer .footer-bottom span:last-child{
+  margin-left:auto;
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.65;
+}
+
+/* Homepage: more editorial contrast and less visual noise. */
+.need-finder-panel{
+  border:1px solid #dddcd6;
+  background:linear-gradient(135deg,#f7f7f4 0%,#f1f1ed 100%);
+  box-shadow:0 20px 60px rgba(23,23,23,.045);
+}
+.need-finder-copy p,.section-head>div>p,.head-aside{
+  color:#5f5f5a;
+}
+.trust-strip{
+  background:#fbfbf8;
+}
+.trust-inner{
+  min-height:68px;
+}
+.category-card{
+  border-radius:8px;
+  overflow:hidden;
+}
+.category-card.cat-dark{
+  background:#181818;
+}
+.category-card.cat-gray{
+  background:#ecece8;
+}
+.category-card.cat-light{
+  background:#f7f7f4;
+}
+.promo-band{
+  background:linear-gradient(110deg,#181818 0%,#232323 62%,#2b2925 100%);
+}
+.promo-band .eyebrow.light{opacity:.72}
+.merchandising-section .section-head{
+  margin-bottom:30px;
+}
+.merch-tabs{
+  border-bottom:1px solid var(--line);
+  padding-bottom:0;
+}
+.merch-tabs button{
+  color:#777771;
+  transition:color .2s,border-color .2s;
+}
+.merch-tabs button.active{
+  color:#171717;
+}
+.launch-status .status-card{
+  border-radius:8px;
+  background:#fafaf7;
+}
+.launch-catalog .launch-card{
+  border-radius:8px;
+}
+.portfolio-card{
+  border-radius:8px;
+  overflow:hidden;
+}
+.reviews-section{
+  border-top:1px solid var(--line);
+}
+@media(max-width:800px){
+  .product-detail-cta{font-size:13px}
+  .compare-table-wrap,.table-wrap,.table-responsive{border-radius:9px}
+  .compare-table th,.compare-table td,.table-wrap th,.table-wrap td,.table-responsive th,.table-responsive td{
+    padding:12px 13px;
+  }
+  .site-footer .footer-bottom{display:grid;gap:7px}
+  .site-footer .footer-bottom span:last-child{margin-left:0}
+}
