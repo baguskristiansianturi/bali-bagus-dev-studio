@@ -11,6 +11,13 @@ The original monochrome visual system is preserved:
 - responsive layouts
 - lightweight vanilla HTML/CSS/JS
 
+## V2.1 additions
+- Hardened cart/localStorage handling and quantity controls
+- Added consistent SEO metadata, canonical URLs, Open Graph, Twitter/X metadata
+- Added favicon, robots.txt and sitemap.xml
+- Added skip-navigation fixes and mobile menu accessibility states
+- Corrected backend draft syntax without expanding backend scope
+
 ## V2 additions
 - Website packages from ~Rp1.25M to Rp27M starting price
 - Package comparison and process
@@ -32,8 +39,11 @@ This is still a frontend build until backend, payment, email/CRM, secure deliver
 
 Never treat localStorage payment/order status as real payment status.
 
+## Current checkpoint
+V2.1 — frontend hardening and QA. Backend remains deferred until frontend launch readiness is accepted.
+
 ## Recommended next version
-V3 — backend architecture and production integrations:
+V2.2 — visual QA and production-content refinement, then V3 — backend architecture and production integrations:
 - database
 - admin
 - products/packages CRUD

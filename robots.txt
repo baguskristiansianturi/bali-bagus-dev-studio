@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /backend/
+
+Sitemap: https://baguskristiansianturi.github.io/bali-bagus-dev-studio/sitemap.xml

@@ -49,10 +49,31 @@ function card(p){
  return `<article class="product-card">${art(p)}<div class="product-card-body"><div class="product-meta">${esc(p.type.toUpperCase())} · ${esc(p.category.toUpperCase())}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="product-card-foot"><span class="product-price">${fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Detail ${icon("arrow")}</a></div></div></article>`;
 }
 function renderProducts(target,list){const el=$(target);if(el)el.innerHTML=list.length?list.map(card).join(""):'<div class="empty-state">Tidak ada hasil yang sesuai. Coba kata kunci lain.</div>'}
-function getCart(){return store.get("cart",[])}
-function saveCart(c){store.set("cart",c);updateCount()}
+function normalizeCart(raw){
+ if(!Array.isArray(raw))return [];
+ const merged=new Map();
+ raw.forEach(item=>{
+  if(!item||typeof item.id!=="string")return;
+  if(!PRODUCTS.some(p=>p.id===item.id))return;
+  const qty=Math.max(1,Math.min(99,Number.isFinite(Number(item.qty))?Math.floor(Number(item.qty)):1));
+  merged.set(item.id,Math.min(99,(merged.get(item.id)||0)+qty));
+ });
+ return [...merged].map(([id,qty])=>({id,qty}));
+}
+function getCart(){return normalizeCart(store.get("cart",[]))}
+function saveCart(c){store.set("cart",normalizeCart(c));updateCount()}
 function updateCount(){const count=getCart().reduce((a,x)=>a+x.qty,0);$$('#cartCount').forEach(e=>e.textContent=count)}
-function addCart(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const c=getCart(),item=c.find(x=>x.id===id);item?item.qty++:c.push({id,qty:1});saveCart(c);showToast(`${p.name} ditambahkan ke keranjang.`)}
+function addCart(id){
+ const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+ const c=getCart(),item=c.find(x=>x.id===id);
+ item?item.qty=Math.min(99,item.qty+1):c.push({id,qty:1});
+ saveCart(c);showToast(`${p.name} ditambahkan ke keranjang.`);
+}
+function changeQty(id,delta){
+ const c=getCart(),item=c.find(x=>x.id===id);if(!item)return;
+ item.qty=Math.max(1,Math.min(99,item.qty+Number(delta||0)));
+ saveCart(c);renderCart();renderSummary("#checkoutSummary");
+}
 function showToast(message){let t=$("#bbToast");if(!t){t=document.createElement("div");t.id="bbToast";t.className="bb-toast";document.body.appendChild(t)}t.textContent=message;t.classList.add("show");clearTimeout(window.__bbToast);window.__bbToast=setTimeout(()=>t.classList.remove("show"),2600)}
 function renderDetail(){
  const el=$("#productDetail");if(!el)return;
@@ -61,13 +82,22 @@ function renderDetail(){
 }
 function renderCart(){
  const el=$("#cartItems");if(!el)return;const cart=getCart();
- if(!cart.length){el.innerHTML='<div class="empty-state">Keranjang Anda masih kosong. <a class="text-link" href="products.html">Jelajahi produk ↗</a></div>';$("#cartSummary").innerHTML='<div class="summary-total"><span>Total</span><span>Rp0</span></div>';$("#checkoutLink").setAttribute("aria-disabled","true");return}
- el.innerHTML=cart.map(x=>{const p=PRODUCTS.find(p=>p.id===x.id);return `<div class="cart-row"><div class="cart-thumb">${icon("arrow")}</div><div class="cart-row-info"><b>${esc(p.name)}</b><small>${fmt(p.price)} · Qty ${x.qty}</small><small>${fmt(p.price*x.qty)}</small></div><button type="button" onclick="removeCart('${esc(p.id)}')">Hapus</button></div>`}).join("");
+ const checkout=$("#checkoutLink");
+ if(!cart.length){
+  el.innerHTML='<div class="empty-state">Keranjang Anda masih kosong. <a class="text-link" href="products.html">Jelajahi produk ↗</a></div>';
+  $("#cartSummary").innerHTML='<div class="summary-total"><span>Total</span><span>Rp0</span></div>';
+  if(checkout){checkout.setAttribute("aria-disabled","true");checkout.setAttribute("tabindex","-1");checkout.dataset.disabled="true";}
+  return;
+ }
+ el.innerHTML=cart.map(x=>{
+  const p=PRODUCTS.find(p=>p.id===x.id);if(!p)return "";
+  return `<div class="cart-row"><div class="cart-thumb">${icon("arrow")}</div><div class="cart-row-info"><b>${esc(p.name)}</b><small>${fmt(p.price)} · Qty ${x.qty}</small><small>${fmt(p.price*x.qty)}</small></div><div class="cart-qty" aria-label="Jumlah ${esc(p.name)}"><button type="button" aria-label="Kurangi ${esc(p.name)}" onclick="changeQty('${esc(p.id)}',-1)" ${x.qty<=1?"disabled":""}>−</button><span>${x.qty}</span><button type="button" aria-label="Tambah ${esc(p.name)}" onclick="changeQty('${esc(p.id)}',1)" ${x.qty>=99?"disabled":""}>+</button></div><button type="button" onclick="removeCart('${esc(p.id)}')">Hapus</button></div>`;
+ }).join("");
  const total=cart.reduce((s,x)=>s+(PRODUCTS.find(p=>p.id===x.id)?.price||0)*x.qty,0);
  $("#cartSummary").innerHTML=`${cart.map(x=>{const p=PRODUCTS.find(p=>p.id===x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")}<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`;
- $("#checkoutLink").removeAttribute("aria-disabled");
+ if(checkout){checkout.removeAttribute("aria-disabled");checkout.removeAttribute("tabindex");checkout.dataset.disabled="false";}
 }
-function removeCart(id){saveCart(getCart().filter(x=>x.id!==id));renderCart();renderSummary("#checkoutSummary")}
+function removeCart(id){saveCart(getCart().filter(x=>x.id!==id));renderCart();renderSummary("#checkoutSummary");showToast("Produk dihapus dari keranjang.")}
 function renderSummary(target){
  const el=$(target);if(!el)return;const cart=getCart(),total=cart.reduce((s,x)=>s+(PRODUCTS.find(p=>p.id===x.id)?.price||0)*x.qty,0);
  el.innerHTML=cart.length?cart.map(x=>{const p=PRODUCTS.find(p=>p.id===x.id);return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")+`<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`:'<p class="tiny">Keranjang kosong.</p>';
@@ -79,8 +109,16 @@ function header(){
  <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="index.html">Beranda</a><a href="website-packages.html">Website</a><a href="products.html">Produk</a><a href="portfolio.html">Portfolio</a><a href="articles.html">Artikel</a><a href="contact.html">Kontak</a></nav>
  <div class="header-actions"><button class="lang" id="langToggle" type="button">ID <span>⌄</span></button><a class="icon-btn" href="cart.html" aria-label="Keranjang">${icon("cart")}<b id="cartCount">0</b></a><a class="button button-dark small" href="booking.html">Konsultasi ${icon("arrow")}</a></div>`;
  const page=location.pathname.split("/").pop()||"index.html";
- h.querySelectorAll(".nav a").forEach(a=>{const href=a.getAttribute("href").split("?")[0];if(href===page)a.classList.add("active")});
- $("#menuToggle")?.addEventListener("click",()=>{const open=$("#mainNav").classList.toggle("open");$("#menuToggle").setAttribute("aria-expanded",String(open));$("#menuToggle").innerHTML=icon(open?"close":"menu")});
+ h.querySelectorAll(".nav a").forEach(a=>{
+ const href=a.getAttribute("href").split("?")[0];if(href===page)a.classList.add("active");
+ a.addEventListener("click",()=>{if(window.innerWidth<=800){$("#mainNav").classList.remove("open");$("#menuToggle")?.setAttribute("aria-expanded","false");$("#menuToggle")?.setAttribute("aria-label","Buka menu");$("#menuToggle").innerHTML=icon("menu")}});
+});
+ $("#menuToggle")?.addEventListener("click",()=>{
+ const open=$("#mainNav").classList.toggle("open");
+ $("#menuToggle").setAttribute("aria-expanded",String(open));
+ $("#menuToggle").setAttribute("aria-label",open?"Tutup menu":"Buka menu");
+ $("#menuToggle").innerHTML=icon(open?"close":"menu");
+});
  $("#langToggle")?.addEventListener("click",toggleLang);
 }
 function footer(){
@@ -105,11 +143,23 @@ function setupSearch(){
  function filter(){const q=($("#catalogSearch")?.value||"").toLowerCase(),cat=$("#productFilter")?.value||"all",sort=$("#sortProducts")?.value||"featured";let list=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&(p.name+" "+p.desc+" "+p.category).toLowerCase().includes(q));if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);renderProducts("#allProducts",list)}
  $("#catalogSearch")?.addEventListener("input",filter);$("#productFilter")?.addEventListener("change",filter);$("#sortProducts")?.addEventListener("change",filter);if($("#allProducts"))filter();
 }
+function setupCheckoutGuard(){
+ const link=$("#checkoutLink");if(!link)return;
+ link.addEventListener("click",e=>{
+  if(link.dataset.disabled==="true"){e.preventDefault();showToast("Tambahkan produk terlebih dahulu.");}
+ });
+}
 function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="booking.html?package=${encodeURIComponent(p.id)}">Bahas paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
 function renderPackageDetail(){const el=$("#packageDetail");if(!el)return;const id=new URLSearchParams(location.search).get("id")||"business",p=PACKAGES.find(x=>x.id===id)||PACKAGES[1];el.innerHTML=`<div class="breadcrumb"><a href="website-packages.html">Paket website</a> / ${esc(p.name)}</div><div class="product-detail-layout"><div><div class="detail-art package-visual"><div class="eyebrow">${esc(p.tag)}</div><h2>${esc(p.name)}<br><em>${fmt(p.price)} mulai</em></h2><p>${esc(p.desc)}</p></div><div class="detail-tabs"><h2>Yang termasuk</h2><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><h2>Estimasi</h2><p>${esc(p.time)}. Waktu dapat berubah mengikuti kesiapan materi, revisi, integrasi, dan scope yang disepakati.</p><h2>Yang belum termasuk</h2><p>Domain, hosting, layanan pihak ketiga, biaya gateway, lisensi berbayar, pembuatan konten khusus, dan kebutuhan di luar scope dapat dihitung terpisah.</p></div></div><aside class="detail-info"><div class="product-meta">WEBSITE DEVELOPMENT · ${esc(p.scope.toUpperCase())}</div><h2>${esc(p.name)}</h2><div class="price">${fmt(p.price)} <small>mulai</small></div><p>${esc(p.desc)}</p><a class="button button-dark full" href="booking.html?package=${encodeURIComponent(p.id)}">Mulai diskusi ${icon("arrow")}</a><a class="button" style="border-color:#ddd;width:100%" href="portfolio.html#demos">Lihat contoh website ${icon("external")}</a></aside></div>`}
 function renderDemos(){const el=$("#demoGrid");if(!el)return;el.innerHTML=DEMOS.map(d=>`<article class="demo-card" data-category="${esc(d.category)}"><div class="demo-visual"><div class="demo-browser"><div class="demo-bar"><i></i><i></i><i></i><span>${esc(d.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"))}.demo</span></div><div class="demo-screen"><small>${esc(d.category.toUpperCase())} / CONCEPT</small><b>${esc(d.title)}<br><em>${esc(d.em)}</em></b><small>RESPONSIVE · CUSTOMIZABLE · UI CONCEPT</small></div></div></div><div class="port-info"><b>${esc(d.name)}</b><p>${esc(d.desc)}</p><div class="section-actions"><a class="button button-dark small" href="demo.html?id=${encodeURIComponent(d.id)}">Lihat demo ${icon("external")}</a><a class="mini-link" href="booking.html?demo=${encodeURIComponent(d.id)}">Custom</a></div></div></article>`).join("")}
 function renderClients(){const el=$("#clientGrid");if(!el)return;el.innerHTML=CLIENTS.map(c=>`<article class="client-card"><div class="client-preview"><div class="demo-browser"><div class="demo-bar"><i></i><i></i><i></i><span>client-preview</span></div><div class="demo-screen"><small>${esc(c.category.toUpperCase())}</small><b>${esc(c.name.replace("Client Website — ",""))}</b><small>${esc(c.status.toUpperCase())}</small></div></div></div><div class="port-info"><b>${esc(c.name)}</b><span>${esc(c.status)}</span><p>${esc(c.desc)}</p>${c.url!="#"?`<a class="mini-link" href="${esc(c.url)}" rel="noopener">Visit website ↗</a>`:""}</div></article>`).join("")}
 function renderDemoDetail(){const el=$("#demoDetail");if(!el)return;const id=new URLSearchParams(location.search).get("id")||"villa",d=DEMOS.find(x=>x.id===id)||DEMOS[0];el.innerHTML=`<div class="breadcrumb"><a href="portfolio.html#demos">Contoh website</a> / ${esc(d.name)}</div><div class="demo-detail"><div class="demo-detail-browser"><div class="demo-bar"><i></i><i></i><i></i><span>${esc(d.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"))}.demo</span></div><div class="demo-detail-screen"><small>${esc(d.category.toUpperCase())} / DEMO CONCEPT</small><h1>${esc(d.title)}<br><em>${esc(d.em)}</em></h1><p>${esc(d.desc)} Contoh ini dibuat untuk menunjukkan arah visual dan struktur halaman; seluruh konten, warna minor, section, fitur, dan alur dapat disesuaikan.</p><div><a class="button button-dark" href="booking.html?demo=${encodeURIComponent(d.id)}">Custom demo ${icon("arrow")}</a><a class="button" href="portfolio.html#demos">Kembali</a></div></div></div></div>`}
 function initA11y(){if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduced-motion")}
-document.addEventListener("DOMContentLoaded",()=>{initA11y();header();footer();updateCount();renderProducts("#featuredProducts",PRODUCTS.slice(0,3));setupSearch();renderDetail();renderPackageDetail();renderPackages();renderDemos();renderClients();renderDemoDetail();renderCart();renderSummary("#checkoutSummary");setupForms();const pkg=new URLSearchParams(location.search).get("package");if(pkg&&$("#bookingPackage"))$("#bookingPackage").value=pkg});
-window.addCart=addCart;window.removeCart=removeCart;
+document.addEventListener("DOMContentLoaded",()=>{
+ initA11y();header();footer();updateCount();renderProducts("#featuredProducts",PRODUCTS.slice(0,3));
+ setupSearch();renderDetail();renderPackageDetail();renderPackages();renderDemos();renderClients();renderDemoDetail();
+ renderCart();renderSummary("#checkoutSummary");setupCheckoutGuard();setupForms();
+ const pkg=new URLSearchParams(location.search).get("package");if(pkg&&$("#bookingPackage"))$("#bookingPackage").value=pkg;
+ const dateInput=document.querySelector('input[name="date"]');if(dateInput)dateInput.min=new Date().toISOString().slice(0,10);
+});
+window.addCart=addCart;window.removeCart=removeCart;window.changeQty=changeQty;
