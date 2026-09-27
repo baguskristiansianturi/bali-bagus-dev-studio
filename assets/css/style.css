@@ -1892,3 +1892,17 @@ table{
  .collection-sidebar{padding:0 15px!important}
  .collection-sidebar #collectionCategoryList{max-height:300px}
 }
+
+/* WEBSITE COLLECTION — final discovery polish */
+.collection-sidebar .catalog-filter-group label{justify-content:flex-start}
+.collection-sidebar .catalog-filter-group label>span{flex:1;min-width:0}
+.collection-sidebar .filter-count{margin-left:auto;min-width:20px;text-align:right;font:9px "DM Mono",monospace;color:#aaa}
+.collection-sidebar .catalog-filter-group label:has(input:checked) .filter-count{color:#171717}
+.collection-intro-note{display:flex;flex-direction:column;gap:5px;margin-bottom:16px;padding:13px 15px;border:1px solid #e2e2df;background:#fafaf8}
+.collection-intro-note b{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.collection-intro-note span{font-size:10px;line-height:1.6;color:#858580}
+.collection-status-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #ecece8;margin-top:14px;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:#999}
+.collection-status-line b{color:#444;text-align:right;font-weight:600}
+.collection-card .collection-actions{margin-top:13px}
+.collection-card .collection-actions .button{width:100%;justify-content:space-between}
+@media(max-width:800px){.collection-intro-note{margin-top:4px}.collection-status-line{font-size:8.5px}}
