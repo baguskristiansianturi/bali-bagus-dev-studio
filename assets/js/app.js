@@ -380,7 +380,7 @@ function setupProductChoices(){document.addEventListener("click",e=>{const w=e.t
 
 function card(p){
  const planned=p.status==="planned";
- const wished=getWishlist().includes(p.id);
+ const wished=wishlistHas("product",p.id);
  return `<article class="product-card commerce-card ${planned?"is-planned":""}">
    ${art(p)}
    <div class="product-card-body">
@@ -479,6 +479,15 @@ function renderDetail(){
    store.set("reviews_"+p.id,arr);renderDetail();showToast("Review tersimpan di demo lokal.");
  });
 }function buyNow(id){addCart(id);location.href="checkout.html";}
+function renderCollection(){
+ const grid=$("#websiteCollectionGrid");if(!grid)return;
+ const q=($("#collectionSearch")?.value||"").toLowerCase(),cat=$("#collectionCategory")?.value||"All",packageId=new URLSearchParams(location.search).get("package");
+ const list=WEBSITE_COLLECTION.filter(x=>(cat==="All"||x.category===cat)&&(x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&(x.status==="active")&&(!packageId||!x.availablePackages||x.availablePackages.includes(packageId)));
+ grid.innerHTML=list.map(x=>{
+  const wished=wishlistHas("website",x.id),pkg=packageId||((x.availablePackages&&x.availablePackages[0])||"business");
+  return "<article class=\"collection-card\"><div class=\"collection-visual\"><span>"+esc(x.category.toUpperCase())+"</span><b>"+esc(x.name)+"</b><small>"+esc(x.style)+"</small></div><div class=\"collection-info\"><div><span>"+esc(x.category)+"</span><b>"+esc(x.name)+"</b></div><p>"+esc(x.desc)+"</p><div class=\"collection-actions\"><a class=\"button button-dark small\" href=\""+esc(x.demo)+(x.demo.includes("?")?"&":"?")+"package="+encodeURIComponent(pkg)+"\">Experience website "+icon("arrow")+"</a><a class=\"mini-link\" href=\"website-order.html?package="+encodeURIComponent(pkg)+"&template="+encodeURIComponent(x.id)+"\">Pesan</a></div><div class=\"collection-actions\"><button class=\"mini-link button-reset "+(wished?"active":"")+"\" type=\"button\" data-wishlist=\""+esc(x.id)+"\" data-wishlist-kind=\"website\" aria-pressed=\""+wished+"\">♡ Wishlist</button></div></div></article>";
+ }).join("")||"<div class=\"empty-state\">Koleksi untuk kategori ini sedang kami kembangkan. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website "+cat)+"\">Request website kategori ini ↗</a></div>";
+}
 function setupCollection(){
  const s=$("#collectionSearch"),c=$("#collectionCategory");
  if((s||c)?.dataset?.bound)return;
