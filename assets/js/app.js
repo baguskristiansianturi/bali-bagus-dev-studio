@@ -532,7 +532,7 @@ function header(){
    <a class="member-entry" href="${base}account.html"><span class="member-mark">BB</span><span>Member</span><b>${wishlistCount}</b></a>
  </div>
  <div class="header-popover" id="headerLocale" hidden><b>Bahasa & mata uang</b><span>Indonesia · IDR</span><span class="popover-note">Pilihan bahasa dan mata uang produksi akan tersedia saat localization diaktifkan.</span></div>
- <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}products.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>`<a href="${base}${esc(x.url||"products.html")}"><span>${esc(x.name||"Produk")}</span><small>${esc(x.type||"Discovery")}</small></a>`).join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>
+ <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}products.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>
  `;
  const page=location.pathname.split("/").pop()||"index.html";
  const menuToggle=$("#menuToggle"),mainNav=$("#mainNav");
