@@ -632,3 +632,13 @@ img{max-width:100%;height:auto}
 @media(prefers-reduced-motion:reduce){
  .mega-menu,.mega-trigger span{transition:none}
 }
+
+/* V7.2 — compact production rhythm */
+.top-header-row{min-height:60px;padding-block:0}.header-top-actions{gap:18px}.header-utility{font-size:10px;padding:6px 0}.header-signup{font-size:10px}.header-login{min-height:34px;padding:0 13px;font-size:10px}.category-nav-row{min-height:46px}.category-nav{height:46px}.mega-trigger{min-height:46px;padding-inline:14px;font-size:10px}.mega-menu{top:46px}.mega-intro{padding:22px}.mega-intro>b{font-size:20px;margin:18px 0 10px}.mega-links{padding:12px}.mega-links a{min-height:76px;padding:13px}.mega-links b{font-size:11px}.mega-links small{font-size:8.5px}.member-entry{min-height:34px;padding-left:12px;font-size:10px}.member-mark{width:24px;height:24px;font-size:7px}.header-popover{top:59px;padding:15px}
+@media(max-width:980px) and (min-width:801px){.header-top-actions{gap:12px}.mega-trigger{padding-inline:9px;font-size:9px}.mega-menu{top:46px}}
+@media(max-width:800px){.top-header-row{height:62px;min-height:62px}.mobile-toggle{width:42px;height:42px}.category-nav{max-height:calc(100vh - 62px)}.mega-trigger{min-height:50px}.mega-menu{top:auto}.mega-intro{padding:18px}.mega-intro>b{font-size:18px;margin:14px 0 8px}.mega-links a{min-height:60px;padding:11px 10px}.header-popover{top:61px}}
+/* Touch targets are scoped so ordinary text links stay compact. */
+button,a,input,select,textarea{min-height:0}
+button,.button,.header-login,.mobile-toggle,.mega-trigger,input,select,textarea,.article-share button,.article-share a{min-height:44px}
+.header-login,.mobile-toggle{min-height:36px}.mega-trigger{min-height:46px}
+@media(max-width:800px){.mega-trigger{min-height:50px}.mobile-toggle{min-height:42px}}
