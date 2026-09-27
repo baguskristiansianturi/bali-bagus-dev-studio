@@ -516,16 +516,16 @@ function renderCollection(){
  );
  const count=$("#collectionCount");if(count)count.textContent=list.length+" template tersedia";
  grid.innerHTML=list.map(x=>{
-  const wished=wishlistHas("website",x.id),pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"business");
-  return "<article class=\"collection-card\"><div class=\"collection-visual\"><span>"+esc(x.category.toUpperCase())+"</span><b>"+esc(x.name)+"</b><small>"+esc(x.style)+"</small></div><div class=\"collection-info\"><div><span>"+esc(x.category)+"</span><b>"+esc(x.name)+"</b></div><p>"+esc(x.desc)+"</p><div class=\"collection-actions\"><a class=\"button button-dark small\" href=\""+esc(x.demo)+(x.demo.includes("?")?"&":"?")+"package="+encodeURIComponent(pkg)+"\">Experience website "+icon("arrow")+"</a><a class=\"mini-link\" href=\"website-order.html?package="+encodeURIComponent(pkg)+"&template="+encodeURIComponent(x.id)+"\">Pesan</a></div><div class=\"collection-actions\"><button class=\"mini-link button-reset "+(wished?"active":"")+"\" type=\"button\" data-wishlist=\""+esc(x.id)+"\" data-wishlist-kind=\"website\" aria-pressed=\""+wished+"\">♡ Wishlist</button></div></div></article>";
- }).join("")||"<div class=\"empty-state\">Belum ada template untuk kombinasi filter ini. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website")+"\">Request website ↗</a></div>";
+  const pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"business");
+  return "<article class=\"collection-card\"><div class=\"collection-visual\"><span>"+esc(x.category.toUpperCase())+"</span><b>"+esc(x.name)+"</b><small>"+esc(x.style)+"</small></div><div class=\"collection-info\"><div><span>"+esc(x.category)+"</span><b>"+esc(x.name)+"</b></div><p>"+esc(x.desc)+"</p><div class=\"collection-status-line\"><span>Website template</span><b>"+esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name).filter(Boolean).join(" · ")||"Custom")+"</b></div><div class=\"collection-actions\"><a class=\"button button-dark small\" href=\""+esc(x.demo)+(x.demo.includes("?")?"&":"?")+"package="+encodeURIComponent(pkg)+"\">Lihat detail "+icon("arrow")+"</a></div></div></article>";
+}).join("")||"<div class=\"empty-state\">Belum ada template untuk kombinasi filter ini. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website")+"\">Request website ↗</a></div>";
 }
 function setupCollection(){
  const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList");
  if(!s||!categoryList||!packageList)return;
  if(s.dataset.bound)return;s.dataset.bound="true";
  const params=new URLSearchParams(location.search),requested=params.get("category"),requestedPackage=params.get("package");
- categoryList.innerHTML=WEBSITE_CATEGORIES.map(x=>`<label><input type="radio" name="collection-category" value="${esc(x)}" ${(requested&&requested===x)||(!requested&&x==="All")?"checked":""}> ${esc(x==="All"?"Semua website":x)}</label>`).join("");
+ const categoryCounts=WEBSITE_COLLECTION.reduce((m,x)=>{m[x.category]=(m[x.category]||0)+1;return m;},{}); const orderedCategories=["All",...WEBSITE_CATEGORIES.filter(x=>x!=="All").sort((a,b)=>(categoryCounts[b]||0)-(categoryCounts[a]||0)||a.localeCompare(b))]; categoryList.innerHTML=orderedCategories.map(x=>`<label><input type="radio" name="collection-category" value="${esc(x)}" ${(requested&&requested===x)||(!requested&&x==="All")?"checked":""}> <span>${esc(x==="All"?"Semua website":x)}</span><small class="filter-count">${x==="All"?WEBSITE_COLLECTION.length:(categoryCounts[x]||0)}</small></label>`).join("");
  packageList.innerHTML=[{id:"all",name:"Semua paket"},...PACKAGES.map(x=>({id:x.id,name:x.name}))].map(x=>`<label><input type="radio" name="collection-package" value="${esc(x.id)}" ${(requestedPackage===x.id)||(!requestedPackage&&x.id==="all")?"checked":""}> ${esc(x.name)}</label>`).join("");
  s.addEventListener("input",renderCollection);
  categoryList.addEventListener("change",renderCollection);
