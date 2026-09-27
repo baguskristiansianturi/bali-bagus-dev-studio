@@ -400,3 +400,43 @@ body{background:#fff}
 .blog-toolbar{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin:35px 0 18px}.blog-toolbar label{display:block}.blog-toolbar input,.blog-toolbar select{min-height:44px;border:1px solid #d9d9d5;background:#fff;padding:0 14px;font:11px inherit;color:#222;outline:none}.blog-toolbar input{min-width:280px}.blog-toolbar input:focus,.blog-toolbar select:focus{border-color:#171717;box-shadow:0 0 0 3px #17171712}.article-grid>[hidden]{display:none}.blog-empty{border:1px dashed #ccc;padding:25px;color:#777;font-size:12px}.reading-progress{position:fixed;z-index:9999;top:0;left:0;width:100%;height:3px;background:#171717;transform:scaleX(0);transform-origin:left center;pointer-events:none}.article-share a,.article-share button{min-height:40px}.wa-share{display:inline-flex!important;align-items:center;justify-content:center}@media(max-width:650px){.blog-toolbar{display:grid;grid-template-columns:1fr;margin-top:25px}.blog-toolbar input{min-width:0;width:100%}.blog-toolbar select{width:100%}}
 
 .article-tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0}.article-tags span{border:1px solid #ddd;padding:7px 9px;font:8px 'DM Mono';letter-spacing:.08em;color:#777}.author-card{display:grid;grid-template-columns:64px 1fr;gap:18px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:28px 0;margin:55px 0 10px}.author-mark{width:64px;height:64px;display:grid;place-items:center;background:#171717;color:#fff;font:15px 'DM Mono';letter-spacing:.08em}.author-card h3{font-size:20px;margin:7px 0}.author-card p{font-size:11px;line-height:1.75;color:#777;max-width:620px}.author-card a{font-size:10px;color:#171717;text-decoration:none;border-bottom:1px solid #aaa;padding-bottom:2px}@media(max-width:560px){.author-card{grid-template-columns:48px 1fr}.author-mark{width:48px;height:48px}.article-tags{margin-top:10px}}
+
+
+/* Discovery / decision UX — additive layer, existing visual system preserved */
+.catalog-actions{display:flex;justify-content:flex-end;margin:-18px 0 18px}
+.merch-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 30px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.merch-tabs button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:11px 15px;border-radius:999px;font:inherit;cursor:pointer;transition:transform .2s ease,background .2s ease,color .2s ease}
+.merch-tabs button:hover,.merch-tabs button.active{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
+.product-card.is-planned{opacity:.94}
+.product-card.is-planned .art-price{background:var(--paper);color:var(--ink)}
+.product-card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.wishlist-button.active,.compare-button.active{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.button-reset:disabled{opacity:.45;cursor:not-allowed}
+.compare-bar{position:sticky;bottom:16px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;margin:28px 0;background:var(--paper);border:1px solid var(--ink);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.compare-bar>div:first-child{display:flex;gap:12px;align-items:baseline;min-width:0}
+.compare-bar span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.compare-bar>div:last-child{display:flex;gap:8px;flex-shrink:0}
+.compare-intro{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.compare-table-wrap{overflow:auto;border:1px solid var(--line);background:var(--paper)}
+.compare-table{width:100%;min-width:760px;border-collapse:collapse}
+.compare-table th,.compare-table td{padding:17px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:left;vertical-align:top}
+.compare-table thead th{position:sticky;top:0;background:var(--paper);z-index:2}
+.compare-table tbody th{width:150px;background:var(--soft)}
+.compare-table ul{margin:0;padding-left:18px}
+.compare-remove{float:right;border:0;background:transparent;font-size:20px;cursor:pointer;line-height:1}
+.compare-section{padding-top:25px}
+@media(max-width:760px){
+ .catalog-actions{justify-content:flex-start;margin-top:-4px}
+ .merch-tabs{overflow:auto;flex-wrap:nowrap;padding-bottom:14px}
+ .merch-tabs button{white-space:nowrap}
+ .product-card-actions .mini-link{font-size:12px}
+ .compare-bar{align-items:flex-start;flex-direction:column;gap:12px;bottom:8px}
+ .compare-bar>div:first-child{display:block;width:100%}
+ .compare-bar span{display:block;margin-top:3px}
+ .compare-bar>div:last-child{width:100%}
+ .compare-bar .button{flex:1}
+}
+@media(max-width:480px){
+ .product-card-actions{display:grid;grid-template-columns:1fr 1fr}
+ .product-card-actions .mini-link:first-child{grid-column:1/-1}
+}
