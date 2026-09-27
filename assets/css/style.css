@@ -997,3 +997,91 @@ body{overflow-x:hidden}.wrap{max-width:var(--content-max)}
 @media(max-width:800px){.wrap,.article-main{width:calc(100% - 40px)}.page-main{padding-top:52px;padding-bottom:88px}.section{padding-block:72px}.section+.section{padding-top:60px}.section-head{margin-bottom:30px}.section-head .head-aside{max-width:none}.form-layout{gap:28px}.article-main{padding-top:50px;padding-bottom:90px}.article-kicker{gap:8px;margin-top:20px}.article-hero-media{margin-top:32px}.article-layout{grid-template-columns:1fr;gap:32px;margin-top:42px}.toc{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;padding-top:14px}.toc b{grid-column:1/-1}.toc a{padding:9px 0 9px 10px}.article-content{font-size:15.5px}.article-content>p:first-child{font-size:18px}.article-content h2{font-size:28px}.article-grid{gap:14px}}
 @media(max-width:560px){.wrap,.article-main{width:calc(100% - 28px)}.page-main{padding-top:42px;padding-bottom:72px}.section{padding-block:58px}.section+.section{padding-top:46px}.section-head{margin-bottom:25px}.article-main{padding-top:40px;padding-bottom:72px}.article-main>h1{font-size:clamp(38px,12vw,54px);line-height:1.02}.article-main>.lead{font-size:15px;line-height:1.75}.article-kicker{align-items:flex-start}.article-hero-media{margin-top:26px}.article-layout{margin-top:34px}.toc{grid-template-columns:1fr}.article-content{font-size:15px;line-height:1.82}.article-content>p:first-child{font-size:17px}.article-content h2{font-size:25px;margin-top:44px}.article-callout{padding:25px}.article-grid{grid-template-columns:1fr}.article-note{margin-top:42px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+
+/* V9.0 — final visual hierarchy pass
+   Keep approved header/footer structure. Reduce perceived density without removing content. */
+:root{
+  --page-gutter:clamp(16px,4vw,32px);
+  --surface:#fff;
+  --surface-soft:#f7f7f5;
+  --line-soft:#e7e7e3;
+  --ink:#171717;
+  --muted:#70706c;
+}
+html{scroll-padding-top:96px}
+body{color:var(--ink)}
+main.wrap{isolation:isolate}
+
+/* Page titles: stronger hierarchy, less visual noise */
+.page-main>h1{margin-bottom:18px}
+.page-main>.lead{line-height:1.8;color:#696965}
+.page-main>.eyebrow{margin-bottom:14px}
+
+/* Service page: make the three layers read as one journey rather than separate blocks */
+.service-pathways{margin:38px 0 0}
+.service-capability-map{margin:18px 0 0;background:var(--surface-soft);border-color:var(--line-soft)}
+.service-capability-map+.service-detail-grid{margin-top:18px}
+.service-detail-grid{gap:14px}
+.service-detail-grid>article{padding:clamp(22px,3vw,32px)}
+.service-detail-grid>article p{max-width:58ch;line-height:1.75}
+.service-detail-grid>article ul{line-height:1.75}
+.custom-flow-strip{margin-bottom:20px}
+.status-legend{margin-bottom:18px}
+.inline-cta{margin-bottom:0!important}
+
+/* Homepage rhythm: keep the journey compact above the fold, generous below it */
+.hero{padding-top:clamp(52px,6vw,84px);padding-bottom:clamp(62px,7vw,92px)}
+.need-finder-section{padding-top:24px}
+.need-finder-panel{box-shadow:0 14px 40px #17171708}
+.trust-strip+.section{padding-top:clamp(68px,7vw,96px)}
+.bali-section{min-height:0}
+.bali-section .section-head{margin-bottom:0}
+
+/* Articles: establish one unmistakable reading column */
+.article-main>.text-link{display:inline-flex;margin-bottom:4px}
+.article-meta{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);gap:10px;flex-wrap:wrap}
+.article-share{display:flex;gap:8px;align-items:center;margin-left:auto}
+.article-share button,.article-share a,.wa-share{
+  appearance:none;border:1px solid #deded9;background:#fff;color:#333;
+  padding:8px 11px;font:10px/1 'DM Mono',monospace;text-decoration:none;
+  cursor:pointer;transition:background .2s,border-color .2s,transform .2s
+}
+.article-share button:hover,.article-share a:hover,.wa-share:hover{background:#f4f4f1;border-color:#bcbcb5;transform:translateY(-1px)}
+.article-content h2{scroll-margin-top:110px}
+.article-content p{color:#3f3f3c}
+.article-content>p:first-child{color:#292927}
+.article-callout{border:1px solid #dfdfda;background:#f7f7f4}
+.author-card{margin-top:clamp(48px,6vw,68px)}
+.article-recommendations{border-top:1px solid var(--line-soft)}
+.article-grid>a{border:1px solid var(--line-soft);transition:transform .2s,box-shadow .2s,border-color .2s}
+.article-grid>a:hover{transform:translateY(-3px);box-shadow:0 14px 35px #1717170b;border-color:#d0d0ca}
+
+/* Forms / commerce: reduce oversized blocks and improve scanability */
+.form-card,.form-aside{border-color:var(--line-soft)}
+.cart-layout,.checkout-layout{align-items:start}
+.product-card{overflow:hidden}
+.product-card-body{min-height:174px}
+.product-card p{line-height:1.65}
+
+/* Header/footer stay structurally untouched; improve only surrounding focus states */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid #b08a34;outline-offset:3px
+}
+
+/* Mobile: avoid stacked blocks feeling like an endless wall */
+@media(max-width:800px){
+  .service-pathways{margin-top:28px}
+  .service-capability-map{margin-top:14px}
+  .service-detail-grid{gap:10px}
+  .article-meta{align-items:flex-start}
+  .article-share{width:100%;margin-left:0}
+}
+@media(max-width:560px){
+  .hero{padding-top:40px;padding-bottom:54px}
+  .need-finder-section{padding-top:18px}
+  .trust-strip+.section{padding-top:54px}
+  .service-pathways,.service-capability-map{border-left:0;border-right:0}
+  .article-share button,.article-share a,.wa-share{flex:1;text-align:center}
+  .article-content p{margin-bottom:20px}
+}
