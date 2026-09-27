@@ -358,7 +358,7 @@ function toggleWishlist(id,kind="product"){
  const w=getWishlist(),exists=w.some(x=>x.kind===kind&&x.id===id);
  saveWishlist(exists?w.filter(x=>!(x.kind===kind&&x.id===id)):[...w,{kind,id,addedAt:Date.now()}]);
  $$("[data-wishlist=\""+CSS.escape(id)+"\"][data-wishlist-kind=\""+kind+"\"]").forEach(el=>{const on=!exists;el.classList.toggle("active",on);el.setAttribute("aria-pressed",String(on))});
- renderWishlistPage();showToast(!exists?"Disimpan ke wishlist.":"Dihapus dari wishlist.");
+ renderWishlistPage();updateCount();showToast(!exists?"Disimpan ke wishlist.":"Dihapus dari wishlist.");
 }
 function renderWishlistPage(){
  const grid=$("#wishlistGrid"),compare=$("#wishlistCompareGrid"),count=$("#wishlistCount");if(!grid)return;
@@ -524,7 +524,7 @@ function setupAccount(){
  const box=$("#accountState");if(!box||box.dataset.bound)return;if(box)box.dataset.bound="true";
  const a=store.get("account",null);
  if(a){
-   box.innerHTML=`<div class="account-welcome"><span class="eyebrow">ACCOUNT / ACTIVE</span><h2>Halo, ${esc(a.name)}.</h2><p>${esc(a.email)}</p><div class="account-grid"><div><b>Pesanan</b><small>${store.get("orders",[]).length} demo order</small></div><div><b>Review</b><small>Review pelanggan tersedia setelah pembelian</small></div><div><b>Wishlist</b><small>Siap diaktifkan</small></div><div><b>Alamat</b><small>Disimpan di checkout/backend</small></div></div><button id="logoutButton" class="button">Keluar</button></div>`;
+   box.innerHTML=`<div class="account-welcome"><span class="eyebrow">ACCOUNT / ACTIVE</span><h2>Halo, ${esc(a.name)}.</h2><p>${esc(a.email)}</p><div class="account-grid"><div><b>Pesanan</b><small>${store.get("orders",[]).length} demo order</small></div><div><b>Review</b><small>Review pelanggan tersedia setelah pembelian</small></div><div><b>Wishlist</b><small>${getWishlist().length} item tersimpan</small></div><div><b>Alamat</b><small>Disimpan di checkout/backend</small></div></div><button id="logoutButton" class="button">Keluar</button></div>`;
    $("#logoutButton")?.addEventListener("click",()=>{store.set("account",null);location.reload()});
  }else{
    box.innerHTML=`<form id="loginForm" class="form-card account-form"><div class="eyebrow">ACCOUNT / LOGIN</div><h2>Masuk untuk melanjutkan.</h2><p class="tiny">Akun menjadi pusat pesanan, alamat, wishlist, download, dan review setelah sistem produksi terhubung.</p><label>Nama lengkap<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><button class="button button-dark full" type="submit">Masuk / Buat akun</button></form>`;
