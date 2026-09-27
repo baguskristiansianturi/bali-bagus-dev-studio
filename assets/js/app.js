@@ -230,7 +230,25 @@ const EXTRA_PRODUCTS=[
  {id:"seo-kit",name:"Local SEO Content Kit",category:"Digital Product",type:"Content Kit",price:390000,old:0,tag:"SEO",desc:"Template dan struktur konten untuk membantu bisnis lokal menyiapkan fondasi SEO.",features:["Content structure","Local SEO checklist","Article templates","Internal linking guide"],visual:"barber"},
  {id:"barber-pro",name:"Barber Studio Pro",category:"Website",type:"Website Template",price:1190000,old:0,tag:"NEW",desc:"Website barbershop premium dengan layanan, barber profile, gallery dan booking CTA.",features:["Responsive website","Services","Barber profiles","Gallery","Booking CTA"],visual:"barber"},
  {id:"restaurant-pro",name:"Restaurant Atelier",category:"Website",type:"Website Template",price:1390000,old:0,tag:"NEW",desc:"Template restoran dengan menu, story, gallery, location dan reservation CTA.",features:["Menu layout","Gallery","Location","Reservation CTA","Mobile responsive"],visual:"villa"},
- {id:"villa-pro",name:"Villa Retreat",category:"Website",type:"Website Template",price:1590000,old:0,tag:"HOSPITALITY",desc:"Template hospitality dengan room showcase, facilities, gallery dan booking CTA.",features:["Room showcase","Facilities","Gallery","Booking CTA","Responsive layout"],visual:"villa"}
+ {id:"villa-pro",name:"Villa Retreat",category:"Website",type:"Website Template",price:1590000,old:0,tag:"HOSPITALITY",desc:"Template hospitality dengan room showcase, facilities, gallery dan booking CTA.",features:["Room showcase","Facilities","Gallery","Booking CTA","Responsive layout"],visual:"villa"},
+ {id:"car-rental-bali",name:"Bali Car Rental Experience",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep website rental mobil Bali dengan fleet, tarif, inquiry, pickup area dan WhatsApp.",features:["Fleet & pricing","Pickup area","Availability UI","WhatsApp inquiry","Mobile-first flow"],visual:"shop"},
+ {id:"motor-rental-bali",name:"Bali Motorbike Rental",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep rental motor untuk wisatawan dengan katalog motor, durasi sewa, area delivery dan inquiry.",features:["Motor catalog","Rental duration","Delivery area","Terms & FAQ","WhatsApp inquiry"],visual:"barber"},
+ {id:"trolley-rental-bali",name:"Trolley & Mobility Rental",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep layanan sewa trolley dan mobility support untuk hotel, event, venue, dan kebutuhan wisata.",features:["Equipment catalog","Rental schedule","Venue inquiry","Availability UI","Request form"],visual:"villa"},
+ {id:"hotel-bali",name:"Bali Hotel Booking Concept",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep website hotel dengan kamar, fasilitas, promo, lokasi, FAQ dan jalur reservasi.",features:["Room showcase","Facilities","Offers","Location","Reservation CTA"],visual:"villa"},
+ {id:"homestay-bali",name:"Bali Homestay & Guesthouse",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Website penginapan lokal dengan kamar, pengalaman sekitar, aturan menginap dan inquiry.",features:["Room types","Local guide","House rules","Gallery","Inquiry flow"],visual:"villa"},
+ {id:"tour-operator-bali",name:"Bali Tour Operator",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep tour operator untuk paket wisata, itinerary, private tour, group tour dan inquiry.",features:["Tour packages","Itinerary","Private/group options","Inquiry flow","Trust sections"],visual:"shop"},
+ {id:"bali-activities",name:"Bali Activities & Experiences",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep discovery aktivitas Bali seperti snorkeling, rafting, cooking class, spa, cycling dan experience lainnya.",features:["Activity catalog","Filters","Schedule UI","Experience detail","Booking CTA"],visual:"barber"},
+ {id:"airport-transfer-bali",name:"Airport Transfer & Driver",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep transfer bandara dan private driver dengan rute, kendaraan, harga mulai dan inquiry.",features:["Route selector","Vehicle types","Fare estimate UI","Driver inquiry","WhatsApp CTA"],visual:"shop"},
+ {id:"travel-agency-bali",name:"Bali Travel Agency",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Website agen perjalanan dengan paket, transport, hotel, activity dan custom itinerary.",features:["Package catalog","Custom itinerary","Transport options","Hotel/activity cross-sell","Inquiry flow"],visual:"villa"},
+ {id:"cafe-umkm-bali",name:"Bali Cafe & UMKM",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep website untuk cafe, warung, coffee shop, bakery, craft, retail kecil dan UMKM Bali.",features:["Menu/catalog","Location","Story","Promo section","WhatsApp CTA"],visual:"barber"},
+ {id:"restaurant-bali",name:"Bali Restaurant & Dining",category:"Website",type:"Website Template",price:0,old:0,tag:"COMING SOON",status:"planned",desc:"Konsep restoran Bali dengan menu, reservation, private dining, location dan social proof.",features:["Menu","Reservation","Private dining","Gallery","Location"],visual:"villa"},
+ {id:"villa-management",name:"Villa Management System",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan sistem manajemen villa untuk booking, housekeeping, maintenance, occupancy dan reporting.",features:["Booking dashboard","Housekeeping","Maintenance","Occupancy","Reporting"],visual:"villa"},
+ {id:"employee-management",name:"Employee Management System",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan sistem karyawan untuk data staf, attendance, leave, roles, payroll preparation dan reporting.",features:["Employee records","Attendance UI","Leave management","Roles","Reports"],visual:"shop"},
+ {id:"inventory-system",name:"Stock & Inventory Management",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan sistem stok untuk UMKM, retail, hospitality dan bisnis dengan banyak SKU.",features:["Stock dashboard","SKU management","Low-stock alerts","Movement history","Reports"],visual:"shop"},
+ {id:"accounting-system",name:"Accounting & Finance System",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan sistem akuntansi dan keuangan untuk pencatatan transaksi, cashflow, invoice dan laporan.",features:["Transactions","Cashflow","Invoices","Expense tracking","Reports"],visual:"villa"},
+ {id:"pos-bali-fnb",name:"POS & F&B Management",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan POS untuk cafe dan restoran dengan menu, meja, order, kitchen flow dan laporan.",features:["POS","Table management","Kitchen flow","Menu management","Reports"],visual:"barber"},
+ {id:"booking-engine",name:"Booking & Reservation Engine",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan mesin booking untuk hospitality, rental, activity, tour, appointment dan layanan berbasis jadwal.",features:["Availability","Calendar","Booking flow","Customer records","Notifications"],visual:"villa"},
+ {id:"crm-leads",name:"CRM & Lead Management",category:"Software",type:"Business System",price:0,old:0,tag:"PLANNED",status:"planned",desc:"Rancangan CRM untuk menangkap lead, follow-up, pipeline dan histori komunikasi.",features:["Lead inbox","Pipeline","Follow-up","Customer history","Reporting"],visual:"shop"}
 ];
 const PRODUCTS=[...CORE_PRODUCTS,...EXTRA_PRODUCTS];
 const WEBSITE_COLLECTION=[
@@ -271,6 +289,7 @@ function saveCart(c){store.set("cart",normalizeCart(c));updateCount()}
 function updateCount(){const count=getCart().reduce((a,x)=>a+x.qty,0);$$('#cartCount').forEach(e=>e.textContent=count)}
 function addCart(id){
  const p=findProduct(id);if(!p)return;
+ if(p.status==="planned"){showToast("Produk ini belum tersedia. Simpan ke wishlist untuk dibandingkan nanti.");return;}
  const c=getCart(),item=c.find(x=>x.id===id);
  item?item.qty=Math.min(99,item.qty+1):c.push({id,qty:1});
  saveCart(c);showToast(`${p.name} ditambahkan ke keranjang.`);
@@ -300,14 +319,64 @@ function renderProducts(target,list){
  const el=$(target);if(!el)return;
  el.innerHTML=list.length?list.map(card).join(""):`<div class="empty-state">Tidak ada hasil yang sesuai. <a class="text-link" href="contact.html">Minta produk khusus ↗</a></div>`;
 }
+function getWishlist(){const w=store.get("wishlist",[]);return Array.isArray(w)?w.filter(id=>findProduct(id)):[]}
+function saveWishlist(w){store.set("wishlist",[...new Set(w)].slice(0,50));}
+function getCompare(){const w=store.get("compare",[]);return Array.isArray(w)?w.filter(id=>findProduct(id)).slice(0,4):[]}
+function saveCompare(w){store.set("compare",[...new Set(w)].slice(0,4));}
+function renderCompareBar(){
+ const bar=$("#compareBar"),items=getCompare();if(!bar)return;
+ bar.innerHTML=items.length?`<div><b>${items.length} produk dipilih</b><span>${items.map(id=>esc(findProduct(id).name)).join(" · ")}</span></div><div><a class="button button-dark small" href="compare.html">Bandingkan ${items.length}</a><button class="button small" type="button" id="clearCompare">Hapus pilihan</button></div>`:"";
+ bar.hidden=!items.length;
+ $("#clearCompare")?.addEventListener("click",()=>{saveCompare([]);renderCompareBar();$("[data-compare]").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false")})});
+}
+function toggleWishlist(id){
+ const w=getWishlist(),next=w.includes(id)?w.filter(x=>x!==id):[...w,id];saveWishlist(next);
+ $('[data-wishlist="'+CSS.escape(id)+'"]').forEach(b=>{const on=next.includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari wishlist":"Simpan ke wishlist")});
+ showToast(next.includes(id)?"Disimpan ke wishlist.":"Dihapus dari wishlist.");
+}
+function toggleCompare(id){
+ const w=getCompare();
+ if(w.includes(id))saveCompare(w.filter(x=>x!==id));
+ else if(w.length>=4){showToast("Maksimal 4 produk untuk perbandingan.");return;}
+ else saveCompare([...w,id]);
+ renderCompareBar();
+ $('[data-compare="'+CSS.escape(id)+'"]').forEach(b=>{const on=getCompare().includes(id);b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Hapus dari perbandingan":"Bandingkan produk")});
+}
+function setupProductChoices(){
+ document.addEventListener("click",e=>{
+   const w=e.target.closest("[data-wishlist]"),cmp=e.target.closest("[data-compare]");
+   if(w){e.preventDefault();toggleWishlist(w.dataset.wishlist)}
+   if(cmp){e.preventDefault();toggleCompare(cmp.dataset.compare)}
+ });
+ renderCompareBar();
+ const grid=$("#compareGrid");if(grid){
+   const ids=getCompare(),items=ids.map(findProduct).filter(Boolean);
+   grid.innerHTML=items.length?`<div class="compare-table-wrap"><table class="compare-table"><thead><tr><th>Fitur</th>${items.map(p=>`<th>${esc(p.name)}<button class="compare-remove" type="button" data-compare="${esc(p.id)}">×</button></th>`).join("")}</tr></thead><tbody>
+   <tr><th>Status</th>${items.map(p=>`<td>${p.status==="planned"?"BELUM TERSEDIA":"TERSEDIA"}</td>`).join("")}</tr>
+   <tr><th>Kategori</th>${items.map(p=>`<td>${esc(p.category)}</td>`).join("")}</tr>
+   <tr><th>Tipe</th>${items.map(p=>`<td>${esc(p.type)}</td>`).join("")}</tr>
+   <tr><th>Harga</th>${items.map(p=>`<td>${p.status==="planned"?"Akan diumumkan":fmt(p.price)}</td>`).join("")}</tr>
+   <tr><th>Fitur</th>${items.map(p=>`<td><ul>${p.features.slice(0,5).map(f=>`<li>${esc(f)}</li>`).join("")}</ul></td>`).join("")}</tr>
+   </tbody></table></div>`:`<div class="empty-state"><h2>Belum ada produk untuk dibandingkan.</h2><p>Pilih Wishlist atau Bandingkan dari Store agar pilihan Anda mudah dilihat berdampingan.</p><a class="button button-dark" href="products.html">Jelajahi produk ↗</a></div>`;
+ }
+}
+
 function card(p){
- return `<article class="product-card commerce-card">
+ const planned=p.status==="planned";
+ const wished=getWishlist().includes(p.id);
+ const compared=getCompare().includes(p.id);
+ return `<article class="product-card commerce-card ${planned?"is-planned":""}">
    ${art(p)}
    <div class="product-card-body">
     <div class="product-meta">${esc(p.type.toUpperCase())} · ${esc(p.category.toUpperCase())}</div>
     <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
-    <div class="product-card-foot"><span class="product-price">${fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a></div>
-    <div class="product-card-actions"><a class="mini-link" href="product-detail.html?id=${encodeURIComponent(p.id)}">Live / Preview</a><button type="button" class="mini-link button-reset" onclick="addCart('${esc(p.id)}')">Tambah</button></div>
+    <div class="product-card-foot"><span class="product-price">${planned?"BELUM TERSEDIA":fmt(p.price)}</span><a href="product-detail.html?id=${encodeURIComponent(p.id)}">Lihat detail ${icon("arrow")}</a></div>
+    <div class="product-card-actions">
+      <a class="mini-link" href="product-detail.html?id=${encodeURIComponent(p.id)}">Preview</a>
+      <button class="mini-link button-reset wishlist-button ${wished?"active":""}" type="button" aria-label="${wished?"Hapus dari wishlist":"Simpan ke wishlist"}" aria-pressed="${wished}" data-wishlist="${esc(p.id)}">♡ <span>Wishlist</span></button>
+      <button class="mini-link button-reset compare-button ${compared?"active":""}" type="button" aria-label="${compared?"Hapus dari perbandingan":"Bandingkan produk"}" aria-pressed="${compared}" data-compare="${esc(p.id)}">⇄ <span>Bandingkan</span></button>
+      <button type="button" class="mini-link button-reset" ${planned?"disabled":""} onclick="addCart('${esc(p.id)}')">${planned?"Segera":"Tambah"}</button>
+    </div>
    </div>
  </article>`;
 }
@@ -502,7 +571,7 @@ function setupSearch(){
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}}
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded",()=>{setupProductChoices();
  header();
  footer();
  initA11y();
@@ -532,5 +601,5 @@ document.addEventListener("DOMContentLoaded",()=>{
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
 });
-window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;
+window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;window.toggleCompare=toggleCompare;
 
