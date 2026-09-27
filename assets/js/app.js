@@ -84,7 +84,7 @@ const FAQ_DATA=[
  {cat:"SEO",q:"Apakah Bali Bagus Dev menyediakan SEO?",a:"Ya. Layanannya mencakup technical SEO audit, on-page/local SEO structure, keyword/content mapping, measurement, dan improvement plan."},
  {cat:"Blog & Content",q:"Apakah tersedia jasa penulisan Blog?",a:"Ya. Blog & Content mencakup perencanaan topik, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking."},
  {cat:"Launch",q:"Kapan Bali Bagus Dev Studio mulai launching?",a:"Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Status fitur ditampilkan transparan karena sebagian sistem production masih dikembangkan."},
- {cat:"Perusahaan",q:"Siapa founder Bali Bagus Dev Studio?",a:"Founder dan owner Bali Bagus Dev Studio adalah Bagus Kristian Sianturi."}
+ {cat:"Perusahaan",q:"Siapa founder Bali Bagus Dev Studio?",a:"Founder dan owner Bali Bagus Dev Studio adalah Bagus Kristian Sianturi."},
  {cat:"Produk Digital",q:"Apa yang saya dapat setelah membeli produk digital?",a:"Detail file, lisensi, panduan, dan metode delivery mengikuti produk yang dipilih. Halaman produk menjadi sumber informasi utama sebelum pembelian."},
  {cat:"Produk Digital",q:"Apakah semua produk langsung bisa di-download?",a:"Belum tentu. Metode delivery mengikuti tipe produk. Secure digital delivery production akan dihubungkan setelah backend tersedia."},
  {cat:"Website",q:"Apakah domain dan hosting termasuk?",a:"Tergantung paket dan scope. Halaman paket menjelaskan batasannya; kebutuhan domain, hosting, lisensi, dan layanan pihak ketiga dapat dihitung terpisah."},
