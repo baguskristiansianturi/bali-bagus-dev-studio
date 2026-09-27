@@ -474,3 +474,8 @@ body{background:#fff}
 .wishlist-compare-note b{color:var(--ink)}
 .wishlist-comparison-section{padding-top:30px}
 @media(max-width:800px){.wishlist-grid{grid-template-columns:1fr}.wishlist-count{margin-left:0;width:100%;padding-top:8px}.wishlist-item{grid-template-columns:1fr}.wishlist-item-art{min-height:160px}.wishlist-item-actions .button{width:100%}}
+
+.wishlist-toolbar{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:10px;margin:0 0 18px}
+.wishlist-toolbar input,.wishlist-toolbar select{min-height:46px;border:1px solid var(--line);background:var(--paper);padding:0 14px;font:inherit;outline:0}
+.wishlist-toolbar input:focus,.wishlist-toolbar select:focus{border-color:var(--ink);box-shadow:0 0 0 3px #17171712}
+@media(max-width:600px){.wishlist-toolbar{grid-template-columns:1fr}.wishlist-toolbar select{width:100%}}
