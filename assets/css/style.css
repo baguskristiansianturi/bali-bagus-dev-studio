@@ -440,3 +440,16 @@ body{background:#fff}
  .product-card-actions{display:grid;grid-template-columns:1fr 1fr}
  .product-card-actions .mini-link:first-child{grid-column:1/-1}
 }
+
+/* Website collection decision UX */
+.collection-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.collection-actions+.collection-actions{margin-top:12px}
+.collection-actions .button{min-height:42px}
+.collection-actions .mini-link{font-size:11px}
+.website-compare-table td{min-width:180px}
+@media(max-width:650px){
+ .collection-actions{gap:8px}
+ .collection-actions .button{width:100%}
+ .collection-actions .mini-link{padding:8px 0}
+ .website-compare-table{min-width:720px}
+}
