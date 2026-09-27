@@ -402,7 +402,6 @@ function header(){
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
- link.setAttribute("aria-describedby","checkoutNotice");
  link.addEventListener("click",e=>{if(link.dataset.disabled==="true"){e.preventDefault();showToast("Tambahkan produk terlebih dahulu.");return}if(!requireLogin("checkout.html"))e.preventDefault()});
 }
 function setupAccount(){
