@@ -215,7 +215,7 @@ function renderPackageExperience(){
  </section>
  <section class="section package-upgrade-block">
   <div class="section-head"><div><div class="eyebrow">03 / UPGRADE PATH</div><h2>Mulai sederhana, <em>naik saat bisnis siap.</em></h2><p>Anda tidak harus langsung membangun website besar. Struktur paket disiapkan agar website dapat berkembang ketika kebutuhan bertambah.</p></div></div>
-  <div class="upgrade-grid">${upgrades.map((u,i)=>`<a class="upgrade-card" href="${u[3]}"><span>0${i+1} / UPGRADE</span><b>${esc(u[0])}</b><strong>${esc(u[1])}</strong><small>${esc(u[2])}</small><p>${esc(u[3])}</p><i>Lihat detail paket ↗</i></a>`).join("")}</div>
+  <div class="upgrade-grid">${upgrades.map((u,i)=>`<a class="upgrade-card" href="${u[4]}"><span>0${i+1} / UPGRADE</span><b>${esc(u[0])}</b><strong>${esc(u[1])}</strong><small>${esc(u[2])}</small><p>${esc(u[3])}</p><i>Lihat detail paket ↗</i></a>`).join("")}</div>
  </section>
  ${isStarter?`<section id="business-comparison" class="section package-compare-detail">
   <div class="section-head"><div><div class="eyebrow">04 / NEXT LEVEL</div><h2>Starter vs <em>Business.</em></h2><p>Business disiapkan sebagai tahap berikutnya ketika satu halaman sudah tidak cukup untuk menjelaskan bisnis, layanan dan informasi penting secara terpisah.</p></div><a class="text-link" href="website-package.html?id=business">Buka konsep Business ↗</a></div>
