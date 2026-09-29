@@ -2290,3 +2290,36 @@ body:not(.checkout-page) #siteFooter{
   .hero-art{inset:58px 12px 12px}
 }
 @media(prefers-reduced-motion:reduce){.hero{background-attachment:scroll}}
+
+/* V2.2.4 — Global standard-page hero/title bands. Forms and checkout stay compact. */
+.page-main{
+  width:100%;
+  max-width:none;
+  margin:0;
+  overflow:clip;
+  background:#fff;
+}
+.page-main::before,
+.page-main::after{
+  width:100vw!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+}
+.page-main > .wrap,
+.page-main > .container{
+  width:min(var(--max),calc(100% - 64px));
+  max-width:var(--max);
+  margin-inline:auto;
+}
+@media(max-width:800px){
+  .page-main > .wrap,
+  .page-main > .container{
+    width:calc(100% - 32px);
+  }
+}
+/* Transactional/form pages are intentionally not turned into large visual hero bands. */
+body.checkout-page .page-main,
+body.form-page .page-main,
+body.booking-page .page-main{
+  background:#fff;
+}
