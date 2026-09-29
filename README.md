@@ -49,7 +49,7 @@ This is still a frontend build until backend, payment, email/CRM, secure deliver
 Never treat localStorage payment/order status as real payment status.
 
 ## Current checkpoint
-V2.2 — experience expansion on the original V2.1 visual foundation. Production authentication, payment, shipping APIs, WhatsApp automation and real-time reviews remain backend work. Backend remains deferred until frontend launch readiness is accepted.
+V2.2.1 — shell reliability and UI hierarchy refinement on the original V2.1 visual foundation. Production authentication, payment, shipping APIs, WhatsApp automation and real-time reviews remain backend work. Backend remains deferred until frontend launch readiness is accepted.
 
 ## Recommended next version
 V2.2 — visual QA and production-content refinement, then V3 — backend architecture and production integrations:
@@ -106,3 +106,13 @@ The static frontend intentionally does not pretend these production systems are 
 
 ### V2.2 production boundary
 The frontend remains a prototype until real authentication, server-side orders, payment verification, secure delivery, production forms/CRM, analytics and final legal/security QA are connected. No fake transactions or unsupported commercial claims were added.
+
+
+### V2.2.1 — shell and UI reliability pass
+**Date:** 2026-09-29
+
+- Added a defensive shared-shell fallback so standard pages retain navigation and footer even if a runtime renderer encounters an error.
+- Kept checkout focus mode intact; checkout remains intentionally standalone.
+- Increased inner-page H1 hierarchy and strengthened the page-title background with a restrained editorial/technology frame.
+- Tightened homepage Build / Buy / Grow card icon-to-title spacing.
+- No backend, payment, authentication or production transaction behavior was introduced.
