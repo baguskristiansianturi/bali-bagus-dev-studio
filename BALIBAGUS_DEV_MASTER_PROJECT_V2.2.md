@@ -276,3 +276,26 @@ Complete the remaining V2.2 launch-clarity work without changing the vanilla arc
 - [IMPLEMENTED] Transactional/form/checkout pages remain compact and are not forced into the same large hero treatment.
 - [IMPLEMENTED] Responsive content widths are preserved for mobile.
 - [PARTIALLY IMPLEMENTED] Rendered browser verification remains the final check because repository tooling cannot visually render the page at target viewport sizes.
+
+
+## 16. V2.2.6 P0 clarity and navigation pass
+
+**Date:** 2026-09-29
+
+### Audit checklist
+- **P0:** positioning clarity, homepage hero, Need Finder destinations, primary navigation, package integrity, unsupported popularity emphasis.
+- **P1:** deeper rendered browser/device QA and full link crawl.
+- **P2:** production backend, authentication, payment verification, analytics, automated visual regression.
+
+### Implemented
+- Hero copy now answers what the studio provides and directs users to the next action.
+- Primary navigation is now Build / Templates / Solutions / Work / Insights / About, with Konsultasi as the primary CTA.
+- Existing utility access remains available: language/currency, Blog, Bantuan, Baru dilihat, Mendaftar, Masuk/Akun.
+- Need Finder retains all seven required paths; online selling now points to the explicit Web & Commerce capability section.
+- Package names and existing prices are preserved.
+- Removed the Business package featured flag from presentation logic so the UI does not imply popularity without measured evidence.
+
+### Not changed
+- Existing visual identity and vanilla HTML/CSS/JS architecture.
+- Existing product, cart, wishlist, booking and prototype localStorage boundaries.
+- Backend/payment/authentication production scope.
