@@ -2323,3 +2323,43 @@ body.form-page .page-main,
 body.booking-page .page-main{
   background:#fff;
 }
+
+
+/* V2.2.5 — Full-width header background, constrained page content.
+   The page shell remains a .wrap; only the visual header band escapes to the viewport. */
+main.page-main.wrap{
+  width:min(var(--max),calc(100% - 64px));
+  max-width:var(--max);
+  margin-inline:auto;
+  overflow:visible;
+  background:transparent;
+}
+main.page-main.wrap::before,
+main.page-main.wrap::after{
+  left:50%!important;
+  right:auto!important;
+  width:100vw!important;
+  transform:translateX(-50%)!important;
+  pointer-events:none;
+}
+main.page-main.wrap::before{
+  top:0;
+  height:410px!important;
+}
+main.page-main.wrap::after{
+  top:0;
+  height:410px!important;
+}
+body.form-page main.page-main.wrap::before,
+body.form-page main.page-main.wrap::after,
+body.booking-page main.page-main.wrap::before,
+body.booking-page main.page-main.wrap::after,
+body.checkout-page main.page-main.wrap::before,
+body.checkout-page main.page-main.wrap::after{
+  display:none!important;
+}
+@media(max-width:800px){
+  main.page-main.wrap{
+    width:calc(100% - 32px);
+  }
+}
