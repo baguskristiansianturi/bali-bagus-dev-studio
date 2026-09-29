@@ -337,7 +337,7 @@ const EXTRA_PRODUCTS=[
 const PRODUCTS=[...CORE_PRODUCTS,...EXTRA_PRODUCTS];
 const WEBSITE_COLLECTION=[
  {id:"car-rental-starter-001",category:"Car Rental",name:"Bali Bagus Car Rental",badge:"TERBARU",premium:true,elegant:true,style:"One Page / Fleet / WhatsApp",desc:"Produk Starter pertama: website rental mobil Bali satu halaman dengan fleet, harga mulai, airport transfer, private driver dan booking via WhatsApp.",demo:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/",status:"active",availablePackages:["starter"]},
- {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",badge:"TERLARIS",premium:true,style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
+ {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",badge:"BARBERSHOP",premium:true,style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
  {id:"barber-002",category:"Barbershop",name:"Barber House",badge:"PREMIUM",premium:true,elegant:true,style:"Premium / Appointment",desc:"Editorial presentation for a premium barber brand.",demo:"demo.html?template=barber-002",status:"active",availablePackages:["starter","business"]},
  {id:"barber-003",category:"Barbershop",name:"Classic Barber",style:"Classic / Local",desc:"Straightforward local-first barbershop experience.",demo:"demo.html?template=barber-003",status:"active",availablePackages:["starter","business"]},
  {id:"villa-001",category:"Villa",name:"Villa Retreat",badge:"ELEGAN",premium:true,elegant:true,style:"Hospitality / Booking",desc:"A visual-first hospitality experience.",demo:"demo.html?template=villa-001",status:"active",availablePackages:["business","growth"]},
@@ -587,7 +587,6 @@ function renderCollection(){
    x.status==="active"&&["starter","business","growth","commerce"].some(id=>x.availablePackages?.includes(id))
  );
  const list=[...base].sort((a,b)=>{
-   if(mode==="bestseller")return (b.badge==="TERLARIS")-(a.badge==="TERLARIS")||collectionRank(b)-collectionRank(a);
    if(mode==="new")return (b.badge==="TERBARU")-(a.badge==="TERBARU")||collectionRank(b)-collectionRank(a);
    if(mode==="premium")return Number(b.premium)-Number(a.premium)||collectionRank(b)-collectionRank(a);
    if(mode==="elegant")return Number(b.elegant)-Number(a.elegant)||collectionRank(b)-collectionRank(a);
