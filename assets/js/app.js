@@ -604,17 +604,19 @@ function renderCollection(){
   const packageData=PACKAGES.find(p=>p.id===pkg);
   return `<article class="collection-card">
    <div class="collection-visual">
-    <span>${esc(x.category.toUpperCase())}</span>
-    <b>${esc(x.name)}</b>
-    <small>${esc(x.style)}</small>
+    <div class="collection-visual-top"><span class="collection-index">0${i+1}</span><span class="collection-category-label">${esc(x.category.toUpperCase())}</span></div>
+    <div class="collection-preview-frame">
+      <div class="collection-browser"><i></i><i></i><i></i><span>BB / ${esc(x.category)}</span></div>
+      <div class="collection-preview-copy"><small>${esc(x.style)}</small><b>${esc(x.name)}</b><em>Digital experience / responsive</em></div>
+    </div>
     <div class="collection-badges">${badges.map(b=>`<i>${esc(b)}</i>`).join("")}</div>
    </div>
    <div class="collection-info">
-    <div><span>${esc(x.category)}</span><b>${esc(x.name)}</b></div>
+    <div class="collection-title-row"><div><span>${esc(x.category)}</span><h3>${esc(x.name)}</h3></div><span class="collection-status">READY</span></div>
     <p>${esc(x.desc)}</p>
-    <div class="collection-spec-strip"><span>PAKET</span><b>${esc(packageData?.name||"Custom")}</b><span>RESPONSIVE</span><b>DESKTOP · MOBILE</b></div>
-    <div class="collection-status-line"><span>Website template</span><b>${esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name).filter(Boolean).join(" · ")||"Custom")}</b></div>
-    <div class="collection-actions"><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Preview website ${icon("arrow")}</a><a class="mini-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Lihat spesifikasi ${icon("arrow")}</a></div>
+    <div class="collection-tags"><span>${esc(x.style)}</span><span>Responsive</span><span>${esc(packageData?.name||"Custom")}</span></div>
+    <div class="collection-card-bottom"><div><small>STARTING FROM</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Lihat demo ${icon("arrow")}</a></div>
+    <a class="collection-spec-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Lihat spesifikasi paket <span>↗</span></a>
    </div>
   </article>`;
  }).join("")||`<div class="empty-state"><h2>Belum ada website untuk filter ini.</h2><p>Coba kategori atau paket lain, atau minta kami menyiapkan website baru.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
