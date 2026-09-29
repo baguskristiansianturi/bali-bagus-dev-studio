@@ -3,7 +3,7 @@
 */
 const CORE_PRODUCTS=[
 {id:"bali-car-rental-starter",name:"Bali Bagus Car Rental — One Page",category:"Starter",type:"Website Starter",price:1250000,old:0,tag:"STARTER · NEW",desc:"Website rental mobil Bali satu halaman dengan hero, 6 pilihan mobil, galeri foto, kontak, alamat, FAQ, dan booking langsung via WhatsApp.",features:["1 halaman responsive","6 fleet cards & starting price","Photo gallery","Contact + address section","Direct WhatsApp CTA","FAQ & mobile-first layout"],visual:"shop",status:"available",url:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/"},
-{id:"barber",name:"Barbershop Website Kit",category:"Business",type:"Website Template",price:790000,old:1190000,tag:"BESTSELLER",desc:"Template barbershop modern dengan halaman layanan, galeri, booking CTA, dan struktur responsif.",features:["Responsive desktop & mobile","Homepage, layanan, galeri, kontak","Struktur SEO dasar","Panduan instalasi","Opsi kustomisasi"],visual:"barber"},
+{id:"barber",name:"Barbershop Website Kit",category:"Business",type:"Website Template",price:790000,old:1190000,tag:"BARBER SPECIAL",desc:"Template barbershop modern dengan halaman layanan, galeri, booking CTA, dan struktur responsif.",features:["Responsive desktop & mobile","Homepage, layanan, galeri, kontak","Struktur SEO dasar","Panduan instalasi","Opsi kustomisasi"],visual:"barber"},
 {id:"villa",name:"Hospitality & Villa Template",category:"Hospitality",type:"Website Template",price:1250000,old:1590000,tag:"NEW",desc:"Konsep website villa dan hospitality dengan galeri, fasilitas, pengalaman menginap, dan CTA reservasi.",features:["Responsive desktop & mobile","Halaman kamar dan fasilitas","Galeri & CTA reservasi","Struktur SEO dasar","Demo konsep"],visual:"villa"},
 {id:"commerce",name:"Commerce Launch Kit",category:"Commerce",type:"E-commerce UI Kit",price:990000,old:0,tag:"DIGITAL KIT",desc:"Fondasi storefront untuk brand retail yang ingin menampilkan katalog secara profesional.",features:["Product listing UI","Product detail UI","Cart & checkout UI concept","Responsive components","UI customization"],visual:"shop"},
 {id:"blogger",name:"Editorial Blogger Template",category:"Blogger",type:"Blogger Template",price:350000,old:0,tag:"BLOGGER",desc:"Template editorial untuk blog bisnis, dan konten edukasi dengan tata letak yang rapi.",features:["Layout artikel & kategori","Responsive design","Widget-ready concept","Typography system","Panduan pemasangan"],visual:"shop"},
@@ -422,7 +422,7 @@ function renderHomeMerchandising(){
  const data={
   featured:allProducts().filter(p=>p.status!=="planned").slice(0,6),
   new:allProducts().filter(p=>/NEW|HOSPITALITY/.test(p.tag)&&p.status!=="planned").slice(0,6),
-  launch:allProducts().filter(p=>/NEW|BESTSELLER|QUICK START/.test(p.tag)&&p.status!=="planned").slice(0,6),
+  launch:allProducts().filter(p=>/NEW|BARBER SPECIAL|QUICK START/.test(p.tag)&&p.status!=="planned").slice(0,6),
   promo:allProducts().filter(p=>p.old&&p.price&&p.old>p.price).sort((a,b)=>(b.old-b.price)-(a.old-a.price)).slice(0,6),
   soon:allProducts().filter(p=>p.status==="planned").slice(0,6)
  };
