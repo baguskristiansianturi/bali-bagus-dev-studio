@@ -812,6 +812,7 @@ function setupAnalytics(){
   const el=e.target.closest("[data-track]");if(el){trackEvent(el.dataset.track,{id:el.dataset.trackId||undefined,label:(el.textContent||"").trim().slice(0,100)});return;}
   const a=e.target.closest("a");if(!a)return;
   const href=a.getAttribute("href")||"";
+  if(a.closest(".hero-actions"))trackEvent("hero_cta_click",{label:(a.textContent||"").trim().slice(0,100)});
   if(href.includes("booking.html"))trackEvent("consultation_click");
   else if(href.includes("product-detail.html"))trackEvent("template_click",{id:new URL(a.href,location.href).searchParams.get("id")||undefined});
   else if(href.includes("portfolio.html")||href.includes("demo.html"))trackEvent("demo_click");
