@@ -125,3 +125,14 @@ The frontend remains a prototype until real authentication, server-side orders, 
 - Increased inner-page H1 hierarchy and strengthened the page-title background with a restrained editorial/technology frame.
 - Tightened homepage Build / Buy / Grow card icon-to-title spacing.
 - No backend, payment, authentication or production transaction behavior was introduced.
+
+
+### V2.2.3 — full-width hero refinement
+**Date:** 2026-09-29
+
+- Homepage hero background now spans the full viewport width.
+- Reused the existing lightweight hero SVG with a readability overlay.
+- Reduced hero vertical footprint so the first viewport is more commercial and compact rather than excessively tall.
+- Added responsive adjustments for desktop, tablet and mobile while preserving the current layout architecture.
+
+Rendered browser QA remains the final launch-gate step because repository tooling cannot visually render 375/390/768/1024/1440 viewports.
