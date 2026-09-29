@@ -51,8 +51,17 @@ Never treat localStorage payment/order status as real payment status.
 ## Current checkpoint
 V2.2.1 — shell reliability and UI hierarchy refinement on the original V2.1 visual foundation. Production authentication, payment, shipping APIs, WhatsApp automation and real-time reviews remain backend work. Backend remains deferred until frontend launch readiness is accepted.
 
+## V2.2.2 checkpoint — 2026-09-29
+- Refined homepage conversion path with direct hero CTAs, website package preview, process, and factual value propositions.
+- Reworked service capability map into Build / Grow / Support plus Discovery entry point.
+- Clarified consultation journey from discovery through scope, quotation, and development without implying automatic project conversion.
+- Improved package cards with explicit intended audience/problem, inclusions, scope, and starting price.
+- Reorganized shared footer into Build / Products / Grow / Company / Legal.
+- Removed unsupported popularity labels/sorting such as Bestseller/Terlaris from catalog UI.
+- Fixed a JavaScript syntax defect in the website collection renderer and re-verified app.js parses successfully.
+
 ## Recommended next version
-V2.2 — visual QA and production-content refinement, then V3 — backend architecture and production integrations:
+V2.3 — final rendered browser/device QA and launch gate, then V3 — backend architecture and production integrations:
 - database
 - admin
 - products/packages CRUD
