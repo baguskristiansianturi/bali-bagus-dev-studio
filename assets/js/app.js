@@ -797,7 +797,32 @@ function setupReadyUseMap(){document.querySelectorAll("[data-ready-filter]").for
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}const tocLinks=[...document.querySelectorAll(".toc a[href^='#']")];const sections=tocLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);if(tocLinks.length&&sections.length){const sync=()=>{let active=0;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<=140)active=i});tocLinks.forEach((a,i)=>a.classList.toggle("is-active",i===active))};addEventListener("scroll",sync,{passive:true});sync()}}
 
-function trackEvent(name,details={}){\n const payload={event:name,timestamp:new Date().toISOString(),page:location.pathname,...details};\n try{if(Array.isArray(window.dataLayer))window.dataLayer.push(payload);else{window.BB_EVENT_QUEUE=window.BB_EVENT_QUEUE||[];window.BB_EVENT_QUEUE.push(payload);}}catch(error){console.warn("BB analytics event skipped",error)}\n}\nfunction setupAnalytics(){\n if(document.body.dataset.analyticsBound)return;document.body.dataset.analyticsBound="true";\n const path=location.pathname.toLowerCase();\n if(path.endsWith("booking.html"))trackEvent("booking_start");\n if(path.endsWith("checkout.html"))trackEvent("checkout_start");\n if(path.endsWith("services.html"))trackEvent("service_view");\n if(path.endsWith("product-detail.html"))trackEvent("product_view");\n document.addEventListener("click",e=>{\n  const el=e.target.closest("[data-track]");if(el){trackEvent(el.dataset.track,{id:el.dataset.trackId||undefined,label:(el.textContent||"").trim().slice(0,100)});return;}\n  const a=e.target.closest("a");if(!a)return;\n  const href=a.getAttribute("href")||"";\n  if(href.includes("booking.html"))trackEvent("consultation_click");\n  else if(href.includes("product-detail.html"))trackEvent("template_click",{id:new URL(a.href,location.href).searchParams.get("id")||undefined});\n  else if(href.includes("portfolio.html")||href.includes("demo.html"))trackEvent("demo_click");\n  else if(href.includes("services.html#"))trackEvent("service_view",{target:href.split("#")[1]});\n  else if(href.includes("wa.me/"))trackEvent("whatsapp_click");\n  if(a.closest("#needFinderOptions,.need-finder-options"))trackEvent("need_finder_select",{label:(a.textContent||"").trim().slice(0,100)});\n  if(a.closest(".package-card,.package-grid,.packages-grid"))trackEvent("package_click",{label:(a.textContent||"").trim().slice(0,100)});\n });\n const bf=document.querySelector("#bookingForm");if(bf)bf.addEventListener("submit",()=>trackEvent("booking_submit"));\n}\nfunction ensureSharedShell(){
+function trackEvent(name,details={}){
+ const payload={event:name,timestamp:new Date().toISOString(),page:location.pathname,...details};
+ try{if(Array.isArray(window.dataLayer))window.dataLayer.push(payload);else{window.BB_EVENT_QUEUE=window.BB_EVENT_QUEUE||[];window.BB_EVENT_QUEUE.push(payload);}}catch(error){console.warn("BB analytics event skipped",error)}
+}
+function setupAnalytics(){
+ if(document.body.dataset.analyticsBound)return;document.body.dataset.analyticsBound="true";
+ const path=location.pathname.toLowerCase();
+ if(path.endsWith("booking.html"))trackEvent("booking_start");
+ if(path.endsWith("checkout.html"))trackEvent("checkout_start");
+ if(path.endsWith("services.html"))trackEvent("service_view");
+ if(path.endsWith("product-detail.html"))trackEvent("product_view");
+ document.addEventListener("click",e=>{
+  const el=e.target.closest("[data-track]");if(el){trackEvent(el.dataset.track,{id:el.dataset.trackId||undefined,label:(el.textContent||"").trim().slice(0,100)});return;}
+  const a=e.target.closest("a");if(!a)return;
+  const href=a.getAttribute("href")||"";
+  if(href.includes("booking.html"))trackEvent("consultation_click");
+  else if(href.includes("product-detail.html"))trackEvent("template_click",{id:new URL(a.href,location.href).searchParams.get("id")||undefined});
+  else if(href.includes("portfolio.html")||href.includes("demo.html"))trackEvent("demo_click");
+  else if(href.includes("services.html#"))trackEvent("service_view",{target:href.split("#")[1]});
+  else if(href.includes("wa.me/"))trackEvent("whatsapp_click");
+  if(a.closest("#needFinderOptions,.need-finder-options"))trackEvent("need_finder_select",{label:(a.textContent||"").trim().slice(0,100)});
+  if(a.closest(".package-card,.package-grid,.packages-grid"))trackEvent("package_click",{label:(a.textContent||"").trim().slice(0,100)});
+ });
+ const bf=document.querySelector("#bookingForm");if(bf)bf.addEventListener("submit",()=>trackEvent("booking_submit"));
+}
+function ensureSharedShell(){
  const headerEl=document.querySelector(".site-header");
  if(!headerEl){
    const h=document.createElement("header");h.className="site-header";h.setAttribute("aria-label","Navigasi utama");
