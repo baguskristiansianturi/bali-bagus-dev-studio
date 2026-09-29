@@ -704,7 +704,7 @@ function setupWizards(){
    [...progress.children].forEach((dot,i)=>dot.classList.toggle("active",i<=current));
    stepText.textContent="Langkah "+(current+1)+" dari "+groups.length+" · "+(cfg.titles[current]||"Detail");
    back.hidden=current===0; next.hidden=current===groups.length-1;
-   if(submit)submit.style.display=current===groups.length-1?"":"none";
+   if(submit){submit.style.display=current===groups.length-1?"":"none";if(!submit.dataset.wizardClick){submit.dataset.wizardClick="1";submit.addEventListener("click",()=>{groups.flat().forEach(el=>setRequired(el,true));});}}
   };
   const validCurrent=()=>groups[current].every(el=>{const fields=[...el.querySelectorAll("input,select,textarea")];return fields.every(f=>f.reportValidity())});
   back.addEventListener("click",()=>{if(current>0){current--;render();form.scrollIntoView({behavior:"smooth",block:"start"})}});
