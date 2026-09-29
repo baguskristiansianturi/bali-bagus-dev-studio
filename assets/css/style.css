@@ -2438,3 +2438,36 @@ body.checkout-page main.page-main.wrap::after{
 @media(max-width:1050px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.collection-package-context>div:first-child{grid-template-columns:1fr}.collection-package-specs{max-width:520px}}
 @media(max-width:760px){.collection-filter-head{display:block}.collection-filter-head>p{margin-top:10px}.collection-filter-row{grid-template-columns:1fr;gap:8px}.collection-filter-label{padding-top:0}.collection-control-bar{display:block!important}.collection-tools{margin-top:12px}.collection-search{width:100%}.collection-tools select{flex:0 0 145px}.collection-grid{grid-template-columns:1fr!important}.collection-visual{height:250px!important}.collection-package-context{margin-top:25px!important}}
 @media(max-width:520px){.collection-explorer{margin-top:35px}.collection-filter-head h2{font-size:27px}.collection-filter-options{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.collection-filter-options::-webkit-scrollbar{display:none}.collection-filter-options label{flex:0 0 auto}.collection-package-specs{grid-template-columns:1fr 1fr}.collection-tools{width:100%}.collection-search{flex:1}.collection-tools select{min-width:132px}.collection-card-footer .button{padding-inline:10px}}
+
+/* COLLECTION LAYOUT FIX — sidebar + 3 cards */
+.collection-explorer{margin-top:48px}
+.collection-filter-head{display:block;margin-bottom:22px}
+.collection-filter-head>p{margin-top:9px;max-width:620px}
+.collection-filter-panel{display:none!important}
+.collection-explorer{display:grid;grid-template-columns:220px minmax(0,1fr);gap:34px;align-items:start}
+.collection-filter-head{grid-column:1/-1}
+.collection-filter-head+ .collection-filter-panel{display:none!important}
+.collection-results{grid-column:2;grid-row:2;min-width:0}
+.collection-results:before{content:"FILTER COLLECTION";display:block;font:8px 'DM Mono';letter-spacing:.12em;color:#999;margin:0 0 12px}
+.collection-filter-head:after{content:""}
+.collection-results .collection-control-bar{margin-bottom:8px!important}
+.collection-explorer:before{content:"";grid-column:1;grid-row:2;display:block}
+.collection-explorer .collection-filter-head{position:relative}
+.collection-explorer .collection-filter-head:before{content:"KATEGORI";position:absolute;left:0;top:76px;font:8px 'DM Mono';letter-spacing:.12em;color:#999}
+.collection-explorer .collection-filter-head:after{content:"";position:absolute;left:0;top:99px;width:220px;height:1px;background:#171717}
+.collection-explorer .collection-filter-head{margin-bottom:0;padding-bottom:0}
+.collection-explorer .collection-results{position:relative}
+/* use the existing filter panel as the left sidebar */
+.collection-explorer .collection-filter-panel{display:block!important;position:absolute;left:0;top:112px;width:220px;border:0;margin:0;padding:0}
+.collection-explorer .collection-filter-panel .collection-filter-row{display:block;padding:0;border:0}
+.collection-explorer .collection-filter-panel .collection-package-row{border-top:1px solid #e5e5e2;margin-top:20px;padding-top:18px}
+.collection-explorer .collection-filter-panel .collection-filter-label{display:none}
+.collection-explorer .collection-filter-panel .collection-filter-options{display:block;max-height:560px;overflow:auto;padding-right:4px}
+.collection-explorer .collection-filter-panel .collection-package-row .collection-filter-options{max-height:none}
+.collection-explorer .collection-filter-panel label{display:flex!important;width:100%!important;border:0!important;background:transparent!important;border-radius:0!important;padding:9px 8px!important;margin:1px 0!important;color:#666!important;box-shadow:none!important}
+.collection-explorer .collection-filter-panel label:hover{background:#f5f5f2!important;color:#171717!important}
+.collection-explorer .collection-filter-panel label:has(input:checked){background:#171717!important;color:#fff!important}
+.collection-explorer .collection-filter-panel label span{flex:1}
+.collection-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important}
+@media(max-width:1100px){.collection-explorer{grid-template-columns:190px minmax(0,1fr);gap:24px}.collection-explorer .collection-filter-panel{width:190px}.collection-explorer .collection-filter-head:after{width:190px}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){.collection-explorer{display:block}.collection-explorer .collection-filter-panel{position:static;width:auto;display:block!important;margin:0 0 24px;padding:0}.collection-explorer .collection-filter-head:before,.collection-explorer .collection-filter-head:after{display:none}.collection-explorer .collection-filter-panel .collection-filter-options{display:flex;max-height:none;overflow-x:auto;overflow-y:hidden}.collection-explorer .collection-filter-panel label{width:auto!important;flex:0 0 auto!important}.collection-explorer .collection-filter-panel .collection-package-row{margin-top:14px;padding-top:14px}.collection-results{width:100%}.collection-grid{grid-template-columns:1fr!important}}
