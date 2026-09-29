@@ -394,7 +394,7 @@ function addCart(id){
  if(p.status==="planned"){showToast("Produk ini belum tersedia. Simpan ke wishlist untuk dibandingkan nanti.");return;}
  const c=getCart(),item=c.find(x=>x.id===id);
  item?item.qty=Math.min(99,item.qty+1):c.push({id,qty:1});
- saveCart(c);showToast(`${p.name} ditambahkan ke keranjang.`);
+ saveCart(c);trackEvent("add_to_cart",{id:p.id,label:p.name});showToast(`${p.name} ditambahkan ke keranjang.`);
 }
 function changeQty(id,delta){
  const c=getCart(),item=c.find(x=>x.id===id);if(!item)return;
@@ -776,6 +776,7 @@ function setupForms(){
    const cart=getCart();
    if(!cart.length&&!isWebsite){$("#checkoutResult").innerHTML='<span class="form-status">Keranjang kosong.</span>';return}
    const data=Object.fromEntries(new FormData(co));
+   trackEvent("checkout_submit",{type:isWebsite?"website":"digital"});
    const websiteOrder=isWebsite?store.get("websiteOrder",null):null;
    const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"demo",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
    const orders=store.get("orders",[]);orders.push(order);store.set("orders",orders);if(!isWebsite)saveCart([]);
