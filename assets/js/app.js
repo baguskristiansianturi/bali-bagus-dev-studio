@@ -17,7 +17,7 @@ const PACKAGES=[
 {id:"growth",name:"Growth",price:5500000,tag:"CONTENT & LEADS",desc:"Untuk content dan lead generation. Website yang siap dikembangkan dengan blog, landing pages, dan fondasi pengukuran.",scope:"Hingga 8 halaman",time:"± 10–16 hari kerja",features:["Hingga 8 halaman","Blog / article structure","SEO technical foundation","Analytics & conversion events","Lead form flow","4x revisi tampilan"]},
 {id:"commerce",name:"Commerce",price:8500000,tag:"ONLINE SELLING",desc:"Untuk online selling. Fondasi toko online dengan katalog, keranjang, checkout, dan integrasi pembayaran sesuai kebutuhan.",scope:"E-commerce",time:"± 14–25 hari kerja",features:["Katalog & detail produk","Cart & checkout flow","Payment gateway integration*","Order flow","Basic admin integration*","Testing & handover"],note:"*Biaya gateway, hosting, domain, plugin, dan layanan pihak ketiga dapat terpisah."},
 {id:"custom",name:"Custom Web App",price:15000000,tag:"CUSTOM WORKFLOW",desc:"Untuk workflow khusus. Aplikasi web dengan alur pengguna, dashboard, dan integrasi yang dirancang berdasarkan kebutuhan bisnis.",scope:"Custom scope",time:"± 21–40 hari kerja",features:["Requirement mapping","User flow & dashboard","Authentication / roles sesuai scope","API integration sesuai scope","Testing & documentation","Deployment assistance"]},
-{id:"system",name:"Business System",price:27000000,tag:"MULTI-ROLE OPERATIONS",desc:"Untuk operasional multi-role. Sistem web kompleks dengan modul, role, data, dan integrasi yang lebih luas.,scope:"Full custom",time:"± 30–60+ hari kerja",features:["Discovery & system architecture","Multi-role workflow","Dashboard & reporting","API / third-party integration","QA & acceptance testing","Deployment & handover"],note:"Harga awal. Estimasi final ditetapkan setelah scope, integrasi, dan kebutuhan infrastruktur disepakati."}
+{id:"system",name:"Business System",price:27000000,tag:"MULTI-ROLE OPERATIONS",desc:"Untuk operasional multi-role. Sistem web kompleks dengan modul, role, data, dan integrasi yang lebih luas.",scope:"Full custom",time:"± 30–60+ hari kerja",features:["Discovery & system architecture","Multi-role workflow","Dashboard & reporting","API / third-party integration","QA & acceptance testing","Deployment & handover"],note:"Harga awal. Estimasi final ditetapkan setelah scope, integrasi, dan kebutuhan infrastruktur disepakati."}
 ];
 
 const DEMOS=[
@@ -73,11 +73,11 @@ function footer(){
      <a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a>
     </div>
    </div>
-   <div class="footer-col"><b>SOLUSI</b><a href="${base}services.html#website">Website</a><a href="${base}services.html#website">E-commerce</a><a href="${base}services.html#app">Applications</a><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#automation">Automation</a><a href="${base}services.html#care">Maintenance</a></div>
-   <div class="footer-col"><b>PRODUK</b><a href="${base}products.html?q=website">Templates</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html">Digital Tools</a><a href="${base}products.html">Resources</a></div>
-   <div class="footer-col"><b>INDUSTRI</b><a href="${base}website-category/villa.html">Hospitality</a><a href="${base}website-category/car-rental.html">Travel</a><a href="${base}website-category/restaurant.html">F&B</a><a href="${base}website-collection.html">Retail</a><a href="${base}website-category/villa.html">Property</a><a href="${base}website-collection.html">Professional Services</a></div>
-   <div class="footer-col"><b>STUDIO</b><a href="${base}about.html">Tentang Studio</a><a href="${base}portfolio.html">Portfolio</a><a href="${base}services.html">Proses Kerja</a><a href="${base}articles.html">Insight</a><a href="${base}contact.html">Kontak</a><a href="${base}faq.html">FAQ</a></div>
-   <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Syarat & Ketentuan</a><a href="${base}privacy.html">Privasi</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">Lisensi</a></div>
+   <div class="footer-col"><b>BUILD</b><a href="${base}services.html#website">Website & E-commerce</a><a href="${base}services.html#app">Web Apps & Systems</a><a href="${base}services.html#strategy">Discovery & Strategy</a></div>
+   <div class="footer-col"><b>PRODUCTS</b><a href="${base}products.html?q=website">Website Templates</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html?q=landing">Landing Pages</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html">Digital Products</a></div>
+   <div class="footer-col"><b>GROW</b><a href="${base}services.html#seo">SEO & Local Search</a><a href="${base}services.html#content">Content</a><a href="${base}services.html#copy">Copywriting</a><a href="${base}services.html#conversion">Conversion</a><a href="${base}services.html#ads">Google Ads</a><a href="${base}services.html#care">Maintenance</a></div>
+   <div class="footer-col"><b>COMPANY</b><a href="${base}about.html">About</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}contact.html">Contact</a><a href="${base}faq.html">FAQ</a></div>
+   <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">License</a></div>
   </div>
   <div class="footer-pay">
    <span>METODE PEMBAYARAN</span>
@@ -160,7 +160,21 @@ function setupReviewSlider(){
  let i=0;const draw=()=>{const r=REVIEWS[i];track.innerHTML='<article class="review-card"><span>'+esc(r.meta)+'</span><blockquote>“'+esc(r.text)+'”</blockquote><b>'+esc(r.name)+'</b><small>'+esc(r.role)+'</small></article>';if(count)count.textContent=(i+1)+" / "+REVIEWS.length};prev?.addEventListener("click",()=>{i=(i-1+REVIEWS.length)%REVIEWS.length;draw()});next?.addEventListener("click",()=>{i=(i+1)%REVIEWS.length;draw()});draw();
 }
 
-function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-collection.html?package=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
+function renderPackages(target="#packagesGrid",limit=6){
+ const el=$(target);if(!el)return;
+ const labels={starter:"Online presence sederhana",business:"Company profile & service business",growth:"Content & lead generation",commerce:"Online selling",custom:"Workflow khusus",system:"Operasional multi-role"};
+ const problems={starter:"Belum punya fondasi online yang rapi.",business:"Butuh company profile yang lebih lengkap dan meyakinkan.",growth:"Sudah punya website dan ingin membangun content serta leads.",commerce:"Ingin menampilkan katalog dan menyiapkan alur penjualan online.",custom:"Kebutuhan bisnis tidak cocok dengan website standar.",system:"Operasional membutuhkan alur multi-role, data, dan integrasi khusus."};
+ el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">
+   <div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3>
+   <div class="package-fit"><span>UNTUK</span><b>${esc(labels[p.id]||p.tag)}</b><small>${esc(problems[p.id]||"Scope disusun berdasarkan kebutuhan bisnis.")}</small></div>
+   <p>${esc(p.desc)}</p>
+   <div class="package-price">${fmt(p.price)} <small>mulai</small></div>
+   <div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div>
+   <div class="package-includes"><span>TERMASUK</span><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul></div>
+   <a class="button ${p.featured?"button-dark":""}" href="website-collection.html?package=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>
+   ${p.note?`<div class="package-note"><b>Catatan:</b> ${esc(p.note)}</div>`:""}
+ </article>`).join("");
+}
 function renderPackageExperience(){
  const el=$("#packageExperience");if(!el)return;
  const id=new URLSearchParams(location.search).get("id")||"starter";
