@@ -596,30 +596,28 @@ function renderCollection(){
  const count=$("#collectionCount");if(count)count.textContent=list.length+" website tersedia";
  const activePkg=packageId==="all"?"Semua paket":(PACKAGES.find(p=>p.id===packageId)?.name||packageId);
  const modeLabel={recommended:"Rekomendasi",new:"Terbaru",premium:"Premium",elegant:"Elegan",az:"A–Z"}[mode]||"Rekomendasi";
- const state=document.querySelector("#collectionState");
+ const state=$("#collectionState");
  if(state)state.innerHTML=`<b>${esc(modeLabel)}</b><span>${esc(activePkg)} · ${esc(cat==="All"?"Semua kategori":cat)}</span>`;
  grid.innerHTML=list.map((x,i)=>{
   const pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"business");
-  const badges=[x.badge,x.premium?"PREMIUM":null].filter(Boolean).slice(0,2);
   const packageData=PACKAGES.find(p=>p.id===pkg);
+  const badges=[x.badge,x.premium?"PREMIUM":null].filter(Boolean).slice(0,2);
   return `<article class="collection-card">
-   <div class="collection-visual">
-    <div class="collection-visual-top"><span class="collection-index">0${i+1}</span><span class="collection-category-label">${esc(x.category.toUpperCase())}</span></div>
-    <div class="collection-preview-frame">
-      <div class="collection-browser"><i></i><i></i><i></i><span>BB / ${esc(x.category)}</span></div>
-      <div class="collection-preview-copy"><small>${esc(x.style)}</small><b>${esc(x.name)}</b><em>Digital experience / responsive</em></div>
-    </div>
-    <div class="collection-badges">${badges.map(b=>`<i>${esc(b)}</i>`).join("")}</div>
-   </div>
+   <a class="collection-visual" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}" aria-label="Lihat demo ${esc(x.name)}">
+    <div class="collection-visual-head"><span>0${String(i+1).padStart(2,"0")}</span><span>${esc(x.category.toUpperCase())}</span></div>
+    <div class="collection-art"><span class="collection-art-kicker">${esc(x.style)}</span><strong>${esc(x.name)}</strong><i></i><small>Responsive website</small></div>
+    <div class="collection-badges">${badges.map(b=>`<b>${esc(b)}</b>`).join("")}</div>
+    <span class="collection-preview-link">Preview ↗</span>
+   </a>
    <div class="collection-info">
-    <div class="collection-title-row"><div><span>${esc(x.category)}</span><h3>${esc(x.name)}</h3></div><span class="collection-status">READY</span></div>
+    <div class="collection-title-row"><div><span>${esc(x.category)}</span><h3>${esc(x.name)}</h3></div><span class="collection-ready">READY</span></div>
     <p>${esc(x.desc)}</p>
-    <div class="collection-tags"><span>${esc(x.style)}</span><span>Responsive</span><span>${esc(packageData?.name||"Custom")}</span></div>
-    <div class="collection-card-bottom"><div><small>STARTING FROM</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Lihat demo ${icon("arrow")}</a></div>
-    <a class="collection-spec-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Lihat spesifikasi paket <span>↗</span></a>
+    <div class="collection-tags"><span>${esc(x.style.split(" / ")[0]||x.style)}</span><span>Responsive</span><span>${esc(packageData?.name||"Custom")}</span></div>
+    <div class="collection-card-footer"><div><small>MULAI DARI</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Lihat demo ${icon("arrow")}</a></div>
+    <a class="collection-spec-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Spesifikasi paket <span>↗</span></a>
    </div>
   </article>`;
- }).join("")||`<div class="empty-state"><h2>Belum ada website untuk filter ini.</h2><p>Coba kategori atau paket lain, atau minta kami menyiapkan website baru.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
+ }).join("")||`<div class="empty-state"><h2>Belum ada website untuk filter ini.</h2><p>Coba kategori atau paket lain.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
 }
 function setupCollection(){
  const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList");
