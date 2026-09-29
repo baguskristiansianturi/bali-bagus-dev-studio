@@ -90,3 +90,19 @@ The frontend uses `window.BB_WHATSAPP_NUMBER` when available. Replace the fallba
 - Real social links, contact details and payment methods
 
 The static frontend intentionally does not pretend these production systems are already live.
+
+
+## V2.2 — UX/UI, business clarity and conversion refinement
+**Date:** 2026-09-29
+
+- Hardened the shared header/footer shell so standard pages retain the same navigation and footer structure.
+- Added a stronger, cleaner page-title frame with distinct editorial/technology background treatment and larger page H1 hierarchy.
+- Tightened homepage Build / Buy / Grow card rhythm so icon → title → copy reads as one visual group.
+- Reworked homepage decision support into a seven-option Need Finder with direct destinations.
+- Repositioned website packages with descriptive, non-popularity labels.
+- Simplified the visible navigation terminology toward Templates / Build / Solutions / Work / Insights & About while preserving existing destinations.
+- Preserved the vanilla HTML/CSS/JavaScript architecture and existing prototype/localStorage behavior.
+- Added BALIBAGUS_DEV_MASTER_PROJECT_V2.2.md as a new historical checkpoint; V2 and V2.1 remain unchanged.
+
+### V2.2 production boundary
+The frontend remains a prototype until real authentication, server-side orders, payment verification, secure delivery, production forms/CRM, analytics and final legal/security QA are connected. No fake transactions or unsupported commercial claims were added.
