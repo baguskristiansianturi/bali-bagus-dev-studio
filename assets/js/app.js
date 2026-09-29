@@ -571,7 +571,7 @@ function renderDetail(){
  });
 }function buyNow(id){addCart(id);location.href="checkout.html";}
 function collectionRank(x){
- const score=(x.badge==="TERLARIS"?100:0)+(x.badge==="TERBARU"?80:0)+(x.premium?40:0)+(x.elegant?30:0);
+ const score=(x.badge==="TERBARU"?80:0)+(x.premium?40:0)+(x.elegant?30:0);
  return score;
 }
 function renderCollection(){
@@ -595,7 +595,7 @@ function renderCollection(){
  });
  const count=$("#collectionCount");if(count)count.textContent=list.length+" website tersedia";
  const activePkg=packageId==="all"?"Semua paket":(PACKAGES.find(p=>p.id===packageId)?.name||packageId);
- const modeLabel={recommended:"Rekomendasi",bestseller:"Terlaris",new:"Terbaru",premium:"Premium",elegant:"Elegan",az:"A–Z"}[mode]||"Rekomendasi";
+ const modeLabel={recommended:"Rekomendasi",new:"Terbaru",premium:"Premium",elegant:"Elegan",az:"A–Z"}[mode]||"Rekomendasi";
  const state=document.querySelector("#collectionState");
  if(state)state.innerHTML=`<b>${esc(modeLabel)}</b><span>${esc(activePkg)} · ${esc(cat==="All"?"Semua kategori":cat)}</span>`;
  grid.innerHTML=list.map((x,i)=>{
