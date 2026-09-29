@@ -570,7 +570,7 @@ function renderCollection(){
    (cat==="All"||x.category===cat)&&
    (packageId==="all"||x.availablePackages?.includes(packageId))&&
    (x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&
-   x.status==="active"
+   x.status==="active"&&["starter","business","growth","commerce"].some(id=>x.availablePackages?.includes(id))
  );
  const list=[...base].sort((a,b)=>{
    if(mode==="bestseller")return (b.badge==="TERLARIS")-(a.badge==="TERLARIS")||collectionRank(b)-collectionRank(a);
