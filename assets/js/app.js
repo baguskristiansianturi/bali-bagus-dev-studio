@@ -577,7 +577,7 @@ function collectionRank(x){
 function renderCollection(){
  const grid=$("#websiteCollectionGrid");if(!grid)return;
  const q=($("#collectionSearch")?.value||"").toLowerCase().trim();
- const cat=document.querySelector('input[name="collection-category"]:checked')?.value||"All";
+ const cat=document.querySelector("#collectionCategoryList [data-category].is-active")?.dataset.category||"All";
  const packageId=document.querySelector('input[name="collection-package"]:checked')?.value||"all";
  const mode=$("#collectionSort")?.value||"recommended";
  const base=WEBSITE_COLLECTION.filter(x=>
@@ -620,19 +620,23 @@ function renderCollection(){
  }).join("")||`<div class="empty-state"><h2>Belum ada website untuk filter ini.</h2><p>Coba kategori atau paket lain.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
 }
 function setupCollection(){
- const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList");
+ const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList"),reset=$("#collectionReset");
  if(!s||!categoryList||!packageList)return;
  if(s.dataset.bound)return;s.dataset.bound="true";
- const params=new URLSearchParams(location.search),requested=params.get("category"),requestedPackage=params.get("package");
+ const params=new URLSearchParams(location.search),requested=params.get("category")||"All",requestedPackage=params.get("package")||"all";
  const ctx=$("#collectionPackageContext"),selectedPackage=PACKAGES.find(p=>p.id===requestedPackage);
  if(ctx)ctx.innerHTML=selectedPackage?`<div><span class="eyebrow">${esc(selectedPackage.tag)} / PACKAGE SCOPE</span><h2>${esc(selectedPackage.name)} <em>${fmt(selectedPackage.price)} mulai</em></h2><p>${esc(selectedPackage.desc)}</p></div><div class="collection-package-specs"><b>${esc(selectedPackage.scope)}</b><span>${esc(selectedPackage.time)}</span>${selectedPackage.features.slice(0,5).map(f=>`<span>✓ ${esc(f)}</span>`).join("")}</div>`:`<div><span class="eyebrow">ALL WEBSITES / READY-TO-USE</span><h2>Seluruh koleksi website <em>yang tersedia.</em></h2><p>Pilih kategori bisnis atau style, lalu buka preview website yang paling dekat dengan kebutuhan Anda.</p></div><div class="collection-package-specs"><b>${WEBSITE_COLLECTION.filter(x=>x.status==="active"&&["starter","business","growth","commerce"].some(id=>x.availablePackages?.includes(id))).length} website</b><span>Semua kategori</span><span>Desktop · Tablet · Mobile</span><span>Preview tersedia</span></div>`;
-
  const readyWebsites=WEBSITE_COLLECTION.filter(x=>x.status==="active"&&["starter","business","growth","commerce"].some(id=>x.availablePackages?.includes(id)));
- const categoryCounts=readyWebsites.reduce((m,x)=>{m[x.category]=(m[x.category]||0)+1;return m;},{}); const orderedCategories=["All",...WEBSITE_CATEGORIES.filter(x=>x!=="All"&&categoryCounts[x]).sort((a,b)=>(categoryCounts[b]||0)-(categoryCounts[a]||0)||a.localeCompare(b))]; categoryList.innerHTML=orderedCategories.map(x=>`<label><input type="radio" name="collection-category" value="${esc(x)}" ${(requested&&requested===x)||(!requested&&x==="All")?"checked":""}> <span>${esc(x==="All"?"Semua website":x)}</span><small class="filter-count">${x==="All"?readyWebsites.length:(categoryCounts[x]||0)}</small></label>`).join("");
- packageList.innerHTML=[{id:"all",name:"Semua paket"},...PACKAGES.filter(x=>["starter","business","growth","commerce"].includes(x.id)).map(x=>({id:x.id,name:x.name}))].map(x=>`<label><input type="radio" name="collection-package" value="${esc(x.id)}" ${(requestedPackage===x.id)||(!requestedPackage&&x.id==="all")?"checked":""}> ${esc(x.name)}</label>`).join("");
- s.addEventListener("input",renderCollection);
- categoryList.addEventListener("change",renderCollection);
+ const categoryCounts=readyWebsites.reduce((m,x)=>{m[x.category]=(m[x.category]||0)+1;return m;},{});
+ const groups={"Hospitality":["Villa","Hotel","Homestay","Resort","Guesthouse"],"Food & Beverage":["Restaurant","Cafe","Bakery","Food & Beverage","UMKM"],"Beauty & Wellness":["Barbershop","Salon","Spa","Beauty & Personal Care","Fitness"],"Travel & Mobility":["Travel","Tour Operator","Activities","Car Rental","Motorbike Rental","Airport Transfer","Private Driver","Trolley Rental","Boat Rental"],"Business & Professional":["Company Profile","Corporate","Agency","Consultant","Law Firm","Accounting & Finance","Construction","Contractor","Architecture","Interior Design","Workshop","Automotive"],"Health & Education":["Clinic","Dental Clinic","Medical","Pharmacy","Education","School","Course & Training","University"],"Property & Real Estate":["Property","Real Estate","Apartment","Real Estate Agency","Real Estate Development","Villa Management"],"Creative & Technology":["Photography","Videography","Creative Studio","Startup","SaaS","Technology","Software"],"Systems & Operations":["Employee Management","Inventory","Accounting","POS & F&B","Booking System","CRM","Dashboard","Marketplace","Membership"],"Services & Local Business":["Retail","E-commerce","Event Organizer","Wedding","Community","Nonprofit","Professional Services","Logistics","Cleaning Service","Laundry","Pet Care","Agriculture"]};
+ const visibleGroups=Object.entries(groups).map(([name,cats])=>[name,cats.filter(cat=>categoryCounts[cat])]).filter(([,cats])=>cats.length);
+ categoryList.innerHTML=`<button class="collection-category-all${requested==="All"?" is-active":""}" type="button" data-category="All"><span>Semua website</span><small>${readyWebsites.length}</small></button>`+visibleGroups.map(([name,cats])=>`<details class="collection-category-group"${cats.some(cat=>cat===requested)?" open":""}><summary><span>${esc(name)}</span><b>${cats.reduce((n,cat)=>n+(categoryCounts[cat]||0),0)}</b></summary><div class="collection-category-items">${cats.map(cat=>`<button type="button" class="collection-category-item${cat===requested?" is-active":""}" data-category="${esc(cat)}"><span>${esc(cat)}</span><small>${categoryCounts[cat]||0}</small></button>`).join("")}</div></details>`).join("");
+ const packageOptions=[{id:"all",name:"Semua paket"},...PACKAGES.filter(x=>["starter","business","growth","commerce"].includes(x.id)).map(x=>({id:x.id,name:x.name}))];
+ packageList.innerHTML=packageOptions.map(x=>`<option value="${esc(x.id)}"${requestedPackage===x.id?" selected":""}>${esc(x.name)}</option>`).join("");
+ categoryList.addEventListener("click",e=>{const button=e.target.closest("[data-category]");if(!button)return;categoryList.querySelectorAll("[data-category]").forEach(el=>el.classList.remove("is-active"));button.classList.add("is-active");renderCollection();});
  packageList.addEventListener("change",renderCollection);
+ reset?.addEventListener("click",()=>{const all=categoryList.querySelector('[data-category="All"]');categoryList.querySelectorAll("[data-category]").forEach(el=>el.classList.remove("is-active"));all?.classList.add("is-active");packageList.value="all";s.value="";categoryList.querySelectorAll("details").forEach(d=>d.open=false);renderCollection();});
+ s.addEventListener("input",renderCollection);
  renderCollection();
 }
 function renderShellFallback(){
