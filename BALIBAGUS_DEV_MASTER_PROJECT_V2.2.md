@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-29  
 **Baseline:** V2.1 frontend hardening checkpoint  
-**Status:** V2.2 refinement implemented; backend remains deferred.
+**Status:** V2.2.1 refinement implemented; backend remains deferred.
 
 ## 1. Objective
 
@@ -12,8 +12,8 @@ V2.2 refines the existing Bali Bagus Dev Studio frontend without replacing its v
 
 | Area | Existing | Problem / risk | V2.2 action | File |
 |---|---|---|---|---|
-| Shared shell | Header/footer placeholders + JS renderer | Pages must reliably retain the same shell | Added shell guard and visibility hardening | assets/js/app.js, assets/css/style.css |
-| Page titles | Large editorial H1 with background pseudo-element | Hierarchy/background could be stronger and more distinct | Enlarged H1 and upgraded title frame treatment | assets/css/style.css, assets/js/app.js |
+| Shared shell | Header/footer placeholders + JS renderer | Runtime errors could leave standard-page shell empty | Added defensive shell fallback + visibility hardening | assets/js/app.js, assets/css/style.css |
+| Page titles | Large editorial H1 with background pseudo-element | Hierarchy/background could be stronger and more distinct | Enlarged H1 further and upgraded title frame treatment | assets/css/style.css |
 | Homepage path | Ready-to-Use / Custom / Consultation | Did not express Build / Buy / Grow clearly | Replaced with Build / Buy / Grow | index.html |
 | Need Finder | 5 broad choices | Did not cover the requested decision paths | Expanded to 7 direct choices | index.html |
 | Package labels | Included qualitative wording such as “Paling Fleksibel” | Could imply popularity without measured data | Changed to descriptive positioning labels | assets/js/app.js |
@@ -180,3 +180,23 @@ Production systems remain outside V2.2 by design.
 ## 16. Next phase
 
 V2.3 should be a final frontend QA/launch gate with a real browser/device test matrix, followed by V3 backend integration only after the frontend is accepted.
+
+
+## 17. V2.2.1 reliability addendum
+
+**Date:** 2026-09-29
+
+### Shell
+- [IMPLEMENTED] Added a defensive fallback renderer for the shared header and footer.
+- [IMPLEMENTED] Standard pages now recover the shared shell if the dynamic renderer throws or leaves the target empty.
+- [IMPLEMENTED] Checkout focus mode remains excluded from the normal shell.
+
+### UI
+- [IMPLEMENTED] Inner-page titles are now larger, bolder and visually separated from content by a restrained professional gradient/grid frame.
+- [IMPLEMENTED] Homepage Build / Buy / Grow cards use a tighter icon → title → description rhythm.
+- [IMPLEMENTED] Existing black/white/soft-grey visual identity is preserved.
+
+### Verification
+- [IMPLEMENTED] Re-fetched the modified app.js and style.css after writes.
+- [IMPLEMENTED] Verified the fallback function and final CSS block exist in the GitHub main branch.
+- [PARTIALLY IMPLEMENTED] Rendered-browser visual verification remains unavailable in the repository tool environment.
