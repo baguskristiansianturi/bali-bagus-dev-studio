@@ -299,3 +299,39 @@ Complete the remaining V2.2 launch-clarity work without changing the vanilla arc
 - Existing visual identity and vanilla HTML/CSS/JS architecture.
 - Existing product, cart, wishlist, booking and prototype localStorage boundaries.
 - Backend/payment/authentication production scope.
+
+
+## V2.2.7 — Consultation / Demo / Analytics / Trust pass
+**Date:** 2026-09-29
+
+### Requirement matrix
+| Area | Existing | Problem | Change | File | Status |
+|---|---|---|---|---|---|
+| Consultation | Rp350.000 / 60 min existed | Positioning could be more explicit | Added **60-Minute Digital Discovery**, six discovery topics, and the full Discovery → Requirement Summary → Recommended Solution → Scope & Quotation → Development flow | booking.html | [IMPLEMENTED] |
+| Demo | Concept/client separation existed | Demo cards did not expose enough decision context | Added business type, design direction, user goal, UX features and example pages; explicit concept disclaimer | assets/js/app.js, portfolio.html | [IMPLEMENTED] |
+| Client work | Empty client collection with permission policy | Needed clearer separation from concepts | Renamed section to CLIENT PROJECT and kept publication-permission rule | portfolio.html | [IMPLEMENTED] |
+| Trust | Factual Why section and no fake reviews | Needed explicit trust language | Preserved business-first, clear scope, transparent starting prices, direct communication and scalable approach; no fabricated proof added | index.html, portfolio.html | [IMPLEMENTED] |
+| CTA | Existing CTA hierarchy | Event architecture was absent | Added semantic event hooks for primary conversion paths | assets/js/app.js | [IMPLEMENTED] |
+| Analytics | No production analytics provider | Cannot safely send production events yet | Added provider-agnostic event queue/dataLayer seam; no fake purchase event | assets/js/app.js | [IMPLEMENTED / PRODUCTION PROVIDER BLOCKED] |
+| Cart / checkout | localStorage prototype | Need measurable interaction without claiming purchase | Added add_to_cart and checkout_submit instrumentation; purchase remains intentionally absent | assets/js/app.js | [IMPLEMENTED] |
+| SEO | Canonical/OG/Twitter/robots/sitemap baseline existed | No evidence required a blind rewrite | Re-audited; no thin pages or unsupported schema added | index.html, services.html, robots.txt, sitemap.xml | [REVIEWED] |
+| Industry architecture | Existing category/solution pages | Avoid thin SEO pages | Existing meaningful category architecture retained; no placeholder SEO pages created | website-category/*, sitemap.xml | [IMPLEMENTED / NO NEW THIN PAGES] |
+| Mobile/accessibility/performance | Existing responsive/a11y CSS and vanilla JS | Rendered browser matrix unavailable | Source-level review retained; real 375/390/768/1024/1440 browser QA remains launch-gate | assets/css/style.css, assets/js/app.js | [PARTIALLY IMPLEMENTED / BLOCKED BY TOOLING] |
+| Forms / states / links | Existing validation and prototype states | Need final click-through in real browser | Source audit + explicit analytics hooks; real-browser interaction crawl remains pending | assets/js/app.js, *.html | [PARTIALLY IMPLEMENTED] |
+
+### Consultation positioning
+The consultation is explicitly a **60-Minute Digital Discovery** for business goal mapping, audience discussion, requirement discovery, priority mapping, recommended solution, and next-step direction. It does **not** promise that the session becomes a development project.
+
+### Demo / collection rule
+Concepts are labeled as CONCEPT / DEMO. Client work is a separate CLIENT PROJECT area and requires permission before publication. No client, testimonial, logo, result, statistic, or case study was invented.
+
+### Analytics production boundary
+The frontend now exposes these event names where the relevant interaction exists: hero_cta_click, need_finder_select, package_click, template_click, demo_click, consultation_click, service_view, booking_start, booking_submit, whatsapp_click, product_view, add_to_cart, checkout_start, checkout_submit. purchase is intentionally not emitted because the current checkout is still a localStorage/demo prototype. A production analytics provider and consent implementation remain V3 work.
+
+### Verification / limitations
+- [IMPLEMENTED] Re-fetched the changed app.js, booking.html and portfolio.html from main after writes.
+- [IMPLEMENTED] Existing Rp350.000 consultation price confirmed in repository and retained.
+- [IMPLEMENTED] Existing no-fake-client/review policy confirmed.
+- [IMPLEMENTED] No production payment/auth/database behavior added.
+- [PARTIALLY IMPLEMENTED] Rendered browser/device verification at 375/390/768/1024/1440 is still unavailable in the repository tooling environment.
+- [BLOCKED] Real production analytics events, purchase tracking, secure order confirmation and payment completion remain blocked until backend/payment/analytics infrastructure exists.
