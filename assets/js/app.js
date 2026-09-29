@@ -769,6 +769,31 @@ function setupReadyUseMap(){document.querySelectorAll("[data-ready-filter]").for
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}const tocLinks=[...document.querySelectorAll(".toc a[href^='#']")];const sections=tocLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);if(tocLinks.length&&sections.length){const sync=()=>{let active=0;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<=140)active=i});tocLinks.forEach((a,i)=>a.classList.toggle("is-active",i===active))};addEventListener("scroll",sync,{passive:true});sync()}}
 
+function ensureSharedShell(){
+ const headerEl=document.querySelector(".site-header");
+ if(!headerEl){
+   const h=document.createElement("header");h.className="site-header";h.setAttribute("aria-label","Navigasi utama");
+   document.body.insertBefore(h,document.body.firstElementChild||null);
+ }
+ let footerEl=document.querySelector("#siteFooter");
+ if(!footerEl){
+   footerEl=document.createElement("footer");footerEl.id="siteFooter";
+   document.body.appendChild(footerEl);
+ }
+}
+function decoratePageHeading(){
+ const main=document.querySelector("main.page-main");
+ if(!main||main.dataset.headingDecorated)return;
+ const eyebrow=main.querySelector(":scope > .eyebrow");
+ const title=main.querySelector(":scope > h1");
+ const lead=main.querySelector(":scope > .lead");
+ if(!eyebrow||!title)return;
+ const frame=document.createElement("div");
+ frame.className="page-title-frame";
+ [eyebrow,title,lead].filter(Boolean).forEach(el=>frame.appendChild(el));
+ main.insertBefore(frame,main.firstChild);
+ main.dataset.headingDecorated="true";
+}
 function setupWizards(){
  const configs={bookingForm:{sizes:[3,4,4,99],titles:["Kontak","Kebutuhan","Rencana","Konfirmasi"]},websiteOrderForm:{sizes:[4,3,99],titles:["Pilihan & kontak","Bisnis","Brief & konfirmasi"]},contactForm:{sizes:[2,2,99],titles:["Kontak","Pesan"]}};
  Object.entries(configs).forEach(([id,cfg])=>{
@@ -821,8 +846,10 @@ function ensureSharedChrome(){
  }catch(error){console.error("BB footer retry error",error)}
 }
 document.addEventListener("DOMContentLoaded",()=>{
+ try{ensureSharedShell();}catch(error){console.error("BB shell error",error)}
  try{header();}catch(error){console.error("BB header error",error)}
  try{footer();}catch(error){console.error("BB footer error",error)}
+ try{decoratePageHeading();}catch(error){console.error("BB page title error",error)}
  requestAnimationFrame(ensureSharedChrome);
  try{setupProductChoices();}catch(error){console.error("BB wishlist setup error",error)}
  try{renderHomeMerchandising();}catch(error){console.error("BB merchandising error",error)}
