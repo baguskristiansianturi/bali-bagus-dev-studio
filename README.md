@@ -136,3 +136,13 @@ The frontend remains a prototype until real authentication, server-side orders, 
 - Added responsive adjustments for desktop, tablet and mobile while preserving the current layout architecture.
 
 Rendered browser QA remains the final launch-gate step because repository tooling cannot visually render 375/390/768/1024/1440 viewports.
+
+
+## V2.2.6 — P0 clarity / navigation pass — 2026-09-29
+
+- Refined homepage hero to directly state: digital solutions for business, with a clearer next step.
+- Simplified primary navigation to **Build / Templates / Solutions / Work / Insights / About** with **Konsultasi** as the primary header CTA while preserving utility access for Blog, Help, Recently Viewed, Account and Login.
+- Removed package-level featured emphasis so no package is visually presented as a popularity winner without supporting data.
+- Verified the seven Need Finder choices remain present and corrected the online-selling destination to the explicit Web & Commerce capability anchor.
+- Preserved existing package names and prices: Starter, Business, Growth, Commerce, Custom Web App, Business System.
+- No total visual redesign or backend/transaction behavior was introduced.
