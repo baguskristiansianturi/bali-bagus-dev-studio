@@ -244,7 +244,7 @@ function initPremiumInteractions(){
    Production auth/payment/realtime reviews remain backend work.
 ============================================================ */
 const EXTRA_PRODUCTS=[
- {id:"bali-car-rental-starter",name:"Bali Bagus Car Rental — One Page",category:"Starter",type:"Website Starter",price:1250000,old:0,tag:"STARTER · NEW",desc:"Produk Starter pertama: website rental mobil Bali satu halaman dengan fleet, pricing, inquiry dan WhatsApp booking.",features:["One-page responsive","Fleet showcase","Starting prices","Airport transfer","Private driver inquiry","WhatsApp CTA"],visual:"shop",status:"available",url:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/"},
+ 
  {id:"cctv",name:"CCTV Business Starter",category:"Hardware",type:"Hardware",price:1850000,old:0,tag:"HARDWARE",desc:"Paket awal CCTV untuk bisnis kecil, dengan opsi konsultasi pemasangan.",features:["Camera package","DVR/NVR option","Installation consultation","Warranty information"],visual:"shop"},
  {id:"pos",name:"POS Starter Software",category:"Software",type:"Software License",price:1290000,old:0,tag:"SOFTWARE",desc:"Fondasi POS untuk usaha retail dan F&B yang membutuhkan pencatatan penjualan.",features:["Sales dashboard","Product management","Basic reporting","License activation"],visual:"villa"},
  {id:"seo-kit",name:"Local SEO Content Kit",category:"Digital Product",type:"Content Kit",price:390000,old:0,tag:"SEO",desc:"Template dan struktur konten untuk membantu bisnis lokal menyiapkan fondasi SEO.",features:["Content structure","Local SEO checklist","Article templates","Internal linking guide"],visual:"barber"},
