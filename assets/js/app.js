@@ -160,7 +160,7 @@ function setupReviewSlider(){
  let i=0;const draw=()=>{const r=REVIEWS[i];track.innerHTML='<article class="review-card"><span>'+esc(r.meta)+'</span><blockquote>“'+esc(r.text)+'”</blockquote><b>'+esc(r.name)+'</b><small>'+esc(r.role)+'</small></article>';if(count)count.textContent=(i+1)+" / "+REVIEWS.length};prev?.addEventListener("click",()=>{i=(i-1+REVIEWS.length)%REVIEWS.length;draw()});next?.addEventListener("click",()=>{i=(i+1)%REVIEWS.length;draw()});draw();
 }
 
-function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-package.html?id=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
+function renderPackages(target="#packagesGrid",limit=6){const el=$(target);if(!el)return;el.innerHTML=PACKAGES.slice(0,limit).map(p=>`<article class="package-card ${p.featured?"featured":""}">${p.featured?'<span class="package-badge">RECOMMENDED FORMAT</span>':''}<div class="eyebrow">${esc(p.tag)}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><div class="package-price">${fmt(p.price)} <small>mulai</small></div><div class="package-note">${esc(p.scope)} · ${esc(p.time)}</div><ul>${p.features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul><a class="button ${p.featured?"button-dark":""}" href="website-collection.html?package=${encodeURIComponent(p.id)}">Lihat website dalam paket ${icon("arrow")}</a>${p.note?`<div class="package-note">${esc(p.note)}</div>`:""}</article>`).join("")}
 function renderPackageExperience(){
  const el=$("#packageExperience");if(!el)return;
  const id=new URLSearchParams(location.search).get("id")||"starter";
@@ -322,14 +322,14 @@ const EXTRA_PRODUCTS=[
 ];
 const PRODUCTS=[...CORE_PRODUCTS,...EXTRA_PRODUCTS];
 const WEBSITE_COLLECTION=[
- {id:"car-rental-starter-001",category:"Car Rental",name:"Bali Bagus Car Rental",style:"One Page / Fleet / WhatsApp",desc:"Produk Starter pertama: website rental mobil Bali satu halaman dengan fleet, harga mulai, airport transfer, private driver dan booking via WhatsApp.",demo:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/",status:"active",availablePackages:["starter"]},
- {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
- {id:"barber-002",category:"Barbershop",name:"Barber House",style:"Premium / Appointment",desc:"Editorial presentation for a premium barber brand.",demo:"demo.html?template=barber-002",status:"active",availablePackages:["starter","business"]},
+ {id:"car-rental-starter-001",category:"Car Rental",name:"Bali Bagus Car Rental",badge:"TERBARU",premium:true,elegant:true,,style:"One Page / Fleet / WhatsApp",desc:"Produk Starter pertama: website rental mobil Bali satu halaman dengan fleet, harga mulai, airport transfer, private driver dan booking via WhatsApp.",demo:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/",status:"active",availablePackages:["starter"]},
+ {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",badge:"TERLARIS",premium:true,,style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
+ {id:"barber-002",category:"Barbershop",name:"Barber House",badge:"PREMIUM",premium:true,elegant:true,,style:"Premium / Appointment",desc:"Editorial presentation for a premium barber brand.",demo:"demo.html?template=barber-002",status:"active",availablePackages:["starter","business"]},
  {id:"barber-003",category:"Barbershop",name:"Classic Barber",style:"Classic / Local",desc:"Straightforward local-first barbershop experience.",demo:"demo.html?template=barber-003",status:"active",availablePackages:["starter","business"]},
- {id:"villa-001",category:"Villa",name:"Villa Retreat",style:"Hospitality / Booking",desc:"A visual-first hospitality experience.",demo:"demo.html?template=villa-001",status:"active",availablePackages:["business","growth"]},
- {id:"hotel-001",category:"Hotel",name:"Bali Hotel House",style:"Hospitality / Reservation",desc:"Hotel experience with rooms, facilities, offers, location and reservation flow.",demo:"demo.html?template=hotel-001",status:"active",availablePackages:["business","growth"]},
+ {id:"villa-001",category:"Villa",name:"Villa Retreat",badge:"ELEGAN",premium:true,elegant:true,,style:"Hospitality / Booking",desc:"A visual-first hospitality experience.",demo:"demo.html?template=villa-001",status:"active",availablePackages:["business","growth"]},
+ {id:"hotel-001",category:"Hotel",name:"Bali Hotel House",badge:"PREMIUM",premium:true,elegant:true,,style:"Hospitality / Reservation",desc:"Hotel experience with rooms, facilities, offers, location and reservation flow.",demo:"demo.html?template=hotel-001",status:"active",availablePackages:["business","growth"]},
  {id:"homestay-001",category:"Homestay",name:"Island Guesthouse",style:"Local Stay / Inquiry",desc:"Guesthouse and homestay concept with rooms, local guide and inquiry flow.",demo:"demo.html?template=homestay-001",status:"active",availablePackages:["starter","business"]},
- {id:"restaurant-001",category:"Restaurant",name:"Restaurant Atelier",style:"Editorial / Reservation",desc:"Menu, story, gallery and reservation journey.",demo:"demo.html?template=restaurant-001",status:"active",availablePackages:["starter","business","growth"]},
+ {id:"restaurant-001",category:"Restaurant",name:"Restaurant Atelier",badge:"ELEGAN",elegant:true,,style:"Editorial / Reservation",desc:"Menu, story, gallery and reservation journey.",demo:"demo.html?template=restaurant-001",status:"active",availablePackages:["starter","business","growth"]},
  {id:"cafe-001",category:"Cafe",name:"Daily Coffee",style:"Menu / Local",desc:"Compact café website for menu, location, story and local discovery.",demo:"demo.html?template=cafe-001",status:"active",availablePackages:["starter","business"]},
  {id:"travel-001",category:"Travel",name:"Island Routes",style:"Tour / Inquiry",desc:"Tour package and itinerary discovery concept.",demo:"demo.html?template=travel-001",status:"active",availablePackages:["business","growth"]},
  {id:"tour-operator-001",category:"Tour Operator",name:"Bali Private Journeys",style:"Tours / Itinerary",desc:"Private tour, group tour, itinerary and inquiry experience.",demo:"demo.html?template=tour-operator-001",status:"active",availablePackages:["business","growth"]},
@@ -556,22 +556,55 @@ function renderDetail(){
    store.set("reviews_"+p.id,arr);renderDetail();showToast("Review tersimpan di demo lokal.");
  });
 }function buyNow(id){addCart(id);location.href="checkout.html";}
+function collectionRank(x){
+ const score=(x.badge==="TERLARIS"?100:0)+(x.badge==="TERBARU"?80:0)+(x.premium?40:0)+(x.elegant?30:0);
+ return score;
+}
 function renderCollection(){
  const grid=$("#websiteCollectionGrid");if(!grid)return;
- const q=($("#collectionSearch")?.value||"").toLowerCase();
+ const q=($("#collectionSearch")?.value||"").toLowerCase().trim();
  const cat=document.querySelector('input[name="collection-category"]:checked')?.value||"All";
  const packageId=document.querySelector('input[name="collection-package"]:checked')?.value||"all";
- const list=WEBSITE_COLLECTION.filter(x=>
+ const mode=$("#collectionSort")?.value||"recommended";
+ const base=WEBSITE_COLLECTION.filter(x=>
    (cat==="All"||x.category===cat)&&
    (packageId==="all"||x.availablePackages?.includes(packageId))&&
    (x.name+" "+x.category+" "+x.style+" "+x.desc).toLowerCase().includes(q)&&
    x.status==="active"
  );
- const count=$("#collectionCount");if(count)count.textContent=list.length+" template tersedia";
- grid.innerHTML=list.map(x=>{
+ const list=[...base].sort((a,b)=>{
+   if(mode==="bestseller")return (b.badge==="TERLARIS")-(a.badge==="TERLARIS")||collectionRank(b)-collectionRank(a);
+   if(mode==="new")return (b.badge==="TERBARU")-(a.badge==="TERBARU")||collectionRank(b)-collectionRank(a);
+   if(mode==="premium")return Number(b.premium)-Number(a.premium)||collectionRank(b)-collectionRank(a);
+   if(mode==="elegant")return Number(b.elegant)-Number(a.elegant)||collectionRank(b)-collectionRank(a);
+   if(mode==="az")return a.name.localeCompare(b.name);
+   return collectionRank(b)-collectionRank(a);
+ });
+ const count=$("#collectionCount");if(count)count.textContent=list.length+" website tersedia";
+ const activePkg=packageId==="all"?"Semua paket":(PACKAGES.find(p=>p.id===packageId)?.name||packageId);
+ const modeLabel={recommended:"Rekomendasi",bestseller:"Terlaris",new:"Terbaru",premium:"Premium",elegant:"Elegan",az:"A–Z"}[mode]||"Rekomendasi";
+ const state=document.querySelector("#collectionState");
+ if(state)state.innerHTML=`<b>${esc(modeLabel)}</b><span>${esc(activePkg)} · ${esc(cat==="All"?"Semua kategori":cat)}</span>`;
+ grid.innerHTML=list.map((x,i)=>{
   const pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"business");
-  return "<article class=\"collection-card\"><div class=\"collection-visual\"><span>"+esc(x.category.toUpperCase())+"</span><b>"+esc(x.name)+"</b><small>"+esc(x.style)+"</small></div><div class=\"collection-info\"><div><span>"+esc(x.category)+"</span><b>"+esc(x.name)+"</b></div><p>"+esc(x.desc)+"</p><div class=\"collection-status-line\"><span>Website template</span><b>"+esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name).filter(Boolean).join(" · ")||"Custom")+"</b></div><div class=\"collection-actions\"><a class=\"button button-dark small\" href=\""+esc(x.demo)+(x.demo.includes("?")?"&":"?")+"package="+encodeURIComponent(pkg)+"\">Lihat detail "+icon("arrow")+"</a></div></div></article>";
-}).join("")||"<div class=\"empty-state\">Belum ada template untuk kombinasi filter ini. <a class=\"text-link\" href=\"booking.html?service="+encodeURIComponent("Request website")+"\">Request website ↗</a></div>";
+  const badges=[x.badge,x.premium?"PREMIUM":null].filter(Boolean).slice(0,2);
+  const packageData=PACKAGES.find(p=>p.id===pkg);
+  return `<article class="collection-card">
+   <div class="collection-visual">
+    <span>${esc(x.category.toUpperCase())}</span>
+    <b>${esc(x.name)}</b>
+    <small>${esc(x.style)}</small>
+    <div class="collection-badges">${badges.map(b=>`<i>${esc(b)}</i>`).join("")}</div>
+   </div>
+   <div class="collection-info">
+    <div><span>${esc(x.category)}</span><b>${esc(x.name)}</b></div>
+    <p>${esc(x.desc)}</p>
+    <div class="collection-spec-strip"><span>PAKET</span><b>${esc(packageData?.name||"Custom")}</b><span>RESPONSIVE</span><b>DESKTOP · MOBILE</b></div>
+    <div class="collection-status-line"><span>Website template</span><b>${esc((x.availablePackages||[]).map(id=>PACKAGES.find(p=>p.id===id)?.name).filter(Boolean).join(" · ")||"Custom")}</b></div>
+    <div class="collection-actions"><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Preview website ${icon("arrow")}</a><a class="mini-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Lihat spesifikasi ${icon("arrow")}</a></div>
+   </div>
+  </article>`;
+ }).join("")||`<div class="empty-state"><h2>Belum ada website untuk filter ini.</h2><p>Coba kategori atau paket lain, atau minta kami menyiapkan website baru.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
 }
 function setupCollection(){
  const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList");
