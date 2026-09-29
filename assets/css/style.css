@@ -2363,3 +2363,78 @@ body.checkout-page main.page-main.wrap::after{
     width:calc(100% - 32px);
   }
 }
+
+/* COLLECTION REDESIGN — clean editorial marketplace */
+.collection-package-context{margin:34px 0 42px!important;padding:0!important;background:transparent!important;color:var(--ink)!important;display:block!important;border-bottom:1px solid #dededb;padding-bottom:30px!important}
+.collection-package-context>div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);gap:40px;align-items:end}
+.collection-package-context .eyebrow{margin:0 0 13px!important;color:#888!important}
+.collection-package-context h2{font-size:clamp(34px,4vw,58px)!important;line-height:.98!important;letter-spacing:-.065em!important;margin:0 0 13px!important;font-weight:650!important}
+.collection-package-context h2 em{font-family:Georgia,serif;font-weight:400}
+.collection-package-context p{font-size:12px!important;line-height:1.8!important;color:#777!important;margin:0!important;max-width:650px!important}
+.collection-package-specs{display:grid!important;grid-template-columns:1fr 1fr;gap:0!important;background:transparent!important;border:1px solid #dededb!important}
+.collection-package-specs>*{background:#fff!important;padding:12px 13px!important;border-right:1px solid #e5e5e2;border-bottom:1px solid #e5e5e2!important;font:9px 'DM Mono'!important;color:#777!important}
+.collection-package-specs b{font-size:15px!important;color:#171717!important}
+.collection-status-note{display:none!important}
+.collection-explorer{margin-top:48px}
+.collection-filter-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:24px}
+.collection-filter-head .eyebrow{margin-bottom:10px}
+.collection-filter-head h2{font-size:32px;letter-spacing:-.05em;margin:0;font-weight:650}
+.collection-filter-head h2 em{font-family:Georgia,serif;font-weight:400}
+.collection-filter-head>p{max-width:360px;margin:0;color:#888;font-size:11px;line-height:1.7}
+.collection-filter-panel{border-top:1px solid #171717;border-bottom:1px solid #dededb;margin-bottom:34px}
+.collection-filter-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:18px;align-items:start;padding:15px 0}
+.collection-filter-row+.collection-filter-row{border-top:1px solid #eee}
+.collection-filter-label{font:8px 'DM Mono';letter-spacing:.1em;color:#999;padding-top:10px}
+.collection-filter-options{display:flex;gap:7px;flex-wrap:wrap}
+.collection-filter-options label{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;width:auto!important;margin:0!important;padding:9px 11px!important;border:1px solid #dededb!important;border-radius:2px!important;background:#fff!important;color:#555!important;font-size:10px!important;line-height:1!important;transition:.18s!important;cursor:pointer!important}
+.collection-filter-options label:hover{border-color:#999!important;color:#171717!important;background:#fafaf8!important}
+.collection-filter-options label:has(input:checked){background:#171717!important;border-color:#171717!important;color:#fff!important}
+.collection-filter-options input{position:absolute!important;opacity:0!important;pointer-events:none!important}
+.collection-filter-options .filter-count{font:8px 'DM Mono'!important;color:inherit!important;opacity:.55!important;margin-left:2px!important}
+.collection-results{min-width:0}
+.collection-control-bar{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:18px!important;margin:0!important;padding:0 0 15px!important;border-bottom:0!important}
+.collection-state{display:flex!important;align-items:baseline!important;gap:9px!important;border:0!important;padding:0!important;justify-content:flex-start!important}
+.collection-state b{font-size:12px!important}.collection-state span{font:9px 'DM Mono'!important;color:#999!important}
+.collection-tools{display:flex;gap:7px;align-items:center}
+.collection-search{height:40px;width:270px;border:1px solid #dededb;background:#fff;display:flex;align-items:center;padding:0 11px;gap:7px}
+.collection-search>span{font-size:20px;line-height:1;color:#999;transform:rotate(-20deg)}
+.collection-search input{border:0!important;outline:0!important;background:transparent!important;width:100%;font-size:10px!important;color:#171717!important;padding:0!important}
+.collection-tools select{height:40px;border:1px solid #dededb;background:#fff;padding:0 11px;font-size:10px;color:#555;min-width:145px}
+.collection-result-meta{display:flex;align-items:center;justify-content:space-between;padding:0 0 15px;color:#999;font:8px 'DM Mono';letter-spacing:.03em}
+.collection-result-meta b{color:#555;font-weight:500}
+.collection-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important}
+.collection-card{border:1px solid #dfdfdc!important;border-radius:0!important;background:#fff!important;overflow:hidden!important;box-shadow:none!important;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease!important}
+.collection-card:hover{transform:translateY(-5px)!important;border-color:#bfc0bb!important;box-shadow:0 18px 48px rgba(0,0,0,.09)!important}
+.collection-visual{display:block!important;height:255px!important;position:relative!important;padding:16px!important;background:linear-gradient(145deg,#ecece9 0%,#d9dad5 55%,#b9bbb5 100%)!important;color:#171717!important;overflow:hidden!important;text-decoration:none!important}
+.collection-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(125deg,transparent 20%,rgba(255,255,255,.32) 48%,transparent 66%);transform:translateX(-110%);transition:transform .7s ease}
+.collection-card:hover .collection-visual:before{transform:translateX(110%)}
+.collection-visual:after{content:"";position:absolute;width:260px;height:260px;right:-150px;bottom:-160px;border:1px solid rgba(23,23,23,.14);border-radius:50%;box-shadow:0 0 0 30px rgba(23,23,23,.035),0 0 0 60px rgba(23,23,23,.025)}
+.collection-visual-head{position:relative;z-index:2;display:flex;justify-content:space-between;font:8px 'DM Mono';letter-spacing:.08em;color:#6f706c}
+.collection-art{position:absolute;z-index:1;left:32px;right:32px;top:62px;bottom:25px;background:#f8f8f5;box-shadow:0 18px 38px rgba(0,0,0,.16);padding:22px 20px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;transition:transform .3s ease}
+.collection-card:hover .collection-art{transform:translateY(-4px)}
+.collection-art:before{content:"";position:absolute;right:-25px;top:-35px;width:115px;height:115px;border:1px solid #d4d4d0;border-radius:50%;box-shadow:0 0 0 18px #eee}
+.collection-art-kicker{position:relative;font:7px 'DM Mono';letter-spacing:.1em;color:#999;text-transform:uppercase;margin-bottom:9px}
+.collection-art strong{position:relative;font-size:clamp(23px,2.2vw,31px);line-height:.98;letter-spacing:-.07em;max-width:90%;font-weight:700}
+.collection-art i{position:relative;width:38%;height:2px;background:#171717;margin-top:18px}
+.collection-art small{position:relative;margin-top:22px;font:7px 'DM Mono';color:#999}
+.collection-badges{position:absolute!important;z-index:4!important;left:16px!important;bottom:14px!important;top:auto!important;right:auto!important;display:flex!important;gap:5px!important}
+.collection-badges b{font:7px 'DM Mono'!important;font-weight:500!important;letter-spacing:.06em!important;background:#171717!important;color:#fff!important;padding:6px 8px!important}
+.collection-preview-link{position:absolute;z-index:4;right:16px;bottom:14px;font:8px 'DM Mono';color:#555}
+.collection-info{padding:19px!important}
+.collection-title-row{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:10px!important}
+.collection-title-row>div{min-width:0}
+.collection-title-row>div>span{font:7px 'DM Mono'!important;letter-spacing:.1em;color:#999!important;text-transform:uppercase}
+.collection-title-row h3{font-size:18px!important;line-height:1.12!important;letter-spacing:-.045em!important;margin:6px 0 0!important;font-weight:700!important}
+.collection-ready{flex:none!important;border:1px solid #d9d9d5!important;padding:5px 7px!important;font:7px 'DM Mono'!important;color:#777!important}
+.collection-info>p{font-size:10px!important;line-height:1.7!important;color:#777!important;min-height:51px!important;margin:13px 0!important}
+.collection-tags{display:flex!important;gap:5px!important;flex-wrap:wrap!important;margin:0 0 15px!important}
+.collection-tags span{border:1px solid #e2e2df!important;padding:5px 7px!important;font:7px 'DM Mono'!important;color:#777!important;background:#fafaf8!important}
+.collection-card-footer{border-top:1px solid #e7e7e4!important;padding-top:14px!important;display:flex!important;align-items:end!important;justify-content:space-between!important;gap:8px!important}
+.collection-card-footer small{display:block!important;font:7px 'DM Mono'!important;color:#999!important;margin-bottom:4px!important}
+.collection-card-footer strong{display:block!important;font-size:14px!important;letter-spacing:-.03em!important}
+.collection-card-footer .button{font-size:9px!important;padding:10px 12px!important;min-height:36px!important}
+.collection-spec-link{display:block!important;margin-top:11px!important;font-size:8px!important;color:#999!important;border-top:0!important}
+.collection-spec-link span{float:right;color:#555}
+@media(max-width:1050px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.collection-package-context>div:first-child{grid-template-columns:1fr}.collection-package-specs{max-width:520px}}
+@media(max-width:760px){.collection-filter-head{display:block}.collection-filter-head>p{margin-top:10px}.collection-filter-row{grid-template-columns:1fr;gap:8px}.collection-filter-label{padding-top:0}.collection-control-bar{display:block!important}.collection-tools{margin-top:12px}.collection-search{width:100%}.collection-tools select{flex:0 0 145px}.collection-grid{grid-template-columns:1fr!important}.collection-visual{height:250px!important}.collection-package-context{margin-top:25px!important}}
+@media(max-width:520px){.collection-explorer{margin-top:35px}.collection-filter-head h2{font-size:27px}.collection-filter-options{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.collection-filter-options::-webkit-scrollbar{display:none}.collection-filter-options label{flex:0 0 auto}.collection-package-specs{grid-template-columns:1fr 1fr}.collection-tools{width:100%}.collection-search{flex:1}.collection-tools select{min-width:132px}.collection-card-footer .button{padding-inline:10px}}
