@@ -810,9 +810,20 @@ function setupContactPopup(){
  const close=()=>back.classList.remove("open");fab.addEventListener("click",()=>back.classList.add("open"));back.addEventListener("click",e=>{if(e.target===back||e.target.closest(".bb-modal-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
 }
 
+function ensureSharedChrome(){
+ try{
+  const h=document.querySelector(".site-header");
+  if(h && !h.querySelector(".top-header-row")) header();
+ }catch(error){console.error("BB header retry error",error)}
+ try{
+  const f=document.querySelector("#siteFooter");
+  if(f && !f.querySelector(".footer-top")) footer();
+ }catch(error){console.error("BB footer retry error",error)}
+}
 document.addEventListener("DOMContentLoaded",()=>{
  try{header();}catch(error){console.error("BB header error",error)}
  try{footer();}catch(error){console.error("BB footer error",error)}
+ requestAnimationFrame(ensureSharedChrome);
  try{setupProductChoices();}catch(error){console.error("BB wishlist setup error",error)}
  try{renderHomeMerchandising();}catch(error){console.error("BB merchandising error",error)}
  initA11y();
@@ -847,3 +858,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;
 
+
+
+window.addEventListener("load",ensureSharedChrome,{once:true});
