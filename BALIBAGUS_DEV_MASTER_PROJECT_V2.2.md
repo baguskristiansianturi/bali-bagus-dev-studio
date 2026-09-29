@@ -251,3 +251,18 @@ Complete the remaining V2.2 launch-clarity work without changing the vanilla arc
 ### Remaining
 **P1:** rendered browser QA, final link click-through in a real browser, and final production-content review.  
 **P2:** production backend, authentication, server-side orders, payment verification, secure delivery, CRM/email, analytics/consent, and automated visual regression.
+
+
+## 19. V2.2.3 hero refinement
+**Date:** 2026-09-29
+
+### User-requested visual refinement
+- [IMPLEMENTED] Homepage hero background now spans the full browser width instead of being constrained by the wrap container.
+- [IMPLEMENTED] Hero uses the existing assets/img/hero-studio.svg as a restrained background treatment with a readability overlay; no new heavy asset dependency was introduced.
+- [IMPLEMENTED] Hero height was reduced to a controlled desktop target (~500px minimum) and progressively tighter mobile heights, avoiding an oversized first viewport.
+- [IMPLEMENTED] Hero content remains responsive and preserves the existing two-column desktop composition and single-column mobile composition.
+
+### Verification
+- [IMPLEMENTED] index.html confirms the hero is the first main content section and contains the existing primary/secondary CTAs and search interaction.
+- [IMPLEMENTED] assets/css/style.css contains the final V2.2.3 full-width hero override and responsive breakpoints.
+- [PARTIALLY IMPLEMENTED] Pixel-level rendered verification at 375/390/768/1024/1440 still requires a real browser/device environment; repository tooling cannot render those viewports.
