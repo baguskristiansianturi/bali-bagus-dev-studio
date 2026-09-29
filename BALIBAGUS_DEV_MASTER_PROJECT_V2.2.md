@@ -266,3 +266,13 @@ Complete the remaining V2.2 launch-clarity work without changing the vanilla arc
 - [IMPLEMENTED] index.html confirms the hero is the first main content section and contains the existing primary/secondary CTAs and search interaction.
 - [IMPLEMENTED] assets/css/style.css contains the final V2.2.3 full-width hero override and responsive breakpoints.
 - [PARTIALLY IMPLEMENTED] Pixel-level rendered verification at 375/390/768/1024/1440 still requires a real browser/device environment; repository tooling cannot render those viewports.
+
+
+## 20. V2.2.4 global hero width refinement
+**Date:** 2026-09-29
+
+- [IMPLEMENTED] Standard inner-page title/hero background treatment is now explicitly full viewport width via the global page-main shell and its background layers.
+- [IMPLEMENTED] Content remains constrained to the existing readable max-width inside the full-width visual band.
+- [IMPLEMENTED] Transactional/form/checkout pages remain compact and are not forced into the same large hero treatment.
+- [IMPLEMENTED] Responsive content widths are preserved for mobile.
+- [PARTIALLY IMPLEMENTED] Rendered browser verification remains the final check because repository tooling cannot visually render the page at target viewport sizes.
