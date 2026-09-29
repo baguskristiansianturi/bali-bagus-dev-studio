@@ -272,6 +272,7 @@ const EXTRA_PRODUCTS=[
 ];
 const PRODUCTS=[...CORE_PRODUCTS,...EXTRA_PRODUCTS];
 const WEBSITE_COLLECTION=[
+ {id:"car-rental-starter-001",category:"Car Rental",name:"Bali Bagus Car Rental",style:"One Page / Fleet / WhatsApp",desc:"Produk Starter pertama: website rental mobil Bali satu halaman dengan fleet, harga mulai, airport transfer, private driver dan booking via WhatsApp.",demo:"https://baguskristiansianturi.github.io/Bali-Bagus-Car-Rental/",status:"active",availablePackages:["starter"]},
  {id:"barber-001",category:"Barbershop",name:"Bagus Barbershop",style:"Modern / Booking",desc:"Clean service-led experience for modern barbershops.",demo:"demo.html?template=barber-001",status:"active",availablePackages:["starter","business"]},
  {id:"barber-002",category:"Barbershop",name:"Barber House",style:"Premium / Appointment",desc:"Editorial presentation for a premium barber brand.",demo:"demo.html?template=barber-002",status:"active",availablePackages:["starter","business"]},
  {id:"barber-003",category:"Barbershop",name:"Classic Barber",style:"Classic / Local",desc:"Straightforward local-first barbershop experience.",demo:"demo.html?template=barber-003",status:"active",availablePackages:["starter","business"]},
