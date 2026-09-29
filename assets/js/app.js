@@ -660,13 +660,13 @@ function setupForms(){
    if(!cart.length&&!isWebsite){$("#checkoutResult").innerHTML='<span class="form-status">Keranjang kosong.</span>';return}
    const data=Object.fromEntries(new FormData(co));
    const websiteOrder=isWebsite?store.get("websiteOrder",null):null;
-   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending-demo",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"demo",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
+   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"demo",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
    const orders=store.get("orders",[]);orders.push(order);store.set("orders",orders);if(!isWebsite)saveCart([]);
-   $("#checkoutResult").innerHTML=`<span class="form-status">Pesanan <b>${esc(order.id)}</b> tercatat sebagai demo. Pada production, pembayaran, email dan WhatsApp follow-up akan diproses backend.</span>`;
+   $("#checkoutResult").innerHTML=`<span class="form-status">Pesanan <b>${esc(order.id)}</b> tercatat dan siap ditindaklanjuti. Pada production, pembayaran, email dan WhatsApp follow-up akan diproses backend.</span>`;
    renderSummary("#checkoutSummary");
  });
- const bf=$("#bookingForm");if(bf)bf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(bf));const arr=store.get("bookings",[]);arr.push({...data,id:"BB-"+Date.now(),status:"inquiry-demo",createdAt:new Date().toISOString()});const saved=store.set("bookings",arr);if(!saved)return;const result=$("#bookingResult");if(result)result.innerHTML=`<span class="form-status">Brief tersimpan sebagai demo lokal. Untuk follow-up langsung, <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya baru mengirim project brief. Nama: ${data.name||"-"}. Kebutuhan: ${data.service||"-"}.`)}" target="_blank" rel="noopener">lanjut ke WhatsApp ↗</a></span>`;});
- const cf=$("#contactForm");if(cf)cf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(cf));const arr=store.get("messages",[]);arr.push({...data,id:"MSG-"+Date.now(),status:"demo-local"});const saved=store.set("messages",arr);if(!saved)return;const result=$("#contactResult");if(result)result.innerHTML=`<span class="form-status">Pesan tersimpan sebagai demo lokal. <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya mengirim pertanyaan melalui website. Nama: ${data.name||"-"}. Topik: ${data.topic||"-"}.`)}" target="_blank" rel="noopener">Lanjutkan via WhatsApp ↗</a></span>`;});
+ const bf=$("#bookingForm");if(bf)bf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(bf));const arr=store.get("bookings",[]);arr.push({...data,id:"BB-"+Date.now(),status:"inquiry",createdAt:new Date().toISOString()});const saved=store.set("bookings",arr);if(!saved)return;const result=$("#bookingResult");if(result)result.innerHTML=`<span class="form-status">Brief tersimpan. Untuk respons cepat, lanjutkan melalui WhatsApp. Untuk follow-up langsung, <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya baru mengirim project brief. Nama: ${data.name||"-"}. Kebutuhan: ${data.service||"-"}.`)}" target="_blank" rel="noopener">lanjut ke WhatsApp ↗</a></span>`;});
+ const cf=$("#contactForm");if(cf)cf.addEventListener("submit",e=>{e.preventDefault();const data=Object.fromEntries(new FormData(cf));const arr=store.get("messages",[]);arr.push({...data,id:"MSG-"+Date.now(),status:"demo-local"});const saved=store.set("messages",arr);if(!saved)return;const result=$("#contactResult");if(result)result.innerHTML=`<span class="form-status">Pesan tersimpan. Untuk respons cepat, lanjutkan melalui WhatsApp. <a href="${whatsappUrl(`Halo Bali Bagus Dev, saya mengirim pertanyaan melalui website. Nama: ${data.name||"-"}. Topik: ${data.topic||"-"}.`)}" target="_blank" rel="noopener">Lanjutkan via WhatsApp ↗</a></span>`;});
 }
 function setupSearch(){
  const b=$("#searchButton");b?.addEventListener("click",()=>{const input=$("#globalSearch"),select=$("#searchCategory");if(!input||!select)return;const q=input.value.trim(),cat=select.value;location.href=(cat==="service"?"services.html":cat==="article"?"articles.html":cat==="product"?"products.html":"products.html")+(q?"?q="+encodeURIComponent(q):"")});
@@ -678,6 +678,48 @@ function setupSearch(){
 function setupReadyUseMap(){document.querySelectorAll("[data-ready-filter]").forEach(card=>card.addEventListener("click",e=>{e.preventDefault();const raw=card.dataset.readyFilter||"";const termMap={Website:"Website Template",Landing:"Landing Page",Blogger:"Blogger Template","UI Kit":"UI Kit"};const term=termMap[raw]||raw;const input=document.querySelector("#catalogSearch"),filter=document.querySelector("#productFilter");if(filter)filter.value="all";if(input){input.value=term;input.dispatchEvent(new Event("input",{bubbles:true}));}document.querySelector("#allProducts")?.scrollIntoView({behavior:"smooth",block:"start"});}));}
 function setupBlog(){const q=document.querySelector("#blogSearch"),cat=document.querySelector("#blogCategory"),cards=[...document.querySelectorAll("[data-blog-card]")],empty=document.querySelector("#blogEmpty");if(!q||!cat||!cards.length)return;const run=()=>{const term=q.value.trim().toLowerCase(),kind=cat.value;let shown=0;cards.forEach(card=>{const okCat=kind==="all"||card.dataset.category===kind;const okText=!term||card.textContent.toLowerCase().includes(term);const show=okCat&&okText;card.hidden=!show;if(show)shown++});if(empty)empty.hidden=shown!==0};q.addEventListener("input",run);cat.addEventListener("change",run)}
 function setupArticleUX(){const main=document.querySelector(".article-main");if(!main)return;const bar=document.createElement("div");bar.className="reading-progress";bar.setAttribute("aria-hidden","true");document.body.appendChild(bar);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?scrollY/max:0;bar.style.transform="scaleX("+Math.max(0,Math.min(1,progress))+")"};addEventListener("scroll",update,{passive:true});update();const share=document.querySelector(".article-share");if(share&&!share.querySelector(".wa-share")){const a=document.createElement("a");a.className="wa-share";a.target="_blank";a.rel="noopener";a.href="https://wa.me/?text="+encodeURIComponent(document.title+" "+location.href);a.textContent="WhatsApp";share.appendChild(a)}const tocLinks=[...document.querySelectorAll(".toc a[href^='#']")];const sections=tocLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);if(tocLinks.length&&sections.length){const sync=()=>{let active=0;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<=140)active=i});tocLinks.forEach((a,i)=>a.classList.toggle("is-active",i===active))};addEventListener("scroll",sync,{passive:true});sync()}}
+
+function setupWizards(){
+ const configs={bookingForm:{sizes:[3,4,4,99],titles:["Kontak","Kebutuhan","Rencana","Konfirmasi"]},websiteOrderForm:{sizes:[4,3,99],titles:["Pilihan & kontak","Bisnis","Brief & konfirmasi"]},contactForm:{sizes:[2,2,99],titles:["Kontak","Pesan"]}};
+ Object.entries(configs).forEach(([id,cfg])=>{
+  const form=document.getElementById(id); if(!form||form.dataset.wizardBound)return;
+  const labels=[...form.querySelectorAll(":scope > label")]; if(labels.length<3)return;
+  form.dataset.wizardBound="true";
+  const progress=document.createElement("div");progress.className="wizard-progress";progress.setAttribute("aria-label","Tahapan formulir");
+  const stepText=document.createElement("div");stepText.className="wizard-step-label";
+  cfg.titles.forEach((_,i)=>{const dot=document.createElement("span");dot.dataset.step=i;progress.appendChild(dot)});
+  const heading=form.querySelector("h2"); if(heading)heading.insertAdjacentElement("afterend",progress); else form.prepend(progress);
+  if(heading)heading.insertAdjacentElement("afterend",stepText);
+  const groups=[];let cursor=0;
+  cfg.sizes.forEach(size=>{if(cursor>=labels.length)return;groups.push(labels.slice(cursor,Math.min(cursor+size,labels.length)));cursor+=size});
+  let current=0;
+  const actions=document.createElement("div");actions.className="wizard-actions";
+  const back=document.createElement("button");back.type="button";back.className="button button-secondary";back.textContent="← Kembali";
+  const next=document.createElement("button");next.type="button";next.className="button button-dark";next.textContent="Lanjut →";
+  actions.append(back,next);
+  const submit=form.querySelector('button[type="submit"]'); if(submit)submit.insertAdjacentElement("beforebegin",actions); else form.append(actions);
+  const setRequired=(el,on)=>{el.querySelectorAll("input,select,textarea").forEach(x=>{if(x.dataset.wizardRequired===undefined)x.dataset.wizardRequired=x.required?"1":"0";x.required=on&&x.dataset.wizardRequired==="1"})};
+  const render=()=>{
+   groups.forEach((group,i)=>group.forEach(el=>{el.hidden=i!==current;setRequired(el,i===current)}));
+   [...progress.children].forEach((dot,i)=>dot.classList.toggle("active",i<=current));
+   stepText.textContent="Langkah "+(current+1)+" dari "+groups.length+" · "+(cfg.titles[current]||"Detail");
+   back.hidden=current===0; next.hidden=current===groups.length-1;
+   if(submit)submit.style.display=current===groups.length-1?"":"none";
+  };
+  const validCurrent=()=>groups[current].every(el=>{const fields=[...el.querySelectorAll("input,select,textarea")];return fields.every(f=>f.reportValidity())});
+  back.addEventListener("click",()=>{if(current>0){current--;render();form.scrollIntoView({behavior:"smooth",block:"start"})}});
+  next.addEventListener("click",()=>{if(!validCurrent())return;if(current<groups.length-1){current++;render();form.scrollIntoView({behavior:"smooth",block:"start"})}});
+  render();
+ });
+}
+function setupContactPopup(){
+ if(document.querySelector(".bb-contact-fab"))return;
+ const fab=document.createElement("button");fab.className="bb-contact-fab";fab.type="button";fab.setAttribute("aria-label","Hubungi Bali Bagus Dev");fab.textContent="↗";
+ const back=document.createElement("div");back.className="bb-modal-backdrop";back.innerHTML='<div class="bb-modal" role="dialog" aria-modal="true" aria-labelledby="bbModalTitle"><button class="bb-modal-close" type="button" aria-label="Tutup">×</button><div class="eyebrow">BALI BAGUS DEV</div><h2 id="bbModalTitle">Mari mulai dari kebutuhan Anda.</h2><p>Pilih cara yang paling nyaman. Kami bisa membantu menentukan website, produk digital, atau solusi custom yang sesuai dengan tujuan bisnis Anda.</p><div class="bb-modal-actions"><a class="button button-dark" href="booking.html">Mulai konsultasi ↗</a><a class="button button-white" href="https://wa.me/628218187917" target="_blank" rel="noopener">Chat WhatsApp ↗</a><a class="button button-white" href="contact.html">Kirim pertanyaan ↗</a></div></div>';
+ document.body.append(fab,back);
+ const close=()=>back.classList.remove("open");fab.addEventListener("click",()=>back.classList.add("open"));back.addEventListener("click",e=>{if(e.target===back||e.target.closest(".bb-modal-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
  try{header();}catch(error){console.error("BB header error",error)}
  try{footer();}catch(error){console.error("BB footer error",error)}
@@ -707,6 +749,8 @@ document.addEventListener("DOMContentLoaded",()=>{
  initPremiumInteractions();
  setupBlog();
  setupArticleUX();
+ setupWizards();
+ setupContactPopup();
  const p=$("#productFilter");
  if(p)p.innerHTML=`<option value="all">Semua kategori</option>${[...new Set(allProducts().map(x=>x.category))].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}`;
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
