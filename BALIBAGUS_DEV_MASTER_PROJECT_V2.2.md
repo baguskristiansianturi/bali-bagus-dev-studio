@@ -200,3 +200,54 @@ V2.3 should be a final frontend QA/launch gate with a real browser/device test m
 - [IMPLEMENTED] Re-fetched the modified app.js and style.css after writes.
 - [IMPLEMENTED] Verified the fallback function and final CSS block exist in the GitHub main branch.
 - [PARTIALLY IMPLEMENTED] Rendered-browser visual verification remains unavailable in the repository tool environment.
+
+
+## 18. V2.2.2 refinement pass
+**Date:** 2026-09-29
+
+### Objective
+Complete the remaining V2.2 launch-clarity work without changing the vanilla architecture or approved visual identity.
+
+### UX / business
+- [IMPLEMENTED] Homepage hero now has explicit primary and secondary actions: **Mulai dari kebutuhan Anda** and **Lihat layanan**.
+- [IMPLEMENTED] Homepage now exposes a concise website-package preview before portfolio/insight content.
+- [IMPLEMENTED] Homepage now includes a four-step process and factual Why Bali Bagus Dev section.
+- [IMPLEMENTED] Service capability architecture now follows **BUILD / GROW / SUPPORT**, with Discovery & Strategy as the entry point for uncertain customers.
+- [IMPLEMENTED] Consultation page now explains Discovery → Requirement Summary → Recommended Solution → Scope & Quotation → Development.
+- [IMPLEMENTED] Package cards now communicate intended audience, business problem, inclusions, scope, timeline, starting price and notes.
+- [IMPLEMENTED] Shared footer now follows BUILD / PRODUCTS / GROW / COMPANY / LEGAL.
+- [IMPLEMENTED] Unsupported popularity indicators were removed from the website catalog. Recommendation remains a system sort, not a claimed sales ranking.
+
+### Technical
+- [IMPLEMENTED] Fixed an existing malformed template-literal escape in `setupCollection()` that prevented `assets/js/app.js` from parsing.
+- [IMPLEMENTED] Preserved localStorage prototype behavior and checkout production boundary.
+- [IMPLEMENTED] No framework or third-party runtime dependency added.
+
+### SEO / accessibility
+- [IMPLEMENTED] Homepage Open Graph URL now matches the canonical root URL.
+- [IMPLEMENTED] Existing canonical, description, Twitter metadata, skip link and reduced-motion support retained.
+- [IMPLEMENTED] No new thin SEO pages were created.
+
+### Files changed in V2.2.2
+- index.html
+- assets/js/app.js
+- assets/css/style.css
+- services.html
+- booking.html
+- website-collection.html
+- README.md
+- BALIBAGUS_DEV_MASTER_PROJECT_V2.2.md
+
+### Second verification
+- [IMPLEMENTED] `assets/js/app.js` successfully parses with JavaScript Function compilation after the syntax repair.
+- [IMPLEMENTED] Homepage has exactly one H1.
+- [IMPLEMENTED] Homepage Need Finder contains seven decision paths.
+- [IMPLEMENTED] Homepage package/process/value sections are present and wired.
+- [IMPLEMENTED] Core local links in index/services/booking/package pages resolve to tracked repository paths.
+- [IMPLEMENTED] Core metadata checks retain canonical, Open Graph, Twitter, and description tags.
+- [IMPLEMENTED] No unsupported popularity labels remain in the modified product/catalog data.
+- [PARTIALLY IMPLEMENTED] Rendered browser/device matrix at 375/390/768/1024/1440 remains unavailable in the repository tool environment.
+
+### Remaining
+**P1:** rendered browser QA, final link click-through in a real browser, and final production-content review.  
+**P2:** production backend, authentication, server-side orders, payment verification, secure delivery, CRM/email, analytics/consent, and automated visual regression.
