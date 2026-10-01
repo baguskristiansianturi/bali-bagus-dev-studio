@@ -1450,3 +1450,61 @@ table{max-width:100%;display:block;overflow-x:auto}
 @media(max-width:390px){
   #demoGrid .demo-card-body{padding:15px}
 }
+
+
+/* GLOBAL CONTENT RAIL — keep every portfolio section aligned */
+main.page-main{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+main.page-main > .bb-page-hero,
+main.page-main > .section,
+main.page-main > .inline-cta{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  box-sizing:border-box;
+}
+main.page-main > .bb-page-hero > *,
+main.page-main > .section > *,
+main.page-main > .inline-cta > *{
+  width:min(var(--bb-container,1140px),calc(100% - 64px));
+  max-width:var(--bb-container,1140px);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+main.page-main > .section > .section-head{
+  max-width:var(--bb-container,1140px);
+}
+main.page-main > .section > #demoGrid,
+main.page-main > .section > .demo-grid{
+  width:min(var(--bb-container,1140px),calc(100% - 64px));
+  max-width:var(--bb-container,1140px);
+  margin-left:auto;
+  margin-right:auto;
+}
+@media(max-width:1100px) and (min-width:768px){
+  main.page-main > .bb-page-hero > *,
+  main.page-main > .section > *,
+  main.page-main > .inline-cta > *,
+  main.page-main > .section > #demoGrid,
+  main.page-main > .section > .demo-grid{
+    width:calc(100% - 48px);
+    max-width:var(--bb-container,1140px);
+  }
+}
+@media(max-width:767px){
+  main.page-main > .bb-page-hero > *,
+  main.page-main > .section > *,
+  main.page-main > .inline-cta > *,
+  main.page-main > .section > #demoGrid,
+  main.page-main > .section > .demo-grid{
+    width:calc(100% - 24px);
+    max-width:var(--bb-container,1140px);
+  }
+}
