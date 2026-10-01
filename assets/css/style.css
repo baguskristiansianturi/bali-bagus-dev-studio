@@ -6754,3 +6754,147 @@ body{font-family:Manrope,Arial,sans-serif;color:var(--bb-text);background:#fff}
   .bb-page-hero h1{font-size:34px!important}
   .bb-hero-meta{font-size:8px!important}
 }
+
+
+/* BB STUDIO — RESPONSIVE SYSTEM V3 */
+/* Hard reset for secondary-page layout consistency. */
+.page-main,.page-main.wrap,.services-page,.about-page{
+  width:min(1180px,calc(100% - 48px))!important;
+  max-width:1180px!important;
+  margin-left:auto!important;margin-right:auto!important;
+  overflow:visible!important;
+}
+.page-main{padding:0 0 80px!important}
+.bb-page-hero{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:390px!important;
+  margin:0 0 64px!important;
+  padding:58px 0 54px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  border-bottom:1px solid #e6e6e4!important;
+}
+.bb-page-hero h1{
+  width:100%!important;
+  max-width:900px!important;
+  margin:0!important;
+  font-size:clamp(38px,5vw,62px)!important;
+  line-height:1.045!important;
+  letter-spacing:-.055em!important;
+  font-weight:700!important;
+}
+.bb-page-hero .lead{width:100%!important;max-width:700px!important;margin:18px 0 0!important;font-size:16px!important;line-height:1.7!important}
+.bb-hero-meta{width:100%!important;max-width:700px!important;display:flex!important;flex-wrap:wrap!important;gap:9px!important;margin-top:22px!important}
+.bb-hero-actions{width:100%!important;display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:22px!important}
+.bb-hero-actions .button{min-height:46px!important}
+.page-main h2{font-size:clamp(27px,3.2vw,40px)!important;line-height:1.1!important}
+.page-main h3{font-size:clamp(18px,2vw,25px)!important;line-height:1.2!important}
+.page-main p{font-size:15px;line-height:1.7}
+.page-main .section-head{display:flex;justify-content:space-between;gap:36px;align-items:end}
+.page-main .section-head>*{min-width:0}
+.page-main .head-aside{max-width:420px}
+.svc-path-grid,.svc-grid,.about-values,.about-service-grid,.launch-plan-grid,.team-grid,.demo-grid,.client-grid,.article-grid{
+  min-width:0!important;
+}
+.svc-path,.svc-card,.about-values article,.about-service-grid article,.launch-plan-grid article,.team-card{
+  min-width:0!important;overflow:hidden!important;
+}
+.svc-card .button,.about-page .button,.portfolio-tabs .button{white-space:normal!important;text-align:center!important}
+img{max-width:100%;height:auto}
+input,select,textarea{max-width:100%;min-width:0}
+
+/* MOBILE: one column, no fixed widths, no overflow, consistent type scale. */
+@media(max-width:767px){
+  .page-main,.page-main.wrap,.services-page,.about-page{
+    width:calc(100% - 24px)!important;
+    max-width:none!important;
+    padding-bottom:56px!important;
+  }
+  .bb-page-hero{
+    min-height:0!important;
+    margin-bottom:44px!important;
+    padding:34px 0 30px!important;
+  }
+  .bb-page-hero .eyebrow{
+    font-size:9px!important;
+    margin-bottom:14px!important;
+    letter-spacing:.12em!important;
+  }
+  .bb-page-hero h1{
+    max-width:none!important;
+    font-size:clamp(32px,9.5vw,44px)!important;
+    line-height:1.06!important;
+    letter-spacing:-.045em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .bb-page-hero .lead{
+    max-width:none!important;
+    font-size:14px!important;
+    line-height:1.65!important;
+    margin-top:16px!important;
+  }
+  .bb-hero-meta{
+    gap:7px 9px!important;
+    margin-top:19px!important;
+    font-size:8px!important;
+  }
+  .bb-hero-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    margin-top:20px!important;
+  }
+  .bb-hero-actions .button{width:100%!important}
+  .page-main>section,.page-main>.section{margin-bottom:44px!important}
+  .page-main .section-head{
+    display:block!important;
+    margin-bottom:18px!important;
+  }
+  .page-main .section-head .head-aside{margin-top:12px!important;max-width:none!important}
+  .page-main h2{font-size:27px!important}
+  .page-main h3{font-size:20px!important}
+  .page-main p{font-size:14px!important;line-height:1.68!important}
+  .svc-path-grid,.svc-grid,.about-values,.about-service-grid,.launch-plan-grid,.team-grid,.demo-grid,.client-grid,.article-grid{
+    grid-template-columns:1fr!important;
+    width:100%!important;
+  }
+  .svc-catalog-head,.svc-card-top,.collection-control-bar,.catalog-results-head{
+    display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:12px!important;
+  }
+  .svc-card{padding:20px!important}
+  .portfolio-tabs{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+  .portfolio-tabs .button{width:100%!important}
+  .article-feature{grid-template-columns:1fr!important}
+  .article-feature-art{min-height:220px!important}
+  .blog-toolbar{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+  .blog-toolbar>*{width:100%!important}
+  .ready-use-grid{grid-template-columns:1fr!important}
+  .catalog-layout{grid-template-columns:1fr!important}
+  .catalog-sidebar{position:static!important;width:100%!important}
+  .catalog-results{min-width:0!important;width:100%!important}
+  .collection-package-context{padding:20px!important;margin:24px 0!important}
+  .collection-explorer{grid-template-columns:1fr!important;gap:18px!important}
+  .collection-sidebar-clean{position:static!important}
+  .collection-tools{grid-template-columns:1fr!important}
+  .collection-grid{grid-template-columns:1fr!important}
+  .collection-visual{min-height:230px!important}
+  .collection-art{inset:26px 18px 18px!important;padding:22px!important}
+  .about-founder,.about-vision-grid,.about-mission,.about-model,.about-facts{
+    grid-template-columns:1fr!important;
+  }
+  .about-portrait{min-height:260px!important}
+  .about-facts{gap:0!important}
+  .about-facts>div{padding:16px 0!important;border-bottom:1px solid #e6e6e4!important}
+}
+
+/* SMALL PHONES */
+@media(max-width:390px){
+  .page-main,.page-main.wrap,.services-page,.about-page{width:calc(100% - 20px)!important}
+  .bb-page-hero{padding-top:30px!important;padding-bottom:26px!important}
+  .bb-page-hero h1{font-size:31px!important}
+  .bb-page-hero .lead{font-size:13.5px!important}
+  .bb-hero-actions .button{min-height:48px!important}
+}
