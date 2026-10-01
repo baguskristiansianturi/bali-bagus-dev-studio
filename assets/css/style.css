@@ -508,3 +508,90 @@ body>main>section.hero-grid>div{
   #siteFooter .footer-main{grid-template-columns:1fr}
   #siteFooter .footer-brand{grid-column:auto}
 }
+
+
+/* =========================================================
+   GLOBAL FULL-BLEED PAGE HERO + STABLE FOOTER
+   Hero background reaches viewport edges; inner content stays constrained.
+   ========================================================= */
+.site-header,
+.site-footer{width:100%;}
+
+.site-footer{display:block;position:relative;clear:both;width:100%;margin:0;padding:0;}
+.site-footer .footer-wrap{width:100%;max-width:var(--bb-container);margin-inline:auto;padding-inline:var(--bb-gutter);}
+.site-footer .footer-main{width:100%;}
+
+/* Canonical page heroes: full viewport width, normal inner content */
+main > .bb-page-hero,
+main > section.bb-page-hero,
+main > .page-hero,
+main > section.page-hero,
+main > .hero-grid,
+main > section.hero-grid{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  border-left:0;
+  border-right:0;
+  border-radius:0;
+}
+
+main > .bb-page-hero > .bb-container,
+main > .bb-page-hero > .wrap,
+main > .bb-page-hero > .container,
+main > .page-hero > .bb-container,
+main > .page-hero > .wrap,
+main > .page-hero > .container,
+main > section.hero-grid > .bb-container,
+main > section.hero-grid > .wrap,
+main > section.hero-grid > .container{
+  width:100%;
+  max-width:var(--bb-container);
+  margin-inline:auto;
+  padding-inline:var(--bb-gutter);
+}
+
+/* Handle the current homepage Tailwind inner wrapper without making
+   the content itself full-width. */
+main > section.hero-grid > div.mx-auto{
+  width:100%;
+  max-width:var(--bb-container);
+  margin-inline:auto;
+  box-sizing:border-box;
+}
+
+/* Full-bleed visual backgrounds on common hero variants */
+main > .bb-page-hero,
+main > .page-hero,
+main > section.hero-grid{
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+/* Footer stays full-width while its columns remain contained */
+#siteFooter,
+footer.site-footer{
+  background:var(--bb-dark);
+}
+#siteFooter > .footer-wrap{
+  box-sizing:border-box;
+}
+
+/* Prevent accidental horizontal overflow from full-bleed sections */
+html,body{max-width:100%;overflow-x:hidden;}
+
+@media (max-width:767px){
+  main > .bb-page-hero,
+  main > section.bb-page-hero,
+  main > .page-hero,
+  main > section.page-hero,
+  main > .hero-grid,
+  main > section.hero-grid{
+    width:100%;
+    border-radius:0;
+  }
+  main > section.hero-grid > div.mx-auto{
+    padding-inline:16px;
+  }
+}
