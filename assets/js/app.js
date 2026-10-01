@@ -852,9 +852,9 @@ function ensureSharedChrome(){
 document.addEventListener("DOMContentLoaded",()=>{
  try{ensureSharedShell();}catch(error){console.error("BB shell error",error)}
  try{header();}catch(error){console.error("BB header error",error);renderShellFallback()}
- if(!document.querySelector(".site-header")?.innerHTML.trim()||!document.querySelector(".site-header")?.querySelector(".top-header-row"))renderShellFallback();
- try{footer();}catch(error){console.error("BB footer error",error);renderShellFallback()}
- if(!document.querySelector("#siteFooter")?.innerHTML.trim())renderShellFallback();
+ if(!document.querySelector(".site-header")?.querySelector(".top-header-row")){try{header()}catch(error){console.error("BB header retry error",error)}}
+ try{footer();}catch(error){console.error("BB footer error",error)}
+ if(!document.querySelector("#siteFooter")?.querySelector(".footer-main")){try{footer()}catch(error){console.error("BB footer retry error",error)}}
  try{decoratePageHeading();}catch(error){console.error("BB page title error",error)}
  requestAnimationFrame(ensureSharedChrome);
  try{setupProductChoices();}catch(error){console.error("BB wishlist setup error",error)}
