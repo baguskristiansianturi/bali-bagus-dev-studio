@@ -6146,3 +6146,11 @@ body:has(.hero-grid) .bb-launch-button{background:#171717!important;color:#fff!i
   body:has(.hero-grid) .hero-grid>div{padding-inline:12px!important}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* BB Studio Green Visual Layer — restored */
+:root{--green:#16835b;--green-dark:#0f6848;--green-soft:#eaf6f0}
+.flow-grid b,.card-index,.bb-card .card-index{color:var(--green)}
+.button-dark{background:var(--green);border-color:var(--green);color:#fff}
+.button-dark:hover{background:var(--green-dark);border-color:var(--green-dark)}
+.bb-card:hover{border-color:#b8dccc;box-shadow:0 18px 45px rgba(22,131,91,.12)}
+.eyebrow,.section-label{color:var(--green)}
