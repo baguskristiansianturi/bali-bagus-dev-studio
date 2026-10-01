@@ -1763,3 +1763,104 @@ img,svg,video{max-width:100%;height:auto}
   .site-footer .footer-wrap{width:calc(100% - 20px)}
   .footer-main{grid-template-columns:1fr}
 }
+
+
+/* =========================================================
+   FINAL PAGE RAIL — normalize legacy, article, commerce,
+   landing and Tailwind homepage containers to the same rail
+   ========================================================= */
+:root{--bb-container:1140px;--bb-page-gutter:32px}
+main.wrap,
+main.page-main,
+main#main{
+  box-sizing:border-box;
+  min-width:0;
+}
+main.wrap{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)))!important;
+  max-width:var(--bb-container)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+main.wrap > *{min-width:0;max-width:100%}
+main.article-main{
+  padding-top:clamp(42px,6vw,72px)!important;
+  padding-bottom:clamp(56px,8vw,88px)!important;
+}
+main.article-main .article-body{
+  width:min(760px,100%);
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+}
+main.checkout-main{
+  padding-top:clamp(40px,6vw,68px)!important;
+  padding-bottom:clamp(48px,7vw,80px)!important;
+}
+main.checkout-main > .checkout-shell,
+main.checkout-main > .checkout-grid{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+body.landing-page main#main{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+body.landing-page .campaign-hero > .wrap,
+body.landing-page main#main > section > .wrap{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)));
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+body.landing-page .campaign-hero > .wrap{min-width:0}
+body:not(.landing-page) main#main:not(.page-main):not(.wrap){
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+body:not(.landing-page) main#main:not(.page-main):not(.wrap) > .wrap,
+body:not(.landing-page) main#main:not(.page-main):not(.wrap) > .section,
+body:not(.landing-page) main#main:not(.page-main):not(.wrap) > .bb-page-hero{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)));
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+.home-container{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)))!important;
+  max-width:var(--bb-container)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box;
+}
+.home-section{width:100%;max-width:none}
+@media(max-width:1100px) and (min-width:768px){
+  :root{--bb-page-gutter:24px}
+}
+@media(max-width:767px){
+  :root{--bb-page-gutter:12px}
+  main.wrap{
+    width:calc(100% - 24px)!important;
+    max-width:var(--bb-container)!important;
+  }
+  body.landing-page .campaign-hero > .wrap,
+  body.landing-page main#main > section > .wrap,
+  .home-container{
+    width:calc(100% - 24px)!important;
+    max-width:var(--bb-container)!important;
+  }
+}
+@media(max-width:390px){
+  main.wrap,
+  body.landing-page .campaign-hero > .wrap,
+  body.landing-page main#main > section > .wrap,
+  .home-container{
+    width:calc(100% - 20px)!important;
+  }
+}
