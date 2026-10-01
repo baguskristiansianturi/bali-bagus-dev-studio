@@ -661,79 +661,24 @@ function renderShellFallback(){
 }
 
 function header(){
- const h=$(".site-header");if(!h)return;
+ const h=document.querySelector(".site-header");if(!h)return;
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
- const params=new URLSearchParams(location.search),pageName=location.pathname.split("/").pop()||"index.html";
- const recentItems=store.get("recentViews",[]);
- if(pageName==="product-detail.html"){
-   const p=findProduct(params.get("id")||""); if(p){const arr=recentItems.filter(x=>x.id!==p.id);arr.push({id:p.id,name:p.name,type:"Produk digital",url:"product-detail.html?id="+encodeURIComponent(p.id)});store.set("recentViews",arr.slice(-8));}
- }else if(pageName==="demo.html"){
-   const t=WEBSITE_COLLECTION.find(x=>x.id===params.get("template")); if(t){const arr=recentItems.filter(x=>x.id!==t.id);arr.push({id:t.id,name:t.name,type:"Website",url:"demo.html?template="+encodeURIComponent(t.id)});store.set("recentViews",arr.slice(-8));}
- }
  const recent=store.get("recentViews",[]);
- h.innerHTML=`
- <div class="top-header-row">
-   <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
-   <div class="header-top-actions">
-     <button class="header-utility" type="button" data-header-popover="locale" aria-expanded="false">ID · IDR <span>⌄</span></button>
-     <a class="header-utility" href="${base}articles.html">Blog</a>
-     <a class="header-utility" href="${base}help.html">Bantuan</a>
-     <a class="header-utility header-cart-link" href="${base}cart.html">Keranjang <b class="header-badge" id="cartCount">0</b></a>
-     <button class="header-utility" type="button" data-header-popover="recent" aria-expanded="false">Baru dilihat <b class="header-badge">${recent.length}</b></button>
-     <a class="header-signup" href="${base}account.html">Mendaftar</a>
-     <a class="header-login" href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a>
-   </div>
-   <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
- </div>
- <div class="category-nav-row">
-   <nav class="category-nav" id="mainNav" aria-label="Kategori utama"><div class="mobile-quick-links"><a href="${base}articles.html">Blog</a><a href="${base}help.html">Bantuan</a><a href="${base}cart.html">Keranjang <b class="header-badge" id="mobileCartCount">0</b></a><button type="button" class="mobile-quick-action" data-header-popover="recent" aria-expanded="false">Baru dilihat <b class="header-badge">${recent.length}</b></button><a href="${base}account.html">Mendaftar</a><a href="${base}account.html">Masuk</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}services.html">Build</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}products.html">Templates</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}website-collection.html">Solutions</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}portfolio.html">Work</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}articles.html">Insights</a></div>
-     <div class="mega-item"><a class="mega-trigger" href="${base}about.html">About</a></div>   </nav><a class="member-entry" href="${base}booking.html"><span>Konsultasi</span></a>
- </div>
- <div class="header-popover" id="headerLocale" hidden><b>Bahasa & mata uang</b><span>Indonesia · IDR</span><span class="popover-note">Pilihan bahasa dan mata uang produksi akan tersedia saat localization diaktifkan.</span></div>
- <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}products.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>
- `;
+ h.className="site-header";
+ h.innerHTML=`<div class="top-header-row">
+   <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev Studio"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
+   <nav class="studio-primary-nav" aria-label="Navigasi utama">
+    <a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Industries</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">About</a>
+   </nav>
+   <div class="header-top-actions"><a class="header-utility" href="${base}help.html">Bantuan</a><a class="header-utility header-cart-link" href="${base}cart.html">Cart <b class="header-badge" id="cartCount">0</b></a><a class="header-login" href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a><a class="studio-start-button" href="${base}booking.html">Start a Project <span>↗</span></a></div>
+   <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
+  </div>
+  <div class="studio-mobile-nav" id="mainNav"><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Industries</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">About</a><a class="mobile-start" href="${base}booking.html">Start a Project ↗</a><a href="${base}help.html">Bantuan</a><a href="${base}cart.html">Cart <b class="header-badge" id="mobileCartCount">0</b></a><a href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a></div>
+  <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}compare.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>`;
  updateCount();
- const page=location.pathname.split("/").pop()||"index.html";
- const menuToggle=$("#menuToggle"),mainNav=$("#mainNav");
- const nestedWebsite=location.pathname.includes("/website-category/")||location.pathname.includes("/landing/");
- h.querySelectorAll(".mega-trigger").forEach(trigger=>{
-   trigger.addEventListener("click",e=>{
-     if(innerWidth>800)return;
-     const item=trigger.closest(".mega-item"),open=item.classList.toggle("open");
-     trigger.setAttribute("aria-expanded",String(open));
-   });
- });
- h.querySelectorAll(".mega-item").forEach(item=>{
-   item.addEventListener("mouseenter",()=>{if(innerWidth>800)item.classList.add("hover")});
-   item.addEventListener("mouseleave",()=>{if(innerWidth>800)item.classList.remove("hover")});
- });
- h.querySelectorAll(".category-nav a").forEach(a=>{
-   const href=(a.getAttribute("href")||"").split("?")[0];
-   if(href===page||(nestedWebsite&&href.endsWith("website-collection.html")))a.classList.add("active");
-   a.addEventListener("click",()=>{if(innerWidth<=800){mainNav?.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");menuToggle&&(menuToggle.innerHTML=icon("menu"))}});
- });
- const closeNav=()=>{mainNav?.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");menuToggle?.setAttribute("aria-label","Buka menu");if(menuToggle)menuToggle.innerHTML=icon("menu");h.querySelectorAll(".mega-item.open").forEach(x=>x.classList.remove("open"));h.querySelectorAll(".mega-trigger[aria-expanded=true]").forEach(x=>x.setAttribute("aria-expanded","false"));document.body.classList.remove("nav-open")};
- menuToggle?.addEventListener("click",()=>{
-   const open=mainNav.classList.toggle("open");
-   menuToggle.setAttribute("aria-expanded",String(open));
-   menuToggle.setAttribute("aria-label",open?"Tutup menu":"Buka menu");
-   menuToggle.innerHTML=icon(open?"close":"menu");
-   document.body.classList.toggle("nav-open",open);
-   if(open){mainNav.querySelector(".mobile-quick-links a, .mega-trigger")?.focus({preventScroll:true})}
- });
- h.querySelectorAll("[data-header-popover]").forEach(btn=>btn.addEventListener("click",e=>{
-   e.stopPropagation();const type=btn.dataset.headerPopover,el=type==="locale"?$("#headerLocale"):$("#headerRecent");const willOpen=el?.hidden;
-   h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true);h.querySelectorAll("[data-header-popover]").forEach(b=>b.setAttribute("aria-expanded","false"));
-   if(el){el.hidden=!willOpen;btn.setAttribute("aria-expanded",String(willOpen))}
- }));
- document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeNav();h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true)}});
- document.addEventListener("click",e=>{if(innerWidth<=800&&mainNav?.classList.contains("open")&&!mainNav.contains(e.target)&&!menuToggle?.contains(e.target))closeNav();if(!h.contains(e.target)){h.querySelectorAll(".header-popover").forEach(p=>p.hidden=true);h.querySelectorAll("[data-header-popover]").forEach(b=>b.setAttribute("aria-expanded","false"))}});
- window.addEventListener("resize",()=>{if(innerWidth>800&&mainNav?.classList.contains("open"))closeNav()},{passive:true});
+ const toggle=document.getElementById("menuToggle"),nav=document.getElementById("mainNav");
+ toggle?.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Tutup menu":"Buka menu");toggle.innerHTML=icon(open?"close":"menu");document.body.classList.toggle("nav-open",open)});
+ nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");toggle?.setAttribute("aria-expanded","false");if(toggle)toggle.innerHTML=icon("menu");document.body.classList.remove("nav-open")}));
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
