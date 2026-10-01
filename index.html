@@ -36,36 +36,7 @@ html{scroll-behavior:smooth}body{font-family:Inter,ui-sans-serif,system-ui,sans-
 <body>
 <a href="#main" class="fixed left-3 top-3 z-[100] -translate-y-20 rounded-lg bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition focus:translate-y-0">Lewati ke konten</a>
 
-<header class="nav-glass sticky top-0 z-50 border-b border-zinc-200/80">
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <a href="index.html" class="flex items-center gap-3" aria-label="Bali Bagus Dev Studio">
-      <span class="grid h-9 w-9 place-items-center rounded-xl bg-zinc-950 text-xs font-extrabold text-white">BB</span>
-      <span class="leading-none"><strong class="block text-sm font-extrabold tracking-tight">BALI BAGUS</strong><small class="text-[9px] font-bold tracking-[.22em] text-zinc-500">DEV STUDIO</small></span>
-    </a>
-    <nav class="hidden items-center gap-7 md:flex" aria-label="Navigasi utama">
-      <a class="text-sm font-semibold text-zinc-600 hover:text-zinc-950" href="#services">Layanan</a>
-      <a class="text-sm font-semibold text-zinc-600 hover:text-zinc-950" href="#work">Work</a>
-      <a class="text-sm font-semibold text-zinc-600 hover:text-zinc-950" href="products.html">Produk</a>
-      <a class="text-sm font-semibold text-zinc-600 hover:text-zinc-950" href="articles.html">Insights</a>
-      <a class="text-sm font-semibold text-zinc-600 hover:text-zinc-950" href="about.html">Tentang</a>
-    </nav>
-    <div class="hidden items-center gap-2 md:flex">
-      <a href="contact.html" class="btn inline-flex items-center justify-center rounded-full px-4 text-sm font-semibold text-zinc-700 hover:bg-zinc-100">Hubungi</a>
-      <a href="#booking" class="btn inline-flex items-center justify-center rounded-full bg-zinc-950 px-5 text-sm font-bold text-white shadow-sm hover:bg-zinc-800">Mulai project <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
-    </div>
-    <button id="menuBtn" class="grid h-12 w-12 place-items-center rounded-xl border border-zinc-200 md:hidden" aria-label="Buka menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-  </div>
-  <div id="mobileMenu" class="mobile-menu border-t border-zinc-200 md:hidden">
-    <nav class="mx-auto grid max-w-7xl gap-1 px-4 py-3" aria-label="Menu mobile">
-      <a href="#services" class="rounded-xl px-4 py-3 text-base font-semibold">Layanan</a>
-      <a href="#work" class="rounded-xl px-4 py-3 text-base font-semibold">Work</a>
-      <a href="products.html" class="rounded-xl px-4 py-3 text-base font-semibold">Produk</a>
-      <a href="articles.html" class="rounded-xl px-4 py-3 text-base font-semibold">Insights</a>
-      <a href="about.html" class="rounded-xl px-4 py-3 text-base font-semibold">Tentang</a>
-      <a href="#booking" class="mt-2 inline-flex min-h-12 items-center justify-center rounded-xl bg-zinc-950 px-4 font-bold text-white">Mulai project</a>
-    </nav>
-  </div>
-</header>
+<header class="site-header" aria-label="Navigasi utama"></header>
 
 <main id="main">
 <section class="hero-grid relative overflow-hidden border-b border-zinc-200">
@@ -198,17 +169,7 @@ html{scroll-behavior:smooth}body{font-family:Inter,ui-sans-serif,system-ui,sans-
 </section>
 </main>
 
-<footer class="border-t border-zinc-200 bg-white">
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-      <div><a href="index.html" class="flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-xl bg-zinc-950 text-xs font-extrabold text-white">BB</span><span><strong class="block text-sm">BALI BAGUS</strong><small class="text-[9px] font-bold tracking-[.22em] text-zinc-500">DEV STUDIO</small></span></a><p class="mt-5 max-w-sm text-sm leading-6 text-zinc-500">Digital solutions built around real business needs.</p><div class="mt-5 flex gap-2"><a aria-label="Instagram" href="https://instagram.com/bbstudio" class="grid h-10 w-10 place-items-center rounded-full border border-zinc-200 hover:bg-zinc-50"><i class="fa-brands fa-instagram"></i></a><a aria-label="Facebook" href="https://facebook.com/bbstudio" class="grid h-10 w-10 place-items-center rounded-full border border-zinc-200 hover:bg-zinc-50"><i class="fa-brands fa-facebook-f"></i></a><a aria-label="LinkedIn" href="https://linkedin.com" class="grid h-10 w-10 place-items-center rounded-full border border-zinc-200 hover:bg-zinc-50"><i class="fa-brands fa-linkedin-in"></i></a></div></div>
-      <div><h3 class="text-sm font-bold">Studio</h3><div class="mt-4 grid gap-3 text-sm text-zinc-500"><a href="about.html" class="hover:text-zinc-950">Tentang</a><a href="portfolio.html" class="hover:text-zinc-950">Portfolio</a><a href="articles.html" class="hover:text-zinc-950">Insights</a><a href="contact.html" class="hover:text-zinc-950">Kontak</a></div></div>
-      <div><h3 class="text-sm font-bold">Solutions</h3><div class="mt-4 grid gap-3 text-sm text-zinc-500"><a href="services.html#website" class="hover:text-zinc-950">Website</a><a href="services.html#app" class="hover:text-zinc-950">Web App</a><a href="services.html#seo" class="hover:text-zinc-950">SEO</a><a href="services.html#copy" class="hover:text-zinc-950">Copywriting</a><a href="products.html" class="hover:text-zinc-950">Digital Products</a></div></div>
-      <div><h3 class="text-sm font-bold">Bantuan</h3><div class="mt-4 grid gap-3 text-sm text-zinc-500"><a href="faq.html" class="hover:text-zinc-950">FAQ</a><a href="help.html" class="hover:text-zinc-950">Help Center</a><a href="terms.html" class="hover:text-zinc-950">Syarat & Ketentuan</a><a href="privacy.html" class="hover:text-zinc-950">Privasi</a><a href="refund.html" class="hover:text-zinc-950">Refund</a></div></div>
-    </div>
-    <div class="mt-10 flex flex-col gap-3 border-t border-zinc-200 pt-6 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Bali Bagus Dev Studio. All rights reserved.</span><span>Founded by Bagus Kristian Sianturi · Indonesia</span></div>
-  </div>
-</footer>
+<footer id="siteFooter"></footer>
 
 <div id="webModal" class="modal fixed inset-0 z-[80] items-center justify-center bg-zinc-950/70 p-4" role="dialog" aria-modal="true" aria-labelledby="webModalTitle"><div class="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-9"><div class="flex items-start justify-between gap-5"><div><span class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Web Development</span><h2 id="webModalTitle" class="mt-2 text-3xl font-extrabold">Website yang dibuat untuk bekerja.</h2></div><button data-close class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-zinc-100" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div><p class="mt-5 leading-7 text-zinc-600">Kami dapat mengerjakan website bisnis, landing page, e-commerce, booking website, dashboard, web app, hingga sistem internal sesuai scope.</p><div class="mt-7 grid gap-3 sm:grid-cols-2"><div class="rounded-2xl bg-zinc-50 p-4"><b>Discovery</b><p class="mt-1 text-sm text-zinc-500">Tujuan, audience, fitur dan prioritas.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Design</b><p class="mt-1 text-sm text-zinc-500">UI responsif dengan alur pengguna jelas.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Development</b><p class="mt-1 text-sm text-zinc-500">Frontend dan integrasi sesuai kebutuhan.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>QA & handover</b><p class="mt-1 text-sm text-zinc-500">Testing, perbaikan, dan handover.</p></div></div><a href="#booking" data-close class="btn mt-7 inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 font-bold text-white">Bahas website saya <i class="fa-solid fa-arrow-right ml-3"></i></a></div></div>
 
