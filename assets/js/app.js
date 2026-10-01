@@ -40,7 +40,7 @@ const icon=(name,cls="icon-svg")=>{const p={arrow:'<path d="M5 12h14M13 6l6 6-6 
 function art(p){
  return `<div class="product-art ${esc(p.visual)}" role="img" aria-label="${esc(p.name)} preview">
    <span class="art-label">BB / ${esc(p.category.toUpperCase())}</span><span class="art-price">${esc(p.tag)}</span>
-   <div class="product-mock"><span>BALI BAGUS / DIGITAL STUDIO</span><b>${p.visual==="villa"?"THE ART OF<br>SLOW LIVING.":p.visual==="barber"?"GOOD CUTS.<br>GOOD ENERGY.":esc(p.name.split(" ").slice(0,2).join("<br>"))}</b><i></i></div>
+   <div class="product-mock"><span>BALI BAGUS / DIGITAL STUDIO</span><b>${p.visual==="villa"?"THE ART OF<br>SLOW LIVING.":p.visual==="barber"?"GOOD CUTS.<br>GOOD ENERGY.":esc(p.name.split(" ").slice(0,2).join(" ")).replace(/ /g,"<br>")}</b><i></i></div>
  </div>`;
 }
 
