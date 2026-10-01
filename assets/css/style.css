@@ -3475,3 +3475,42 @@ pre,code{max-width:100%;overflow-x:auto}
   .floating-card{max-width:78%}
   .floating-card span,.floating-card small{overflow-wrap:anywhere}
 }
+
+
+/* BOOKING MOBILE V2 — compact, readable and touch-friendly */
+.booking-pricing{max-width:720px;margin:22px 0 32px;padding:20px 22px;display:flex;align-items:center;gap:22px;background:#f7f7f4;border:1px solid #deded9}
+.booking-pricing strong{font-size:clamp(28px,4vw,42px);line-height:1;letter-spacing:-.055em}
+.booking-pricing span{font:11px/1.65 'DM Mono',monospace;color:#777}
+@media(max-width:700px){
+  .page-main{padding-top:38px!important;padding-bottom:65px!important}
+  .page-main>.eyebrow{margin-bottom:18px!important;font-size:8px!important}
+  .page-main>h1{font-size:clamp(38px,11vw,48px)!important;line-height:.98!important;letter-spacing:-.055em!important;margin-bottom:18px!important;max-width:100%!important}
+  .page-main>.lead{font-size:14px!important;line-height:1.72!important;margin-bottom:20px!important;max-width:100%!important}
+  .booking-pricing{margin:18px 0 30px;padding:18px 16px;display:block;max-width:none}
+  .booking-pricing strong{display:block;font-size:32px!important;margin-bottom:10px}
+  .booking-pricing span{display:block;font-size:9px!important;line-height:1.65!important}
+  .consultation-overview{margin-top:0!important}
+  .consultation-overview>.eyebrow{margin-bottom:13px!important}
+  .consultation-overview>h2{font-size:29px!important;line-height:1.08!important;letter-spacing:-.045em!important;margin-bottom:10px!important}
+  .consultation-overview>p{font-size:13px!important;line-height:1.7!important;margin-bottom:20px!important}
+  .consultation-overview .category-grid{gap:8px!important}
+  .consultation-overview .category-card{min-height:0!important;padding:18px!important}
+  .consultation-overview .category-card h3{font-size:19px!important;margin:16px 0 8px!important}
+  .consultation-overview .category-card p{font-size:11px!important;line-height:1.65!important;margin-bottom:4px!important}
+  .custom-flow-strip{grid-template-columns:1fr!important;gap:6px!important;margin:18px 0 25px!important}
+  .custom-flow-strip span{font-size:8px!important;padding:9px 10px!important}
+  .form-layout{margin-top:25px!important;gap:12px!important}
+  .form-card{padding:20px 16px!important}
+  .form-card h2{font-size:22px!important;margin-bottom:20px!important}
+  .form-card label{font-size:10px!important;margin:14px 0!important}
+  .form-card input:not([type=checkbox]):not([type=radio]),.form-card select,.form-card textarea{font-size:13px!important;padding:12px!important}
+  .form-aside{padding:20px!important}
+  .form-aside h3{font-size:22px!important;margin:20px 0 10px!important}
+  .form-aside p{font-size:11px!important;line-height:1.7!important}
+}
+@media(max-width:380px){
+  .page-main{padding-top:30px!important}
+  .page-main>h1{font-size:35px!important}
+  .page-main>.lead{font-size:13px!important}
+  .booking-pricing strong{font-size:29px!important}
+}
