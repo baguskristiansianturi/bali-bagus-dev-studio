@@ -5173,3 +5173,39 @@ body:has(.collection-layout) .page-title-frame{--bb-page-image:url("https://imag
 /* Keep homepage content intact while matching the new discovery visual language */
 body:has(.hero-grid) .site-header{box-shadow:none}
 body:has(.hero-grid) .site-header + main{padding-top:0}
+
+
+/* BB discovery header shell */
+.bb-discovery-header{font-family:Manrope,Arial,sans-serif}
+.bb-header-inner{width:min(1240px,calc(100% - 40px));margin:auto}
+.bb-utility{background:#fff;border-bottom:1px solid #ececef;font-size:11px;color:#777}
+.bb-utility .bb-header-inner{min-height:32px;display:flex;justify-content:space-between;align-items:center}
+.bb-utility a{color:#62656c;margin-left:20px;font-weight:700}
+.bb-main-header{background:#fff}
+.bb-main-header .bb-header-inner{min-height:72px;display:flex;align-items:center;gap:24px}
+.bb-discovery-header .brand{display:flex;align-items:center;gap:9px;min-width:205px;font-size:12px;font-weight:850;letter-spacing:.04em;color:#18181b}
+.bb-discovery-header .brand-mark{width:42px;height:42px;border-radius:13px;background:#111318;color:#fff;display:grid;place-items:center;font-weight:900}
+.bb-discovery-header .brand small{display:block;font:8px/1 'DM Mono',monospace;letter-spacing:.18em;margin-top:4px}
+.bb-site-search{display:flex;flex:1;max-width:610px;height:44px;border:1px solid #dfe1e4;border-radius:999px;background:#f7f7f8;overflow:hidden}
+.bb-site-search input{border:0!important;background:transparent!important;min-height:44px!important;flex:1;padding:0 18px!important;outline:none;font-size:13px}
+.bb-site-search button{width:50px;border:0;background:#111318;color:#fff;font-size:20px}
+.bb-main-actions{margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.bb-main-actions a{font-size:11px;font-weight:800;padding:10px 12px;border-radius:10px;color:#3f4248}
+.bb-main-actions a.bb-start{background:#ff6b35;color:#fff;border-radius:999px;padding-inline:17px}
+.bb-category-bar{background:#fff;border-top:1px solid #f0f0f1;border-bottom:1px solid #dedfe2}
+.bb-category-bar .bb-header-inner{display:flex;align-items:center;justify-content:space-between;min-height:44px}
+.bb-category-bar nav{display:flex;gap:27px;overflow:auto}
+.bb-category-bar nav a{font-size:12px;font-weight:800;color:#3f4248;white-space:nowrap;padding:13px 0}
+.bb-category-bar nav a:hover{color:#ff6b35}
+.bb-consult{font-size:11px;font-weight:850;color:#ff6b35;white-space:nowrap}
+.bb-menu,.bb-mobile-menu{display:none}
+@media(max-width:1050px){.bb-main-header .bb-header-inner{gap:14px}.bb-discovery-header .brand{min-width:170px}.bb-main-actions a:first-child{display:none}.bb-category-bar nav{gap:18px}}
+@media(max-width:800px){
+ .bb-utility{display:none}.bb-main-header .bb-header-inner{min-height:62px;width:calc(100% - 20px)}.bb-discovery-header .brand{min-width:0}.bb-discovery-header .brand-mark{width:36px;height:36px}.bb-discovery-header .brand{font-size:10px}.bb-discovery-header .brand small{font-size:7px}.bb-site-search,.bb-main-actions,.bb-category-bar{display:none}
+ .bb-menu{display:grid;place-items:center;margin-left:auto;width:42px;height:42px;border:1px solid #dfe1e4;background:#fff;border-radius:12px;font-size:20px}
+ .bb-mobile-menu{display:none;width:calc(100% - 20px);margin:0 auto;padding:12px 0 16px;background:#fff;border-top:1px solid #ececef}
+ .bb-mobile-menu.open{display:grid;gap:7px}
+ .bb-mobile-menu form{display:flex;gap:7px;margin-bottom:5px}.bb-mobile-menu input{flex:1!important}.bb-mobile-menu button{border:0;background:#111318;color:#fff;border-radius:10px;padding:0 15px;font-weight:800}
+ .bb-mobile-menu>a{min-height:46px;display:flex;align-items:center;padding:0 14px;border:1px solid #e7e8ea;border-radius:12px;font-size:13px;font-weight:800;background:#fff}
+ .bb-mobile-menu .bb-mobile-start{background:#ff6b35;color:#fff;border-color:#ff6b35;justify-content:center}
+}
