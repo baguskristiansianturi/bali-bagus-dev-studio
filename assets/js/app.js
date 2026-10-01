@@ -373,6 +373,7 @@ const WEBSITE_CATEGORIES=[
 ];
 
 function allProducts(){return PRODUCTS.filter(p=>p.category!=="Hardware"&&p.category!=="Software")}
+window.BB_CATALOG=allProducts;
 function findProduct(id){return allProducts().find(p=>p.id===id)}
 function normalizeCart(raw){
  if(!Array.isArray(raw))return [];
@@ -952,7 +953,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
  if($("#homePackages"))renderPackages("#homePackages",3);
 });
-window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;
+window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;window.BB_CATALOG=allProducts();window.BB_FORMAT_CURRENCY=fmt;
 
 
 
