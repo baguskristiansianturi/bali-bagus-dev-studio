@@ -6605,3 +6605,48 @@ body{font-family:Manrope,Arial,sans-serif;color:var(--bb-text);background:#fff}
   .bb-page-hero,.services-page .svc-hero,.about-page .about-hero{padding-top:36px!important;padding-bottom:32px!important}
   .bb-page-hero h1,.services-page .svc-hero h1,.about-page .about-hero h1{font-size:35px!important}
 }
+
+
+/* BB STUDIO — FINAL PAGE SHELL NORMALIZATION */
+/* Kill page-specific hero geometry: every primary nav page uses the same shell. */
+.services-page .svc-hero,
+.about-page .about-hero{
+  width:100%!important; min-height:430px!important; margin:0 0 72px!important;
+  padding:76px 0 64px!important; border-bottom:1px solid var(--bb-border)!important;
+  background:#fff!important; display:block!important;
+}
+.services-page .svc-hero-inner,.about-page .about-hero{
+  width:100%!important; max-width:none!important; min-height:290px!important;
+  display:grid!important; grid-template-columns:minmax(0,1fr) 300px!important;
+  gap:64px!important; align-items:center!important;
+}
+.services-page .svc-hero-copy,.about-page .about-hero>div:first-child{max-width:920px!important}
+.services-page .svc-kicker,.about-page .about-kicker{
+  width:min(var(--bb-container),calc(100% - 2 * var(--bb-gutter)))!important;
+  margin:0 auto 18px!important;
+}
+.about-page>.about-kicker{display:none!important}
+.about-page .about-hero{margin-top:0!important}
+.about-page .about-hero:before{
+  content:""!important; position:absolute!important; inset:0 0 1px!important;
+  background-image:linear-gradient(rgba(24,24,27,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(24,24,27,.045) 1px,transparent 1px)!important;
+  background-size:40px 40px!important; pointer-events:none!important;
+}
+.services-page .svc-hero{position:relative!important}
+.services-page .svc-hero:before{
+  content:""!important; position:absolute!important; inset:0 0 1px!important;
+  background-image:linear-gradient(rgba(24,24,27,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(24,24,27,.045) 1px,transparent 1px)!important;
+  background-size:40px 40px!important; pointer-events:none!important;
+}
+.services-page .svc-hero-inner,.about-page .about-hero>*{position:relative!important;z-index:1!important}
+.services-page .svc-hero-inner{margin-inline:auto!important;width:min(var(--bb-container),calc(100% - 2 * var(--bb-gutter)))!important}
+.about-page .about-hero>div{position:relative!important;z-index:1!important}
+.services-page .svc-hero h1,.about-page .about-hero h1{font-size:clamp(42px,5.8vw,68px)!important;line-height:1.02!important;letter-spacing:-.06em!important}
+.services-page .svc-hero-copy>p,.about-page .about-hero .lead{font-size:17px!important;line-height:1.7!important;max-width:700px!important}
+@media(max-width:767px){
+ .services-page .svc-hero,.about-page .about-hero{min-height:0!important;margin-bottom:48px!important;padding:42px 0 38px!important}
+ .services-page .svc-hero-inner,.about-page .about-hero{width:calc(100% - 28px)!important;display:flex!important;flex-direction:column!important;gap:28px!important;min-height:0!important}
+ .services-page .svc-hero h1,.about-page .about-hero h1{font-size:clamp(35px,10vw,48px)!important;line-height:1.04!important}
+ .services-page .svc-hero-copy>p,.about-page .about-hero .lead{font-size:15px!important;line-height:1.65!important}
+ .services-page .svc-hero-note,.about-page .about-hero-note{border-left:0!important;border-top:1px solid var(--bb-border)!important;padding:20px 0 0!important}
+}
