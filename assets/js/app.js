@@ -668,9 +668,12 @@ function header(){
   <div class="studio-mobile-nav" id="mainNav"><div class="mobile-nav-head"><span>MENU</span><button type="button" id="mobileNavClose" aria-label="Tutup menu">×</button></div><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products & Template</a><a href="${base}website-collection.html">Website by Industry</a><a href="${base}portfolio.html">Work & Preview</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">BB Studio</a><a href="${base}help.html">Bantuan</a><a href="${base}compare.html">Baru dilihat</a><a href="${base}cart.html">Keranjang <b class="header-badge" id="mobileCartCount">0</b></a><a href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a><a class="mobile-start" href="${base}booking.html">Mulai proyek ↗</a></div>
   <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}compare.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>`;
  updateCount();
- const toggle=document.getElementById("menuToggle"),nav=document.getElementById("mainNav");
- toggle?.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Tutup menu":"Buka menu");toggle.innerHTML=icon(open?"close":"menu");document.body.classList.toggle("nav-open",open)});
- nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");toggle?.setAttribute("aria-expanded","false");if(toggle)toggle.innerHTML=icon("menu");document.body.classList.remove("nav-open")}));
+ const toggle=document.getElementById("menuToggle"),nav=document.getElementById("mainNav"),close=document.getElementById("mobileNavClose");
+ const setNav=(open)=>{nav?.classList.toggle("open",open);toggle?.setAttribute("aria-expanded",String(open));toggle?.setAttribute("aria-label",open?"Tutup menu":"Buka menu");if(toggle)toggle.innerHTML=icon(open?"close":"menu");document.body.classList.toggle("nav-open",open);};
+ toggle?.addEventListener("click",()=>setNav(!nav?.classList.contains("open")));
+ close?.addEventListener("click",()=>setNav(false));
+ nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setNav(false)));
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&nav?.classList.contains("open"))setNav(false)},{once:true});
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
