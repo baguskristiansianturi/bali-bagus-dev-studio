@@ -5401,3 +5401,8 @@ html,body{overflow-x:hidden}
 .site-footer .footer-bottom{display:flex!important;justify-content:space-between!important;gap:12px;border-top:1px solid #292c32;margin-top:34px;padding-top:15px;color:#747a84!important;font-size:10px!important}
 @media(max-width:800px){.bb-page-hero{min-height:270px!important}.bb-page-hero-inner{min-height:270px!important}.bb-hero-copy{padding:30px 0 25px!important}.bb-page-hero h1{font-size:36px!important}.bb-hero-lead{font-size:14px!important}.bb-sketch-hero:after{width:190px;height:190px;right:-55px;top:75%}.site-footer .footer-wrap{padding-top:38px!important}.site-footer .footer-main{grid-template-columns:1fr 1fr!important;gap:28px 20px!important}.site-footer .footer-brand{grid-column:1/-1}.site-footer .footer-bottom{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin-top:26px}}
 @media(max-width:520px){.bb-page-hero{min-height:245px!important}.bb-page-hero-inner{min-height:245px!important;width:calc(100% - 28px)}.bb-hero-copy{padding:24px 0 20px!important}.bb-page-hero h1{font-size:33px!important}.bb-hero-lead{font-size:13.5px!important}.site-footer .footer-main{grid-template-columns:1fr 1fr!important}.site-footer .footer-nav-group a{font-size:11px}.site-footer .footer-bottom{font-size:9px!important}}
+
+
+/* Hero-to-content spacing correction */
+.bb-page-hero + *{margin-top:0!important}
+@media(max-width:800px){.bb-page-hero + *{margin-top:0!important}}
