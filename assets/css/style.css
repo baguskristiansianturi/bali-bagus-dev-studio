@@ -5546,3 +5546,56 @@ html,body{overflow-x:hidden}
  .bb-float b{font-size:9px}.bb-float small{font-size:6px}
 }
 @media(prefers-reduced-motion:reduce){.bb-float{animation:none}.bb-hero-browser{transition:none}}
+
+
+/* V13 — HERO / NAV STRUCTURE FIX
+   Full-bleed secondary hero, zero dead-space, compact navigation rhythm. */
+@media(min-width:801px){
+  .site-header.bb-discovery-header{height:auto!important;display:block!important;padding:0!important}
+  .site-header.bb-discovery-header .bb-utility{height:30px!important}
+  .site-header.bb-discovery-header .bb-main-header{min-height:68px!important}
+  .site-header.bb-discovery-header .bb-category-bar{height:42px!important}
+  .site-header.bb-discovery-header .bb-header-inner{min-height:inherit!important}
+}
+.page-main:has(> .bb-page-hero){
+  padding-top:0!important;
+  margin-top:0!important;
+}
+.page-main:has(> .bb-page-hero) > .bb-page-hero{
+  width:calc(100% + 64px)!important;
+  margin-left:-32px!important;
+  margin-right:-32px!important;
+}
+.bb-page-hero{
+  margin-top:0!important;
+  border-top:0!important;
+  border-radius:0!important;
+}
+.bb-page-hero-inner{
+  width:min(1160px,calc(100% - 64px))!important;
+  min-height:330px!important;
+  padding:24px 0!important;
+}
+.bb-hero-copy{align-self:center!important}
+.bb-hero-actions{margin-top:18px!important}
+.bb-hero-visual{align-self:center!important}
+@media(max-width:800px){
+  .page-main:has(> .bb-page-hero){
+    padding-top:0!important;
+    margin-top:0!important;
+  }
+  .page-main:has(> .bb-page-hero) > .bb-page-hero{
+    width:calc(100% + 32px)!important;
+    margin-left:-16px!important;
+    margin-right:-16px!important;
+  }
+  .site-header.bb-discovery-header{height:64px!important}
+  .bb-page-hero-inner{width:calc(100% - 28px)!important}
+}
+@media(max-width:520px){
+  .page-main:has(> .bb-page-hero) > .bb-page-hero{
+    width:calc(100% + 28px)!important;
+    margin-left:-14px!important;
+    margin-right:-14px!important;
+  }
+}
