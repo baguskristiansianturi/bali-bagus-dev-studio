@@ -4247,3 +4247,90 @@ pre,code{max-width:100%;overflow-x:auto}
     max-height:calc(100dvh - 62px)!important;
   }
 }
+
+
+/* ============================================================
+   V3.0 PRODUCTION POLISH — responsive commerce + mobile UX
+============================================================ */
+.site-header .mega-trigger,
+.site-header .header-utility,
+.site-header .header-signup,
+.site-header .header-login,
+.site-header .member-entry{
+  font-size:13px;
+  font-weight:700;
+}
+.site-header .mega-trigger{letter-spacing:-.01em}
+.site-header .top-header-row{min-height:68px}
+.site-header .category-nav-row{min-height:54px}
+.product-card,.category-card,.service-detail-grid article,.form-card,.summary-card,.confirm-card{
+  border-radius:14px;
+}
+.button{min-height:48px}
+.catalog-layout{
+  align-items:start;
+  gap:28px;
+}
+.catalog-sidebar{
+  position:sticky;
+  top:110px;
+  border:1px solid #e5e5e1;
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+}
+.catalog-results{min-width:0}
+.catalog-toolbar{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 190px;
+  gap:10px;
+  margin:16px 0 20px;
+}
+.catalog-toolbar input,.catalog-toolbar select{
+  min-height:48px;
+  border:1px solid #dcdcd7;
+  background:#fff;
+  padding:0 14px;
+  font:inherit;
+  outline:none;
+}
+.catalog-toolbar input:focus,.catalog-toolbar select:focus{
+  border-color:#171717;
+  box-shadow:0 0 0 3px rgba(16,185,129,.12);
+}
+.product-card .button,.product-card a{
+  min-height:44px;
+}
+.product-art{overflow:hidden;border-radius:12px}
+.checkout-panel,.checkout-summary,.confirm-shell{border-radius:16px}
+.checkout-step{border-radius:8px}
+.bank-card{border-radius:12px}
+.proof{border-radius:12px}
+.confirm-actions .button{flex:1;min-width:180px}
+@media(max-width:800px){
+  .site-header .top-header-row{min-height:64px}
+  .site-header .category-nav-row{min-height:0}
+  .catalog-layout{grid-template-columns:1fr!important}
+  .catalog-sidebar{position:static;padding:17px}
+  .catalog-toolbar{grid-template-columns:1fr}
+  .catalog-results-head{align-items:start;gap:12px}
+  .catalog-results-head select{min-height:46px}
+  .ready-use-grid{grid-template-columns:1fr!important}
+  .collection-bridge{display:grid!important;gap:14px}
+  .collection-bridge .button{width:100%;justify-content:center}
+  .checkout-steps{position:sticky;top:0;z-index:10;background:#fff;padding:8px 0}
+  .checkout-step{min-height:42px;display:flex;align-items:center}
+}
+@media(max-width:480px){
+  .site-header .brand{font-size:11px}
+  .site-header .brand small{font-size:7px}
+  .page-main,.checkout-main,.confirm-main{overflow-x:clip}
+  .catalog-sidebar{border-radius:12px}
+  .catalog-filter-group label{min-height:42px;display:flex;align-items:center}
+  .product-card{padding:14px!important}
+  .product-card .button{width:100%;justify-content:center}
+  .confirm-actions{grid-template-columns:1fr}
+  .confirm-actions .button{min-width:0}
+  .proof{padding:16px}
+  .proof input{font-size:12px}
+}
