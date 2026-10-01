@@ -5252,3 +5252,17 @@ body:has(.hero-grid) .site-header + main{padding-top:0}
  .bb-page-hero h1{font-size:35px!important}
  .bb-hero-lead{font-size:13.5px!important}
 }
+
+
+/* Help Center discovery */
+.bb-help-discovery{margin:0 auto 30px;max-width:1160px;border:1px solid #e5e5e7;border-radius:24px;background:#fff;padding:30px;box-shadow:0 14px 40px rgba(17,19,24,.06)}
+.bb-help-discovery>div:first-child span{font:800 10px/1 'DM Mono',monospace;letter-spacing:.12em;color:#ff6b35}
+.bb-help-discovery h2{font-size:clamp(25px,3vw,38px);margin:9px 0 5px;letter-spacing:-.04em}
+.bb-help-discovery p{font-size:14px;color:#6d7077;margin:0}
+.bb-help-discovery form{display:flex;gap:8px;margin:22px 0 14px}
+.bb-help-discovery form input{flex:1;height:50px;border:1px solid #dfe1e4;border-radius:12px;padding:0 16px;font-size:13px;background:#f8f8f9}
+.bb-help-discovery form button{border:0;border-radius:12px;background:#111318;color:#fff;padding:0 22px;font-size:12px;font-weight:800}
+.bb-help-topics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.bb-help-topics a{padding:13px;border:1px solid #e5e5e7;border-radius:12px;font-size:12px;font-weight:800;color:#33363c;background:#fff}
+.bb-help-topics a:hover{border-color:#ffb49a;color:#e95725}
+@media(max-width:600px){.bb-help-discovery{padding:22px 17px;border-radius:19px}.bb-help-discovery form{display:grid;grid-template-columns:1fr auto}.bb-help-topics{grid-template-columns:1fr 1fr}.bb-help-topics a{font-size:11px}}
