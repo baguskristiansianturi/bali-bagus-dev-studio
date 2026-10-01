@@ -1508,3 +1508,95 @@ main.page-main > .section > .demo-grid{
     max-width:var(--bb-container,1140px);
   }
 }
+
+
+/* SECONDARY NAV — sticky discovery rail */
+.site-header{
+  position:sticky!important;
+  top:0;
+  z-index:1000;
+}
+.site-header .bb-category-bar{
+  position:relative;
+  z-index:2;
+  background:rgba(255,255,255,.97);
+  border-top:1px solid #eee;
+  border-bottom:1px solid var(--bb-line);
+  box-shadow:0 3px 14px rgba(24,24,27,.035);
+}
+.site-header .bb-category-bar .bb-header-inner{
+  width:min(var(--bb-container,1140px),calc(100% - 64px));
+  max-width:var(--bb-container,1140px);
+  min-height:50px;
+  margin-inline:auto;
+}
+.site-header .bb-category-bar nav{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+}
+.site-header .bb-category-bar nav::-webkit-scrollbar{display:none}
+.site-header .bb-category-bar nav a{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  min-height:50px;
+  padding:0 16px;
+  color:#3f3f46;
+  font-size:12px;
+  font-weight:750;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:color .18s ease,border-color .18s ease,background .18s ease;
+}
+.site-header .bb-category-bar nav a:first-child{padding-left:0}
+.site-header .bb-category-bar nav a:hover{
+  color:var(--bb-accent);
+  border-bottom-color:var(--bb-accent);
+}
+.site-header .bb-category-bar .bb-consult{
+  flex:0 0 auto;
+  min-height:34px;
+  padding:0 13px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid #18181b;
+  border-radius:999px;
+  background:#18181b;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+@media(max-width:1100px) and (min-width:768px){
+  .site-header .bb-category-bar{display:block!important}
+  .site-header .bb-category-bar .bb-header-inner{width:calc(100% - 48px)}
+  .site-header .bb-category-bar .bb-consult{display:none}
+  .site-header .bb-category-bar nav a{padding-inline:13px}
+  .site-header .bb-category-bar nav a:first-child{padding-left:0}
+}
+@media(max-width:767px){
+  .site-header .bb-category-bar{
+    display:block!important;
+    position:relative;
+  }
+  .site-header .bb-category-bar .bb-header-inner{
+    width:100%;
+    min-height:46px;
+    padding:0 12px;
+  }
+  .site-header .bb-category-bar nav{gap:0}
+  .site-header .bb-category-bar nav a{
+    min-height:46px;
+    padding:0 12px;
+    font-size:11px;
+  }
+  .site-header .bb-category-bar nav a:first-child{padding-left:0}
+  .site-header .bb-category-bar .bb-consult{display:none}
+}
