@@ -130,7 +130,7 @@ function renderFAQ(){
 }
 function helpAnswer(q){
  const s=q.toLowerCase();
- if(/payment|bayar|pembayaran|gateway|checkout|qris|transfer|kartu/.test(s))return "Payment gateway produksi belum aktif. Cart dan checkout saat ini adalah prototype frontend. Untuk proyek atau pertanyaan pembayaran, Anda dapat lanjut ke halaman FAQ atau WhatsApp.";
+ if(/payment|bayar|pembayaran|gateway|checkout|qris|transfer|kartu/.test(s))return "Payment gateway produksi belum aktif. Checkout frontend saat ini sudah mendukung alur pesanan, transfer BCA, dan konfirmasi WhatsApp; data masih tersimpan di browser sampai backend production tersedia.";
  if(/domain|hosting/.test(s))return "Domain dan hosting bergantung pada paket serta scope. Kebutuhan pihak ketiga dapat dihitung terpisah sesuai proyek.";
  if(/custom|website|web/.test(s))return "Bisa. Untuk custom website, mulai dari discovery agar kebutuhan, struktur, fitur, dan scope dapat ditentukan sebelum development.";
  if(/review|ulasan|testimoni/.test(s))return "Slider ulasan sudah disiapkan, tetapi belum ada ulasan terverifikasi yang ditampilkan. Review production akan muncul setelah sistem order dan verifikasi tersedia.";
