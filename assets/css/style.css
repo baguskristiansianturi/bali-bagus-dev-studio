@@ -595,3 +595,125 @@ html,body{max-width:100%;overflow-x:hidden;}
     padding-inline:16px;
   }
 }
+
+
+/* =========================================================
+   FINAL PAGE HERO / FOOTER CLEANUP
+   The page shell is full width; only inner content is constrained.
+   ========================================================= */
+
+/* Pages that currently use .wrap on <main> must not constrain the hero. */
+main.page-main.wrap{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding-left:0;
+  padding-right:0;
+}
+
+/* Full-bleed hero: visual section spans the viewport. */
+main.page-main > .bb-page-hero{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  box-sizing:border-box;
+  border-radius:0;
+}
+
+/* Keep hero content at the normal reading width. */
+main.page-main > .bb-page-hero > *{
+  width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+
+/* Hero text elements use the same readable column rather than stretching. */
+main.page-main > .bb-page-hero > .eyebrow,
+main.page-main > .bb-page-hero > h1,
+main.page-main > .bb-page-hero > .lead,
+main.page-main > .bb-page-hero > .bb-hero-meta,
+main.page-main > .bb-page-hero > .bb-hero-actions{
+  width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));
+}
+
+/* Do not let the generated contact widget become visible content below footer. */
+.bb-contact-fab{
+  position:fixed !important;
+  right:22px;
+  bottom:22px;
+  z-index:1200;
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:50%;
+  background:#09090b;
+  color:#fff;
+  box-shadow:0 14px 35px rgba(0,0,0,.22);
+  cursor:pointer;
+}
+
+.bb-modal-backdrop{
+  position:fixed !important;
+  inset:0;
+  z-index:1300;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(9,9,11,.62);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.bb-modal-backdrop.open{display:flex;}
+
+.bb-modal{
+  width:min(560px,100%);
+  max-height:min(720px,calc(100vh - 40px));
+  overflow:auto;
+  position:relative;
+  border:1px solid var(--bb-line);
+  border-radius:24px;
+  background:#fff;
+  color:var(--bb-ink);
+  padding:32px;
+  box-shadow:0 30px 90px rgba(0,0,0,.24);
+}
+
+.bb-modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f4f4f5;
+  color:#18181b;
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+}
+
+.bb-modal h2{margin:12px 42px 10px 0;font-size:clamp(26px,4vw,40px);line-height:1.08;letter-spacing:-.035em;}
+.bb-modal p{margin:0;color:#52525b;line-height:1.7;}
+.bb-modal-actions{display:grid;gap:10px;margin-top:24px;}
+.bb-modal-actions .button{width:100%;justify-content:center;}
+
+@media(max-width:767px){
+  main.page-main > .bb-page-hero > *,
+  main.page-main > .bb-page-hero > .eyebrow,
+  main.page-main > .bb-page-hero > h1,
+  main.page-main > .bb-page-hero > .lead,
+  main.page-main > .bb-page-hero > .bb-hero-meta,
+  main.page-main > .bb-page-hero > .bb-hero-actions{
+    width:calc(100% - 32px);
+  }
+  .bb-contact-fab{right:16px;bottom:16px;width:48px;height:48px;}
+  .bb-modal{padding:26px 20px;border-radius:20px;}
+}
