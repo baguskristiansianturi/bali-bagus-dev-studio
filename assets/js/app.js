@@ -388,7 +388,7 @@ function normalizeCart(raw){
 }
 function getCart(){return normalizeCart(store.get("cart",[]))}
 function saveCart(c){store.set("cart",normalizeCart(c));updateCount()}
-function updateCount(){const count=getCart().reduce((a,x)=>a+x.qty,0);$$('#cartCount').forEach(e=>e.textContent=count)}
+function updateCount(){const count=getCart().reduce((a,x)=>a+x.qty,0);$$('#cartCount,#mobileCartCount').forEach(e=>e.textContent=count)}
 function addCart(id){
  const p=findProduct(id);if(!p)return;
  if(p.status==="planned"){showToast("Produk ini belum tersedia. Simpan ke wishlist untuk dibandingkan nanti.");return;}
