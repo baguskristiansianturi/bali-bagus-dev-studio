@@ -5599,3 +5599,14 @@ html,body{overflow-x:hidden}
     margin-right:-14px!important;
   }
 }
+
+
+/* V13.1 — remove the actual hero-to-content dead space left by legacy discovery CSS */
+.page-main:has(> .bb-page-hero) > .bb-page-hero + *{
+  margin-top:0!important;
+}
+@media(max-width:800px){
+  .page-main:has(> .bb-page-hero) > .bb-page-hero + *{
+    margin-top:0!important;
+  }
+}
