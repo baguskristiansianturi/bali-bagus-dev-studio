@@ -6154,3 +6154,105 @@ body:has(.hero-grid) .bb-launch-button{background:#171717!important;color:#fff!i
 .button-dark:hover{background:var(--green-dark);border-color:var(--green-dark)}
 .bb-card:hover{border-color:#b8dccc;box-shadow:0 18px 45px rgba(22,131,91,.12)}
 .eyebrow,.section-label{color:var(--green)}
+
+
+/* =========================================================
+   BB STUDIO — GLOBAL RESPONSIVE / MOBILE-FIRST HARDENING
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}
+img,video,svg,canvas{max-width:100%;height:auto}
+iframe{max-width:100%}
+button,input,select,textarea{font:inherit;max-width:100%}
+input,select,textarea{min-width:0}
+table{max-width:100%;border-collapse:collapse}
+pre,code{max-width:100%;overflow-x:auto}
+.wrap,.container,.section,.site-header,.site-footer{min-width:0}
+.hero,.hero-copy,.hero-visual,.hero-art,.mock-content,.hero-search{min-width:0;max-width:100%}
+.hero h1,.section h2,.section h3,.card h3,.service-name,.portfolio-card,.package-card{overflow-wrap:anywhere}
+
+/* Touch-friendly interactive controls */
+a,button,[role="button"],input[type="checkbox"],input[type="radio"],select{touch-action:manipulation}
+@media(max-width:767px){
+  .wrap{width:100%;padding-left:16px;padding-right:16px}
+  .section{padding-top:56px;padding-bottom:56px}
+  .section-head{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+  .section-head>div{width:100%;min-width:0}
+  .section-head h2,.section h2{font-size:clamp(28px,8vw,40px);line-height:1.08;letter-spacing:-.035em}
+  .section-head p{font-size:15px;line-height:1.7}
+  .button,.btn,.header-signup,.header-login,.member-entry{min-height:48px}
+  .button{display:inline-flex;align-items:center;justify-content:center}
+
+  /* Header / menus */
+  .top-header-row{min-width:0;padding-left:16px;padding-right:16px}
+  .brand{min-width:0;max-width:calc(100% - 60px)}
+  .brand>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .category-nav-row{min-width:0}
+  .category-nav{width:100%;min-width:0}
+  .mega-menu{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;left:12px!important;right:12px!important}
+  .mega-links{grid-template-columns:1fr!important}
+  .mega-intro{padding:20px!important}
+  .mobile-toggle{width:48px;height:48px;min-width:48px}
+
+  /* Hero */
+  .hero{padding-top:42px;padding-bottom:42px;overflow:hidden}
+  .hero-copy{width:100%}
+  .hero h1{font-size:clamp(34px,10vw,48px);line-height:1.04;letter-spacing:-.045em}
+  .hero .lead{font-size:15px;line-height:1.7}
+  .hero-actions,.hero-buttons{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+  .hero-actions>* ,.hero-buttons>*{width:100%!important}
+  .hero-search{width:100%!important;margin-top:22px}
+  .hero-search-main{width:100%;min-width:0}
+  .hero-search-main input{width:100%;min-width:0;font-size:16px!important}
+  .hero-search-categories,.hero-search-suggestions{max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .hero-search-categories::-webkit-scrollbar,.hero-search-suggestions::-webkit-scrollbar{display:none}
+  .hero-visual{width:100%;height:auto!important;min-height:0!important;margin-top:28px}
+  .hero-art{position:relative!important;inset:auto!important;width:100%;min-height:220px}
+  .art-window,.mock-content{max-width:100%;overflow:hidden}
+
+  /* Cards / grids: never create horizontal overflow */
+  .card-grid,.category-grid,.service-grid,.package-grid,.portfolio-grid,.process-grid,.product-grid,.products-grid,.website-grid{grid-template-columns:1fr!important}
+  .card,.category-card,.portfolio-card,.package-card,.service-card{min-width:0;width:100%}
+  .category-card,.portfolio-card,.package-card{overflow:hidden}
+  .portfolio-card img,.portfolio-visual{width:100%;max-width:100%}
+  .process-grid{gap:12px}
+  .process-step{min-width:0}
+
+  /* Forms / checkout / booking */
+  .form-grid,.checkout-grid,.booking-grid,.contact-grid{grid-template-columns:1fr!important}
+  .form-grid>* , .checkout-grid>* , .booking-grid>* , .contact-grid>*{grid-column:1/-1!important;min-width:0}
+  form{min-width:0;max-width:100%}
+  input,select,textarea{width:100%;min-height:48px;font-size:16px!important}
+  textarea{min-height:120px}
+  .form-actions{display:grid!important;grid-template-columns:1fr!important;gap:10px}
+  .form-actions>*{width:100%!important}
+  .checkout-layout,.checkout-summary,.checkout-main{min-width:0;width:100%}
+
+  /* Tables become scrollable instead of breaking the viewport */
+  .table-wrap,.comparison-table,.compare-table{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Modals / drawers */
+  .modal,.modal-overlay{padding:10px!important}
+  .modal>div,.modal-content{width:100%!important;max-width:100%!important;max-height:calc(100dvh - 20px)!important;border-radius:22px!important;padding:20px!important;overflow-y:auto}
+
+  /* Footer */
+  .footer-top,.footer-grid{grid-template-columns:1fr!important;gap:28px!important}
+  .footer-col{min-width:0}
+  .footer-bottom{display:flex!important;flex-direction:column;gap:8px;align-items:flex-start!important}
+  .socials{flex-wrap:wrap}
+}
+
+@media(max-width:420px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .top-header-row{padding-left:14px;padding-right:14px}
+  .hero{padding-top:32px;padding-bottom:36px}
+  .hero h1{font-size:clamp(31px,10.5vw,40px)}
+  .eyebrow{font-size:10px;letter-spacing:.12em}
+  .section{padding-top:48px;padding-bottom:48px}
+  .section-head h2,.section h2{font-size:30px}
+  .card,.category-card,.process-step{padding:20px!important}
+  .portfolio-card .port-info{padding:16px}
+}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
