@@ -1,6 +1,8 @@
 /* BB Studio discovery shell — marketplace-inspired, original implementation. */
 (function(){
 "use strict";
+if(window.__BB_DISCOVERY_UI__)return;
+window.__BB_DISCOVERY_UI__=true;
 function run(){
  var header=document.querySelector(".site-header");
  if(!header)return;
