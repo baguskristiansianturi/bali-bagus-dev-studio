@@ -1,193 +1,480 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
-<meta name="description" content="Bali Bagus Dev Studio membantu bisnis membangun website, pengalaman digital, SEO, copywriting, dan solusi web yang dirancang berdasarkan tujuan bisnis.">
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://baguskristiansianturi.github.io/bali-bagus-dev-studio/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bali Bagus Dev Studio — Digital solutions built around real business needs">
-<meta property="og:description" content="Website, UI/UX, SEO, copywriting, dan solusi digital untuk bisnis lokal maupun global.">
-<meta property="og:url" content="https://baguskristiansianturi.github.io/bali-bagus-dev-studio/">
-<title>Bali Bagus Dev Studio — Digital solutions built around real business needs</title>
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','ui-sans-serif','system-ui','sans-serif']},colors:{brand:'#10b981'}}}};
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-html{scroll-behavior:smooth}body{font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#fafafa;color:#18181b}
-.nav-glass{background:rgba(250,250,250,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.hero-grid{background-image:linear-gradient(rgba(24,24,27,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(24,24,27,.055) 1px,transparent 1px);background-size:42px 42px}
-.card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}.card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(24,24,27,.09);border-color:#d4d4d8}
-.btn{min-height:48px}.modal{display:none}.modal.open{display:flex}
-.mobile-menu{max-height:0;overflow:hidden;transition:max-height .3s ease}.mobile-menu.open{max-height:600px}
-:focus-visible{outline:3px solid rgba(16,185,129,.35);outline-offset:3px}
-@media(max-width:767px){.hero-grid{background-size:28px 28px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09090b">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Bali Bagus Dev Studio membantu bisnis di Bali dan pasar global membangun website, UI/UX, SEO, copywriting, e-commerce, booking system, dan solusi digital yang berorientasi pada kebutuhan bisnis.">
+  <meta name="keywords" content="web development Bali, website Bali, UI UX Bali, SEO Bali, copywriting, digital studio Bali, website bisnis, landing page, e-commerce, booking website">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://baguskristiansianturi.github.io/bali-bagus-dev-studio/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Bali Bagus Dev Studio — Digital solutions built around real business needs">
+  <meta property="og:description" content="Website, UI/UX, SEO, copywriting, dan solusi digital untuk bisnis lokal maupun global.">
+  <meta property="og:url" content="https://baguskristiansianturi.github.io/bali-bagus-dev-studio/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=85">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bali Bagus Dev Studio">
+  <meta name="twitter:description" content="Digital products and services built around real business needs.">
+  <title>Bali Bagus Dev Studio | Website, UI/UX, SEO & Digital Solutions Bali</title>
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
+          colors: { brand: '#059669' }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{--home-ink:#18181b;--home-muted:#71717a;--home-line:#e4e4e7;--home-accent:#059669;--home-soft:#f7f7f5;--home-dark:#09090b}
+    html{scroll-behavior:smooth}
+    body{overflow-x:hidden}
+    .home-section{scroll-margin-top:96px}
+    .home-container{width:min(1280px,calc(100% - 32px));margin-inline:auto}
+    .home-hero-grid{background-image:linear-gradient(rgba(24,24,27,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(24,24,27,.055) 1px,transparent 1px);background-size:44px 44px}
+    .home-glass{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .home-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+    .home-card:hover{transform:translateY(-4px);box-shadow:0 22px 60px rgba(24,24,27,.10);border-color:#d4d4d8}
+    .home-image{transition:transform .6s ease}
+    .home-card:hover .home-image{transform:scale(1.025)}
+    .home-chip{min-height:44px}
+    .home-btn{min-height:48px}
+    .home-check{display:flex;gap:.7rem;align-items:flex-start}
+    .home-check i{margin-top:.25rem}
+    .home-step{position:relative}
+    .home-step:not(:last-child):after{content:"";position:absolute;left:23px;top:62px;bottom:-22px;width:1px;background:#d4d4d8}
+    .home-input{min-height:50px;width:100%;border:1px solid #d4d4d8;border-radius:14px;background:#fff;padding:.75rem 1rem;color:#18181b}
+    .home-input:focus{outline:3px solid rgba(5,150,105,.12);border-color:#059669}
+    .home-tab{min-height:44px;border:1px solid #d4d4d8;border-radius:999px;padding:.65rem 1rem;font-size:.82rem;font-weight:800;white-space:nowrap}
+    .home-tab.active{background:#09090b;color:#fff;border-color:#09090b}
+    .home-kicker{font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#047857}
+    @media(max-width:767px){
+      .home-container{width:min(100% - 24px,1280px)}
+      .home-hero-grid{background-size:28px 28px}
+      .home-step:not(:last-child):after{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .home-card,.home-image{transition:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ProfessionalService",
+    "name":"Bali Bagus Dev Studio",
+    "url":"https://baguskristiansianturi.github.io/bali-bagus-dev-studio/",
+    "description":"Digital Product + Digital Service Studio untuk website, UI/UX, SEO, copywriting, dan solusi web.",
+    "areaServed":["Bali","Indonesia","Worldwide"],
+    "founder":{"@type":"Person","name":"Bagus Kristian Sianturi"},
+    "serviceType":["Web Development","UI/UX Design","SEO","Copywriting","Digital Products","Web Applications"]
+  }
+  </script>
 </head>
-<body>
-<a href="#main" class="fixed left-3 top-3 z-[100] -translate-y-20 rounded-lg bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition focus:translate-y-0">Lewati ke konten</a>
 
-<header class="site-header" aria-label="Navigasi utama"></header>
+<body class="bg-zinc-50 text-zinc-950 antialiased">
+  <a href="#main" class="fixed left-3 top-3 z-[100] -translate-y-20 rounded-xl bg-zinc-950 px-4 py-3 text-sm font-bold text-white transition focus:translate-y-0">Lewati ke konten</a>
 
-<main id="main">
-<section class="hero-grid relative overflow-hidden border-b border-zinc-200">
-  <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8 lg:py-28">
-    <div>
-      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-3 py-2 text-xs font-bold uppercase tracking-[.16em] text-zinc-600">
-        <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Digital Product + Digital Service Studio
-      </div>
-      <h1 class="max-w-4xl text-4xl font-extrabold tracking-[-.045em] text-zinc-950 sm:text-6xl lg:text-7xl">Digital presence yang terlihat <span class="text-emerald-600">profesional</span> dan bekerja untuk bisnis.</h1>
-      <p class="mt-6 max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg">Kami merancang website, UI/UX, SEO, copywriting, dan solusi web berdasarkan tujuan bisnis—agar pelanggan lebih mudah memahami penawaran, percaya, lalu mengambil tindakan.</p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a href="#booking" class="btn inline-flex items-center justify-center rounded-xl bg-zinc-950 px-6 font-bold text-white shadow-lg shadow-zinc-950/10 hover:bg-zinc-800">Bahas kebutuhan saya <i class="fa-solid fa-arrow-right ml-3"></i></a>
-        <a href="#services" class="btn inline-flex items-center justify-center rounded-xl border border-zinc-300 bg-white px-6 font-bold text-zinc-900 hover:border-zinc-400">Jelajahi layanan</a>
-      </div>
-      <div class="mt-8 grid max-w-xl grid-cols-1 gap-3 text-sm text-zinc-600 sm:grid-cols-3">
-        <span><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Business-first</span>
-        <span><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Mobile-first</span>
-        <span><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Scope transparan</span>
-      </div>
-    </div>
-    <div class="relative">
-      <div class="overflow-hidden rounded-3xl border border-zinc-200 bg-white p-2 shadow-2xl shadow-zinc-950/10">
-        <img class="h-[360px] w-full rounded-2xl object-cover sm:h-[460px]" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85" alt="Creative workspace dengan komputer dan meja kerja modern" loading="eager">
-      </div>
-      <div class="absolute -bottom-5 left-4 right-4 rounded-2xl border border-zinc-200 bg-white/95 p-4 shadow-xl backdrop-blur sm:left-8 sm:right-auto sm:w-[330px]">
-        <div class="flex items-start gap-3">
-          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-700"><i class="fa-solid fa-arrow-trend-up"></i></span>
-          <div><strong class="block text-sm">Dibangun untuk tujuan bisnis</strong><p class="mt-1 text-xs leading-5 text-zinc-500">Strategi, pengalaman pengguna, dan teknologi disusun dalam satu alur.</p></div>
+  <header class="site-header" aria-label="Navigasi utama"></header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="home-section home-hero-grid relative overflow-hidden border-b border-zinc-200">
+      <div class="home-container grid gap-10 py-12 sm:py-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:gap-16 lg:py-24">
+        <div>
+          <div class="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-zinc-200 bg-white/85 px-3 py-2 text-[11px] font-extrabold uppercase tracking-[.14em] text-zinc-600 shadow-sm">
+            <span class="h-2 w-2 shrink-0 rounded-full bg-emerald-500"></span>
+            Digital Product + Digital Service Studio
+          </div>
+          <h1 class="max-w-4xl text-[clamp(2.35rem,8vw,5.7rem)] font-extrabold leading-[.98] tracking-[-.055em] text-zinc-950">
+            Website dan solusi digital yang <span class="text-emerald-600">dibangun untuk bisnis.</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-[15px] leading-7 text-zinc-600 sm:text-lg sm:leading-8">
+            Bali Bagus Dev Studio membantu bisnis memperjelas penawaran, membangun pengalaman digital yang profesional, dan membuka jalur pertumbuhan melalui website, UI/UX, SEO, copywriting, serta solusi web.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#start-project" class="home-btn inline-flex items-center justify-center rounded-xl bg-zinc-950 px-6 font-extrabold text-white shadow-lg shadow-zinc-950/10 transition hover:bg-zinc-800">
+              Mulai dari kebutuhan saya <i class="fa-solid fa-arrow-right ml-3"></i>
+            </a>
+            <a href="products.html" class="home-btn inline-flex items-center justify-center rounded-xl border border-zinc-300 bg-white px-6 font-extrabold text-zinc-900 transition hover:border-zinc-500">
+              Jelajahi produk
+            </a>
+          </div>
+
+          <div class="mt-8 grid gap-3 text-sm sm:grid-cols-3">
+            <div class="home-check text-zinc-600"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Business-first</span></div>
+            <div class="home-check text-zinc-600"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Mobile-first</span></div>
+            <div class="home-check text-zinc-600"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Scope transparan</span></div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white p-2 shadow-2xl shadow-zinc-950/10">
+            <img
+              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1500&q=85"
+              alt="Workspace digital modern untuk pengembangan dan desain produk"
+              class="home-image h-[330px] w-full rounded-[1.45rem] object-cover sm:h-[480px]"
+              fetchpriority="high"
+              decoding="async">
+          </div>
+          <div class="home-glass absolute -bottom-5 left-4 right-4 rounded-2xl border border-zinc-200 p-4 shadow-xl sm:left-7 sm:right-auto sm:w-[340px]">
+            <div class="flex gap-3">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-700"><i class="fa-solid fa-arrow-trend-up"></i></span>
+              <div>
+                <strong class="block text-sm">Dari fondasi sampai growth</strong>
+                <p class="mt-1 text-xs leading-5 text-zinc-500">Template → Customize → Build → Grow.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="border-b border-zinc-200 bg-white">
-  <div class="mx-auto grid max-w-7xl gap-6 px-4 py-7 sm:px-6 md:grid-cols-3 lg:px-8">
-    <div class="flex gap-3"><i class="fa-solid fa-bullseye mt-1 text-emerald-600"></i><div><strong class="text-sm">Mulai dari masalah nyata</strong><p class="mt-1 text-xs leading-5 text-zinc-500">Kami tidak memaksakan fitur yang tidak dibutuhkan.</p></div></div>
-    <div class="flex gap-3"><i class="fa-solid fa-layer-group mt-1 text-emerald-600"></i><div><strong class="text-sm">Bisa dimulai bertahap</strong><p class="mt-1 text-xs leading-5 text-zinc-500">Template, customize, build, lalu grow sesuai kebutuhan.</p></div></div>
-    <div class="flex gap-3"><i class="fa-solid fa-shield-halved mt-1 text-emerald-600"></i><div><strong class="text-sm">Status jelas</strong><p class="mt-1 text-xs leading-5 text-zinc-500">Frontend, produk, dan fase production dijelaskan apa adanya.</p></div></div>
-  </div>
-</section>
-
-<section id="services" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-  <div class="max-w-2xl"><p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Layanan utama</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">Satu studio untuk kebutuhan digital yang saling terhubung.</h2><p class="mt-5 leading-7 text-zinc-600">Pilih kebutuhan utama Anda. Setiap layanan memiliki scope yang dapat dibahas sebelum project dimulai.</p></div>
-  <div class="mt-10 grid gap-5 lg:grid-cols-3">
-    <article class="card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
-      <div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-950 text-white"><i class="fa-regular fa-window-maximize"></i></span><span class="text-xs font-bold text-zinc-400">01</span></div>
-      <h3 class="mt-7 text-2xl font-bold">Web Development</h3><p class="mt-3 leading-7 text-zinc-600">Website bisnis, landing page, e-commerce, booking website, web app, dashboard, dan sistem internal.</p>
-      <ul class="mt-6 space-y-3 text-sm text-zinc-600"><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Responsive & accessible</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Struktur siap dikembangkan</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Integrasi sesuai scope</li></ul>
-      <button data-modal="webModal" class="btn mt-7 w-full rounded-xl border border-zinc-300 font-bold hover:bg-zinc-50">Lihat detail layanan <i class="fa-solid fa-arrow-right ml-2"></i></button>
-    </article>
-    <article class="card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
-      <div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-600 text-white"><i class="fa-regular fa-pen-to-square"></i></span><span class="text-xs font-bold text-zinc-400">02</span></div>
-      <h3 class="mt-7 text-2xl font-bold">UI/UX & Conversion</h3><p class="mt-3 leading-7 text-zinc-600">Struktur halaman, user flow, visual system, CTA, dan pengalaman checkout yang membantu pengguna bergerak.</p>
-      <ul class="mt-6 space-y-3 text-sm text-zinc-600"><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Mobile-first interaction</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Information architecture</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>CRO-oriented layout</li></ul>
-      <button data-modal="uxModal" class="btn mt-7 w-full rounded-xl border border-zinc-300 font-bold hover:bg-zinc-50">Lihat detail layanan <i class="fa-solid fa-arrow-right ml-2"></i></button>
-    </article>
-    <article class="card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
-      <div class="flex items-center justify-between"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-100 text-zinc-900"><i class="fa-solid fa-magnifying-glass-chart"></i></span><span class="text-xs font-bold text-zinc-400">03</span></div>
-      <h3 class="mt-7 text-2xl font-bold">SEO & Copywriting</h3><p class="mt-3 leading-7 text-zinc-600">Pesan yang lebih jelas dan fondasi pencarian yang membantu calon pelanggan menemukan serta memahami bisnis Anda.</p>
-      <ul class="mt-6 space-y-3 text-sm text-zinc-600"><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>On-page SEO & local SEO</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Website & sales copy</li><li><i class="fa-regular fa-circle-check mr-2 text-emerald-600"></i>Content strategy</li></ul>
-      <button data-modal="seoModal" class="btn mt-7 w-full rounded-xl border border-zinc-300 font-bold hover:bg-zinc-50">Lihat detail layanan <i class="fa-solid fa-arrow-right ml-2"></i></button>
-    </article>
-  </div>
-</section>
-
-<section id="process" class="bg-zinc-950 text-white">
-  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-    <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
-      <div><p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400">Cara kerja</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">Jelas sebelum mulai. Terukur saat berjalan.</h2><p class="mt-5 max-w-lg leading-7 text-zinc-400">Kami menjaga proses tetap sederhana: pahami kebutuhan, tetapkan scope, bangun solusi, lalu uji sebelum diserahkan.</p><a href="booking.html" class="btn mt-8 inline-flex items-center rounded-xl bg-white px-5 font-bold text-zinc-950 hover:bg-zinc-100">Lihat alur project <i class="fa-solid fa-arrow-right ml-3"></i></a></div>
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><span class="text-xs font-bold text-emerald-400">01 / DISCOVER</span><h3 class="mt-5 text-xl font-bold">Pahami konteks</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Tujuan, audience, masalah, konten, dan prioritas dipetakan.</p></div>
-        <div class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><span class="text-xs font-bold text-emerald-400">02 / DEFINE</span><h3 class="mt-5 text-xl font-bold">Tentukan scope</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Fitur, deliverables, batas pekerjaan, dan estimasi dibahas.</p></div>
-        <div class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><span class="text-xs font-bold text-emerald-400">03 / BUILD</span><h3 class="mt-5 text-xl font-bold">Rancang & kembangkan</h3><p class="mt-2 text-sm leading-6 text-zinc-400">UI/UX, development, content, dan integrasi mengikuti scope.</p></div>
-        <div class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><span class="text-xs font-bold text-emerald-400">04 / LAUNCH</span><h3 class="mt-5 text-xl font-bold">Uji & serahkan</h3><p class="mt-2 text-sm leading-6 text-zinc-400">QA, handover, dan rekomendasi tahap berikutnya disiapkan.</p></div>
+    <!-- NEED FINDER -->
+    <section class="border-b border-zinc-200 bg-white">
+      <div class="home-container py-8 sm:py-10">
+        <div class="grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div>
+            <p class="home-kicker">Need finder</p>
+            <h2 class="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">Tidak yakin mulai dari mana?</h2>
+            <p class="mt-2 max-w-xl text-sm leading-6 text-zinc-500">Pilih kebutuhan paling dekat dengan kondisi bisnis Anda.</p>
+          </div>
+          <div class="flex gap-2 overflow-x-auto pb-1" role="list" aria-label="Pilihan kebutuhan">
+            <a class="home-chip inline-flex shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 text-sm font-bold transition hover:border-emerald-500 hover:text-emerald-700" href="website-packages.html"><i class="fa-regular fa-window-maximize mr-2"></i>Butuh website</a>
+            <a class="home-chip inline-flex shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 text-sm font-bold transition hover:border-emerald-500 hover:text-emerald-700" href="products.html"><i class="fa-solid fa-layer-group mr-2"></i>Butuh template</a>
+            <a class="home-chip inline-flex shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 text-sm font-bold transition hover:border-emerald-500 hover:text-emerald-700" href="services.html"><i class="fa-solid fa-magnifying-glass-chart mr-2"></i>Butuh SEO</a>
+            <a class="home-chip inline-flex shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 text-sm font-bold transition hover:border-emerald-500 hover:text-emerald-700" href="booking.html"><i class="fa-regular fa-comments mr-2"></i>Belum tahu</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="work" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-  <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Selected work</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">Konsep yang bisa berkembang menjadi produk nyata.</h2><p class="mt-4 max-w-2xl leading-7 text-zinc-600">Gunakan portfolio untuk melihat arah visual dan struktur pengalaman. Status konsep dibedakan dari project yang sudah dipublikasikan.</p></div><a href="portfolio.html" class="font-bold text-zinc-900 underline decoration-zinc-300 underline-offset-8 hover:decoration-emerald-500">Lihat portfolio <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a></div>
-  <div class="mt-10 grid gap-5 md:grid-cols-2">
-    <a href="portfolio.html" class="card overflow-hidden rounded-3xl border border-zinc-200 bg-white"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85" alt="Inspirasi desain website hospitality" class="h-72 w-full object-cover sm:h-96" loading="lazy"><div class="p-6"><span class="text-[11px] font-bold uppercase tracking-[.18em] text-emerald-700">Hospitality · Website concept</span><h3 class="mt-2 text-2xl font-bold">Hospitality & Villa Experience</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Pengalaman digital yang menonjolkan visual, informasi properti, dan jalur inquiry.</p></div></a>
-    <a href="portfolio.html" class="card overflow-hidden rounded-3xl border border-zinc-200 bg-white"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85" alt="Inspirasi desain website commerce" class="h-72 w-full object-cover sm:h-96" loading="lazy"><div class="p-6"><span class="text-[11px] font-bold uppercase tracking-[.18em] text-emerald-700">Commerce · UI/UX concept</span><h3 class="mt-2 text-2xl font-bold">Retail & Commerce Experience</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Struktur katalog, produk, trust signal, dan checkout yang mudah dipahami.</p></div></a>
-  </div>
-</section>
-
-<section id="products" class="border-y border-zinc-200 bg-white">
-  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-    <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Ready-to-use</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">Tidak semua project harus dimulai dari nol.</h2><p class="mt-4 max-w-2xl leading-7 text-zinc-600">Jelajahi template dan produk digital yang dapat menjadi fondasi awal, kemudian customize saat bisnis Anda membutuhkan lebih banyak.</p></div><a href="products.html" class="btn inline-flex items-center justify-center rounded-xl border border-zinc-300 px-5 font-bold">Buka katalog <i class="fa-solid fa-arrow-right ml-3"></i></a></div>
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <a href="products.html?q=website" class="card rounded-3xl border border-zinc-200 p-6"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-100"><i class="fa-regular fa-window-maximize"></i></span><h3 class="mt-6 text-xl font-bold">Website Templates</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Fondasi website bisnis dengan struktur yang siap dikembangkan.</p><span class="mt-6 inline-block text-sm font-bold">Jelajahi →</span></a>
-      <a href="products.html?q=landing" class="card rounded-3xl border border-zinc-200 p-6"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700"><i class="fa-solid fa-bolt"></i></span><h3 class="mt-6 text-xl font-bold">Landing Pages</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Halaman fokus untuk campaign, lead generation, dan penawaran.</p><span class="mt-6 inline-block text-sm font-bold">Jelajahi →</span></a>
-      <a href="products.html?q=ui" class="card rounded-3xl border border-zinc-200 p-6"><span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-100"><i class="fa-solid fa-table-columns"></i></span><h3 class="mt-6 text-xl font-bold">UI Kits & Components</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Komponen dan pola antarmuka untuk mempercepat pengembangan.</p><span class="mt-6 inline-block text-sm font-bold">Jelajahi →</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="booking" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-  <div class="grid overflow-hidden rounded-[2rem] border border-zinc-200 bg-white shadow-xl shadow-zinc-950/5 lg:grid-cols-[.8fr_1.2fr]">
-    <div class="bg-zinc-950 p-7 text-white sm:p-10 lg:p-12">
-      <p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400">Start a project</p>
-      <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">Ceritakan apa yang ingin Anda bangun.</h2>
-      <p class="mt-5 leading-7 text-zinc-400">Tidak perlu brief sempurna. Jelaskan kondisi bisnis dan hasil yang Anda inginkan; kami bantu menentukan langkah berikutnya.</p>
-      <div class="mt-8 space-y-4 text-sm text-zinc-300">
-        <div class="flex gap-3"><i class="fa-solid fa-lock mt-1 text-emerald-400"></i><span><strong class="text-white">Privasi dijaga.</strong><br>Informasi brief digunakan untuk kebutuhan komunikasi project.</span></div>
-        <div class="flex gap-3"><i class="fa-solid fa-file-shield mt-1 text-emerald-400"></i><span><strong class="text-white">Tanpa komitmen otomatis.</strong><br>Scope dan kebutuhan dibahas sebelum pekerjaan dimulai.</span></div>
-        <div class="flex gap-3"><i class="fa-solid fa-comments mt-1 text-emerald-400"></i><span><strong class="text-white">Langkah berikutnya jelas.</strong><br>Setelah brief, Anda diarahkan ke konsultasi atau halaman order yang sesuai.</span></div>
+    <!-- SOLUTIONS -->
+    <section id="solutions" class="home-section home-container py-20 sm:py-24 lg:py-28">
+      <div class="max-w-3xl">
+        <p class="home-kicker">Solutions</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Tiga kebutuhan utama. Satu alur digital yang terhubung.</h2>
+        <p class="mt-5 text-base leading-7 text-zinc-600">Kami menggabungkan strategy, design, technology, dan growth agar website tidak berhenti sebagai tampilan online.</p>
       </div>
-    </div>
-    <form id="projectForm" class="p-7 sm:p-10 lg:p-12" action="booking.html" method="get">
-      <div class="grid gap-5 sm:grid-cols-2">
-        <label class="sm:col-span-1"><span class="mb-2 block text-sm font-bold">Nama</span><input required name="name" class="min-h-12 w-full rounded-xl border border-zinc-300 bg-white px-4 outline-none focus:border-emerald-500" placeholder="Nama Anda"></label>
-        <label class="sm:col-span-1"><span class="mb-2 block text-sm font-bold">Email</span><input required type="email" name="email" class="min-h-12 w-full rounded-xl border border-zinc-300 bg-white px-4 outline-none focus:border-emerald-500" placeholder="nama@bisnis.com"></label>
-        <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold">Kebutuhan utama</span><select name="service" class="min-h-12 w-full rounded-xl border border-zinc-300 bg-white px-4 outline-none focus:border-emerald-500"><option>Website / Web Development</option><option>UI/UX & Conversion</option><option>SEO & Copywriting</option><option>Template / Digital Product</option><option>Web App / Business System</option><option>Belum yakin</option></select></label>
-        <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold">Ceritakan tujuan project</span><textarea required name="brief" rows="5" class="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-emerald-500" placeholder="Contoh: kami membutuhkan website untuk memperjelas layanan dan meningkatkan inquiry dari calon pelanggan."></textarea></label>
-        <label class="sm:col-span-2 flex items-start gap-3 text-sm text-zinc-600"><input required type="checkbox" class="mt-1 h-4 w-4 accent-emerald-600"><span>Saya memahami bahwa pengiriman brief bukan persetujuan otomatis untuk memulai pekerjaan.</span></label>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        <article class="home-card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-950 text-white"><i class="fa-regular fa-window-maximize"></i></span>
+            <span class="text-xs font-extrabold text-zinc-400">01</span>
+          </div>
+          <h3 class="mt-7 text-2xl font-extrabold">Web Development</h3>
+          <p class="mt-3 leading-7 text-zinc-600">Website bisnis, landing page, e-commerce, booking, web app, dashboard, CRM, dan sistem internal sesuai scope.</p>
+          <ul class="mt-6 space-y-3 text-sm text-zinc-600">
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Responsive & accessible</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Struktur siap dikembangkan</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Integrasi berdasarkan kebutuhan</span></li>
+          </ul>
+          <a href="services.html" class="mt-7 inline-flex min-h-11 items-center font-extrabold text-zinc-950">Lihat layanan <i class="fa-solid fa-arrow-right ml-2 text-emerald-600"></i></a>
+        </article>
+
+        <article class="home-card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-600 text-white"><i class="fa-regular fa-pen-to-square"></i></span>
+            <span class="text-xs font-extrabold text-zinc-400">02</span>
+          </div>
+          <h3 class="mt-7 text-2xl font-extrabold">UI/UX & Conversion</h3>
+          <p class="mt-3 leading-7 text-zinc-600">Struktur halaman, hierarchy, navigation, CTA, form, product detail, dan checkout yang membantu pengguna mengambil langkah berikutnya.</p>
+          <ul class="mt-6 space-y-3 text-sm text-zinc-600">
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Mobile-first interaction</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Information architecture</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Conversion-oriented layout</span></li>
+          </ul>
+          <a href="services.html" class="mt-7 inline-flex min-h-11 items-center font-extrabold text-zinc-950">Lihat layanan <i class="fa-solid fa-arrow-right ml-2 text-emerald-600"></i></a>
+        </article>
+
+        <article class="home-card rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-zinc-100 text-zinc-900"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+            <span class="text-xs font-extrabold text-zinc-400">03</span>
+          </div>
+          <h3 class="mt-7 text-2xl font-extrabold">SEO & Copywriting</h3>
+          <p class="mt-3 leading-7 text-zinc-600">On-page SEO, local SEO, content, sales copy, dan pesan brand yang membantu calon pelanggan memahami value Anda.</p>
+          <ul class="mt-6 space-y-3 text-sm text-zinc-600">
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Search intent & structure</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Local SEO foundation</span></li>
+            <li class="home-check"><i class="fa-regular fa-circle-check text-emerald-600"></i><span>Sales & educational copy</span></li>
+          </ul>
+          <a href="services.html" class="mt-7 inline-flex min-h-11 items-center font-extrabold text-zinc-950">Lihat layanan <i class="fa-solid fa-arrow-right ml-2 text-emerald-600"></i></a>
+        </article>
       </div>
-      <button class="btn mt-6 inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 px-6 font-bold text-white hover:bg-zinc-800" type="submit">Lanjutkan ke booking <i class="fa-solid fa-arrow-right ml-3"></i></button>
-      <p class="mt-4 text-center text-xs text-zinc-500"><i class="fa-solid fa-shield-halved mr-1"></i> Form ini tidak meminta data kartu atau password.</p>
-    </form>
-  </div>
-</section>
+    </section>
 
-<section class="bg-zinc-100">
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="grid gap-8 md:grid-cols-[1fr_auto] md:items-center"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Need more context?</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight">Baca insight sebelum mengambil keputusan.</h2><p class="mt-3 max-w-2xl leading-7 text-zinc-600">Pelajari dasar strategi website, SEO, copywriting, dan conversion dari artikel yang tersedia di studio.</p></div><a href="articles.html" class="btn inline-flex items-center justify-center rounded-xl bg-zinc-950 px-6 font-bold text-white">Buka Insights <i class="fa-solid fa-arrow-right ml-3"></i></a></div>
-  </div>
-</section>
-</main>
+    <!-- TEMPLATE TO GROW -->
+    <section class="home-section border-y border-zinc-200 bg-zinc-100">
+      <div class="home-container py-20 sm:py-24 lg:py-28">
+        <div class="grid gap-12 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
+          <div>
+            <p class="home-kicker">Model kerja</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Mulai kecil. Kembangkan saat bisnis siap.</h2>
+            <p class="mt-5 leading-7 text-zinc-600">Anda tidak harus langsung membangun sistem besar. Kami menyediakan jalur yang bisa bertumbuh dari produk siap pakai sampai solusi custom.</p>
+            <a href="services.html" class="home-btn mt-7 inline-flex items-center rounded-xl bg-zinc-950 px-5 font-extrabold text-white">Lihat semua solusi <i class="fa-solid fa-arrow-right ml-3"></i></a>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <article class="home-step rounded-2xl border border-zinc-200 bg-white p-6">
+              <span class="text-xs font-extrabold tracking-[.16em] text-emerald-700">01 · TEMPLATE</span>
+              <h3 class="mt-4 text-xl font-extrabold">Siap digunakan</h3>
+              <p class="mt-2 text-sm leading-6 text-zinc-500">Pilih fondasi yang sesuai kebutuhan dan mulai lebih cepat.</p>
+            </article>
+            <article class="home-step rounded-2xl border border-zinc-200 bg-white p-6">
+              <span class="text-xs font-extrabold tracking-[.16em] text-emerald-700">02 · CUSTOMIZE</span>
+              <h3 class="mt-4 text-xl font-extrabold">Sesuaikan bisnis</h3>
+              <p class="mt-2 text-sm leading-6 text-zinc-500">Brand, konten, struktur, fitur, dan CTA disesuaikan.</p>
+            </article>
+            <article class="home-step rounded-2xl border border-zinc-200 bg-white p-6">
+              <span class="text-xs font-extrabold tracking-[.16em] text-emerald-700">03 · BUILD</span>
+              <h3 class="mt-4 text-xl font-extrabold">Bangun custom</h3>
+              <p class="mt-2 text-sm leading-6 text-zinc-500">Kembangkan web app, e-commerce, booking, dashboard, atau sistem internal.</p>
+            </article>
+            <article class="home-step rounded-2xl border border-zinc-200 bg-white p-6">
+              <span class="text-xs font-extrabold tracking-[.16em] text-emerald-700">04 · GROW</span>
+              <h3 class="mt-4 text-xl font-extrabold">Optimalkan</h3>
+              <p class="mt-2 text-sm leading-6 text-zinc-500">SEO, content, ads, conversion, maintenance, performance, dan pengembangan lanjutan.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div id="webModal" class="modal fixed inset-0 z-[80] items-center justify-center bg-zinc-950/70 p-4" role="dialog" aria-modal="true" aria-labelledby="webModalTitle"><div class="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-9"><div class="flex items-start justify-between gap-5"><div><span class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Web Development</span><h2 id="webModalTitle" class="mt-2 text-3xl font-extrabold">Website yang dibuat untuk bekerja.</h2></div><button data-close class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-zinc-100" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div><p class="mt-5 leading-7 text-zinc-600">Kami dapat mengerjakan website bisnis, landing page, e-commerce, booking website, dashboard, web app, hingga sistem internal sesuai scope.</p><div class="mt-7 grid gap-3 sm:grid-cols-2"><div class="rounded-2xl bg-zinc-50 p-4"><b>Discovery</b><p class="mt-1 text-sm text-zinc-500">Tujuan, audience, fitur dan prioritas.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Design</b><p class="mt-1 text-sm text-zinc-500">UI responsif dengan alur pengguna jelas.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Development</b><p class="mt-1 text-sm text-zinc-500">Frontend dan integrasi sesuai kebutuhan.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>QA & handover</b><p class="mt-1 text-sm text-zinc-500">Testing, perbaikan, dan handover.</p></div></div><a href="#booking" data-close class="btn mt-7 inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 font-bold text-white">Bahas website saya <i class="fa-solid fa-arrow-right ml-3"></i></a></div></div>
+    <!-- PRODUCTS / MERCHANDISING -->
+    <section id="products" class="home-section bg-white">
+      <div class="home-container py-20 sm:py-24 lg:py-28">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-3xl">
+            <p class="home-kicker">Digital products</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Produk digital untuk mempercepat langkah pertama.</h2>
+            <p class="mt-5 leading-7 text-zinc-600">Template, landing page, UI kit, dan digital resources yang dapat menjadi fondasi sebelum Anda membutuhkan build custom.</p>
+          </div>
+          <a href="products.html" class="home-btn inline-flex shrink-0 items-center justify-center rounded-xl border border-zinc-300 px-5 font-extrabold">Buka katalog <i class="fa-solid fa-arrow-right ml-3"></i></a>
+        </div>
 
-<div id="uxModal" class="modal fixed inset-0 z-[80] items-center justify-center bg-zinc-950/70 p-4" role="dialog" aria-modal="true" aria-labelledby="uxModalTitle"><div class="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-9"><div class="flex items-start justify-between gap-5"><div><span class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">UI/UX & CRO</span><h2 id="uxModalTitle" class="mt-2 text-3xl font-extrabold">Lebih mudah dipahami, lebih mudah digunakan.</h2></div><button data-close class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-zinc-100" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div><p class="mt-5 leading-7 text-zinc-600">Kami menyusun hierarchy, navigation, CTA, detail produk, form, dan checkout agar pengguna tidak harus menebak langkah berikutnya.</p><div class="mt-7 space-y-3"><div class="rounded-2xl border border-zinc-200 p-4"><b>Information architecture</b><p class="mt-1 text-sm text-zinc-500">Konten dan navigasi disusun berdasarkan kebutuhan pengguna.</p></div><div class="rounded-2xl border border-zinc-200 p-4"><b>Conversion path</b><p class="mt-1 text-sm text-zinc-500">CTA dan form ditempatkan mengikuti intent pengguna.</p></div><div class="rounded-2xl border border-zinc-200 p-4"><b>Responsive interaction</b><p class="mt-1 text-sm text-zinc-500">Touch target, spacing, dan layout diuji untuk layar kecil.</p></div></div><a href="#booking" data-close class="btn mt-7 inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 font-bold text-white">Bahas UI/UX saya <i class="fa-solid fa-arrow-right ml-3"></i></a></div></div>
+        <div class="mt-8 flex gap-2 overflow-x-auto pb-2" aria-label="Kategori produk">
+          <button type="button" class="home-tab active" data-home-merch="featured">Pilihan</button>
+          <button type="button" class="home-tab" data-home-merch="new">Terbaru</button>
+          <button type="button" class="home-tab" data-home-merch="launch">Baru launch</button>
+          <button type="button" class="home-tab" data-home-merch="promo">Promo</button>
+          <button type="button" class="home-tab" data-home-merch="soon">Coming soon</button>
+        </div>
 
-<div id="seoModal" class="modal fixed inset-0 z-[80] items-center justify-center bg-zinc-950/70 p-4" role="dialog" aria-modal="true" aria-labelledby="seoModalTitle"><div class="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-9"><div class="flex items-start justify-between gap-5"><div><span class="text-xs font-bold uppercase tracking-[.2em] text-emerald-700">SEO & Copywriting</span><h2 id="seoModalTitle" class="mt-2 text-3xl font-extrabold">Pesan yang jelas. Fondasi search yang rapi.</h2></div><button data-close class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-zinc-100" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div><p class="mt-5 leading-7 text-zinc-600">Mulai dari struktur halaman, keyword intent, metadata, internal linking, hingga copy yang menjelaskan value proposition tanpa berlebihan.</p><div class="mt-7 grid gap-3 sm:grid-cols-2"><div class="rounded-2xl bg-zinc-50 p-4"><b>On-page SEO</b><p class="mt-1 text-sm text-zinc-500">Title, heading, content structure, links.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Local SEO</b><p class="mt-1 text-sm text-zinc-500">Fondasi visibility untuk pencarian lokal.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Sales copy</b><p class="mt-1 text-sm text-zinc-500">Penawaran, benefit, objection dan CTA.</p></div><div class="rounded-2xl bg-zinc-50 p-4"><b>Content</b><p class="mt-1 text-sm text-zinc-500">Artikel edukatif yang relevan dengan bisnis.</p></div></div><a href="#booking" data-close class="btn mt-7 inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 font-bold text-white">Bahas SEO & copy <i class="fa-solid fa-arrow-right ml-3"></i></a></div></div>
+        <div id="homeMerchandising" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
 
+        <div class="mt-14">
+          <div class="flex items-end justify-between gap-4">
+            <div><p class="text-xs font-extrabold uppercase tracking-[.16em] text-zinc-400">Featured</p><h3 class="mt-2 text-2xl font-extrabold">Produk yang bisa langsung dipelajari</h3></div>
+            <a href="products.html" class="hidden text-sm font-extrabold sm:inline-flex">Semua produk →</a>
+          </div>
+          <div id="featuredProducts" class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+      </div>
+    </section>
 
-<footer id="siteFooter"></footer>
+    <!-- INDUSTRIES -->
+    <section id="industries" class="home-section border-y border-zinc-200 bg-zinc-50">
+      <div class="home-container py-20 sm:py-24 lg:py-28">
+        <div class="max-w-3xl">
+          <p class="home-kicker">Industries</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Struktur solusi mengikuti konteks bisnis.</h2>
+          <p class="mt-5 leading-7 text-zinc-600">Mulai dari kebutuhan yang spesifik, bukan dari template yang dipaksakan ke semua jenis usaha.</p>
+        </div>
+        <div class="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          <a href="website-category/car-rental.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-car text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Car Rental</h3><p class="mt-1 text-xs text-zinc-500">Fleet & booking</p></a>
+          <a href="website-category/hotel.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-hotel text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Hotel</h3><p class="mt-1 text-xs text-zinc-500">Hospitality</p></a>
+          <a href="website-category/cafe.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-mug-hot text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Café & F&B</h3><p class="mt-1 text-xs text-zinc-500">Menu & discovery</p></a>
+          <a href="website-category/contractor.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-building text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Contractor</h3><p class="mt-1 text-xs text-zinc-500">Projects & trust</p></a>
+          <a href="website-category/clinic.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-heart-pulse text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Clinic</h3><p class="mt-1 text-xs text-zinc-500">Services & booking</p></a>
+          <a href="website-category/property.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-house text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Property</h3><p class="mt-1 text-xs text-zinc-500">Listing & inquiry</p></a>
+          <a href="website-category/restaurant.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-utensils text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Restaurant</h3><p class="mt-1 text-xs text-zinc-500">Menu & reservation</p></a>
+          <a href="website-category/education.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-graduation-cap text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">Education</h3><p class="mt-1 text-xs text-zinc-500">Program & leads</p></a>
+          <a href="website-category/saas.html" class="home-card rounded-2xl border border-zinc-200 bg-white p-5"><i class="fa-solid fa-cubes text-emerald-600"></i><h3 class="mt-4 text-base font-extrabold">SaaS</h3><p class="mt-1 text-xs text-zinc-500">Product experience</p></a>
+          <a href="website-collection.html" class="home-card rounded-2xl border border-zinc-950 bg-zinc-950 p-5 text-white"><i class="fa-solid fa-grid-2-plus text-emerald-400"></i><h3 class="mt-4 text-base font-extrabold">Lihat semua</h3><p class="mt-1 text-xs text-zinc-400">Explore collection</p></a>
+        </div>
+      </div>
+    </section>
 
-<script src="assets/js/app.js"></script>
-<script>
-const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');
-menuBtn?.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open);menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'});
-document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>'}));
-document.querySelectorAll('[data-modal]').forEach(btn=>btn.addEventListener('click',()=>document.getElementById(btn.dataset.modal).classList.add('open')));
-document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>btn.closest('.modal').classList.remove('open')));
-document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'))});
-document.getElementById('projectForm')?.addEventListener('submit',e=>{const f=e.currentTarget;if(!f.checkValidity()){e.preventDefault();f.reportValidity()}});
-</script>
-<script src="assets/js/klook-ui.js"></script></body>
+    <!-- WORK -->
+    <section id="work" class="home-section home-container py-20 sm:py-24 lg:py-28">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div class="max-w-3xl">
+          <p class="home-kicker">Work</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Contoh arah visual, struktur, dan pengalaman.</h2>
+          <p class="mt-5 leading-7 text-zinc-600">Portfolio membedakan konsep, demo, dan website yang dipublikasikan dengan izin. Kami tidak mengklaim konsep sebagai client work.</p>
+        </div>
+        <a href="portfolio.html" class="font-extrabold underline decoration-zinc-300 underline-offset-8">Lihat portfolio <i class="fa-solid fa-arrow-right ml-2 text-emerald-600"></i></a>
+      </div>
+
+      <div id="demoGrid" class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        <article class="home-card overflow-hidden rounded-3xl border border-zinc-200 bg-white">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85" alt="Konsep website hospitality dan villa" class="home-image h-64 w-full object-cover" loading="lazy">
+          <div class="p-6"><span class="text-[11px] font-extrabold uppercase tracking-[.18em] text-emerald-700">Hospitality</span><h3 class="mt-2 text-2xl font-extrabold">Experience-led website</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Visual properti, fasilitas, lokasi, inquiry, dan jalur reservasi disusun sebagai satu pengalaman.</p></div>
+        </article>
+        <article class="home-card overflow-hidden rounded-3xl border border-zinc-200 bg-white">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85" alt="Konsep antarmuka e-commerce modern" class="home-image h-64 w-full object-cover" loading="lazy">
+          <div class="p-6"><span class="text-[11px] font-extrabold uppercase tracking-[.18em] text-emerald-700">Commerce</span><h3 class="mt-2 text-2xl font-extrabold">Commerce journey</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Kategori, product detail, trust signal, cart, dan checkout dirancang agar alurnya mudah dipahami.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TRUST / WHY -->
+    <section class="home-section bg-zinc-950 text-white">
+      <div class="home-container py-20 sm:py-24 lg:py-28">
+        <div class="grid gap-12 lg:grid-cols-[.82fr_1.18fr]">
+          <div>
+            <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-400">Why Bali Bagus Dev</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Teknologi harus membantu bisnis, bukan membuatnya semakin rumit.</h2>
+            <p class="mt-5 max-w-xl leading-7 text-zinc-400">Kami bekerja dengan pendekatan yang praktis: pahami konteks, tentukan prioritas, bangun fondasi yang benar, lalu kembangkan sesuai kebutuhan.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <article class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><i class="fa-solid fa-bullseye text-emerald-400"></i><h3 class="mt-5 text-xl font-extrabold">Business-first</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Fitur dan halaman diprioritaskan berdasarkan tujuan, audience, dan alur bisnis.</p></article>
+            <article class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><i class="fa-solid fa-mobile-screen-button text-emerald-400"></i><h3 class="mt-5 text-xl font-extrabold">Mobile-first</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Touch target, hierarchy, spacing, form, dan CTA dirancang untuk penggunaan layar kecil.</p></article>
+            <article class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><i class="fa-solid fa-code text-emerald-400"></i><h3 class="mt-5 text-xl font-extrabold">Scalable foundation</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Solusi dapat dimulai sederhana dan dikembangkan ketika kebutuhan bisnis bertambah.</p></article>
+            <article class="rounded-2xl border border-white/10 bg-white/[.04] p-6"><i class="fa-solid fa-eye text-emerald-400"></i><h3 class="mt-5 text-xl font-extrabold">Transparan</h3><p class="mt-2 text-sm leading-6 text-zinc-400">Status produk, scope, dan fase pengembangan dijelaskan apa adanya tanpa backend fiktif.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="home-section home-container py-20 sm:py-24 lg:py-28">
+      <div class="max-w-3xl">
+        <p class="home-kicker">Process</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Discover → Decide → Build → Grow.</h2>
+        <p class="mt-5 leading-7 text-zinc-600">Proses dibuat bertahap agar keputusan penting dibuat sebelum biaya dan kompleksitas bertambah.</p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="rounded-2xl border border-zinc-200 bg-white p-6"><span class="text-xs font-extrabold text-emerald-700">01</span><h3 class="mt-5 text-xl font-extrabold">Discover</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Tujuan, audience, masalah, konten, dan prioritas.</p></article>
+        <article class="rounded-2xl border border-zinc-200 bg-white p-6"><span class="text-xs font-extrabold text-emerald-700">02</span><h3 class="mt-5 text-xl font-extrabold">Decide</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Pilih template, customize, atau build berdasarkan kebutuhan.</p></article>
+        <article class="rounded-2xl border border-zinc-200 bg-white p-6"><span class="text-xs font-extrabold text-emerald-700">03</span><h3 class="mt-5 text-xl font-extrabold">Build</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Design, development, content, integrasi, testing, dan refinement.</p></article>
+        <article class="rounded-2xl border border-zinc-200 bg-white p-6"><span class="text-xs font-extrabold text-emerald-700">04</span><h3 class="mt-5 text-xl font-extrabold">Grow</h3><p class="mt-2 text-sm leading-6 text-zinc-500">SEO, content, ads, conversion, maintenance, performance, dan iterasi.</p></article>
+      </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section id="insights" class="home-section border-y border-zinc-200 bg-white">
+      <div class="home-container py-20 sm:py-24 lg:py-28">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-3xl">
+            <p class="home-kicker">Insights</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Belajar sebelum membeli.</h2>
+            <p class="mt-5 leading-7 text-zinc-600">Artikel edukatif tentang website, SEO, conversion, copywriting, dan strategi digital untuk membantu Anda membuat keputusan dengan konteks.</p>
+          </div>
+          <a href="articles.html" class="font-extrabold">Buka semua artikel →</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <article class="home-card rounded-3xl border border-zinc-200 p-6"><span class="text-xs font-extrabold uppercase tracking-[.15em] text-emerald-700">Website</span><h3 class="mt-4 text-xl font-extrabold">Website bisnis bukan sekadar halaman online</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Memahami peran struktur, trust, CTA, dan konten dalam pengalaman digital.</p><a href="article-social-vs-website.html" class="mt-6 inline-flex min-h-11 items-center font-extrabold">Baca artikel <i class="fa-solid fa-arrow-right ml-2"></i></a></article>
+          <article class="home-card rounded-3xl border border-zinc-200 p-6"><span class="text-xs font-extrabold uppercase tracking-[.15em] text-emerald-700">SEO</span><h3 class="mt-4 text-xl font-extrabold">Fondasi SEO yang perlu dipikirkan sejak awal</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Struktur halaman, search intent, internal linking, dan local visibility.</p><a href="article-seo.html" class="mt-6 inline-flex min-h-11 items-center font-extrabold">Baca artikel <i class="fa-solid fa-arrow-right ml-2"></i></a></article>
+          <article class="home-card rounded-3xl border border-zinc-200 p-6"><span class="text-xs font-extrabold uppercase tracking-[.15em] text-emerald-700">Conversion</span><h3 class="mt-4 text-xl font-extrabold">Mengapa pengguna berhenti sebelum menghubungi?</h3><p class="mt-2 text-sm leading-6 text-zinc-500">Mengenali friction pada CTA, form, navigation, dan checkout.</p><a href="article-conversion.html" class="mt-6 inline-flex min-h-11 items-center font-extrabold">Baca artikel <i class="fa-solid fa-arrow-right ml-2"></i></a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- START PROJECT / BOOKING -->
+    <section id="start-project" class="home-section home-container py-20 sm:py-24 lg:py-28">
+      <div class="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white shadow-xl shadow-zinc-950/5">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr]">
+          <div class="bg-zinc-950 p-7 text-white sm:p-10 lg:p-12">
+            <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-400">Start a project</p>
+            <h2 class="mt-4 text-3xl font-extrabold tracking-[-.03em] sm:text-5xl">Ceritakan kebutuhan Anda. Kami bantu menentukan langkah berikutnya.</h2>
+            <p class="mt-5 leading-7 text-zinc-400">Tidak perlu brief sempurna. Isi konteks singkat, lalu lanjutkan ke halaman booking untuk pembahasan yang lebih terstruktur.</p>
+
+            <div class="mt-8 space-y-4 text-sm">
+              <div class="home-check text-zinc-300"><i class="fa-solid fa-shield-halved text-emerald-400"></i><span><strong class="text-white">Scope dibahas lebih dulu.</strong><br>Tidak ada pekerjaan otomatis hanya karena form dikirim.</span></div>
+              <div class="home-check text-zinc-300"><i class="fa-solid fa-comments text-emerald-400"></i><span><strong class="text-white">Konsultasi tersedia.</strong><br>Discovery consultation Rp990.000 / 60 menit.</span></div>
+              <div class="home-check text-zinc-300"><i class="fa-solid fa-mobile-screen-button text-emerald-400"></i><span><strong class="text-white">Ramah mobile.</strong><br>Form dibuat satu kolom agar mudah diisi dari smartphone.</span></div>
+            </div>
+          </div>
+
+          <form id="projectForm" class="p-7 sm:p-10 lg:p-12" action="booking.html" method="get">
+            <div class="grid gap-5">
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label><span class="mb-2 block text-sm font-extrabold">Nama</span><input class="home-input" required name="name" autocomplete="name" placeholder="Nama Anda"></label>
+                <label><span class="mb-2 block text-sm font-extrabold">Email</span><input class="home-input" required type="email" name="email" autocomplete="email" placeholder="nama@bisnis.com"></label>
+              </div>
+
+              <label>
+                <span class="mb-2 block text-sm font-extrabold">Kebutuhan utama</span>
+                <select class="home-input" name="service">
+                  <option value="website">Website / Web Development</option>
+                  <option value="uiux">UI/UX & Conversion</option>
+                  <option value="seo">SEO & Copywriting</option>
+                  <option value="product">Template / Digital Product</option>
+                  <option value="system">Web App / Business System</option>
+                  <option value="unsure">Belum yakin</option>
+                </select>
+              </label>
+
+              <label>
+                <span class="mb-2 block text-sm font-extrabold">Tujuan project</span>
+                <textarea class="home-input min-h-[140px] resize-y" required name="brief" rows="5" placeholder="Contoh: kami membutuhkan website untuk memperjelas layanan, membangun trust, dan meningkatkan inquiry dari calon pelanggan."></textarea>
+              </label>
+
+              <label class="flex items-start gap-3 text-sm leading-6 text-zinc-600">
+                <input required type="checkbox" class="mt-1 h-4 w-4 shrink-0 accent-emerald-600">
+                <span>Saya memahami bahwa pengiriman brief bukan persetujuan otomatis untuk memulai pekerjaan.</span>
+              </label>
+
+              <button class="home-btn inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 px-6 font-extrabold text-white transition hover:bg-zinc-800" type="submit">
+                Lanjutkan ke booking <i class="fa-solid fa-arrow-right ml-3"></i>
+              </button>
+
+              <p class="text-center text-xs leading-5 text-zinc-500"><i class="fa-solid fa-lock mr-1"></i>Form ini tidak meminta data kartu atau password.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="home-section border-t border-zinc-200 bg-zinc-100">
+      <div class="home-container py-20 sm:py-24">
+        <div class="grid gap-8 md:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p class="home-kicker">FAQ</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Pertanyaan sebelum mulai.</h2>
+            <p class="mt-4 leading-7 text-zinc-600">Jawaban lengkap dan kategori bantuan tersedia di halaman FAQ dan Help Center.</p>
+            <a href="faq.html" class="home-btn mt-7 inline-flex items-center rounded-xl bg-zinc-950 px-5 font-extrabold text-white">Buka FAQ <i class="fa-solid fa-arrow-right ml-3"></i></a>
+          </div>
+          <div class="grid gap-3">
+            <details class="rounded-2xl border border-zinc-200 bg-white p-5"><summary class="cursor-pointer list-none pr-8 font-extrabold">Apakah bisa mulai dari template?</summary><p class="mt-3 text-sm leading-6 text-zinc-500">Bisa. Produk tertentu dapat digunakan sebagai fondasi lalu dikembangkan melalui customization atau custom build.</p></details>
+            <details class="rounded-2xl border border-zinc-200 bg-white p-5"><summary class="cursor-pointer list-none pr-8 font-extrabold">Apakah menerima custom website dan web app?</summary><p class="mt-3 text-sm leading-6 text-zinc-500">Ya. Scope custom dibahas dari tujuan, user flow, fitur, konten, integrasi, dan kebutuhan teknis.</p></details>
+            <details class="rounded-2xl border border-zinc-200 bg-white p-5"><summary class="cursor-pointer list-none pr-8 font-extrabold">Bagaimana proses pembayaran?</summary><p class="mt-3 text-sm leading-6 text-zinc-500">Untuk produk dan order yang tersedia, checkout mengarahkan ke proses pembayaran transfer bank yang tersedia di halaman checkout, lalu konfirmasi pembayaran.</p></details>
+            <details class="rounded-2xl border border-zinc-200 bg-white p-5"><summary class="cursor-pointer list-none pr-8 font-extrabold">Apakah konsultasi tersedia?</summary><p class="mt-3 text-sm leading-6 text-zinc-500">Ya. Discovery consultation tersedia Rp990.000 untuk 60 menit. Detail dan booking tersedia di halaman booking.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="siteFooter"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById('projectForm')?.addEventListener('submit', function(e){
+      if(!this.checkValidity()){ e.preventDefault(); this.reportValidity(); }
+    });
+  </script>
+  <script src="assets/js/klook-ui.js"></script>
+</body>
 </html>
