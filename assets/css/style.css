@@ -1143,3 +1143,153 @@ body>main>section.hero-grid{
     display:inline-flex;
   }
 }
+
+
+/* FINAL CONSISTENT CONTENT SYSTEM
+   Full-bleed shell/hero; all readable page content uses the same 1140px rail. */
+:root{--bb-container:1140px}
+html,body{max-width:100%;overflow-x:hidden}
+main.page-main.wrap{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+main.page-main > .section,
+main.page-main > .inline-cta,
+main.page-main > .collection-package-context{
+  width:min(1140px,calc(100% - 64px));
+  max-width:1140px;
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+main.page-main > .section{margin-top:0}
+main.page-main > .inline-cta{margin-bottom:0}
+main.page-main > .bb-page-hero{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  border-radius:0;
+}
+main.page-main > .bb-page-hero > *{
+  width:min(1140px,calc(100% - 64px));
+  max-width:1140px;
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+
+/* Collection: clean, predictable, responsive card system. */
+#websiteCollection{min-width:0}
+#websiteCollectionGrid{
+  width:100%;
+  max-width:1140px;
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+  align-items:stretch;
+}
+#websiteCollectionGrid > *{
+  min-width:0;
+  max-width:none;
+}
+.collection-card,
+.collection-item,
+.website-card{
+  min-width:0;
+  width:100%;
+  height:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.collection-card img,
+.collection-item img,
+.website-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:cover;
+}
+.collection-card h2,
+.collection-card h3,
+.collection-item h2,
+.collection-item h3,
+.website-card h2,
+.website-card h3{
+  overflow-wrap:anywhere;
+}
+.collection-card p,
+.collection-item p,
+.website-card p{
+  overflow-wrap:anywhere;
+}
+.collection-controls{
+  width:100%;
+  max-width:1140px;
+  margin-inline:auto;
+  min-width:0;
+}
+.collection-controls > *{min-width:0}
+.collection-controls .filter-list{
+  min-width:0;
+  overflow:auto;
+}
+.collection-category-row{
+  max-width:100%;
+  box-sizing:border-box;
+}
+.collection-package-context{
+  min-width:0;
+  overflow:hidden;
+}
+.collection-package-context > *{min-width:0}
+.collection-package-specs{min-width:0}
+.collection-package-specs > *{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:1100px) and (min-width:768px){
+  main.page-main > .section,
+  main.page-main > .inline-cta,
+  main.page-main > .collection-package-context,
+  main.page-main > .bb-page-hero > *{
+    width:calc(100% - 48px);
+  }
+  #websiteCollectionGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+  }
+}
+@media(max-width:767px){
+  main.page-main > .section,
+  main.page-main > .inline-cta,
+  main.page-main > .collection-package-context,
+  main.page-main > .bb-page-hero > *{
+    width:calc(100% - 24px);
+  }
+  #websiteCollectionGrid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .collection-controls{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .collection-package-context{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:20px;
+    border-radius:14px;
+  }
+}
+@media(max-width:390px){
+  #websiteCollectionGrid{gap:12px}
+  .collection-package-context{padding:16px}
+}
