@@ -81,7 +81,7 @@ function footer(){
   </div>
   <div class="footer-pay">
    <span>METODE PEMBAYARAN</span>
-   <div class="pay-icons" aria-label="Metode pembayaran"><b>QRIS</b><b>VISA</b><b>MASTERCARD</b><b>BANK TRANSFER</b><b>PAYPAL</b></div>
+   <div class="pay-icons" aria-label="Metode pembayaran"><b>BCA</b><b>BANK TRANSFER</b></div>
   </div>
   <div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div>
  </div>`;
@@ -96,8 +96,8 @@ const FAQ_DATA=[
  {cat:"Layanan",q:"Bagaimana menentukan layanan yang saya butuhkan?",a:"Mulai dari kebutuhan atau masalah bisnisnya. Discovery membantu memetakan apakah solusinya website, content, SEO, campaign, aplikasi, atau kombinasi beberapa layanan."},
  {cat:"Konsultasi",q:"Bagaimana cara memulai proyek?",a:"Anda dapat booking konsultasi, mengirim brief melalui contact form, atau menghubungi WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas."},
  {cat:"Konsultasi",q:"Apakah tersedia konsultasi berbayar?",a:"Tersedia sesi konsultasi 60 menit dengan biaya Rp350.000. Detail format pertemuan dan kebutuhan proyek dibahas saat booking."},
- {cat:"Pembayaran",q:"Apakah payment gateway sudah tersedia?",a:"Belum. Frontend checkout saat ini merupakan prototype. Payment gateway produksi akan diaktifkan setelah backend dan integrasi pembayaran selesai."},
- {cat:"Pembayaran",q:"Apakah checkout saat ini sudah transaksi nyata?",a:"Belum. Checkout dan cart saat ini membantu menyiapkan pesanan. Pembayaran produksi belum diproses di website ini."},
+ {cat:"Pembayaran",q:"Bagaimana metode pembayaran saat ini?",a:"Saat ini pembayaran dilakukan melalui transfer bank BCA ke rekening 1460137710 atas nama Bagus Kristian Sianturi. Setelah transfer, bukti pembayaran dikonfirmasi melalui halaman konfirmasi atau WhatsApp."},
+ {cat:"Pembayaran",q:"Bagaimana proses setelah checkout?",a:"Checkout mengumpulkan detail pesanan dan menampilkan rekening BCA. Setelah transfer, buka halaman konfirmasi untuk menyiapkan bukti pembayaran dan lanjutkan konfirmasi melalui WhatsApp. Order otomatis dan verifikasi server akan ditambahkan pada tahap backend."},
  {cat:"Support",q:"Bagaimana support setelah website launch?",a:"Maintenance & Support dapat mencakup update konten, perbaikan bug, pengecekan teknis, performance/SEO maintenance, dan pengembangan lanjutan sesuai scope."},
  {cat:"Support",q:"Apakah ada bantuan melalui WhatsApp?",a:"Ya. WhatsApp dapat digunakan untuk percakapan dan follow-up kebutuhan. Live agent production akan berkembang bersama sistem backend."},
  {cat:"SEO",q:"Apakah Bali Bagus Dev menyediakan SEO?",a:"Ya. Layanannya mencakup technical SEO audit, on-page/local SEO structure, keyword/content mapping, measurement, dan improvement plan."},
@@ -790,7 +790,7 @@ function setupForms(){
    const data=Object.fromEntries(new FormData(co));
    trackEvent("checkout_submit",{type:isWebsite?"website":"digital"});
    const websiteOrder=isWebsite?store.get("websiteOrder",null):null;
-   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"payment-pending",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"bank_transfer",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
+   const order={id:"ORDER-"+Date.now(),type:isWebsite?"website":"digital",customer:data,items:isWebsite?[]:cart,status:"awaiting-payment-confirmation",createdAt:new Date().toISOString(),shipping:data.shipping||"Regular",payment:data.payment||"bank_transfer",website:websiteOrder?{packageId:websiteOrder.packageId,templateId:websiteOrder.templateId}:null};
    const orders=store.get("orders",[]);orders.push(order);store.set("orders",orders);if(!isWebsite)saveCart([]);
    $("#checkoutResult").innerHTML=`<span class="form-status">Pesanan <b>${esc(order.id)}</b> tercatat dan siap ditindaklanjuti. Pada production, pembayaran, email dan WhatsApp follow-up akan diproses backend.</span>`;
    renderSummary("#checkoutSummary");
