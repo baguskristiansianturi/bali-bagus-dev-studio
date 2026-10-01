@@ -2958,3 +2958,35 @@ body.checkout-page main.page-main.wrap::after{
 @media(prefers-reduced-motion:reduce){
  .about-service-grid article{transition:none}
 }
+
+/* HERO SEARCH V3 — clean marketplace-style search */
+.hero-search{max-width:680px;margin-top:26px}
+.hero-search-main{display:flex;align-items:center;min-height:62px;background:#fff;border:1px solid #d8d8d4;box-shadow:0 12px 35px #00000009;transition:border-color .2s,box-shadow .2s}
+.hero-search-main:focus-within{border-color:#171717;box-shadow:0 16px 45px #00000012}
+.hero-search-icon{flex:0 0 45px;text-align:center;font-size:25px;color:#999;line-height:1}
+.hero-search-main input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:0 8px;font-size:14px;color:#171717}
+.hero-search-main input::placeholder{color:#aaa}
+.hero-search-submit{width:48px;height:48px;margin-right:6px;border:0;background:#171717;color:#fff;display:grid;place-items:center;cursor:pointer;font-size:20px;transition:transform .2s,background .2s}
+.hero-search-submit:hover{background:#333;transform:translateY(-1px)}
+.hero-search-categories{display:flex;gap:7px;align-items:center;margin-top:10px;overflow-x:auto;scrollbar-width:none;padding:1px 0 3px}
+.hero-search-categories::-webkit-scrollbar{display:none}
+.search-chip{border:1px solid #e0e0dc;background:#fff;color:#777;padding:8px 13px;min-height:34px;white-space:nowrap;cursor:pointer;font-size:10px;font-weight:700;transition:.2s}
+.search-chip:hover{border-color:#aaa;color:#171717}
+.search-chip.is-active{background:#171717;border-color:#171717;color:#fff}
+.hero-search-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;min-height:18px}
+.hero-search-suggestions button{border:0;background:transparent;padding:0;font-size:9px;color:#999;cursor:pointer}
+.hero-search-suggestions button:hover{color:#171717;text-decoration:underline}
+.hero-search-suggestions:empty{display:none}
+@media(max-width:600px){
+ .hero-search{margin-top:22px}
+ .hero-search-main{min-height:58px}
+ .hero-search-icon{flex-basis:39px;font-size:22px}
+ .hero-search-main input{font-size:13px;padding:0 5px}
+ .hero-search-submit{width:46px;height:46px;margin-right:5px}
+ .hero-search-categories{margin-top:8px;gap:6px}
+ .search-chip{font-size:9px;padding:8px 12px;min-height:36px}
+ .hero-search-suggestions{margin-top:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-search-main,.hero-search-submit,.search-chip{transition:none}
+}
