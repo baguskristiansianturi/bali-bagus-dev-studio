@@ -687,7 +687,7 @@ function header(){
    <button class="mobile-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
  </div>
  <div class="category-nav-row">
-   <nav class="category-nav" id="mainNav" aria-label="Kategori utama"><div class="mobile-quick-links"><a href="${base}articles.html">Blog</a><a href="${base}help.html">Bantuan</a><button type="button" class="mobile-quick-action" data-header-popover="recent" aria-expanded="false">Baru dilihat <b class="header-badge">${recent.length}</b></button><a href="${base}account.html">Mendaftar</a><a href="${base}account.html">Masuk</a></div>
+   <nav class="category-nav" id="mainNav" aria-label="Kategori utama"><div class="mobile-quick-links"><a href="${base}articles.html">Blog</a><a href="${base}help.html">Bantuan</a><a href="${base}cart.html">Keranjang <b class="header-badge" id="mobileCartCount">0</b></a><button type="button" class="mobile-quick-action" data-header-popover="recent" aria-expanded="false">Baru dilihat <b class="header-badge">${recent.length}</b></button><a href="${base}account.html">Mendaftar</a><a href="${base}account.html">Masuk</a></div>
      <div class="mega-item"><a class="mega-trigger" href="${base}services.html">Build</a></div>
      <div class="mega-item"><a class="mega-trigger" href="${base}products.html">Templates</a></div>
      <div class="mega-item"><a class="mega-trigger" href="${base}website-collection.html">Solutions</a></div>
