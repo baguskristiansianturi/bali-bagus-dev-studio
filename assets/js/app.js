@@ -617,7 +617,7 @@ function renderCollection(){
     <div class="collection-title-row"><div><span>${esc(x.category)}</span><h3>${esc(x.name)}</h3></div><span class="collection-ready">${categoryScoped&&pkg==="custom"?"CUSTOM":"READY"}</span></div>
     <p>${esc(x.desc||"")}</p>
     <div class="collection-tags"><span>${esc((x.style||"Custom").split(" / ")[0])}</span><span>${categoryScoped?"Scope tersedia":"Responsive"}</span><span>${esc(packageData?.name||"Custom")}</span></div>
-    <div class="collection-card-footer"><div><small>MULAI DARI</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Lihat preview ${icon("arrow")}</a></div>
+    <div class="collection-card-footer"><div><small>MULAI DARI</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><div class="collection-card-actions"><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Preview ${icon("arrow")}</a><a class="button small" href="website-order.html?package=${encodeURIComponent(pkg)}&template=${encodeURIComponent(x.id)}">Pilih website</a></div></div>
     <a class="collection-spec-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Spesifikasi paket <span>↗</span></a>
    </div>
   </article>`;
