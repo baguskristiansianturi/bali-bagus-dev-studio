@@ -66,11 +66,9 @@ function footer(){
    <div class="footer-brand">
     <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
     <p>Solusi digital yang dibangun berdasarkan kebutuhan bisnis nyata.</p>
-    <div class="socials" aria-label="Media sosial">
-     <a href="https://instagram.com/bbstudio" aria-label="Instagram" target="_blank" rel="noopener">ig</a>
-     <a href="https://linkedin.com/in/bbstudio" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
-     <a href="https://youtube.com/@bbstudio" aria-label="YouTube" target="_blank" rel="noopener">▶</a>
-     <a href="https://facebook.com/bbstudio" aria-label="Facebook" target="_blank" rel="noopener">f</a>
+    <div class="socials" aria-label="Kontak dan media">
+     <a href="https://wa.me/628218187917" aria-label="WhatsApp" target="_blank" rel="noopener">wa</a>
+     <span aria-label="Instagram">ig <small>@bbstudio · segera hadir</small></span>
     </div>
    </div>
    <div class="footer-col"><b>BUILD</b><a href="${base}services.html#website">Website & E-commerce</a><a href="${base}services.html#app">Web Apps & Systems</a><a href="${base}services.html#strategy">Discovery & Strategy</a></div>
