@@ -847,6 +847,8 @@ function setupContactPopup(){
  const close=()=>back.classList.remove("open");fab.addEventListener("click",()=>back.classList.add("open"));back.addEventListener("click",e=>{if(e.target===back||e.target.closest(".bb-modal-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
 }
 
+function loadDiscoveryUI(){if(document.querySelector('script[src$="klook-ui.js"]'))return;const x=document.createElement("script");x.src=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../assets/js/klook-ui.js":"assets/js/klook-ui.js";document.head.appendChild(x)}
+loadDiscoveryUI();
 function ensureSharedChrome(){
  try{
   const h=document.querySelector(".site-header");
