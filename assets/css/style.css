@@ -861,3 +861,30 @@ html{scroll-behavior:smooth}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* FINAL LAYOUT CONSTRAINT FIX
+   page-main is full-bleed only so its hero can span the viewport.
+   Content sections must keep a readable max-width. */
+main.page-main > .section > *,
+main.page-main > .inline-cta{
+  width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+}
+main.page-main > .section{
+  width:100%;
+}
+main.page-main > .inline-cta{
+  margin-top:0;
+  margin-bottom:0;
+}
+
+/* Prevent legacy shell rules from changing the canonical mobile drawer */
+@media(max-width:900px){
+  .studio-mobile-nav.open{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+}
