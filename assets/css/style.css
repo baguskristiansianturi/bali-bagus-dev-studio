@@ -1864,3 +1864,520 @@ body:not(.landing-page) main#main:not(.page-main):not(.wrap) > .bb-page-hero{
     width:calc(100% - 20px)!important;
   }
 }
+
+
+/* =========================================================
+   FINAL RESPONSIVE REPAIR — ALL SHARED PAGES
+   Fixes direct-child overflow, inconsistent content rails,
+   booking/consultation layout, forms, process sections,
+   and mobile typography. Keep global header/footer intact.
+   ========================================================= */
+
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+body{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:hidden;
+}
+main.page-main,
+main.wrap,
+main#main{
+  min-width:0;
+  overflow:visible;
+}
+main.page-main > *{
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+}
+main.page-main > :not(.bb-page-hero):not(.section):not(.inline-cta):not(.form-layout):not(.split-layout):not(.product-detail-layout){
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)));
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Booking / consultation page */
+.booking-pricing{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)));
+  max-width:var(--bb-container);
+  margin:14px auto 0;
+  padding:0 2px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:6px 10px;
+  color:var(--bb-muted);
+  line-height:1.55;
+}
+.booking-pricing strong{
+  flex:0 0 auto;
+  color:var(--bb-ink);
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-.035em;
+}
+.booking-pricing span{
+  min-width:0;
+  flex:1 1 420px;
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+
+.consultation-overview{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)))!important;
+  max-width:var(--bb-container)!important;
+  margin:0 auto!important;
+  padding-top:clamp(42px,6vw,72px)!important;
+  padding-bottom:clamp(42px,6vw,72px)!important;
+}
+.consultation-overview > .eyebrow{
+  width:auto!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.consultation-overview > h2{
+  width:100%!important;
+  max-width:820px!important;
+  margin:0 0 16px!important;
+  color:var(--bb-ink);
+  font-size:clamp(30px,4.5vw,52px)!important;
+  line-height:1.06!important;
+  letter-spacing:-.055em;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+.consultation-overview > p{
+  width:100%!important;
+  max-width:700px!important;
+  margin:0 0 28px!important;
+  color:var(--bb-muted);
+  font-size:16px!important;
+  line-height:1.75!important;
+  overflow-wrap:anywhere;
+}
+.consultation-overview .category-grid{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+}
+.consultation-overview .category-card{
+  min-height:0;
+  height:100%;
+  padding:24px;
+}
+.consultation-overview .category-card h3{
+  overflow-wrap:anywhere;
+}
+.custom-flow-strip{
+  width:100%!important;
+  max-width:none!important;
+  margin:24px 0 0!important;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:stretch;
+}
+.custom-flow-strip span{
+  min-width:0;
+  flex:1 1 150px;
+  padding:12px 13px;
+  border:1px solid var(--bb-line);
+  border-radius:10px;
+  background:#fff;
+  color:#52525b;
+  font-size:9px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:.08em;
+  overflow-wrap:anywhere;
+}
+
+/* Shared project form */
+.form-layout{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)))!important;
+  max-width:var(--bb-container)!important;
+  margin:0 auto!important;
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);
+  gap:24px;
+  align-items:start;
+}
+.form-card{
+  min-width:0;
+  padding:30px;
+  border:1px solid var(--bb-line);
+  border-radius:var(--bb-radius);
+  background:#fff;
+  box-shadow:0 10px 35px rgba(24,24,27,.045);
+}
+.form-card h2{
+  margin:0 0 24px;
+  font-size:clamp(26px,3.2vw,38px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+.form-card > label,
+.form-card .form-row > label{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-bottom:16px;
+  color:var(--bb-ink);
+  font-size:12px;
+  font-weight:800;
+}
+.form-card input,
+.form-card select,
+.form-card textarea{
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  border:1px solid var(--bb-line);
+  border-radius:11px;
+  background:#fff;
+  color:var(--bb-ink);
+  padding:12px 13px;
+  outline:0;
+  box-sizing:border-box;
+}
+.form-card textarea{
+  min-height:130px;
+  resize:vertical;
+}
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus{
+  border-color:#a1a1aa;
+  box-shadow:0 0 0 4px rgba(5,150,105,.07);
+}
+.form-row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.form-card .check-label{
+  display:flex;
+  flex-direction:row;
+  align-items:flex-start;
+  gap:10px;
+  margin:4px 0 14px;
+  color:var(--bb-muted);
+  font-size:12px;
+  line-height:1.55;
+}
+.form-card .check-label input{
+  width:17px;
+  height:17px;
+  flex:0 0 auto;
+  margin:2px 0 0;
+  padding:0;
+}
+.form-card .full{
+  width:100%;
+}
+.form-note{
+  margin:0 0 14px;
+  color:var(--bb-muted);
+  font-size:12px;
+  line-height:1.65;
+}
+.form-result{
+  margin-top:12px;
+  color:var(--bb-accent);
+  font-size:12px;
+  line-height:1.6;
+}
+.form-aside{
+  min-width:0;
+  position:sticky;
+  top:140px;
+  padding:26px;
+  border:1px solid var(--bb-line);
+  border-radius:var(--bb-radius);
+  background:#f5f5f3;
+}
+.form-aside .aside-number{
+  margin-bottom:18px;
+  color:#71717a;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.form-aside h3{
+  margin:0 0 12px;
+  font-size:24px;
+  line-height:1.15;
+  letter-spacing:-.035em;
+}
+.form-aside p{
+  margin:0;
+  color:#71717a;
+  font-size:13px;
+  line-height:1.75;
+  overflow-wrap:anywhere;
+}
+.form-aside b{
+  display:block;
+  margin-top:18px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+.aside-line{
+  height:1px;
+  margin:22px 0 0;
+  background:#d4d4d8;
+}
+
+/* Consultation follow-up process */
+.consultation-after{
+  width:min(var(--bb-container),calc(100% - (var(--bb-page-gutter)*2)))!important;
+  max-width:var(--bb-container)!important;
+  margin:0 auto!important;
+}
+.process-grid{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+}
+.process-step{
+  min-width:0;
+  height:100%;
+  padding:20px;
+  border:1px solid var(--bb-line);
+  border-radius:14px;
+  background:#fff;
+}
+.process-step .step-no{
+  display:block;
+  margin-bottom:22px;
+  color:#a1a1aa;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+.process-step h3{
+  margin:0 0 8px;
+  font-size:17px;
+  line-height:1.2;
+  letter-spacing:-.03em;
+  overflow-wrap:anywhere;
+}
+.process-step p{
+  margin:0;
+  color:var(--bb-muted);
+  font-size:12px;
+  line-height:1.65;
+  overflow-wrap:anywhere;
+}
+
+/* Generic grid / media safety across every page */
+main.page-main .category-grid,
+main.page-main .product-grid,
+main.page-main .portfolio-grid,
+main.page-main .article-grid,
+main.page-main .package-grid,
+main.page-main .demo-grid,
+main.page-main .collection-grid,
+main.page-main .process-grid{
+  min-width:0;
+}
+main.page-main .category-grid > *,
+main.page-main .product-grid > *,
+main.page-main .portfolio-grid > *,
+main.page-main .article-grid > *,
+main.page-main .package-grid > *,
+main.page-main .demo-grid > *,
+main.page-main .collection-grid > *,
+main.page-main .process-grid > *{
+  min-width:0;
+  max-width:100%;
+}
+main.page-main p,
+main.page-main h1,
+main.page-main h2,
+main.page-main h3,
+main.page-main h4,
+main.page-main span,
+main.page-main a,
+main.page-main label{
+  overflow-wrap:anywhere;
+}
+main.page-main iframe,
+main.page-main embed,
+main.page-main object{
+  max-width:100%;
+}
+main.page-main pre,
+main.page-main code{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+/* Tablet */
+@media(max-width:1000px) and (min-width:768px){
+  .process-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .form-layout{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .form-aside{
+    position:static;
+  }
+}
+
+/* Mobile */
+@media(max-width:767px){
+  main.page-main > :not(.bb-page-hero):not(.section):not(.inline-cta):not(.form-layout):not(.split-layout):not(.product-detail-layout){
+    width:calc(100% - 24px);
+    max-width:var(--bb-container);
+  }
+
+  .booking-pricing{
+    width:calc(100% - 24px);
+    margin-top:12px;
+    padding:0;
+    display:block;
+  }
+  .booking-pricing strong{
+    display:block;
+    margin-bottom:4px;
+    font-size:24px;
+  }
+  .booking-pricing span{
+    display:block;
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  .consultation-overview{
+    width:calc(100% - 24px)!important;
+    padding-top:34px!important;
+    padding-bottom:34px!important;
+  }
+  .consultation-overview > h2{
+    font-size:clamp(28px,8.2vw,36px)!important;
+    line-height:1.08!important;
+    letter-spacing:-.045em;
+  }
+  .consultation-overview > p{
+    font-size:15px!important;
+    line-height:1.7!important;
+    margin-bottom:22px!important;
+  }
+  .consultation-overview .category-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .consultation-overview .category-card{
+    padding:19px;
+  }
+  .custom-flow-strip{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .custom-flow-strip span{
+    flex:none;
+    padding:11px;
+    font-size:8px;
+  }
+
+  .form-layout{
+    width:calc(100% - 24px)!important;
+    grid-template-columns:1fr!important;
+    gap:14px;
+  }
+  .form-card{
+    padding:20px;
+    border-radius:15px;
+  }
+  .form-card h2{
+    font-size:28px;
+    margin-bottom:20px;
+  }
+  .form-row{
+    grid-template-columns:1fr!important;
+    gap:0;
+  }
+  .form-card input,
+  .form-card select,
+  .form-card textarea{
+    min-height:46px;
+    font-size:16px;
+  }
+  .form-card textarea{
+    min-height:130px;
+  }
+  .form-aside{
+    position:static;
+    padding:20px;
+    border-radius:15px;
+  }
+
+  .consultation-after{
+    width:calc(100% - 24px)!important;
+  }
+  .process-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .process-step{
+    padding:18px;
+  }
+  .process-step .step-no{
+    margin-bottom:13px;
+  }
+
+  .footer-main{
+    min-width:0;
+  }
+  .footer-main > *{
+    min-width:0;
+  }
+}
+
+/* Small phones */
+@media(max-width:390px){
+  .booking-pricing{
+    width:calc(100% - 20px);
+  }
+  .consultation-overview,
+  .form-layout,
+  .consultation-after{
+    width:calc(100% - 20px)!important;
+  }
+  .custom-flow-strip{
+    grid-template-columns:1fr;
+  }
+  .consultation-overview > h2{
+    font-size:28px!important;
+  }
+  .form-card{
+    padding:17px;
+  }
+}
+
+/* Keep hover effects from creating accidental mobile movement */
+@media(hover:none){
+  .category-card:hover,
+  .product-card:hover,
+  .bb-card:hover,
+  #demoGrid .demo-card:hover{
+    transform:none;
+    box-shadow:none;
+  }
+}
