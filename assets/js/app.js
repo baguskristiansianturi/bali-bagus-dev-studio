@@ -846,12 +846,12 @@ function ensureSharedChrome(){
  }catch(error){console.error("BB header retry error",error)}
  try{
   const f=document.querySelector("#siteFooter");
-  if(f && !f.querySelector(".footer-top")) footer();
+  if(f && !f.querySelector(".footer-main")) footer();
  }catch(error){console.error("BB footer retry error",error)}
 }
 document.addEventListener("DOMContentLoaded",()=>{
  try{ensureSharedShell();}catch(error){console.error("BB shell error",error)}
- try{header();}catch(error){console.error("BB header error",error);renderShellFallback()}
+ try{header();}catch(error){console.error("BB header error",error)}
  if(!document.querySelector(".site-header")?.querySelector(".top-header-row")){try{header()}catch(error){console.error("BB header retry error",error)}}
  try{footer();}catch(error){console.error("BB footer error",error)}
  if(!document.querySelector("#siteFooter")?.querySelector(".footer-main")){try{footer()}catch(error){console.error("BB footer retry error",error)}}
