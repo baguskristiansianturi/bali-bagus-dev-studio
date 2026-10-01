@@ -10,7 +10,7 @@
  <div class="bb-category-bar"><div class="bb-header-inner"><nav><a href="${base}services.html">Solusi</a><a href="${base}products.html">Template & Produk</a><a href="${base}website-collection.html">Website by Industry</a><a href="${base}portfolio.html">Work & Preview</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">BB Studio</a></nav><a class="bb-consult" href="${base}booking.html">Konsultasi 60 menit ↗</a></div></div>
  <div class="bb-mobile-menu"><form action="${base}products.html"><input name="q" type="search" placeholder="Cari di BB Studio"><button>Cari</button></form><a href="${base}services.html">Solusi</a><a href="${base}products.html">Template & Produk</a><a href="${base}website-collection.html">Website by Industry</a><a href="${base}portfolio.html">Work & Preview</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">BB Studio</a><a href="${base}help.html">Bantuan</a><a href="${base}cart.html">Keranjang</a><a class="bb-mobile-start" href="${base}booking.html">Mulai proyek ↗</a></div>`;
  const count=()=>{try{const c=JSON.parse(localStorage.getItem("bb_cart"))||[];const n=c.reduce((a,x)=>a+(Number(x.qty)||1),0);const e=document.querySelector("#bbHeaderCart");if(e)e.textContent=n}catch{}};
- count();
+ count(); setInterval(count,800);
  const b=h.querySelector(".bb-menu"),m=h.querySelector(".bb-mobile-menu");b?.addEventListener("click",()=>{const open=m.classList.toggle("open");b.setAttribute("aria-expanded",String(open));b.textContent=open?"×":"☰"});
 };
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run);else run();
