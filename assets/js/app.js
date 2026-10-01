@@ -673,7 +673,7 @@ function header(){
  toggle?.addEventListener("click",()=>setNav(!nav?.classList.contains("open")));
  close?.addEventListener("click",()=>setNav(false));
  nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setNav(false)));
- document.addEventListener("keydown",e=>{if(e.key==="Escape"&&nav?.classList.contains("open"))setNav(false)},{once:true});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&nav?.classList.contains("open"))setNav(false);});
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
