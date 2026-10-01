@@ -61,25 +61,25 @@ function footer(){
  const f=$("#siteFooter");if(!f)return;
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
  f.className="site-footer";
- f.innerHTML=`<div class="wrap">
-  <div class="footer-top">
+ f.innerHTML=`<div class="wrap footer-wrap">
+  <div class="footer-main">
    <div class="footer-brand">
-    <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
-    <p>Solusi digital yang dibangun berdasarkan kebutuhan bisnis nyata.</p>
-    <div class="socials" aria-label="Kontak dan media">
-     <a href="https://wa.me/628218187917" aria-label="WhatsApp" target="_blank" rel="noopener">wa</a>
-     <span aria-label="Instagram">ig <small>@bbstudio · segera hadir</small></span>
+    <a class="footer-logo" href="${base}index.html" aria-label="Bali Bagus Dev Studio home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
+    <p>Digital products and services designed around real business needs — from first launch to long-term growth.</p>
+    <div class="footer-socials">
+      <a href="https://wa.me/628218187917" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp ↗</a>
+      <span>Instagram · @bbstudio</span>
     </div>
    </div>
-   <div class="footer-col"><b>BUILD</b><a href="${base}services.html#website">Website & E-commerce</a><a href="${base}services.html#app">Web Apps & Systems</a><a href="${base}services.html#strategy">Discovery & Strategy</a></div>
-   <div class="footer-col"><b>PRODUCTS</b><a href="${base}products.html?q=website">Website Templates</a><a href="${base}products.html?q=blogger">Blogger Templates</a><a href="${base}products.html?q=landing">Landing Pages</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html">Digital Products</a></div>
-   <div class="footer-col"><b>GROW</b><a href="${base}services.html#seo">SEO & Local Search</a><a href="${base}services.html#content">Content</a><a href="${base}services.html#copy">Copywriting</a><a href="${base}services.html#conversion">Conversion</a><a href="${base}services.html#ads">Google Ads</a><a href="${base}services.html#care">Maintenance</a></div>
-   <div class="footer-col"><b>COMPANY</b><a href="${base}about.html">About</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}contact.html">Contact</a><a href="${base}faq.html">FAQ</a></div>
-   <div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a><a href="${base}terms.html">License</a></div>
+   <div class="footer-nav-group"><b>EXPLORE</b><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Industries</a><a href="${base}portfolio.html">Work</a></div>
+   <div class="footer-nav-group"><b>STUDIO</b><a href="${base}about.html">About</a><a href="${base}articles.html">Insights</a><a href="${base}booking.html">Start a Project</a><a href="${base}contact.html">Contact</a></div>
+   <div class="footer-nav-group"><b>SUPPORT</b><a href="${base}help.html">Help Center</a><a href="${base}faq.html">FAQ</a><a href="${base}cart.html">Cart</a><a href="${base}account.html">${isLogged()?"Account":"Sign in"}</a></div>
+   <div class="footer-nav-group"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a></div>
   </div>
-  <div class="footer-pay">
-   <span>METODE PEMBAYARAN</span>
-   <div class="pay-icons" aria-label="Metode pembayaran"><b>BCA</b><b>BANK TRANSFER</b></div>
+  <div class="footer-business">
+   <div><span>PAYMENT</span><b>BCA · Bank Transfer</b><small>Bagus Kristian Sianturi · 1460137710</small></div>
+   <div><span>CONSULTATION</span><b>Rp990.000 / 60 minutes</b><small>Online or agreed meeting location</small></div>
+   <a class="footer-cta" href="${base}booking.html">Discuss your project <span>↗</span></a>
   </div>
   <div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div>
  </div>`;
