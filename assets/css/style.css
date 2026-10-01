@@ -5318,3 +5318,52 @@ html,body{overflow-x:hidden}
  .product-card h3{font-size:18px}
  .article-main .article-body p{font-size:14px}
 }
+
+/* Illustration-first visual direction */
+.bb-sketch-hero{position:relative;isolation:isolate;background:#f2f2ee!important;color:#171717!important;border-bottom:1px solid #deded8;overflow:hidden}
+.bb-sketch-hero:before{content:"";position:absolute;inset:0;z-index:-2;background:
+ radial-gradient(circle at 78% 32%,rgba(46,139,87,.15),transparent 24%),
+ radial-gradient(circle at 88% 80%,rgba(17,19,24,.08),transparent 28%),
+ linear-gradient(135deg,#fafaf7 0%,#ecece7 100%)}
+.bb-sketch-hero:after{content:"";position:absolute;z-index:-1;width:430px;height:430px;right:-90px;top:50%;transform:translateY(-50%) rotate(12deg);border:1px solid #17171726;border-radius:34% 66% 54% 46%;box-shadow:inset 0 0 0 24px #ffffff55,inset 0 0 0 52px #17171709}
+.bb-sketch-hero .bb-page-hero-inner{position:relative}
+.bb-sketch-hero .bb-hero-copy{position:relative;z-index:2}
+.bb-sketch-hero .bb-hero-copy:after{content:"BB / DIGITAL SYSTEM";position:absolute;left:calc(100% + 80px);top:50%;font:9px "DM Mono",monospace;letter-spacing:.16em;color:#777;white-space:nowrap;transform:rotate(90deg);transform-origin:left center}
+.bb-sketch-hero h1{color:#171717!important}
+.bb-sketch-hero .bb-hero-lead{color:#62656a!important}
+.bb-sketch-hero .bb-hero-kicker{color:#2e8b57!important}
+.bb-sketch-hero[data-visual="products"]:after{border-radius:10px;transform:translateY(-50%) rotate(-5deg);box-shadow:18px 18px 0 #1717170d,36px 36px 0 #2e8b5714}
+.bb-sketch-hero[data-visual="services"]:after{border-radius:50%;width:360px;height:360px;right:4%}
+.bb-sketch-hero[data-visual="articles"]:after,.bb-sketch-hero[data-visual^="article-"]:after{border-radius:4px;transform:translateY(-50%) rotate(-8deg);box-shadow:24px 20px 0 #2e8b5714}
+.bb-sketch-hero[data-visual="help"]:after{border-radius:50% 50% 10% 10%;transform:translateY(-50%) rotate(0)}
+.bb-sketch-hero[data-visual="contact"]:after,.bb-sketch-hero[data-visual="booking"]:after{border-radius:18px;transform:translateY(-50%) rotate(3deg)}
+.ready-use-grid a,.category-card,.product-card,.portfolio-card,.service-list>a{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.ready-use-grid a{position:relative;border:1px solid #e2e2dd!important;background:#fff!important;border-radius:14px;padding:22px!important;overflow:hidden}
+.ready-use-grid a:before{content:"";position:absolute;width:64px;height:64px;right:-18px;top:-18px;border:1px solid #2e8b5730;border-radius:50%;transition:transform .35s ease}
+.ready-use-grid a:hover{transform:translateY(-4px);border-color:#bfcac2!important;box-shadow:0 18px 45px #1717170b}
+.ready-use-grid a:hover:before{transform:scale(1.8)}
+.category-card{border:1px solid #e2e2dd;border-radius:16px;box-shadow:none}
+.category-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px #1717170c}
+.cat-decoration{opacity:.08}
+.product-card{border-radius:16px;overflow:hidden;box-shadow:0 1px 0 #17171708}
+.product-card:hover{box-shadow:0 18px 50px #17171710}
+.product-art{background:#f0f0ec!important}
+.product-mock{border:1px solid #e1e1dc;border-radius:6px}
+.port-visual{border-radius:16px;background:#f0f0ec!important;border:1px solid #e2e2dd}
+.service-list>a{border-radius:12px;padding-inline:18px}
+.service-list>a:hover{background:#fff;box-shadow:0 14px 35px #17171708;transform:translateX(4px)}
+.bb-page-hero,.product-card,.category-card,.ready-use-grid a,.portfolio-card,.collection-card,.summary-card,.checkout-panel,.checkout-summary{will-change:transform}
+@media (prefers-reduced-motion:no-preference){
+ .bb-sketch-hero:after{animation:bbSketchFloat 8s ease-in-out infinite}
+ .product-art:after{content:"";position:absolute;inset:18px;border:1px dashed #17171718;border-radius:10px;pointer-events:none}
+ .product-card:hover .product-mock{transform:rotate(-1deg) translateY(-3px)}
+}
+@keyframes bbSketchFloat{0%,100%{margin-top:0}50%{margin-top:-10px}}
+@media(max-width:800px){
+ .bb-sketch-hero:after{width:240px;height:240px;right:-80px;top:72%}
+ .bb-sketch-hero .bb-hero-copy:after{display:none}
+ .ready-use-grid{grid-template-columns:1fr!important}
+ .ready-use-grid a{min-height:0}
+ .category-card{min-height:280px}
+ .product-art{height:200px}
+}
