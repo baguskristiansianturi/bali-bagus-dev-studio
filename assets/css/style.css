@@ -840,3 +840,24 @@ body.nav-open:after{
 @media(prefers-reduced-motion:reduce){
  .studio-mobile-nav{transition:none}
 }
+
+
+/* ACCESSIBILITY + PERFORMANCE FINISH */
+:where(a,button,input,select,textarea,summary):focus-visible{
+  outline:3px solid rgba(5,150,105,.38);
+  outline-offset:3px;
+}
+img{max-width:100%;height:auto}
+html{scroll-behavior:smooth}
+@media(max-width:680px){
+  body{overflow-x:hidden}
+  .wrap,.home-container{width:min(100% - 24px,var(--bb-container))}
+  .section{padding-block:52px}
+  .section-head{gap:10px}
+  .section-head h2{font-size:clamp(1.65rem,7vw,2.15rem);line-height:1.08}
+  .btn,.home-btn{min-height:46px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
