@@ -1107,3 +1107,39 @@ body>main>section.hero-grid{
     width:100%;
   }
 }
+
+
+/* FINAL HEADER BREAKPOINT GUARD
+   Prevent navigation collisions before the mobile breakpoint. */
+@media(max-width:1100px) and (min-width:768px){
+  .site-header .studio-primary-nav{display:none}
+  .site-header .bb-category-bar{display:none}
+  .site-header .header-utility{display:none}
+  .site-header .header-login{display:none}
+  .site-header .top-header-row{
+    min-height:68px;
+  }
+  .site-header .mobile-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .site-header .studio-start-button{
+    margin-left:auto;
+  }
+}
+@media(max-width:767px){
+  .site-header .top-header-row{
+    min-height:62px;
+  }
+  .site-header .bb-category-bar,
+  .site-header .bb-utility{
+    display:none;
+  }
+  .site-header .header-top-actions{
+    display:none;
+  }
+  .site-header .mobile-toggle{
+    display:inline-flex;
+  }
+}
