@@ -65,26 +65,16 @@ function footer(){
   <div class="footer-main">
    <div class="footer-brand">
     <a class="footer-logo" href="${base}index.html" aria-label="Bali Bagus Dev Studio home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
-    <p>Digital products and services designed around real business needs — from first launch to long-term growth.</p>
-    <div class="footer-socials">
-      <a href="https://wa.me/628218187917" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp ↗</a>
-      <span>Instagram · @bbstudio</span>
-    </div>
+    <p>Digital products and services built around real business needs — from launch to growth.</p>
+    <div class="footer-socials"><a href="https://wa.me/628218187917" target="_blank" rel="noopener">WhatsApp ↗</a><span>Instagram · @bbstudio</span></div>
    </div>
-   <div class="footer-nav-group"><b>EXPLORE</b><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Industries</a><a href="${base}portfolio.html">Work</a></div>
-   <div class="footer-nav-group"><b>STUDIO</b><a href="${base}about.html">About</a><a href="${base}articles.html">Insights</a><a href="${base}booking.html">Start a Project</a><a href="${base}contact.html">Contact</a></div>
+   <div class="footer-nav-group"><b>EXPLORE</b><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Websites</a><a href="${base}portfolio.html">Work</a></div>
+   <div class="footer-nav-group"><b>STUDIO</b><a href="${base}about.html">About</a><a href="${base}articles.html">Insights</a><a href="${base}booking.html">Start a project</a><a href="${base}contact.html">Contact</a></div>
    <div class="footer-nav-group"><b>SUPPORT</b><a href="${base}help.html">Help Center</a><a href="${base}faq.html">FAQ</a><a href="${base}cart.html">Cart</a><a href="${base}account.html">${isLogged()?"Account":"Sign in"}</a></div>
-   <div class="footer-nav-group"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a></div>
-  </div>
-  <div class="footer-business">
-   <div><span>PAYMENT</span><b>BCA · Bank Transfer</b><small>Bagus Kristian Sianturi · 1460137710</small></div>
-   <div><span>CONSULTATION</span><b>Rp990.000 / 60 minutes</b><small>Online or agreed meeting location</small></div>
-   <a class="footer-cta" href="${base}booking.html">Discuss your project <span>↗</span></a>
   </div>
   <div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Design · Technology · Growth</span><span>credit by bagus dev</span></div>
  </div>`;
 }
-
 const FAQ_DATA=[
  {cat:"Produk Digital",q:"Apa saja produk yang tersedia?",a:"Katalog berisi template website, UI kit, content kit, dan produk digital lain yang ditampilkan dengan harga, fitur, serta preview. Status produk ditampilkan secara terbuka."},
  {cat:"Produk Digital",q:"Apakah template bisa dikustomisasi?",a:"Ya. Produk tertentu dapat dikembangkan melalui layanan customization atau custom website. Scope disepakati sebelum pengerjaan."},
