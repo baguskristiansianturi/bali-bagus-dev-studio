@@ -69,8 +69,9 @@ function run(){
   var lead=children.find(function(x){return x.classList.contains("lead");});
   if(eyebrow && title){
    var hero=document.createElement("section");
-   hero.className="bb-page-hero";
-   hero.style.setProperty("--bb-hero-image",'url("'+cfg[2]+'")');
+   hero.className="bb-page-hero bb-sketch-hero";
+   hero.dataset.visual=key;
+   hero.style.setProperty("--bb-hero-image","none");
    hero.innerHTML='<div class="bb-page-hero-inner"><div class="bb-hero-copy"><span class="bb-hero-kicker">'+cfg[0]+'</span><h1></h1><p class="bb-hero-lead"></p></div></div>';
    hero.querySelector("h1").innerHTML=title.innerHTML;
    hero.querySelector("p").innerHTML=lead?lead.innerHTML:cfg[1];
