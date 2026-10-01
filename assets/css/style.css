@@ -5787,3 +5787,204 @@ html,body{overflow-x:hidden}
 @media(prefers-reduced-motion:reduce){
   .bb-launch-button,.bb-launch-steps article{transition:none}
 }
+
+
+/* ============================================================
+   V14 — GLOBAL PAGE CONSISTENCY
+   One visual system for homepage, secondary pages, catalog,
+   services, booking, cart, checkout and confirmation.
+============================================================ */
+:root{
+  --bb-ink:#171717;
+  --bb-muted:#696963;
+  --bb-soft:#f5f5f1;
+  --bb-paper:#fff;
+  --bb-line:#dfdfda;
+  --bb-accent:#8a6b28;
+  --bb-green:#2e8b57;
+}
+body{
+  background:#fff;
+  color:var(--bb-ink);
+  font-family:Manrope,Arial,sans-serif;
+}
+body>*{max-width:100%}
+.site-header{
+  background:#fff!important;
+  color:var(--bb-ink)!important;
+  border-bottom:1px solid #e8e8e3!important;
+  box-shadow:none!important;
+}
+.site-header .brand,
+.site-header .studio-primary-nav a,
+.site-header .header-utility,
+.site-header .header-login{color:var(--bb-ink)!important}
+.site-header .studio-primary-nav a,
+.site-header .header-utility,
+.site-header .header-login{font-size:12px!important;font-weight:700!important}
+.site-header .studio-primary-nav a:hover,
+.site-header .studio-primary-nav a.active,
+.site-header .header-utility:hover,
+.site-header .header-login:hover{color:#8a6b28!important}
+.site-header .studio-start-button{
+  background:#171717!important;color:#fff!important;border:1px solid #171717!important;
+  border-radius:0!important;font-weight:800!important;
+}
+.site-header .mobile-toggle{color:#171717!important}
+.site-header .studio-mobile-nav{background:#fff!important;border-top:1px solid #eee!important}
+.site-header .studio-mobile-nav a{color:#171717!important;font-weight:700!important}
+.site-header .studio-mobile-nav a:hover{background:#f5f5f1!important}
+.site-footer{
+  background:#171717!important;
+  border-top:0!important;
+}
+.site-footer .footer-logo,
+.site-footer .footer-nav-group a,
+.site-footer .footer-brand p,
+.site-footer .footer-bottom{font-family:Manrope,Arial,sans-serif}
+.site-footer .footer-nav-group b,
+.site-footer .footer-logo{font-weight:800!important}
+.button,
+.btn{
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.button-dark{background:#171717!important;border-color:#171717!important}
+.button-dark:hover{background:#333!important}
+.button-white{border-color:#fff!important}
+.skip-link{font-family:Manrope,Arial,sans-serif}
+
+/* Homepage: bring the Tailwind-built page into the same editorial system. */
+body:has(.hero-grid) .hero-grid{
+  background-color:#f5f5f1!important;
+  background-image:
+    linear-gradient(rgba(23,23,23,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(23,23,23,.045) 1px,transparent 1px)!important;
+}
+body:has(.hero-grid) .hero-grid h1,
+body:has(.hero-grid) h1{
+  font-family:Manrope,Arial,sans-serif!important;
+  color:#171717!important;
+}
+body:has(.hero-grid) .hero-grid h1 span{color:#8a6b28!important}
+body:has(.hero-grid) .hero-grid p,
+body:has(.hero-grid) section p{font-family:Manrope,Arial,sans-serif}
+body:has(.hero-grid) .hero-grid .rounded-3xl,
+body:has(.hero-grid) .hero-grid .rounded-2xl,
+body:has(.hero-grid) section .rounded-3xl,
+body:has(.hero-grid) section .rounded-2xl{
+  border-radius:0!important;
+}
+body:has(.hero-grid) .hero-grid .bg-emerald-600{background:#171717!important}
+body:has(.hero-grid) .hero-grid .text-emerald-600,
+body:has(.hero-grid) section .text-emerald-600,
+body:has(.hero-grid) section .text-emerald-700{color:#8a6b28!important}
+body:has(.hero-grid) section .bg-zinc-950{background:#171717!important}
+body:has(.hero-grid) section .border-zinc-200,
+body:has(.hero-grid) section .border-zinc-300{border-color:#dfdfda!important}
+body:has(.hero-grid) section .shadow-xl,
+body:has(.hero-grid) section .shadow-2xl{box-shadow:0 18px 50px rgba(23,23,23,.07)!important}
+body:has(.hero-grid) .card:hover{transform:translateY(-3px)!important}
+body:has(.hero-grid) .hero-grid img{filter:saturate(.82) contrast(.98)}
+body:has(.hero-grid) main>section{scroll-margin-top:100px}
+
+/* Consistent content rhythm for pages using the shared page-main shell. */
+.page-main{
+  background:#fff;
+}
+.page-main>.eyebrow,
+.page-main>h1,
+.page-main>.lead,
+.page-main>.notice,
+.page-main>.work-status-note{
+  max-width:1160px;
+}
+.page-main>h1{font-weight:700!important}
+.page-main>h1 em{font-family:Georgia,serif!important;font-weight:400!important}
+.section-head h2,
+.section h2,
+.service-detail-grid h2,
+.form-card h2,
+.summary-card h3{
+  color:#171717;
+}
+.category-card,
+.product-card,
+.form-card,
+.summary-card,
+.service-detail-grid article,
+.portfolio-card,
+.confirm-shell,
+.confirm-card{
+  border-radius:0!important;
+}
+.category-card,
+.form-card,
+.summary-card,
+.service-detail-grid article,
+.confirm-card{
+  border-color:#dfdfda!important;
+}
+.category-card h3,
+.product-card h3,
+.service-detail-grid h2,
+.form-card h2{font-weight:700}
+
+/* Services page follows the same spacing scale as the other secondary pages. */
+.services-page .svc-hero{background:#f5f5f1!important}
+.services-page .svc-card,
+.services-page .svc-path{border-radius:0!important}
+.services-page .svc-hero-actions a,
+.services-page .svc-card .button{border-radius:0!important}
+.services-page .svc-kicker,
+.services-page .svc-card-meta,
+.services-page .svc-path span{color:#8a6b28!important}
+
+/* Catalog / transaction pages share the same neutral canvas and controls. */
+.checkout-page,
+.checkout-main,
+.confirm-main{font-family:Manrope,Arial,sans-serif}
+.checkout-page .announcement,
+body:has(.catalog-layout) .announcement,
+body:has(.form-layout) .announcement{background:#171717!important}
+.catalog-toolbar input,
+.catalog-toolbar select,
+.form-card input,
+.form-card select,
+.form-card textarea,
+.checkout-page input,
+.checkout-page select,
+.checkout-page textarea{
+  border-radius:0!important;
+  border-color:#dcdcd7!important;
+}
+.catalog-toolbar input:focus,
+.catalog-toolbar select:focus,
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus{
+  border-color:#171717!important;
+  box-shadow:none!important;
+}
+
+/* Responsive: one shared horizontal gutter across the site. */
+@media(max-width:800px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  .site-header{padding-inline:14px!important}
+  .page-main{padding-top:52px}
+  .section{padding-top:72px;padding-bottom:72px}
+  .section-head{margin-bottom:28px}
+  body:has(.hero-grid) .hero-grid .max-w-7xl{padding-top:52px!important;padding-bottom:64px!important}
+}
+@media(max-width:520px){
+  .wrap{width:calc(100% - 28px)}
+  .page-main{padding-top:42px;padding-bottom:70px}
+  .page-main>h1{font-size:clamp(36px,11vw,48px)!important}
+  .lead{font-size:14px!important;line-height:1.7!important}
+  body:has(.hero-grid) .hero-grid .max-w-7xl{padding-inline:14px!important}
+  body:has(.hero-grid) .hero-grid h1{font-size:clamp(38px,11vw,52px)!important;line-height:1.02!important}
+  body:has(.hero-grid) .hero-grid .flex-col{gap:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
