@@ -953,7 +953,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  if($("#featuredProducts"))renderProducts("#featuredProducts",allProducts().slice(0,3));
  if($("#homePackages"))renderPackages("#homePackages",3);
 });
-window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;window.BB_CATALOG=allProducts();window.BB_FORMAT_CURRENCY=fmt;
+window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.changeQty=changeQty;window.toggleWishlist=toggleWishlist;window.BB_CATALOG=allProducts();window.BB_PACKAGES=PACKAGES;window.BB_WEBSITE_COLLECTION=WEBSITE_COLLECTION;window.BB_FORMAT_CURRENCY=fmt;
 
 
 
