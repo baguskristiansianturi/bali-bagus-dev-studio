@@ -636,7 +636,8 @@ function setupCollection(){
  const categoryCounts=sourceForCategories.reduce((m,x)=>{m[x.category]=(m[x.category]||0)+1;return m;},{});
  const categories=["All",...WEBSITE_CATEGORIES.filter(x=>x!=="All"&&categoryCounts[x]).sort((a,b)=>a.localeCompare(b))];
  categoryList.innerHTML=categories.map(cat=>`<button type="button" class="collection-category-row${cat===requested?" is-active":""}" data-category="${esc(cat)}"><span>${esc(cat==="All"?"Semua website":cat)}</span><small>${cat==="All"?sourceForCategories.length:(categoryCounts[cat]||0)}</small></button>`).join("");
- const packageIds=categoryPage?["starter","business","growth","commerce","custom","system"]:["starter","business","growth","commerce"];\n const packageOptions=[{id:"all",name:"Semua paket"},...PACKAGES.filter(x=>packageIds.includes(x.id)).map(x=>({id:x.id,name:x.name}))];
+ const packageIds=categoryPage?["starter","business","growth","commerce","custom","system"]:["starter","business","growth","commerce"];
+ const packageOptions=[{id:"all",name:"Semua paket"},...PACKAGES.filter(x=>packageIds.includes(x.id)).map(x=>({id:x.id,name:x.name}))];
  packageList.innerHTML=packageOptions.map(x=>`<option value="${esc(x.id)}"${requestedPackage===x.id?" selected":""}>${esc(x.name)}</option>`).join("");
  if(!categoryPage)packageList.value=requestedPackage;
  categoryList.addEventListener("click",e=>{const button=e.target.closest("[data-category]");if(!button)return;categoryList.querySelectorAll("[data-category]").forEach(el=>el.classList.remove("is-active"));button.classList.add("is-active");renderCollection();});
