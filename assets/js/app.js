@@ -948,3 +948,43 @@ window.addCart=addCart;window.buyNow=buyNow;window.removeCart=removeCart;window.
 
 
 window.addEventListener("load",ensureSharedChrome,{once:true});
+
+/* HERO SEARCH V3 */
+(()=>{
+ const input=document.getElementById("globalSearch");
+ const button=document.getElementById("searchButton");
+ const box=document.getElementById("heroSearch");
+ if(!input||!button||!box)return;
+ const chips=[...box.querySelectorAll(".search-chip")];
+ const suggestions=document.getElementById("heroSearchSuggestions");
+ let category="all";
+ const terms={
+  all:["website bisnis","template website","e-commerce","booking system"],
+  product:["website template","landing page","Blogger template","UI kit"],
+  service:["custom website","SEO","web app","maintenance"],
+  article:["SEO","conversion","website bisnis","digital strategy"]
+ };
+ const renderSuggestions=()=>{
+  suggestions.innerHTML=(terms[category]||terms.all).map(t=>'<button type="button" data-term="'+t+'">'+t+' ↗</button>').join("");
+ };
+ const submit=()=>{
+  const q=input.value.trim();
+  const target=category==="service"?"services.html":category==="article"?"articles.html":category==="product"?"products.html":"products.html";
+  window.location.href=target+(q?"?q="+encodeURIComponent(q):"");
+ };
+ chips.forEach(chip=>chip.addEventListener("click",()=>{
+  category=chip.dataset.searchCategory||"all";
+  chips.forEach(x=>x.classList.toggle("is-active",x===chip));
+  renderSuggestions();
+  input.focus();
+ }));
+ suggestions.addEventListener("click",e=>{
+  const b=e.target.closest("[data-term]");
+  if(!b)return;
+  input.value=b.dataset.term;
+  submit();
+ });
+ button.addEventListener("click",submit);
+ input.addEventListener("keydown",e=>{if(e.key==="Enter")submit()});
+ renderSuggestions();
+})();
