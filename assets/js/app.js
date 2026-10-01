@@ -95,7 +95,7 @@ const FAQ_DATA=[
  {cat:"Layanan",q:"Layanan apa saja yang tersedia?",a:"Website & E-commerce, Web Apps & Business Systems, Copywriting & Conversion, Blog & Content, SEO & Local Search, Google Ads & Campaign Setup, Maintenance & Support, serta Discovery & Digital Strategy."},
  {cat:"Layanan",q:"Bagaimana menentukan layanan yang saya butuhkan?",a:"Mulai dari kebutuhan atau masalah bisnisnya. Discovery membantu memetakan apakah solusinya website, content, SEO, campaign, aplikasi, atau kombinasi beberapa layanan."},
  {cat:"Konsultasi",q:"Bagaimana cara memulai proyek?",a:"Anda dapat booking konsultasi, mengirim brief melalui contact form, atau menghubungi WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas."},
- {cat:"Konsultasi",q:"Apakah tersedia konsultasi berbayar?",a:"Tersedia sesi konsultasi 60 menit dengan biaya Rp350.000. Detail format pertemuan dan kebutuhan proyek dibahas saat booking."},
+ {cat:"Konsultasi",q:"Apakah tersedia konsultasi berbayar?",a:"Tersedia sesi konsultasi 60 menit dengan biaya Rp990.000. Detail format pertemuan dan kebutuhan proyek dibahas saat booking."},
  {cat:"Pembayaran",q:"Bagaimana metode pembayaran saat ini?",a:"Saat ini pembayaran dilakukan melalui transfer bank BCA ke rekening 1460137710 atas nama Bagus Kristian Sianturi. Setelah transfer, bukti pembayaran dikonfirmasi melalui halaman konfirmasi atau WhatsApp."},
  {cat:"Pembayaran",q:"Bagaimana proses setelah checkout?",a:"Checkout mengumpulkan detail pesanan dan menampilkan rekening BCA. Setelah transfer, buka halaman konfirmasi untuk menyiapkan bukti pembayaran dan lanjutkan konfirmasi melalui WhatsApp. Order otomatis dan verifikasi server akan ditambahkan pada tahap backend."},
  {cat:"Support",q:"Bagaimana support setelah website launch?",a:"Maintenance & Support dapat mencakup update konten, perbaikan bug, pengecekan teknis, performance/SEO maintenance, dan pengembangan lanjutan sesuai scope."},
@@ -111,7 +111,7 @@ const FAQ_DATA=[
  {cat:"Website",q:"Apakah saya bisa memilih template lalu mengubahnya?",a:"Ya, untuk template yang mendukung customization. Fondasi visual dapat dipilih lebih dahulu lalu kebutuhan bisnis dan scope dibahas."},
  {cat:"Layanan",q:"Apakah Bali Bagus Dev hanya membuat website?",a:"Tidak. Ekosistemnya mencakup website, aplikasi, copywriting, Blog & Content, SEO, campaign, maintenance, dan discovery."},
  {cat:"Layanan",q:"Apakah bisa menggabungkan beberapa layanan?",a:"Bisa. Scope dapat menggabungkan website dengan copywriting, content, SEO, tracking, maintenance, atau kebutuhan lain sesuai prioritas."},
- {cat:"Konsultasi",q:"Berapa biaya konsultasi?",a:"Sesi konsultasi berdurasi 60 menit dengan biaya Rp350.000. Biaya tersebut net; biaya tempat atau venue pertemuan tidak termasuk."},
+ {cat:"Konsultasi",q:"Berapa biaya konsultasi?",a:"Sesi konsultasi berdurasi 60 menit dengan biaya Rp990.000. Biaya tersebut net; biaya tempat atau venue pertemuan tidak termasuk."},
  {cat:"Konsultasi",q:"Apakah konsultasi bisa online?",a:"Ya. Booking menyediakan pilihan online maupun tatap muka dengan lokasi yang disepakati."},
  {cat:"Konsultasi",q:"Apakah lokasi fisik Bali Bagus Dev sudah tersedia?",a:"Belum. Studio fisik belum tersedia. Pertemuan tatap muka dilakukan di lokasi yang disepakati."},
  {cat:"Support",q:"Bagaimana menghubungi support?",a:"Anda dapat menggunakan halaman Bantuan, FAQ, contact form, atau WhatsApp support untuk follow-up."},
@@ -140,7 +140,7 @@ function helpAnswer(q){
  if(/support|maintenance|setelah|launch/.test(s))return "Maintenance & Support tersedia sebagai layanan. Scope dapat mencakup update konten, bug fixes, technical checks, performance/SEO maintenance, dan improvement.";
  if(/seo|google|search/.test(s))return "Layanan SEO mencakup technical audit, on-page/local SEO, keyword/content mapping, measurement, dan improvement plan.";
  if(/blog|content|artikel|tulis/.test(s))return "Blog & Content mencakup topic planning, struktur SEO-friendly, konten edukasi/bisnis, content calendar, dan internal linking.";
- if(/harga konsultasi|biaya konsultasi|350|60 menit|sesi/.test(s))return "Konsultasi tersedia 60 menit dengan biaya Rp350.000, net. Biaya venue/tempat pertemuan tidak termasuk.";
+ if(/harga konsultasi|biaya konsultasi|350|60 menit|sesi/.test(s))return "Konsultasi tersedia 60 menit dengan biaya Rp990.000, net. Biaya venue/tempat pertemuan tidak termasuk.";
  if(/lokasi|studio|kantor|alamat/.test(s))return "Bali, Indonesia. Studio fisik belum tersedia; pertemuan tatap muka dilakukan di lokasi yang disepakati.";
  if(/mulai|proyek|project|konsultasi|booking/.test(s))return "Mulai dari booking konsultasi, contact form, atau WhatsApp. Untuk kebutuhan kompleks, discovery digunakan untuk menentukan scope dan prioritas.";
  if(/launch|lounch|tanggal|kapan/.test(s))return "Target launch Bali Bagus Dev Studio adalah 27 Oktober 2026. Fitur production yang belum tersedia tetap ditandai secara transparan.";
