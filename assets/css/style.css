@@ -3080,3 +3080,248 @@ body.checkout-page main.page-main.wrap::after{
 @media(prefers-reduced-motion:reduce){
   .collection-category-row{transition:none!important}
 }
+
+
+/* V14 — MOBILE HERO / UX FIX
+   Mobile-first final pass: prevent hero collisions, reduce visual density,
+   preserve the clean search-first discovery flow.
+*/
+@media (max-width:800px){
+  body{overflow-x:hidden}
+  .hero{
+    width:100%;
+    box-sizing:border-box;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:26px;
+    padding:36px 16px 44px!important;
+    min-height:0!important;
+    align-items:start;
+  }
+  .hero-copy{
+    width:100%;
+    min-width:0;
+    max-width:none;
+    padding:0!important;
+  }
+  .hero .eyebrow{
+    margin-bottom:16px;
+    font-size:8px!important;
+    line-height:1.45;
+  }
+  .hero h1{
+    max-width:100%;
+    margin:0 0 16px;
+    font-size:clamp(38px,10.8vw,48px)!important;
+    line-height:1.02!important;
+    letter-spacing:-.048em!important;
+    text-wrap:balance;
+  }
+  .hero .lead{
+    max-width:100%;
+    margin:0 0 20px;
+    font-size:14px!important;
+    line-height:1.7!important;
+  }
+
+  /* Search is the primary mobile action: one clean control, then chips. */
+  .hero-search{
+    width:100%;
+    max-width:none;
+    margin-top:18px!important;
+  }
+  .hero-search-main{
+    width:100%;
+    box-sizing:border-box;
+    min-height:56px!important;
+    border-radius:12px;
+    box-shadow:0 10px 28px rgba(0,0,0,.07);
+  }
+  .hero-search-icon{
+    flex:0 0 36px;
+    font-size:21px;
+  }
+  .hero-search-main input{
+    min-width:0;
+    width:100%;
+    font-size:16px!important;
+    line-height:1.2;
+    padding:0 4px!important;
+  }
+  .hero-search-submit{
+    flex:0 0 44px;
+    width:44px;
+    height:44px;
+    margin-right:5px;
+    border-radius:9px;
+  }
+  .hero-search-categories{
+    width:100%;
+    margin-top:9px!important;
+    padding:1px 1px 5px!important;
+    gap:6px!important;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+  }
+  .search-chip{
+    flex:0 0 auto;
+    min-height:36px!important;
+    padding:8px 12px!important;
+    border-radius:999px;
+    font-size:10px!important;
+  }
+  .hero-search-suggestions{
+    gap:6px;
+    margin-top:8px!important;
+    max-width:100%;
+  }
+  .hero-search-suggestions button{
+    min-height:32px;
+    padding:6px 9px;
+    border:1px solid #e5e5e1;
+    border-radius:999px;
+    background:#fafaf8;
+    font-size:9px;
+  }
+
+  .hero-meta{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:7px;
+    margin-top:18px!important;
+    font-size:9px!important;
+    line-height:1.45;
+  }
+  .hero-meta span{
+    white-space:normal!important;
+  }
+  .hero-actions{
+    display:grid!important;
+    grid-template-columns:1fr;
+    gap:9px;
+    width:100%;
+    margin-top:20px;
+  }
+  .hero-actions .button{
+    width:100%;
+    box-sizing:border-box;
+    justify-content:center;
+    min-height:48px!important;
+    border-radius:10px;
+  }
+
+  /* Visual becomes a supporting preview, not a second competing hero. */
+  .hero-visual{
+    width:100%;
+    height:260px!important;
+    min-height:260px;
+    box-sizing:border-box;
+    padding:14px!important;
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .visual-top{
+    font-size:7px;
+    gap:6px;
+  }
+  .hero-art{
+    inset:50px 10px 10px!important;
+    border-radius:18px;
+  }
+  .art-window{
+    inset:0 12px 0 6px!important;
+    transform:rotate(-1.5deg);
+  }
+  .mock-content{
+    padding:18px 18px!important;
+  }
+  .mock-nav{
+    font-size:7px;
+    padding-bottom:9px;
+  }
+  .mock-nav span{display:none}
+  .mock-title{
+    font-size:clamp(25px,7vw,34px)!important;
+    margin:20px 0 12px!important;
+  }
+  .mock-pill{
+    margin-top:14px;
+    padding:7px 9px;
+    font-size:7px;
+  }
+  .mock-blocks{
+    gap:5px;
+    margin-top:16px;
+  }
+  .mock-blocks i{height:34px}
+  .floating-card{
+    padding:8px 10px!important;
+    gap:7px;
+    font-size:8px;
+  }
+  .floating-card small{
+    margin-top:2px;
+    font-size:7px;
+  }
+  .mini-icon,.avatars{
+    width:23px;
+    height:23px;
+    font-size:12px;
+  }
+  .avatars span{
+    margin:11px 0 0 17px;
+    padding:2px;
+    font-size:7px;
+  }
+  .float-one{right:-5px;top:28px}
+  .float-two{left:-5px;bottom:10px}
+  .hero-stamp{
+    right:4px;
+    bottom:32px;
+    font-size:6px;
+  }
+  .hero-stamp b{font-size:9px}
+}
+
+@media (max-width:520px){
+  .hero{
+    padding:30px 14px 38px!important;
+    gap:22px;
+  }
+  .hero h1{
+    font-size:clamp(36px,10.7vw,43px)!important;
+  }
+  .hero .lead{
+    font-size:14px!important;
+  }
+  .hero-search-main{
+    min-height:54px!important;
+  }
+  .hero-search-submit{
+    width:42px;
+    flex-basis:42px;
+    height:42px;
+  }
+  .hero-visual{
+    height:235px!important;
+    min-height:235px;
+  }
+  .hero-art{inset:48px 8px 8px!important}
+  .mock-content{padding:15px 15px!important}
+  .mock-title{
+    font-size:25px!important;
+    margin:16px 0 10px!important;
+  }
+  .mock-blocks i{height:28px}
+  .floating-card{display:none!important}
+  .hero-stamp{display:none!important}
+}
+
+@media (max-width:360px){
+  .hero{padding-inline:12px!important}
+  .hero h1{font-size:34px!important}
+  .hero .lead{font-size:13.5px!important}
+  .hero-search-main input{font-size:15px!important}
+  .search-chip{padding-inline:10px!important}
+  .hero-visual{height:220px!important;min-height:220px}
+}
