@@ -602,27 +602,27 @@ function renderCollection(){
  const activePkg=packageId==="all"?"Semua paket":(PACKAGES.find(p=>p.id===packageId)?.name||packageId);
  const modeLabel={recommended:"Rekomendasi",new:"Terbaru",premium:"Premium",elegant:"Elegan",az:"A–Z"}[mode]||"Rekomendasi";
  const state=$("#collectionState");
- if(state)state.innerHTML=\`<b>\${esc(modeLabel)}</b><span>\${esc(activePkg)} · \${esc(cat==="All"?"Semua kategori":cat)}</span>\`;
+ if(state)state.innerHTML=`<b>${esc(modeLabel)}</b><span>${esc(activePkg)} · ${esc(cat==="All"?"Semua kategori":cat)}</span>`;
  grid.innerHTML=list.map((x,i)=>{
   const pkg=packageId!=="all"?packageId:((x.availablePackages&&x.availablePackages[0])||"custom");
   const packageData=PACKAGES.find(p=>p.id===pkg);
   const badges=[x.badge,x.premium?"PREMIUM":null].filter(Boolean).slice(0,2);
-  return \`<article class="collection-card">
-   <a class="collection-visual" href="\${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=\${encodeURIComponent(pkg)}" aria-label="Lihat demo \${esc(x.name)}">
-    <div class="collection-visual-head"><span>0\${String(i+1).padStart(2,"0")}</span><span>\${esc(x.category.toUpperCase())}</span></div>
-    <div class="collection-art"><span class="collection-art-kicker">\${esc(x.style||"Custom experience")}</span><strong>\${esc(x.name)}</strong><i></i><small>\${categoryScoped?"Concept / Custom":"Responsive website"}</small></div>
-    <div class="collection-badges">\${badges.map(b=>\`<b>\${esc(b)}</b>\`).join("")}</div>
+  return `<article class="collection-card">
+   <a class="collection-visual" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}" aria-label="Lihat demo ${esc(x.name)}">
+    <div class="collection-visual-head"><span>0${String(i+1).padStart(2,"0")}</span><span>${esc(x.category.toUpperCase())}</span></div>
+    <div class="collection-art"><span class="collection-art-kicker">${esc(x.style||"Custom experience")}</span><strong>${esc(x.name)}</strong><i></i><small>${categoryScoped?"Concept / Custom":"Responsive website"}</small></div>
+    <div class="collection-badges">${badges.map(b=>`<b>${esc(b)}</b>`).join("")}</div>
     <span class="collection-preview-link">Preview ↗</span>
    </a>
    <div class="collection-info">
-    <div class="collection-title-row"><div><span>\${esc(x.category)}</span><h3>\${esc(x.name)}</h3></div><span class="collection-ready">\${categoryScoped&&pkg==="custom"?"CUSTOM":"READY"}</span></div>
-    <p>\${esc(x.desc||"")}</p>
-    <div class="collection-tags"><span>\${esc((x.style||"Custom").split(" / ")[0])}</span><span>\${categoryScoped?"Scope tersedia":"Responsive"}</span><span>\${esc(packageData?.name||"Custom")}</span></div>
-    <div class="collection-card-footer"><div><small>MULAI DARI</small><strong>\${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="\${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=\${encodeURIComponent(pkg)}">Lihat demo \${icon("arrow")}</a></div>
-    <a class="collection-spec-link" href="website-package.html?id=\${encodeURIComponent(pkg)}">Spesifikasi paket <span>↗</span></a>
+    <div class="collection-title-row"><div><span>${esc(x.category)}</span><h3>${esc(x.name)}</h3></div><span class="collection-ready">${categoryScoped&&pkg==="custom"?"CUSTOM":"READY"}</span></div>
+    <p>${esc(x.desc||"")}</p>
+    <div class="collection-tags"><span>${esc((x.style||"Custom").split(" / ")[0])}</span><span>${categoryScoped?"Scope tersedia":"Responsive"}</span><span>${esc(packageData?.name||"Custom")}</span></div>
+    <div class="collection-card-footer"><div><small>MULAI DARI</small><strong>${packageData?fmt(packageData.price):"Custom"}</strong></div><a class="button button-dark small" href="${esc(x.demo)+(x.demo.includes("?")?"&":"?")}package=${encodeURIComponent(pkg)}">Lihat demo ${icon("arrow")}</a></div>
+    <a class="collection-spec-link" href="website-package.html?id=${encodeURIComponent(pkg)}">Spesifikasi paket <span>↗</span></a>
    </div>
-  </article>\`;
- }).join("")||\`<div class="empty-state"><h2>Belum ada hasil untuk kategori ini.</h2><p>Coba kategori, paket, atau pencarian lain. Jika kebutuhannya belum ada, kami dapat menyusun scope custom.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website \${icon("arrow")}</a></div>\`;
+  </article>`;
+ }).join("")||`<div class="empty-state"><h2>Belum ada hasil untuk kategori ini.</h2><p>Coba kategori, paket, atau pencarian lain. Jika kebutuhannya belum ada, kami dapat menyusun scope custom.</p><a class="button button-dark" href="booking.html?service=Request%20website">Request website ${icon("arrow")}</a></div>`;
 }
 function setupCollection(){
  const s=$("#collectionSearch"),categoryList=$("#collectionCategoryList"),packageList=$("#collectionPackageList"),sort=$("#collectionSort"),reset=$("#collectionReset");
@@ -630,14 +630,14 @@ function setupCollection(){
  if(s.dataset.bound)return;s.dataset.bound="true";
  const params=new URLSearchParams(location.search),categoryPage=window.BB_CATEGORY_PAGE?.category||"",requested=params.get("category")||categoryPage||"All",requestedPackage=params.get("package")||"all";
  const ctx=$("#collectionPackageContext"),selectedPackage=PACKAGES.find(p=>p.id===requestedPackage);
- if(ctx)ctx.innerHTML=selectedPackage?\`<div><span class="eyebrow">\${esc(selectedPackage.tag)} / PACKAGE SCOPE</span><h2>\${esc(selectedPackage.name)} <em>\${fmt(selectedPackage.price)} mulai</em></h2><p>\${esc(selectedPackage.desc)}</p></div><div class="collection-package-specs"><b>\${esc(selectedPackage.scope)}</b><span>\${esc(selectedPackage.time)}</span>\${selectedPackage.features.slice(0,5).map(f=>\`<span>✓ \${esc(f)}</span>\`).join("")}</div>\`:\`<div><span class="eyebrow">\${categoryPage?"CATEGORY / "+esc(categoryPage.toUpperCase()):"ALL WEBSITES / READY-TO-USE"}</span><h2>\${categoryPage?"Contoh untuk "+esc(categoryPage)+" <em>yang bisa dikembangkan.</em>":"Seluruh koleksi website <em>yang tersedia.</em>"}</h2><p>\${categoryPage?"Lihat contoh yang paling dekat dengan kebutuhan ini, buka demo, lalu lanjutkan ke paket atau scope custom.":"Pilih kategori bisnis atau style, lalu buka preview website yang paling dekat dengan kebutuhan Anda."}</p></div><div class="collection-package-specs"><b>\${categoryPage?"Kategori aktif":"Semua koleksi"}</b><span>\${categoryPage?"Ready / Concept":"Semua kategori"}</span><span>Desktop · Tablet · Mobile</span><span>Preview tersedia</span></div>\`;
+ if(ctx)ctx.innerHTML=selectedPackage?`<div><span class="eyebrow">${esc(selectedPackage.tag)} / PACKAGE SCOPE</span><h2>${esc(selectedPackage.name)} <em>${fmt(selectedPackage.price)} mulai</em></h2><p>${esc(selectedPackage.desc)}</p></div><div class="collection-package-specs"><b>${esc(selectedPackage.scope)}</b><span>${esc(selectedPackage.time)}</span>${selectedPackage.features.slice(0,5).map(f=>`<span>✓ ${esc(f)}</span>`).join("")}</div>`:`<div><span class="eyebrow">${categoryPage?"CATEGORY / "+esc(categoryPage.toUpperCase()):"ALL WEBSITES / READY-TO-USE"}</span><h2>${categoryPage?"Contoh untuk "+esc(categoryPage)+" <em>yang bisa dikembangkan.</em>":"Seluruh koleksi website <em>yang tersedia.</em>"}</h2><p>${categoryPage?"Lihat contoh yang paling dekat dengan kebutuhan ini, buka demo, lalu lanjutkan ke paket atau scope custom.":"Pilih kategori bisnis atau style, lalu buka preview website yang paling dekat dengan kebutuhan Anda."}</p></div><div class="collection-package-specs"><b>${categoryPage?"Kategori aktif":"Semua koleksi"}</b><span>${categoryPage?"Ready / Concept":"Semua kategori"}</span><span>Desktop · Tablet · Mobile</span><span>Preview tersedia</span></div>`;
  const readyWebsites=WEBSITE_COLLECTION.filter(x=>x.status==="active"&&["starter","business","growth","commerce"].some(id=>x.availablePackages?.includes(id)));
  const sourceForCategories=categoryPage?WEBSITE_COLLECTION.filter(x=>x.status==="active"):readyWebsites;
  const categoryCounts=sourceForCategories.reduce((m,x)=>{m[x.category]=(m[x.category]||0)+1;return m;},{});
  const categories=["All",...WEBSITE_CATEGORIES.filter(x=>x!=="All"&&categoryCounts[x]).sort((a,b)=>a.localeCompare(b))];
- categoryList.innerHTML=categories.map(cat=>\`<button type="button" class="collection-category-row\${cat===requested?" is-active":""}" data-category="\${esc(cat)}"><span>\${esc(cat==="All"?"Semua website":cat)}</span><small>\${cat==="All"?sourceForCategories.length:(categoryCounts[cat]||0)}</small></button>\`).join("");
+ categoryList.innerHTML=categories.map(cat=>`<button type="button" class="collection-category-row${cat===requested?" is-active":""}" data-category="${esc(cat)}"><span>${esc(cat==="All"?"Semua website":cat)}</span><small>${cat==="All"?sourceForCategories.length:(categoryCounts[cat]||0)}</small></button>`).join("");
  const packageOptions=[{id:"all",name:"Semua paket"},...PACKAGES.filter(x=>["starter","business","growth","commerce"].includes(x.id)).map(x=>({id:x.id,name:x.name}))];
- packageList.innerHTML=packageOptions.map(x=>\`<option value="\${esc(x.id)}"\${requestedPackage===x.id?" selected":""}>\${esc(x.name)}</option>\`).join("");
+ packageList.innerHTML=packageOptions.map(x=>`<option value="${esc(x.id)}"${requestedPackage===x.id?" selected":""}>${esc(x.name)}</option>`).join("");
  if(!categoryPage)packageList.value=requestedPackage;
  categoryList.addEventListener("click",e=>{const button=e.target.closest("[data-category]");if(!button)return;categoryList.querySelectorAll("[data-category]").forEach(el=>el.classList.remove("is-active"));button.classList.add("is-active");renderCollection();});
  packageList.addEventListener("change",renderCollection);
