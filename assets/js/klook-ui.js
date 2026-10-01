@@ -12,7 +12,7 @@ function run(){
  var logged=false;
  try{logged=!!JSON.parse(localStorage.getItem("bb_account"));}catch(e){logged=false;}
 
- if(!isHome){
+ if(!isHome && !header.querySelector(".top-header-row")){
   header.className="site-header bb-discovery-header";
   header.innerHTML='<div class="bb-utility"><div class="bb-header-inner"><span>Digital Product + Digital Service Studio</span><div><a href="'+base+'articles.html">Blog</a><a href="'+base+'help.html">Bantuan</a><a href="'+base+'compare.html">Baru dilihat</a><a href="'+base+'account.html">Mendaftar</a><a href="'+base+'account.html">'+(logged?"Akun":"Masuk")+'</a></div></div></div>'+
   '<div class="bb-main-header"><div class="bb-header-inner"><a class="brand" href="'+base+'index.html" aria-label="Bali Bagus Dev Studio"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><form class="bb-site-search" action="'+base+'products.html"><input name="q" type="search" placeholder="Cari template, website, layanan, atau insight..." aria-label="Cari"><button aria-label="Cari">⌕</button></form><div class="bb-main-actions"><a href="'+base+'cart.html">Keranjang <b id="bbHeaderCart">0</b></a><a class="bb-start" href="'+base+'booking.html">Mulai proyek ↗</a></div><button class="bb-menu" type="button" aria-label="Buka menu" aria-expanded="false">☰</button></div></div>'+
