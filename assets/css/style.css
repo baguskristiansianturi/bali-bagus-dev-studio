@@ -738,3 +738,105 @@ main.page-main > .bb-page-hero > .bb-hero-actions{
 .filter-list{display:flex;flex-wrap:wrap;gap:8px}.filter-list button{border:1px solid var(--bb-line);background:#fff;border-radius:999px;padding:9px 13px;cursor:pointer}.filter-list button.active{background:var(--bb-dark);color:#fff;border-color:var(--bb-dark)}
 @media(max-width:1000px){.package-grid,.demo-grid,.article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-controls{grid-template-columns:1fr 1fr}.split-layout,.collection-package-context{grid-template-columns:1fr}}
 @media(max-width:680px){.package-grid,.demo-grid,.article-grid{grid-template-columns:1fr}.catalog-toolbar,.blog-tools,.collection-controls{grid-template-columns:1fr}.collection-controls{align-items:stretch}.article-card{padding:20px}}
+
+
+/* FINAL 2026 HEADER + MOBILE NAV REFINEMENT */
+.site-header{isolation:isolate}
+.bb-utility{font-size:12px}
+.bb-utility .bb-header-inner{min-height:32px}
+.bb-utility a{margin-left:22px;font-weight:700}
+.top-header-row{
+  width:min(var(--bb-container),calc(100% - (var(--bb-gutter)*2)));
+  min-height:76px;
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:28px;
+}
+.site-header .studio-primary-nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(16px,2.2vw,30px);
+  min-width:0;
+}
+.site-header .studio-primary-nav a{
+  font-size:13px;
+  font-weight:800;
+  color:#3f3f46;
+  white-space:nowrap;
+}
+.site-header .studio-primary-nav a:hover{color:var(--bb-accent)}
+.header-top-actions{gap:12px!important;font-size:13px!important}
+.header-top-actions a{font-weight:800}
+.studio-start-button{
+  min-height:44px;
+  padding:11px 16px;
+  border-radius:11px;
+  background:var(--bb-dark);
+  color:#fff!important;
+}
+.studio-start-button:hover{background:#27272a}
+.bb-category-bar{display:block}
+.bb-category-bar .bb-header-inner{min-height:46px}
+.bb-category-bar nav a,.bb-consult{font-size:13px;font-weight:800}
+.studio-mobile-nav{
+  position:fixed!important;
+  inset:0 0 0 auto;
+  width:min(390px,92vw)!important;
+  height:100dvh;
+  overflow:auto;
+  z-index:1100;
+  padding:18px 20px 28px!important;
+  background:#fff!important;
+  border-left:1px solid var(--bb-line);
+  box-shadow:-20px 0 60px rgba(9,9,11,.16);
+  transform:translateX(105%);
+  transition:transform .28s ease;
+}
+.studio-mobile-nav.open{transform:translateX(0)}
+.mobile-nav-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;margin-bottom:8px;border-bottom:1px solid var(--bb-line);font-size:11px;font-weight:900;letter-spacing:.14em;color:#71717a}
+.mobile-nav-head button{width:42px;height:42px;border:0;border-radius:12px;background:#f4f4f5;font-size:25px;line-height:1}
+.studio-mobile-nav>a{
+  display:flex!important;
+  align-items:center;
+  min-height:52px;
+  padding:0 4px;
+  border-bottom:1px solid #f0f0f1;
+  font-size:15px!important;
+  font-weight:800!important;
+  color:#27272a;
+}
+.studio-mobile-nav>a:hover{color:var(--bb-accent)}
+.studio-mobile-nav .mobile-start{margin-top:18px;justify-content:center;border:0;border-radius:12px;background:var(--bb-dark);color:#fff!important}
+body.nav-open:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:1050;
+  background:rgba(9,9,11,.42);
+  backdrop-filter:blur(3px);
+}
+@media(max-width:1100px){
+ .top-header-row{gap:18px}
+ .site-header .studio-primary-nav{gap:16px}
+ .site-header .studio-primary-nav a{font-size:12px}
+ .header-top-actions{gap:8px!important}
+}
+@media(max-width:900px){
+ .bb-utility{display:none}
+ .top-header-row{width:calc(100% - 32px);min-height:68px;grid-template-columns:auto auto;justify-content:space-between}
+ .studio-primary-nav,.header-top-actions,.bb-category-bar{display:none!important}
+ .mobile-toggle{display:grid!important;place-items:center;width:44px;height:44px;border:1px solid var(--bb-line)!important;border-radius:12px;background:#fff!important}
+ .mobile-toggle .icon-svg{width:22px;height:22px}
+}
+@media(max-width:767px){
+ .top-header-row{width:calc(100% - 24px);min-height:64px}
+ .site-header .brand{font-size:11px}
+ .site-header .brand-mark{width:36px;height:36px}
+ .studio-mobile-nav{width:min(360px,94vw)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .studio-mobile-nav{transition:none}
+}
