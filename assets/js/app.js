@@ -833,7 +833,7 @@ function setupContactPopup(){
  if(document.querySelector(".bb-contact-fab"))return;
  const fab=document.createElement("button");fab.className="bb-contact-fab";fab.type="button";fab.setAttribute("aria-label","Hubungi Bali Bagus Dev");fab.textContent="↗";
  const back=document.createElement("div");back.className="bb-modal-backdrop";back.innerHTML='<div class="bb-modal" role="dialog" aria-modal="true" aria-labelledby="bbModalTitle"><button class="bb-modal-close" type="button" aria-label="Tutup">×</button><div class="eyebrow">BALI BAGUS DEV</div><h2 id="bbModalTitle">Mari mulai dari kebutuhan Anda.</h2><p>Pilih cara yang paling nyaman. Kami bisa membantu menentukan website, produk digital, atau solusi custom yang sesuai dengan tujuan bisnis Anda.</p><div class="bb-modal-actions"><a class="button button-dark" href="booking.html">Mulai konsultasi ↗</a><a class="button button-white" href="https://wa.me/628218187917" target="_blank" rel="noopener">Chat WhatsApp ↗</a><a class="button button-white" href="contact.html">Kirim pertanyaan ↗</a></div></div>';
- document.body.append(fab,back);
+ const footer=document.querySelector("#siteFooter"); if(footer) footer.parentNode.insertBefore(fab,footer); else document.body.append(fab,back); if(footer) footer.parentNode.insertBefore(back,footer);
  const close=()=>back.classList.remove("open");fab.addEventListener("click",()=>back.classList.add("open"));back.addEventListener("click",e=>{if(e.target===back||e.target.closest(".bb-modal-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
 }
 
