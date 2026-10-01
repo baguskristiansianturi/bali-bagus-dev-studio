@@ -72,7 +72,7 @@ function run(){
    hero.className="bb-page-hero bb-sketch-hero";
    hero.dataset.visual=key;
    hero.style.setProperty("--bb-hero-image","none");
-   hero.innerHTML='<div class="bb-page-hero-inner"><div class="bb-hero-copy"><span class="bb-hero-kicker">'+cfg[0]+'</span><h1></h1><p class="bb-hero-lead"></p></div></div>';
+   hero.innerHTML='<div class="bb-page-hero-inner"><div class="bb-hero-copy"><span class="bb-hero-kicker">'+cfg[0]+'</span><h1></h1><p class="bb-hero-lead"></p><div class="bb-hero-actions"><a class="bb-hero-primary" href="'+base+'products.html">Jelajahi produk ↗</a><a class="bb-hero-secondary" href="'+base+'booking.html">Mulai proyek</a></div></div><div class="bb-hero-visual" aria-hidden="true"><div class="bb-hero-browser"><div class="bb-browser-bar"><i></i><i></i><i></i><span>bbstudio / digital workspace</span></div><div class="bb-browser-body"><div class="bb-browser-kicker">DIGITAL STUDIO</div><b>BUILD<br><em>BETTER.</em></b><div class="bb-browser-grid"><span></span><span></span><span></span></div><div class="bb-browser-footer"><span>DISCOVER</span><span>DECIDE</span><span>BUILD</span></div></div></div><div class="bb-float bb-float-one"><small>READY TO USE</small><b>Templates</b></div><div class="bb-float bb-float-two"><small>CUSTOM</small><b>Build & Grow ↗</b></div></div></div>';
    hero.querySelector("h1").innerHTML=title.innerHTML;
    hero.querySelector("p").innerHTML=lead?lead.innerHTML:cfg[1];
    if(eyebrow.parentNode)eyebrow.parentNode.removeChild(eyebrow);
