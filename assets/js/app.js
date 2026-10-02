@@ -663,18 +663,60 @@ function header(){
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
  const recent=store.get("recentViews",[]);
  h.className="site-header";
- h.innerHTML=`<div class="bb-utility"><div class="bb-header-inner"><span>Digital Product + Digital Service Studio</span><div><a href="${base}articles.html">Blog</a><a href="${base}help.html">Bantuan</a><a href="${base}compare.html">Baru dilihat</a></div></div></div>
-  <div class="top-header-row">
-   <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev Studio"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
-   <nav class="studio-primary-nav" aria-label="Navigasi utama">
-    <a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Industries</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">About</a>
-   </nav>
-   <div class="header-top-actions"><a class="header-utility" href="${base}help.html">Bantuan</a><a class="header-utility header-cart-link" href="${base}cart.html">Cart <b class="header-badge" id="cartCount">0</b></a><a class="header-login" href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a><a class="studio-start-button" href="${base}booking.html">Start a Project <span>↗</span></a></div>
-   <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
+ h.innerHTML=`<div class="bb-header-primary">
+   <div class="bb-header-inner bb-primary-inner">
+    <a class="brand" href="${base}index.html" aria-label="Beranda Bali Bagus Dev Studio"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
+    <div class="bb-primary-tools" aria-label="Menu utilitas">
+      <a href="${base}help.html" class="bb-tool"><i class="fa-solid fa-globe"></i><span>Bahasa</span></a>
+      <button type="button" class="bb-tool bb-tool-button" id="currencyToggle" aria-label="Mata uang"><i class="fa-solid fa-coins"></i><span>IDR</span></button>
+      <a href="${base}products.html" class="bb-tool"><i class="fa-solid fa-mobile-screen-button"></i><span>App</span></a>
+      <a href="${base}help.html" class="bb-tool"><i class="fa-regular fa-circle-question"></i><span>Help</span></a>
+      <a href="${base}compare.html" class="bb-tool"><i class="fa-regular fa-clock"></i><span>Recently viewed</span></a>
+      <a href="${base}account.html" class="bb-signup">Sign Up</a>
+      <a href="${base}account.html" class="bb-login">${isLogged()?"Account":"Log In"}</a>
+    </div>
+    <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button>
+   </div>
   </div>
-  <div class="bb-category-bar"><div class="bb-header-inner"><nav aria-label="Kategori layanan"><a href="${base}website-collection.html">Website Siap Pakai</a><a href="${base}products.html?q=landing">Landing Page</a><a href="${base}products.html?q=ecommerce">E-commerce</a><a href="${base}booking.html">Booking & Reservasi</a><a href="${base}services.html">Web App & Dashboard</a><a href="${base}services.html">SEO & Growth</a><a href="${base}portfolio.html">Work & Preview</a></nav><a class="bb-consult" href="${base}booking.html">Konsultasi 60 menit ↗</a></div></div>
-  <div class="studio-mobile-nav" id="mainNav"><div class="mobile-nav-head"><span>MENU</span><button type="button" id="mobileNavClose" aria-label="Tutup menu">×</button></div><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products & Template</a><a href="${base}website-collection.html">Website by Industry</a><a href="${base}portfolio.html">Work & Preview</a><a href="${base}articles.html">Insights</a><a href="${base}about.html">BB Studio</a><a href="${base}help.html">Bantuan</a><a href="${base}compare.html">Baru dilihat</a><a href="${base}cart.html">Keranjang <b class="header-badge" id="mobileCartCount">0</b></a><a href="${base}account.html">${isLogged()?"Akun":"Masuk"}</a><a class="mobile-start" href="${base}booking.html">Mulai proyek ↗</a></div>
-  <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Baru dilihat</b><a href="${base}compare.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>`;
+  <div class="bb-category-bar" id="categoryNavBar">
+   <div class="bb-header-inner bb-category-inner">
+    <nav aria-label="Kategori">
+      <a href="${base}website-collection.html">Website</a>
+      <a href="${base}products.html?q=landing">Landing Page</a>
+      <a href="${base}products.html?q=ecommerce">E-commerce</a>
+      <a href="${base}booking.html">Booking & Reservasi</a>
+      <a href="${base}services.html#application">Web App & Dashboard</a>
+      <a href="${base}services.html#seo">SEO & Growth</a>
+      <a href="${base}portfolio.html">Work & Preview</a>
+      <a class="bb-category-all" href="${base}website-collection.html">Lihat semua <i class="fa-solid fa-arrow-right"></i></a>
+    </nav>
+   </div>
+  </div>
+  <div class="studio-mobile-nav" id="mainNav">
+   <div class="mobile-nav-head"><span>MENU</span><button type="button" id="mobileNavClose" aria-label="Tutup menu">×</button></div>
+   <div class="mobile-nav-section">
+    <span class="mobile-nav-label">HEADER 1</span>
+    <a href="${base}help.html"><i class="fa-solid fa-globe"></i> Bahasa</a>
+    <a href="${base}help.html"><i class="fa-solid fa-coins"></i> Mata uang <small>IDR</small></a>
+    <a href="${base}products.html"><i class="fa-solid fa-mobile-screen-button"></i> App</a>
+    <a href="${base}help.html"><i class="fa-regular fa-circle-question"></i> Help</a>
+    <a href="${base}compare.html"><i class="fa-regular fa-clock"></i> Recently viewed</a>
+    <a href="${base}account.html"><i class="fa-regular fa-user"></i> Sign Up</a>
+    <a href="${base}account.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> ${isLogged()?"Account":"Log In"}</a>
+   </div>
+   <div class="mobile-nav-section">
+    <span class="mobile-nav-label">KATEGORI</span>
+    <a href="${base}website-collection.html">Website</a>
+    <a href="${base}products.html?q=landing">Landing Page</a>
+    <a href="${base}products.html?q=ecommerce">E-commerce</a>
+    <a href="${base}booking.html">Booking & Reservasi</a>
+    <a href="${base}services.html#application">Web App & Dashboard</a>
+    <a href="${base}services.html#seo">SEO & Growth</a>
+    <a href="${base}portfolio.html">Work & Preview</a>
+    <a class="mobile-category-all" href="${base}website-collection.html">Lihat semua kategori <i class="fa-solid fa-arrow-right"></i></a>
+   </div>
+  </div>
+  <div class="header-popover recent-popover" id="headerRecent" hidden><div><b>Recently viewed</b><a href="${base}compare.html">Lihat semua</a></div><div class="recent-list">${recent.length?recent.slice(-5).reverse().map(x=>'<a href="'+base+esc(x.url||"products.html")+'"><span>'+esc(x.name||"Produk")+'</span><small>'+esc(x.type||"Discovery")+'</small></a>').join(""):'<p>Belum ada item yang dilihat.</p>'}</div></div>`;
  updateCount();
  const toggle=document.getElementById("menuToggle"),nav=document.getElementById("mainNav"),close=document.getElementById("mobileNavClose");
  const setNav=(open)=>{nav?.classList.toggle("open",open);toggle?.setAttribute("aria-expanded",String(open));toggle?.setAttribute("aria-label",open?"Tutup menu":"Buka menu");if(toggle)toggle.innerHTML=icon(open?"close":"menu");document.body.classList.toggle("nav-open",open);};
@@ -682,6 +724,9 @@ function header(){
  close?.addEventListener("click",()=>setNav(false));
  nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setNav(false)));
  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&nav?.classList.contains("open"))setNav(false);});
+ const syncHeader=()=>h.classList.toggle("is-scrolled",window.scrollY>8);
+ syncHeader();
+ window.addEventListener("scroll",syncHeader,{passive:true});
 }
 function setupCheckoutGuard(){
  const link=$("#checkoutLink");if(!link)return;
