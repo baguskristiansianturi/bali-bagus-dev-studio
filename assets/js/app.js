@@ -36,7 +36,7 @@ const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 /* BB STUDIO — HERO PAGE CONTEXT */
 (function setHeroPageContext(){
  const file=(location.pathname.split("/").pop()||"index.html").toLowerCase();
- const page=file.replace(/\\.html$/,"")||"index";
+ const page=file.replace(/\.html$/,"")||"index";
  document.body.dataset.bbPage=page;
  const isCategoryPath=location.pathname.includes("/website-category/");
  document.body.classList.toggle("bb-category-page",isCategoryPath);
@@ -864,8 +864,8 @@ function getBreadcrumbLabel(){
  return map[file]||file.split("-").map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(" ");
 }
 function breadcrumbMarkup(){
- const path=location.pathname.replace(/\\/g,"/");
- if(/(^|\\/)index\\.html?$/.test(path)||path.endsWith("/"))return "";
+ const path=location.pathname.replace(/\//g,"/");
+ if(/(^|\/)index\.html?$/.test(path)||path.endsWith("/"))return "";
  const label=getBreadcrumbLabel();
  const base=(path.includes("/landing/")||path.includes("/website-category/"))?"../":"";
  const category=path.includes("/website-category/");
