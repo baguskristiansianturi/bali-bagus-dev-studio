@@ -2533,3 +2533,165 @@ body{overflow-x:hidden}
   .demo-card h3,.package-card h3{font-size:18px}
   .demo-card p,.package-card p{font-size:13px}
 }
+
+
+/* BB STUDIO — DEMO CARD VISUAL REBUILD 2026-10-02 */
+/* Rebuild portfolio / demo cards: image-like preview + disciplined information hierarchy */
+.demo-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #e4e4e7;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 8px 28px rgba(24,24,27,.045);
+}
+.demo-visual{
+  position:relative;
+  height:270px;
+  flex:0 0 270px;
+  padding:18px;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 78% 20%,rgba(255,255,255,.8),transparent 32%),
+    linear-gradient(145deg,#ecece9 0%,#d7d7d3 100%);
+}
+.demo-visual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(9,9,11,.10));
+}
+.demo-browser{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:205px;
+  overflow:hidden;
+  border:1px solid rgba(24,24,27,.13);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 20px 45px rgba(24,24,27,.16);
+  transform:translateY(5px);
+}
+.demo-bar{
+  height:30px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:0 10px;
+  border-bottom:1px solid #e4e4e7;
+  background:#fafafa;
+}
+.demo-bar i{width:6px;height:6px;border-radius:50%;background:#d4d4d8;display:block}
+.demo-bar span{
+  min-width:0;
+  margin-left:6px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#71717a;
+  font-size:8px;
+  font-weight:700;
+}
+.demo-screen{
+  height:calc(100% - 30px);
+  padding:24px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(135deg,#fff 0%,#f4f4f2 100%);
+}
+.demo-screen small{
+  color:#71717a;
+  font-size:8px;
+  line-height:1.45;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+.demo-screen b{
+  display:block;
+  max-width:85%;
+  color:#18181b;
+  font-size:clamp(22px,2.2vw,31px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  overflow-wrap:anywhere;
+}
+.demo-screen b em{font-style:italic}
+.demo-card .port-info{
+  min-width:0;
+  min-height:230px;
+  padding:20px 21px 21px;
+  display:flex;
+  flex-direction:column;
+}
+.demo-card .port-info > b{
+  display:block;
+  margin-bottom:5px;
+  color:#18181b;
+  font-size:18px;
+  line-height:1.25;
+  letter-spacing:-.025em;
+  overflow-wrap:anywhere;
+}
+.demo-card .port-info > span{
+  display:block;
+  margin-bottom:10px;
+  color:#71717a;
+  font-size:10px;
+  line-height:1.45;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.demo-card .port-info > p{
+  margin:0 0 7px;
+  color:#52525b;
+  font-size:13px;
+  line-height:1.62;
+}
+.demo-card .port-info > p.tiny{
+  margin-top:0;
+  color:#71717a;
+  font-size:12px;
+  line-height:1.55;
+}
+.demo-card .section-actions{
+  margin-top:auto;
+  padding-top:15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.demo-card .button.small{
+  min-height:42px;
+  padding:0 14px;
+  font-size:12px;
+}
+.demo-card .mini-link{
+  font-size:12px;
+  font-weight:800;
+  color:#52525b;
+}
+.demo-card .mini-link:hover{color:#059669}
+@media(max-width:1000px){
+  .demo-visual{height:245px;flex-basis:245px;padding:16px}
+  .demo-browser{height:188px}
+  .demo-card .port-info{min-height:225px}
+}
+@media(max-width:680px){
+  .demo-grid{gap:14px}
+  .demo-visual{height:230px;flex-basis:230px;padding:14px}
+  .demo-browser{height:185px}
+  .demo-screen{padding:20px 18px}
+  .demo-screen b{font-size:25px}
+  .demo-card .port-info{min-height:0;padding:18px}
+  .demo-card .port-info > b{font-size:17px}
+}
