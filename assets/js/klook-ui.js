@@ -7,6 +7,7 @@ function run(){
  var header=document.querySelector(".site-header");
  if(!header)return;
  var path=location.pathname;
+ var isCategory=path.indexOf("/website-category/")>-1;
  var isHome=/(\/index\.html)?\/$/.test(path) || /\/index\.html$/.test(path);
  var base=(path.indexOf("/landing/")>-1 || path.indexOf("/website-category/")>-1)?"../":"";
  var logged=false;
@@ -59,7 +60,7 @@ function run(){
  if(!key && path.indexOf("/website-category/")>-1)key="website-collection";
  var main=document.querySelector("main.page-main");
 
- if(key && main && !main.querySelector(".bb-page-hero") && !document.querySelector(".hero-grid")){
+ if(!isCategory && key && main && !main.querySelector(".bb-page-hero") && !document.querySelector(".hero-grid")){
   var cfg=heroMap[key];
   var frame=main.querySelector(":scope > .page-title-frame");
   var scope=frame||main;
