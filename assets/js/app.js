@@ -513,6 +513,19 @@ function renderSummary(target){
  const cart=getCart(),total=cart.reduce((s,x)=>s+(findProduct(x.id)?.price||0)*x.qty,0);
  el.innerHTML=cart.length?cart.map(x=>{const p=findProduct(x.id);if(!p)return "";return `<div class="summary-line"><span>${esc(p.name)} × ${x.qty}</span><b>${fmt(p.price*x.qty)}</b></div>`}).join("")+`<div class="summary-total"><span>Total</span><span>${fmt(total)}</span></div>`:'<p class="tiny">Keranjang kosong.</p>';
 }
+function getProductPreviewHref(p){
+ const directDemo=DEMOS.find(x=>x.id===p.id);
+ if(directDemo)return "demo.html?id="+encodeURIComponent(directDemo.id);
+ const visualMap={villa:"villa-001",barber:"barber-001"};
+ const mappedId=visualMap[p.visual];
+ const mappedWebsite=mappedId?WEBSITE_COLLECTION.find(x=>x.id===mappedId):null;
+ if(mappedWebsite)return mappedWebsite.demo+(mappedWebsite.demo.includes("?")?"&":"?")+"package="+encodeURIComponent((mappedWebsite.availablePackages&&mappedWebsite.availablePackages[0])||"business");
+ const categoryMap={"Website Starter":"car-rental-starter-001","Landing Page":"company-001","UI Kit":"company-001"};
+ const categoryId=categoryMap[p.type];
+ const categoryWebsite=categoryId?WEBSITE_COLLECTION.find(x=>x.id===categoryId):null;
+ if(categoryWebsite)return categoryWebsite.demo+(categoryWebsite.demo.includes("?")?"&":"?")+"package="+encodeURIComponent((categoryWebsite.availablePackages&&categoryWebsite.availablePackages[0])||"business");
+ return "demo.html?id=corporate";
+}
 function renderDetail(){
  const el=$("#productDetail");if(!el)return;
  const p=findProduct(new URLSearchParams(location.search).get("id"));
@@ -528,7 +541,7 @@ function renderDetail(){
    <div class="experience-switch" role="group" aria-label="Ukuran preview">
     <button class="active" type="button" data-preview="desktop">DESKTOP</button>
     <button type="button" data-preview="mobile">MOBILE</button>
-    <a class="mini-link" href="demo.html?id=${encodeURIComponent(p.id)}">Buka live preview ↗</a>
+    <a class="mini-link" href="${getProductPreviewHref(p)}">Buka live preview ↗</a>
    </div>
    <div class="live-preview product-live-preview" id="productLivePreview">
     <div class="preview-browser preview-browser-responsive" data-mode="desktop">
