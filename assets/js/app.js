@@ -850,13 +850,13 @@ function ensureSharedShell(){
  }
 }
 function getBreadcrumbLabel(){
- const file=(location.pathname.split("/").pop()||"index.html").toLowerCase().replace(/\\.html$/,"");
+ const file=(location.pathname.split("/").pop()||"index.html").toLowerCase().replace(/\.html$/,"");
  const map={
   services:"Solutions",products:"Products","product-detail":"Product detail","website-collection":"Website collection",
   "website-packages":"Website packages","website-package":"Website package",portfolio:"Work",about:"About",
   articles:"Blog","article-detail":"Blog","article-conversion":"Blog","article-copywriting":"Blog","article-seo":"Blog","article-social-vs-website":"Blog",
   booking:"Start a Project",contact:"Contact",help:"Help",faq:"FAQ",account:"Account",cart:"Cart",checkout:"Checkout",
-  "payment-confirmation":"Payment confirmation","compare":"Recently viewed","client-websites":"Client websites",
+  "payment-confirmation":"Payment confirmation",compare:"Recently viewed","client-websites":"Client websites",
   demo:"Preview",privacy:"Privacy",terms:"Terms",refund:"Refund"
  };
  if(document.body.dataset.bbCategory)return document.body.dataset.bbCategory;
@@ -864,7 +864,7 @@ function getBreadcrumbLabel(){
  return map[file]||file.split("-").map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(" ");
 }
 function breadcrumbMarkup(){
- const path=location.pathname.replace(/\//g,"/");
+ const path=location.pathname.replace(/\\/g,"/");
  if(/(^|\/)index\.html?$/.test(path)||path.endsWith("/"))return "";
  const label=getBreadcrumbLabel();
  const base=(path.includes("/landing/")||path.includes("/website-category/"))?"../":"";
