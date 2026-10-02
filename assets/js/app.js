@@ -666,20 +666,6 @@ function setupCollection(){
  s.addEventListener("input",renderCollection);
  renderCollection();
 }
-function renderShellFallback(){
- const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
- const h=document.querySelector(".site-header");
- if(h){
-  h.className="site-header";
-  h.innerHTML=`<div class="top-header-row"><a class="brand" href="${base}index.html" aria-label="Bali Bagus Dev"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><div class="header-top-actions"><a class="header-utility" href="${base}articles.html">Blog</a><a class="header-utility" href="${base}help.html">Bantuan</a><a class="header-utility" href="${base}compare.html">Baru dilihat</a><a class="header-signup" href="${base}account.html">Mendaftar</a><a class="header-login" href="${base}account.html">Masuk</a></div><button class="mobile-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">${icon("menu")}</button></div><div class="category-nav-row"><nav class="category-nav" id="mainNav" aria-label="Navigasi utama"><div class="mobile-quick-links"><a href="${base}articles.html">Blog</a><a href="${base}help.html">Bantuan</a><a href="${base}cart.html">Keranjang <b class="header-badge" id="mobileCartCount">0</b></a><a href="${base}compare.html">Baru dilihat</a><a href="${base}account.html">Mendaftar</a><a href="${base}account.html">Masuk</a></div><div class="mega-item"><a class="mega-trigger" href="${base}services.html">Build</a></div><div class="mega-item"><a class="mega-trigger" href="${base}products.html">Templates</a></div><div class="mega-item"><a class="mega-trigger" href="${base}services.html">Solutions</a></div><div class="mega-item"><a class="mega-trigger" href="${base}portfolio.html">Work</a></div><div class="mega-item"><a class="mega-trigger" href="${base}articles.html">Insights</a></div><div class="mega-item"><a class="mega-trigger" href="${base}about.html">About</a></div></nav><a class="member-entry" href="${base}booking.html"><span class="member-mark">BB</span><span>Konsultasi</span></a></div>`;
- }
- const f=document.querySelector("#siteFooter");
- if(f){
-  f.className="site-footer";
-  f.innerHTML=`<div class="wrap"><div class="footer-top"><div class="footer-brand"><a class="brand" href="${base}index.html"><span class="brand-mark" style="background:#fff;color:#171717">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a><p>Solusi digital yang dibangun berdasarkan kebutuhan bisnis nyata.</p></div><div class="footer-col"><b>BUILD</b><a href="${base}services.html#website">Website</a><a href="${base}services.html#application">Web Apps</a><a href="${base}services.html#application">Custom Systems</a></div><div class="footer-col"><b>PRODUCTS</b><a href="${base}products.html">Templates</a><a href="${base}products.html?q=ui">UI Kits</a><a href="${base}products.html">Digital Products</a></div><div class="footer-col"><b>GROW</b><a href="${base}services.html#seo">SEO</a><a href="${base}services.html#content">Content</a><a href="${base}services.html#ads">Ads</a><a href="${base}services.html#maintenance">Maintenance</a></div><div class="footer-col"><b>COMPANY</b><a href="${base}about.html">About</a><a href="${base}portfolio.html">Work</a><a href="${base}articles.html">Insights</a><a href="${base}contact.html">Contact</a></div><div class="footer-col"><b>LEGAL</b><a href="${base}terms.html">Terms</a><a href="${base}privacy.html">Privacy</a><a href="${base}refund.html">Refund</a></div></div><div class="footer-bottom"><span>© 2026 Bali Bagus Dev Studio</span><span>Credit by Bagus Dev · Indonesia</span></div></div>`;
- }
-}
-
 function header(){
  const h=document.querySelector(".site-header");if(!h)return;
  const base=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../":"";
