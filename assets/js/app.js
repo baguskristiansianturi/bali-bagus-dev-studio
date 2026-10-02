@@ -38,6 +38,8 @@ const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
  const file=(location.pathname.split("/").pop()||"index.html").toLowerCase();
  const page=file.replace(/\\.html$/,"")||"index";
  document.body.dataset.bbPage=page;
+ const isCategoryPath=location.pathname.includes("/website-category/");
+ document.body.classList.toggle("bb-category-page",isCategoryPath);
  if(window.BB_CATEGORY_PAGE?.category) document.body.dataset.bbCategory=window.BB_CATEGORY_PAGE.category;
  if(page==="index") document.body.dataset.bbPage="home";
 })();
@@ -863,15 +865,37 @@ function ensureSharedShell(){
 }
 function decoratePageHeading(){
  const main=document.querySelector("main.page-main");
- if(!main||main.dataset.headingDecorated)return;
- const eyebrow=main.querySelector(":scope > .eyebrow");
- const title=main.querySelector(":scope > h1");
- const lead=main.querySelector(":scope > .lead");
+ if(!main||main.dataset.headingDecorated||document.body.classList.contains("bb-category-page"))return;
+ if(main.querySelector(":scope > .bb-page-hero")){main.dataset.headingDecorated="true";return;}
+ const frame=main.querySelector(":scope > .page-title-frame");
+ const scope=frame||main;
+ const eyebrow=scope.querySelector(":scope > .eyebrow");
+ const title=scope.querySelector(":scope > h1");
+ const lead=scope.querySelector(":scope > .lead");
  if(!eyebrow||!title)return;
- const frame=document.createElement("div");
- frame.className="page-title-frame";
- [eyebrow,title,lead].filter(Boolean).forEach(el=>frame.appendChild(el));
- main.insertBefore(frame,main.firstChild);
+ const hero=document.createElement("section");
+ hero.className="bb-page-hero bb-auto-hero";
+ hero.setAttribute("aria-labelledby","bbAutoHeroTitle");
+ const inner=document.createElement("div");
+ inner.className="bb-page-hero-inner bb-auto-hero-inner";
+ const copy=document.createElement("div");
+ copy.className="bb-hero-copy";
+ const kicker=document.createElement("div");
+ kicker.className="bb-hero-kicker";
+ kicker.textContent=eyebrow.textContent.trim();
+ const h1=document.createElement("h1");
+ h1.id="bbAutoHeroTitle";
+ h1.innerHTML=title.innerHTML;
+ const p=document.createElement("p");
+ p.className="bb-hero-lead";
+ p.innerHTML=lead?lead.innerHTML:"";
+ copy.append(kicker,h1);
+ if(lead)copy.appendChild(p);
+ inner.appendChild(copy);
+ hero.appendChild(inner);
+ if(frame&&frame.parentNode)frame.remove();
+ else {eyebrow.remove();title.remove();if(lead)lead.remove();}
+ main.insertBefore(hero,main.firstChild);
  main.dataset.headingDecorated="true";
 }
 function setupWizards(){
