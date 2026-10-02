@@ -849,10 +849,53 @@ function ensureSharedShell(){
    document.body.appendChild(footerEl);
  }
 }
+function getBreadcrumbLabel(){
+ const file=(location.pathname.split("/").pop()||"index.html").toLowerCase().replace(/\\.html$/,"");
+ const map={
+  services:"Solutions",products:"Products","product-detail":"Product detail","website-collection":"Website collection",
+  "website-packages":"Website packages","website-package":"Website package",portfolio:"Work",about:"About",
+  articles:"Blog","article-detail":"Blog","article-conversion":"Blog","article-copywriting":"Blog","article-seo":"Blog","article-social-vs-website":"Blog",
+  booking:"Start a Project",contact:"Contact",help:"Help",faq:"FAQ",account:"Account",cart:"Cart",checkout:"Checkout",
+  "payment-confirmation":"Payment confirmation","compare":"Recently viewed","client-websites":"Client websites",
+  demo:"Preview",privacy:"Privacy",terms:"Terms",refund:"Refund"
+ };
+ if(document.body.dataset.bbCategory)return document.body.dataset.bbCategory;
+ if(location.pathname.includes("/landing/"))return "Landing Page";
+ return map[file]||file.split("-").map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(" ");
+}
+function breadcrumbMarkup(){
+ const path=location.pathname.replace(/\\/g,"/");
+ if(/(^|\\/)index\\.html?$/.test(path)||path.endsWith("/"))return "";
+ const label=getBreadcrumbLabel();
+ const base=(path.includes("/landing/")||path.includes("/website-category/"))?"../":"";
+ const category=path.includes("/website-category/");
+ return `<nav class="bb-breadcrumb" aria-label="Breadcrumb">
+   <a href="${base}index.html">Home</a><span class="bb-breadcrumb-sep" aria-hidden="true">/</span>
+   ${category?`<a href="${base}website-collection.html">Website</a><span class="bb-breadcrumb-sep" aria-hidden="true">/</span>`:""}
+   <span class="bb-breadcrumb-current" aria-current="page">${esc(label)}</span>
+ </nav>`;
+}
+function normalizeBreadcrumb(){
+ const main=document.querySelector("main.page-main, main.article-main, main.checkout-main");
+ if(!main||main.dataset.breadcrumbReady)return;
+ const hero=main.querySelector(":scope > .bb-page-hero");
+ if(!hero)return;
+ hero.querySelectorAll(".bb-breadcrumb").forEach((el,i)=>{if(i>0)el.remove()});
+ const existing=hero.querySelector(":scope > .bb-breadcrumb, .bb-page-hero-inner > .bb-breadcrumb");
+ if(!existing){
+   const inner=hero.querySelector(":scope > .bb-page-hero-inner");
+   if(inner)inner.insertAdjacentHTML("afterbegin",breadcrumbMarkup());
+ }
+ main.dataset.breadcrumbReady="true";
+}
 function decoratePageHeading(){
  const main=document.querySelector("main.page-main, main.article-main, main.checkout-main");
- if(!main||main.dataset.headingDecorated||document.body.classList.contains("bb-category-page"))return;
- if(main.querySelector(":scope > .bb-page-hero")){main.dataset.headingDecorated="true";return;}
+ if(!main||main.dataset.headingDecorated)return;
+ if(main.querySelector(":scope > .bb-page-hero")){
+   main.dataset.headingDecorated="true";
+   normalizeBreadcrumb();
+   return;
+ }
 
  const frame=main.querySelector(":scope > .page-title-frame");
  const scope=frame||main;
@@ -860,7 +903,6 @@ function decoratePageHeading(){
  let title=scope.querySelector(":scope > h1");
  let lead=scope.querySelector(":scope > .lead");
 
- // Article pages keep the back-link outside the hero; the kicker is the hero eyebrow.
  if(!eyebrow){
    const kicker=scope.querySelector(":scope > .article-kicker");
    eyebrow=kicker?.querySelector(".eyebrow")||null;
@@ -876,6 +918,8 @@ function decoratePageHeading(){
  inner.className="bb-page-hero-inner bb-auto-hero-inner";
  const copy=document.createElement("div");
  copy.className="bb-hero-copy";
+ const crumb=breadcrumbMarkup();
+ if(crumb)copy.insertAdjacentHTML("beforeend",crumb);
  const kicker=document.createElement("div");
  kicker.className="bb-hero-kicker";
  kicker.textContent=eyebrow.textContent.trim();
@@ -898,6 +942,7 @@ function decoratePageHeading(){
  }
  main.insertBefore(hero,main.firstChild);
  main.dataset.headingDecorated="true";
+ normalizeBreadcrumb();
 }
 function setupWizards(){
  const configs={bookingForm:{sizes:[3,4,4,99],titles:["Kontak","Kebutuhan","Rencana","Konfirmasi"]},websiteOrderForm:{sizes:[4,3,99],titles:["Pilihan & kontak","Bisnis","Brief & konfirmasi"]},contactForm:{sizes:[2,2,99],titles:["Kontak","Pesan"]}};
