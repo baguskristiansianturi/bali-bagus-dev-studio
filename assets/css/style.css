@@ -690,3 +690,36 @@ iframe{max-width:100%}
   .bb-page-hero h1{font-size:32px}
   .bb-breadcrumb{font-size:9px}
 }
+
+/* Checkout uses a small inline legacy layer; these rules keep it inside the same global grid. */
+main.checkout-main{
+  padding-inline:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+.checkout-shell{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,360px);
+  gap:24px;
+  align-items:start;
+}
+.checkout-panel,.checkout-summary{min-width:0;max-width:100%}
+.checkout-fields,.checkout-subfields{min-width:0}
+.checkout-fields>*{min-width:0}
+body.nav-open{overflow:hidden}
+@media(max-width:900px){
+  .checkout-shell{grid-template-columns:1fr}
+  .checkout-summary{position:static!important;order:-1}
+}
+@media(max-width:680px){
+  .checkout-shell{gap:16px}
+  .checkout-panel,.checkout-summary{padding:20px!important}
+  .checkout-fields{grid-template-columns:1fr!important}
+  .checkout-fields .wide{grid-column:auto!important}
+  .delivery-type{grid-template-columns:1fr!important}
+  .checkout-actions{flex-direction:column-reverse}
+  .checkout-actions .button{width:100%;justify-content:center}
+}
