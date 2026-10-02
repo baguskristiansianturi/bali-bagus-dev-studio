@@ -4193,3 +4193,5 @@ main.checkout-main *,
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
+
+:root{--bb-content-width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));}
