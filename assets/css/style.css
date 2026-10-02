@@ -545,3 +545,148 @@ body>main>section.hero-grid>div{width:var(--bb-content);max-width:var(--bb-conta
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+
+/* ---------- GLOBAL RESPONSIVE HARDENING V4 ---------- */
+/* One content contract for every page. Hero backgrounds may be full-bleed,
+   but all readable content stays on the same 1140px grid. */
+main.page-main,
+main.article-main,
+main.checkout-main{
+  width:100%!important;
+  max-width:none!important;
+  padding-inline:0;
+}
+main.page-main > .bb-page-hero,
+main.article-main > .bb-page-hero,
+main.checkout-main > .bb-page-hero{
+  width:100%;
+  max-width:none;
+  margin-inline:0;
+  border-inline:0;
+  border-radius:0;
+}
+.bb-page-hero-inner,
+.bb-page-hero > .bb-page-hero-inner{
+  width:var(--bb-content);
+  max-width:var(--bb-container);
+  margin-inline:auto;
+}
+main.page-main > :not(.bb-page-hero),
+main.article-main > :not(.bb-page-hero),
+main.checkout-main > :not(.bb-page-hero){
+  width:var(--bb-content);
+  max-width:var(--bb-container);
+  margin-inline:auto;
+}
+.bb-breadcrumb{
+  width:100%;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 22px;
+  padding:0;
+  color:#8a8a91;
+  font-size:11px;
+  line-height:1.4;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.bb-breadcrumb a{color:#66666d;font-weight:700}
+.bb-breadcrumb a:hover{color:var(--bb-accent)}
+.bb-breadcrumb .bb-breadcrumb-current{
+  color:#a1a1a8;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.bb-breadcrumb-sep{color:#c4c4c9;font-size:10px}
+.bb-auto-hero .bb-hero-copy{min-width:0}
+.bb-auto-hero .bb-breadcrumb{margin-bottom:24px}
+.bb-auto-hero .bb-hero-kicker{margin-bottom:16px}
+.bb-page-hero h1{max-width:850px}
+.section > *,
+.inline-cta > *,
+.form-grid > *,
+.checkout-layout > *,
+.product-detail-layout > *{min-width:0}
+.service-list,.service-list>a{min-width:0}
+.service-list>a>*{min-width:0;overflow-wrap:anywhere}
+input,select,textarea{min-width:0}
+table{max-width:100%;display:block;overflow-x:auto}
+iframe{max-width:100%}
+
+@media (max-width:900px){
+  main.page-main > .bb-page-hero,
+  main.article-main > .bb-page-hero,
+  main.checkout-main > .bb-page-hero{
+    margin-top:0;
+    padding:24px 0 32px;
+    background:#fff;
+  }
+  .bb-page-hero-inner{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .bb-auto-hero .bb-hero-copy{width:100%}
+  .bb-breadcrumb{
+    margin-bottom:18px;
+    font-size:10px;
+    gap:6px;
+  }
+  .bb-page-hero h1{
+    max-width:100%;
+    font-size:clamp(34px,9vw,52px);
+    line-height:1.05;
+    letter-spacing:-.05em;
+  }
+  .bb-page-hero .lead,.bb-hero-lead{
+    max-width:100%;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .section{padding-block:52px}
+  .section-head{gap:18px}
+  .split-layout,.product-detail-layout,.checkout-layout{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:680px){
+  :root{--bb-gutter:12px}
+  main.page-main > .bb-page-hero,
+  main.article-main > .bb-page-hero,
+  main.checkout-main > .bb-page-hero{
+    padding:20px 0 28px;
+  }
+  .bb-page-hero-inner{
+    width:calc(100% - 24px);
+  }
+  main.page-main > :not(.bb-page-hero),
+  main.article-main > :not(.bb-page-hero),
+  main.checkout-main > :not(.bb-page-hero){
+    width:calc(100% - 24px);
+  }
+  .bb-breadcrumb{
+    margin-bottom:15px;
+    font-size:10px;
+  }
+  .bb-page-hero h1{font-size:clamp(32px,9.5vw,46px)}
+  .bb-page-hero .lead,.bb-hero-lead{font-size:14px}
+  .section{padding-block:46px}
+  .section-head h2,.insight-layout h2{font-size:clamp(28px,8.5vw,40px)}
+  .category-card,.product-card,.package-card,.demo-card,.portfolio-card{width:100%}
+  .button,.bb-hero-primary,.bb-hero-secondary{min-height:48px}
+  .inline-cta{width:100%;padding:24px 18px}
+}
+@media (max-width:390px){
+  .bb-page-hero-inner,
+  main.page-main > :not(.bb-page-hero),
+  main.article-main > :not(.bb-page-hero),
+  main.checkout-main > :not(.bb-page-hero){
+    width:calc(100% - 20px);
+  }
+  .bb-page-hero h1{font-size:32px}
+  .bb-breadcrumb{font-size:9px}
+}
