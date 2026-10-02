@@ -2695,3 +2695,283 @@ body{overflow-x:hidden}
   .demo-card .port-info{min-height:0;padding:18px}
   .demo-card .port-info > b{font-size:17px}
 }
+
+
+/* BB STUDIO — GLOBAL HERO SYSTEM 2026-10-02 */
+/* Global hero principle:
+   viewport-wide visual field, existing content width preserved. */
+main.page-main > .bb-page-hero{
+  position:relative;
+  isolation:isolate;
+  min-height:clamp(390px,48vw,610px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding-block:clamp(64px,9vw,112px);
+  border:0;
+  border-radius:0;
+  overflow:hidden;
+  background-color:#f4f4f2;
+  background-image:
+    linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.82) 43%,rgba(255,255,255,.38) 100%),
+    url("../img/hero-studio.svg");
+  background-position:center right,center right;
+  background-size:cover, min(760px,55vw) auto;
+  background-repeat:no-repeat;
+}
+main.page-main > .bb-page-hero:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:
+    radial-gradient(circle at 82% 28%,rgba(16,185,129,.13),transparent 25%),
+    linear-gradient(135deg,rgba(255,255,255,.18),transparent 55%);
+}
+main.page-main > .bb-page-hero:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:auto 0 0;
+  height:1px;
+  background:rgba(24,24,27,.10);
+}
+main.page-main > .bb-page-hero > *{
+  position:relative;
+  z-index:2;
+}
+main.page-main > .bb-page-hero > .eyebrow,
+main.page-main > .bb-page-hero > h1,
+main.page-main > .bb-page-hero > .lead,
+main.page-main > .bb-page-hero > .bb-hero-meta,
+main.page-main > .bb-page-hero > .bb-hero-actions{
+  flex:0 0 auto;
+}
+
+/* Individual page art direction */
+body[data-bb-page="about"] .bb-page-hero{
+  background-color:#ebe7df;
+  background-image:
+    linear-gradient(90deg,rgba(248,246,241,.96),rgba(248,246,241,.78) 46%,rgba(235,231,223,.28)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="services"] .bb-page-hero{
+  background-color:#e8f3ef;
+  background-image:
+    linear-gradient(90deg,rgba(245,252,249,.97),rgba(236,248,243,.80) 48%,rgba(232,243,239,.25)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="booking"] .bb-page-hero,
+body[data-bb-page="contact"] .bb-page-hero{
+  background-color:#eaf0f4;
+  background-image:
+    linear-gradient(90deg,rgba(247,250,252,.97),rgba(237,245,248,.82) 50%,rgba(234,240,244,.28)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="products"] .bb-page-hero{
+  background-color:#eeecf4;
+  background-image:
+    linear-gradient(90deg,rgba(249,248,252,.97),rgba(243,241,249,.80) 48%,rgba(238,236,244,.28)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="portfolio"] .bb-page-hero{
+  color:#fff;
+  background-color:#18181b;
+  background-image:
+    linear-gradient(90deg,rgba(9,9,11,.95),rgba(24,24,27,.72) 52%,rgba(24,24,27,.22)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="portfolio"] .bb-page-hero h1{color:#fff}
+body[data-bb-page="portfolio"] .bb-page-hero .lead,
+body[data-bb-page="portfolio"] .bb-page-hero .eyebrow{color:#d4d4d8}
+body[data-bb-page="articles"] .bb-page-hero{
+  background-color:#f2eee8;
+  background-image:
+    linear-gradient(90deg,rgba(250,248,244,.97),rgba(246,242,236,.82) 50%,rgba(242,238,232,.25)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="website-collection"] .bb-page-hero{
+  background-color:#eaf2f4;
+  background-image:
+    linear-gradient(90deg,rgba(247,251,252,.97),rgba(239,247,249,.81) 48%,rgba(234,242,244,.25)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="website-packages"] .bb-page-hero{
+  background-color:#eaf3ed;
+  background-image:
+    linear-gradient(90deg,rgba(247,251,248,.97),rgba(238,247,241,.82) 48%,rgba(234,243,237,.25)),
+    url("../img/hero-studio.svg");
+}
+body[data-bb-page="account"] .bb-page-hero{
+  background-color:#eeeeec;
+  background-image:
+    linear-gradient(90deg,rgba(250,250,248,.97),rgba(243,243,240,.82) 48%,rgba(238,238,236,.25)),
+    url("../img/hero-studio.svg");
+}
+
+/* Category landing pages: theme follows the business context */
+main.page-main > .category-landing-intro{
+  position:relative;
+}
+body[data-bb-category] main.page-main{
+  position:relative;
+  isolation:isolate;
+}
+body[data-bb-category] main.page-main:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:50%;
+  width:100vw;
+  height:500px;
+  transform:translateX(-50%);
+  background:
+    radial-gradient(circle at 84% 20%,rgba(255,255,255,.85),transparent 25%),
+    linear-gradient(135deg,#f1f3f1 0%,#e8ece9 52%,#f7f7f5 100%);
+  border-bottom:1px solid #e4e4e7;
+}
+body[data-bb-category="Villa"] main.page-main:before,
+body[data-bb-category="Hotel"] main.page-main:before,
+body[data-bb-category="Homestay"] main.page-main:before,
+body[data-bb-category="Spa"] main.page-main:before{
+  background:radial-gradient(circle at 82% 20%,rgba(214,188,145,.28),transparent 28%),linear-gradient(135deg,#f5efe7,#e9eee9 58%,#fafaf8);
+}
+body[data-bb-category="Barbershop"] main.page-main:before,
+body[data-bb-category="Salon"] main.page-main:before,
+body[data-bb-category="Workshop"] main.page-main:before{
+  background:radial-gradient(circle at 82% 18%,rgba(39,39,42,.12),transparent 25%),linear-gradient(135deg,#f0f0ee,#dededb 58%,#fafaf9);
+}
+body[data-bb-category="Cafe"] main.page-main:before,
+body[data-bb-category="Restaurant"] main.page-main:before,
+body[data-bb-category="UMKM"] main.page-main:before,
+body[data-bb-category="POS F&B"] main.page-main:before{
+  background:radial-gradient(circle at 82% 18%,rgba(180,112,55,.18),transparent 26%),linear-gradient(135deg,#f7f1e9,#eee8df 58%,#faf9f7);
+}
+body[data-bb-category="Car Rental"] main.page-main:before,
+body[data-bb-category="Motorbike Rental"] main.page-main:before,
+body[data-bb-category="Airport Transfer"] main.page-main:before,
+body[data-bb-category="Trolley Rental"] main.page-main:before,
+body[data-bb-category="Travel"] main.page-main:before,
+body[data-bb-category="Tour Operator"] main.page-main:before,
+body[data-bb-category="Activities"] main.page-main:before{
+  background:radial-gradient(circle at 82% 18%,rgba(14,165,233,.15),transparent 27%),linear-gradient(135deg,#edf5f6,#e5eef1 58%,#fafafa);
+}
+body[data-bb-category="Clinic"] main.page-main:before,
+body[data-bb-category="Dental Clinic"] main.page-main:before,
+body[data-bb-category="Fitness"] main.page-main:before{
+  background:radial-gradient(circle at 82% 18%,rgba(16,185,129,.16),transparent 27%),linear-gradient(135deg,#edf7f3,#e4f0ec 58%,#fafafa);
+}
+body[data-bb-category="CRM"] main.page-main:before,
+body[data-bb-category="SaaS"] main.page-main:before,
+body[data-bb-category="Accounting"] main.page-main:before,
+body[data-bb-category="Inventory"] main.page-main:before,
+body[data-bb-category="Employee Management"] main.page-main:before{
+  background:radial-gradient(circle at 82% 18%,rgba(99,102,241,.14),transparent 27%),linear-gradient(135deg,#eff1f7,#e8ebf3 58%,#fafafa);
+}
+
+/* Article hero media becomes a genuine viewport-wide editorial visual. */
+.article-main > .article-hero-media{
+  position:relative;
+  width:100vw;
+  max-width:none;
+  height:clamp(300px,46vw,680px);
+  margin:clamp(34px,5vw,60px) 0 0 calc(50% - 50vw);
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:#e4e4e7;
+  box-shadow:none;
+}
+.article-main > .article-hero-media:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(9,9,11,0) 48%,rgba(9,9,11,.24) 100%);
+}
+.article-main > .article-hero-media img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+body[data-bb-page^="article-"] .article-main > .article-hero-media{
+  border-top:1px solid #e4e4e7;
+  border-bottom:1px solid #e4e4e7;
+}
+
+/* Homepage hero: full-width visual field while its grid keeps the existing width. */
+.home-hero-grid{
+  position:relative;
+  isolation:isolate;
+  min-height:clamp(620px,70vw,850px);
+  background:
+    radial-gradient(circle at 78% 24%,rgba(16,185,129,.12),transparent 23%),
+    linear-gradient(135deg,#fafafa 0%,#f3f3f1 55%,#e9efeb 100%);
+}
+.home-hero-grid:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background-image:url("../img/hero-studio.svg");
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:min(700px,50vw) auto;
+  opacity:.18;
+}
+.home-hero-grid .home-container{position:relative;z-index:1}
+.home-hero-grid .home-image{box-shadow:0 30px 80px rgba(24,24,27,.16)}
+
+@media(max-width:900px){
+  main.page-main > .bb-page-hero{
+    min-height:460px;
+    padding-block:64px 72px;
+    background-position:center right,80% center;
+    background-size:cover,min(520px,78vw) auto;
+  }
+  main.page-main > .bb-page-hero > *{
+    width:calc(100% - 32px);
+  }
+  .article-main > .article-hero-media{
+    height:clamp(280px,62vw,500px);
+  }
+}
+@media(max-width:600px){
+  main.page-main > .bb-page-hero{
+    min-height:420px;
+    padding-block:54px 62px;
+    background-image:
+      linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.84)),
+      url("../img/hero-studio.svg");
+    background-position:center,90% center;
+    background-size:cover,min(420px,100vw) auto;
+  }
+  body[data-bb-page="portfolio"] .bb-page-hero{
+    background-image:
+      linear-gradient(180deg,rgba(9,9,11,.95),rgba(24,24,27,.88)),
+      url("../img/hero-studio.svg");
+  }
+  main.page-main > .bb-page-hero h1{
+    font-size:clamp(36px,10.5vw,56px);
+    line-height:1.02;
+  }
+  main.page-main > .bb-page-hero .lead{
+    font-size:15px;
+    line-height:1.7;
+  }
+  .article-main > .article-hero-media{
+    height:280px;
+    margin-top:28px;
+  }
+  .home-hero-grid{
+    min-height:0;
+  }
+  .home-hero-grid:before{
+    background-size:120vw auto;
+    background-position:100% 18%;
+    opacity:.10;
+  }
+}
