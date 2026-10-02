@@ -3261,3 +3261,64 @@ body[data-bb-page^="article-"] .article-main > .article-hero-media{
     width:min(var(--bb-container),calc(100% - 40px));
   }
 }
+
+
+/* BB STUDIO — FOOTER SOCIAL SYSTEM 2026-10-02 */
+.footer-socials{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:18px;
+}
+.footer-social{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:38px;
+  padding:0 11px;
+  border:1px solid #27272a;
+  border-radius:10px;
+  background:#18181b;
+  color:#d4d4d8!important;
+  font-size:10px!important;
+  font-weight:750;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease,color .2s ease;
+}
+.footer-social i{
+  width:14px;
+  text-align:center;
+  font-size:14px;
+}
+.footer-social:hover{
+  transform:translateY(-2px);
+  border-color:#52525b;
+  background:#27272a;
+  color:#fff!important;
+}
+.footer-social.footer-whatsapp{
+  border-color:#374151;
+}
+@media(max-width:680px){
+  .site-footer{margin-top:50px}
+  .footer-wrap{padding-block:42px 20px}
+  .footer-main{grid-template-columns:1fr 1fr;gap:30px 22px}
+  .footer-brand{grid-column:1/-1}
+  .footer-socials{gap:8px}
+  .footer-social{
+    min-width:42px;
+    width:42px;
+    height:42px;
+    padding:0;
+    border-radius:11px;
+  }
+  .footer-social span{display:none}
+  .footer-social i{font-size:16px}
+  .footer-bottom{
+    flex-direction:column;
+    gap:7px;
+    margin-top:32px;
+    font-size:9px;
+  }
+}
