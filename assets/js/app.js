@@ -864,15 +864,25 @@ function ensureSharedShell(){
  }
 }
 function decoratePageHeading(){
- const main=document.querySelector("main.page-main");
+ const main=document.querySelector("main.page-main, main.article-main, main.checkout-main");
  if(!main||main.dataset.headingDecorated||document.body.classList.contains("bb-category-page"))return;
  if(main.querySelector(":scope > .bb-page-hero")){main.dataset.headingDecorated="true";return;}
+
  const frame=main.querySelector(":scope > .page-title-frame");
  const scope=frame||main;
- const eyebrow=scope.querySelector(":scope > .eyebrow");
- const title=scope.querySelector(":scope > h1");
- const lead=scope.querySelector(":scope > .lead");
+ let eyebrow=scope.querySelector(":scope > .eyebrow");
+ let title=scope.querySelector(":scope > h1");
+ let lead=scope.querySelector(":scope > .lead");
+
+ // Article pages keep the back-link outside the hero; the kicker is the hero eyebrow.
+ if(!eyebrow){
+   const kicker=scope.querySelector(":scope > .article-kicker");
+   eyebrow=kicker?.querySelector(".eyebrow")||null;
+   title=title||scope.querySelector(":scope > h1");
+   lead=lead||scope.querySelector(":scope > .lead");
+ }
  if(!eyebrow||!title)return;
+
  const hero=document.createElement("section");
  hero.className="bb-page-hero bb-auto-hero";
  hero.setAttribute("aria-labelledby","bbAutoHeroTitle");
@@ -893,8 +903,14 @@ function decoratePageHeading(){
  if(lead)copy.appendChild(p);
  inner.appendChild(copy);
  hero.appendChild(inner);
+
  if(frame&&frame.parentNode)frame.remove();
- else {eyebrow.remove();title.remove();if(lead)lead.remove();}
+ else{
+   if(eyebrow.closest(".article-kicker"))eyebrow.closest(".article-kicker").remove();
+   else eyebrow.remove();
+   title.remove();
+   if(lead)lead.remove();
+ }
  main.insertBefore(hero,main.firstChild);
  main.dataset.headingDecorated="true";
 }
