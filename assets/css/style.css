@@ -5,8 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{
-  --bb-container:1140px;
-  --bb-gutter:32px;
+  --bb-container:1120px;
+  --bb-gutter:28px;
   --bb-content:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));
   --bb-ink:#18181b;
   --bb-muted:#71717a;
@@ -284,7 +284,7 @@ main.page-main p,main.article-main p,main.checkout-main p{
 .bb-page-hero{
   position:relative;overflow:hidden;
   margin:28px auto 0;
-  padding:clamp(38px,7vw,76px) clamp(24px,5vw,64px);
+  padding:clamp(38px,7vw,76px) 0;
   border:1px solid var(--bb-line);
   border-radius:28px;background:#fff;
   box-shadow:0 10px 45px rgba(24,24,27,.045);
@@ -553,14 +553,14 @@ body>main>section.hero-grid>div{width:var(--bb-content);max-width:var(--bb-conta
 .summary-type{display:inline-flex;margin-top:10px;padding:6px 8px;background:#f0f0ec;font-size:8px;letter-spacing:.08em}
 
 @media (max-width:1100px){
-  :root{--bb-gutter:28px}
+  :root{--bb-gutter:24px}
   .bb-page-hero-inner{grid-template-columns:minmax(0,1fr) minmax(250px,.75fr);gap:32px}
   .category-grid,.product-grid,.demo-grid,.article-grid,.services-grid,.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .package-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
-  :root{--bb-gutter:24px}
+  :root{--bb-gutter:20px}
   .bb-primary-inner{min-height:60px}
   .bb-primary-tools{display:none}
   .mobile-toggle{display:grid}
@@ -576,10 +576,10 @@ body>main>section.hero-grid>div{width:var(--bb-content);max-width:var(--bb-conta
   .checkout-summary{position:static;order:-1}
 }
 @media (max-width:680px){
-  :root{--bb-gutter:12px}
+  :root{--bb-gutter:16px}
   .bb-page-hero{padding-block:24px 30px}
   .bb-page-hero > .eyebrow,.bb-page-hero > h1,.bb-page-hero > .lead,.bb-page-hero > .bb-hero-meta,.bb-page-hero > .bb-hero-actions,.bb-page-hero > .bb-breadcrumb,.bb-page-hero > .bb-page-hero-inner,
-  .checkout-main > .eyebrow,.checkout-main > h1,.checkout-main > .lead,.checkout-main > .checkout-shell{width:calc(100% - 24px)}
+  .checkout-main > .eyebrow,.checkout-main > h1,.checkout-main > .lead,.checkout-main > .checkout-shell{width:var(--bb-content)}
   .bb-page-hero h1{font-size:clamp(32px,9.5vw,46px)}
   .bb-page-hero .lead,.bb-hero-lead{font-size:14px;line-height:1.65}
   .bb-hero-actions{display:grid;grid-template-columns:1fr}
@@ -609,9 +609,9 @@ body>main>section.hero-grid>div{width:var(--bb-content);max-width:var(--bb-conta
   .bank-card strong{font-size:23px}
 }
 @media (max-width:390px){
-  :root{--bb-gutter:10px}
+  :root{--bb-gutter:16px}
   .bb-page-hero > .eyebrow,.bb-page-hero > h1,.bb-page-hero > .lead,.bb-page-hero > .bb-hero-meta,.bb-page-hero > .bb-hero-actions,.bb-page-hero > .bb-breadcrumb,.bb-page-hero > .bb-page-hero-inner,
-  .checkout-main > .eyebrow,.checkout-main > h1,.checkout-main > .lead,.checkout-main > .checkout-shell{width:calc(100% - 20px)}
+  .checkout-main > .eyebrow,.checkout-main > h1,.checkout-main > .lead,.checkout-main > .checkout-shell{width:var(--bb-content)}
   .bb-page-hero h1{font-size:32px}
   .bb-page-hero{padding-block:20px 26px}
   .bb-breadcrumb{font-size:9px}
