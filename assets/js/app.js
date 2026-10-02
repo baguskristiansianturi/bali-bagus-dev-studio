@@ -906,8 +906,7 @@ function decoratePageHeading(){
 
  if(frame&&frame.parentNode)frame.remove();
  else{
-   if(eyebrow.closest(".article-kicker"))eyebrow.closest(".article-kicker").remove();
-   else eyebrow.remove();
+   eyebrow.remove();
    title.remove();
    if(lead)lead.remove();
  }
