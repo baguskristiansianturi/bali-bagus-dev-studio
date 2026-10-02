@@ -92,6 +92,8 @@ main.page-main p,main.article-main p,main.checkout-main p{
   overflow-wrap:anywhere;
 }
 
+.announcement{display:none!important}
+
 /* ---------- GLOBAL HEADER ---------- */
 .site-header{
   position:sticky!important;
