@@ -33,7 +33,7 @@ const CLIENTS=[];
 
 const fmt=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-/* BB STUDIO — HERO PAGE CONTEXT 2026-10-02 */
+/* BB STUDIO — HERO PAGE CONTEXT */
 (function setHeroPageContext(){
  const file=(location.pathname.split("/").pop()||"index.html").toLowerCase();
  const page=file.replace(/\\.html$/,"")||"index";
@@ -954,12 +954,10 @@ function setupContactPopup(){
  const close=()=>back.classList.remove("open");fab.addEventListener("click",()=>back.classList.add("open"));back.addEventListener("click",e=>{if(e.target===back||e.target.closest(".bb-modal-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
 }
 
-function loadDiscoveryUI(){if(document.querySelector('script[src$="klook-ui.js"]'))return;const x=document.createElement("script");x.src=(location.pathname.includes("/landing/")||location.pathname.includes("/website-category/"))?"../assets/js/klook-ui.js":"assets/js/klook-ui.js";document.head.appendChild(x)}
-loadDiscoveryUI();
 function ensureSharedChrome(){
  try{
   const h=document.querySelector(".site-header");
-  if(h && !h.querySelector(".top-header-row")) header();
+  if(h && !h.querySelector(".bb-header-primary")) header();
  }catch(error){console.error("BB header retry error",error)}
  try{
   const f=document.querySelector("#siteFooter");
@@ -968,10 +966,14 @@ function ensureSharedChrome(){
 }
 document.addEventListener("DOMContentLoaded",()=>{
  try{ensureSharedShell();}catch(error){console.error("BB shell error",error)}
- try{header();}catch(error){console.error("BB header error",error)}
- if(!document.querySelector(".site-header")?.querySelector(".top-header-row")){try{header()}catch(error){console.error("BB header retry error",error)}}
- try{footer();}catch(error){console.error("BB footer error",error)}
- if(!document.querySelector("#siteFooter")?.querySelector(".footer-main")){try{footer()}catch(error){console.error("BB footer retry error",error)}}
+ try{
+   const h=document.querySelector(".site-header");
+   if(h && !h.querySelector(".bb-header-primary")) header();
+ }catch(error){console.error("BB header error",error)}
+ try{
+   const f=document.querySelector("#siteFooter");
+   if(f && !f.querySelector(".footer-main")) footer();
+ }catch(error){console.error("BB footer error",error)}
  try{decoratePageHeading();}catch(error){console.error("BB page title error",error)}
  requestAnimationFrame(ensureSharedChrome);
  try{setupProductChoices();}catch(error){console.error("BB wishlist setup error",error)}
