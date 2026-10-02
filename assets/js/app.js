@@ -32,7 +32,7 @@ const DEMOS=[
 const CLIENTS=[];
 
 const fmt=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
-const $=s=>document.querySelector(s), $=s=>document.querySelectorAll(s);
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 /* BB STUDIO — HERO PAGE CONTEXT 2026-10-02 */
 (function setHeroPageContext(){
  const file=(location.pathname.split("/").pop()||"index.html").toLowerCase();
