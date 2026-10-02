@@ -2977,7 +2977,7 @@ body[data-bb-page^="article-"] .article-main > .article-hero-media{
 }
 
 
-/* BB STUDIO — KLOOK-STYLE TWO LEVEL NAV 2026-10-02 */
+/* BB STUDIO — TWO LEVEL NAV 2026-10-02 */
 /* Two-level sticky navigation: primary utility header + transparent category rail */
 .site-header{
   position:sticky!important;
@@ -3566,37 +3566,33 @@ body[data-bb-page^="article-"] .article-main > .article-hero-media{
 
 
 /* =========================================================
-   2026-10-02 GLOBAL PAGE HERO STABILITY LAYER
-   Shared hero rules are intentionally scoped away from /website-category/ pages.
+   2026-10-02 GLOBAL PAGE HERO STABILITY
+   Full-width hero shell; existing inner content dimensions are preserved.
+   Category pages are intentionally excluded.
    ========================================================= */
+body:not(.bb-category-page) main.page-main > .bb-page-hero,
+body:not(.bb-category-page) main.article-main > .bb-page-hero,
+body:not(.bb-category-page) main.checkout-main > .bb-page-hero{
+  width:100vw;
+  max-width:none;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  box-sizing:border-box;
+  border-radius:0;
+}
+body:not(.bb-category-page) main.page-main > .bb-page-hero > .bb-page-hero-inner,
+body:not(.bb-category-page) main.article-main > .bb-page-hero > .bb-page-hero-inner,
+body:not(.bb-category-page) main.checkout-main > .bb-page-hero > .bb-page-hero-inner{
+  width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2)));
+  max-width:var(--bb-container);
+  margin-inline:auto;
+  box-sizing:border-box;
+}
 body:not(.bb-category-page) .bb-auto-hero{
   min-height:0;
 }
-body:not(.bb-category-page) .bb-auto-hero .bb-page-hero-inner{
-  grid-template-columns:minmax(0,1fr);
-  max-width:var(--bb-container);
-  margin-inline:auto;
-}
 body:not(.bb-category-page) .bb-auto-hero .bb-hero-copy{
   max-width:920px;
-}
-body:not(.bb-category-page) .bb-auto-hero .bb-hero-kicker{
-  margin-bottom:18px;
-}
-body:not(.bb-category-page) .bb-auto-hero h1{
-  max-width:920px;
-  margin:0;
-  font-size:clamp(40px,6vw,76px);
-  line-height:1.03;
-  letter-spacing:-.055em;
-  font-weight:800;
-}
-body:not(.bb-category-page) .bb-auto-hero .bb-hero-lead{
-  max-width:720px;
-  margin:22px 0 0;
-  color:var(--bb-muted);
-  font-size:clamp(15px,1.7vw,18px);
-  line-height:1.75;
 }
 body:not(.bb-category-page) .page-title-frame{
   width:100%;
@@ -3613,10 +3609,6 @@ body:not(.bb-category-page) .article-kicker{
   line-height:1.6;
 }
 body:not(.bb-category-page) .article-kicker .eyebrow{margin:0}
-body:not(.bb-category-page) .article-main > .article-hero-media{
-  width:min(var(--bb-container),calc(100% - (var(--bb-gutter)*2)));
-  margin-inline:auto;
-}
 body:not(.bb-category-page) .checkout-main > .bb-page-hero,
 body:not(.bb-category-page) .confirm-main > .bb-page-hero{
   margin-bottom:28px;
@@ -3627,7 +3619,10 @@ body:not(.bb-category-page) main.checkout-main > .bb-page-hero{
   margin-top:0;
 }
 @media(max-width:767px){
-  body:not(.bb-category-page) .bb-auto-hero h1{font-size:clamp(35px,11vw,56px)}
-  body:not(.bb-category-page) .bb-auto-hero .bb-hero-lead{font-size:14px;line-height:1.7}
+  body:not(.bb-category-page) main.page-main > .bb-page-hero > .bb-page-hero-inner,
+  body:not(.bb-category-page) main.article-main > .bb-page-hero > .bb-page-hero-inner,
+  body:not(.bb-category-page) main.checkout-main > .bb-page-hero > .bb-page-hero-inner{
+    width:calc(100% - 24px);
+  }
   body:not(.bb-category-page) .article-kicker{width:calc(100% - 28px)}
 }
