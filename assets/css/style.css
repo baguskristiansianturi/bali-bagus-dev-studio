@@ -3979,3 +3979,217 @@ table{
     width:calc(100% - 20px)!important;
   }
 }
+
+
+/* =========================================================
+   FINAL GLOBAL WIDTH CONTRACT — 2026-10-02
+   One content width across homepage and internal pages.
+   Hero backgrounds may bleed; content never does.
+   ========================================================= */
+:root{
+  --bb-container:1140px;
+  --bb-gutter:32px;
+  --bb-content-width:min(var(--bb-container),calc(100% - (var(--bb-gutter) * 2));
+}
+
+/* Internal pages use the viewport as the shell. Every normal section
+   gets the same 1140px reading width as the homepage. */
+main.page-main,
+main.page-main.wrap,
+main.article-main,
+main.checkout-main{
+  width:100%!important;
+  max-width:none!important;
+  margin-inline:0!important;
+  padding-left:0;
+  padding-right:0;
+  min-width:0;
+}
+
+/* The hero remains full bleed, while its inner copy stays constrained. */
+main.page-main > .bb-page-hero,
+main.article-main > .bb-page-hero,
+main.checkout-main > .bb-page-hero{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+/* All ordinary top-level content follows exactly the same container. */
+main.page-main > :not(.bb-page-hero),
+main.article-main > :not(.bb-page-hero),
+main.checkout-main > :not(.bb-page-hero){
+  width:var(--bb-content-width);
+  max-width:var(--bb-container);
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+
+/* Preserve full-width intentional components. */
+main.page-main > .inline-cta,
+main.article-main > .inline-cta{
+  width:var(--bb-content-width);
+  max-width:var(--bb-container);
+}
+
+/* Homepage uses the same width contract. */
+.home-container{
+  width:var(--bb-content-width)!important;
+  max-width:var(--bb-container)!important;
+  margin-inline:auto!important;
+}
+
+/* Do not allow nested page containers to become wider than the shell. */
+main.page-main .section,
+main.article-main .section{
+  min-width:0;
+}
+
+main.page-main .section > .section-head,
+main.page-main .section > .category-grid,
+main.page-main .section > .product-grid,
+main.page-main .section > .demo-grid,
+main.page-main .section > .article-grid,
+main.page-main .section > .package-grid,
+main.page-main .section > .services-grid,
+main.article-main .section > *{
+  max-width:100%;
+  min-width:0;
+}
+
+/* Grids must always shrink before causing horizontal overflow. */
+.category-grid,
+.product-grid,
+.demo-grid,
+.article-grid,
+.package-grid,
+.services-grid,
+.portfolio-grid,
+.collection-grid{
+  width:100%;
+  min-width:0;
+}
+
+.category-grid > *,
+.product-grid > *,
+.demo-grid > *,
+.article-grid > *,
+.package-grid > *,
+.services-grid > *,
+.portfolio-grid > *,
+.collection-grid > *{
+  min-width:0;
+  max-width:100%;
+}
+
+/* Forms and controls follow the content column. */
+main.page-main input,
+main.page-main select,
+main.page-main textarea,
+main.article-main input,
+main.article-main select,
+main.article-main textarea,
+main.checkout-main input,
+main.checkout-main select,
+main.checkout-main textarea{
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+/* Never let long words, URLs or labels expand a grid column. */
+main.page-main *,
+main.article-main *,
+main.checkout-main *,
+.home-container *{
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:900px){
+  :root{
+    --bb-gutter:12px;
+  }
+
+  /* 24px total side gutter on every normal page. */
+  main.page-main > :not(.bb-page-hero),
+  main.article-main > :not(.bb-page-hero),
+  main.checkout-main > :not(.bb-page-hero),
+  main.page-main > .inline-cta,
+  main.article-main > .inline-cta,
+  .home-container{
+    width:calc(100% - 24px)!important;
+    max-width:none!important;
+  }
+
+  main.page-main > .bb-page-hero > .bb-page-hero-inner,
+  main.article-main > .bb-page-hero > .bb-page-hero-inner,
+  main.checkout-main > .bb-page-hero > .bb-page-hero-inner{
+    width:calc(100% - 24px)!important;
+    max-width:none!important;
+  }
+
+  /* Two-column layouts collapse cleanly instead of becoming cramped. */
+  .split-layout,
+  .checkout-shell,
+  .checkout-fields,
+  .catalog-toolbar{
+    min-width:0;
+  }
+
+  .split-layout{
+    grid-template-columns:1fr!important;
+  }
+
+  .checkout-shell{
+    grid-template-columns:1fr!important;
+  }
+
+  .checkout-fields{
+    grid-template-columns:1fr!important;
+  }
+
+  .checkout-fields .wide{
+    grid-column:1!important;
+  }
+}
+
+@media(max-width:680px){
+  /* One consistent mobile column for every page. */
+  main.page-main > :not(.bb-page-hero),
+  main.article-main > :not(.bb-page-hero),
+  main.checkout-main > :not(.bb-page-hero),
+  main.page-main > .inline-cta,
+  main.article-main > .inline-cta,
+  .home-container{
+    width:calc(100% - 24px)!important;
+  }
+
+  .category-grid,
+  .product-grid,
+  .demo-grid,
+  .article-grid,
+  .package-grid,
+  .services-grid,
+  .portfolio-grid,
+  .collection-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  .catalog-toolbar{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(min-width:681px) and (max-width:1050px){
+  .category-grid,
+  .product-grid,
+  .demo-grid,
+  .article-grid,
+  .package-grid,
+  .services-grid,
+  .portfolio-grid,
+  .collection-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
