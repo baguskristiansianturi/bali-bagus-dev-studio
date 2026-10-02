@@ -74,7 +74,14 @@ function footer(){
    <div class="footer-brand">
     <a class="footer-logo" href="${base}index.html" aria-label="Bali Bagus Dev Studio home"><span class="brand-mark">BB</span><span>BALI BAGUS<small>DEV STUDIO</small></span></a>
     <p>Digital products and services built around real business needs — from launch to growth.</p>
-    <div class="footer-socials"><a href="https://wa.me/628218187917" target="_blank" rel="noopener">WhatsApp ↗</a><span>Instagram · @bbstudio</span></div>
+    <div class="footer-socials" aria-label="Social media Bali Bagus Dev Studio">
+     <a class="footer-social footer-whatsapp" href="https://wa.me/628218187917" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+     <a class="footer-social" href="https://www.instagram.com/bbstudio/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+     <a class="footer-social" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></a>
+     <a class="footer-social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></a>
+     <a class="footer-social" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
+     <a class="footer-social" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></a>
+    </div>
    </div>
    <div class="footer-nav-group"><b>EXPLORE</b><a href="${base}services.html">Solutions</a><a href="${base}products.html">Products</a><a href="${base}website-collection.html">Websites</a><a href="${base}portfolio.html">Work</a></div>
    <div class="footer-nav-group"><b>STUDIO</b><a href="${base}about.html">About</a><a href="${base}articles.html">Insights</a><a href="${base}booking.html">Start a project</a><a href="${base}contact.html">Contact</a></div>
